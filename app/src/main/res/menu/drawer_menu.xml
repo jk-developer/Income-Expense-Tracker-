@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navaigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/login"
+            android:title="Login" />
+
+        <item
+            android:id="@+id/nav_income"
+            android:icon="@drawable/income"
+            android:title="Income" />
+        <item
+            android:id="@+id/nav_expense"
+            android:icon="@drawable/expense"
+            android:title="Expense" />
+        <item
+            android:id="@+id/nav_report"
+            android:icon="@drawable/progress_report"
+            android:title="Report" />
+
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/about"
+            android:title="About" />
+
+        <item
+            android:id="@+id/nav_setting"
+            android:icon="@drawable/setting"
+            android:title="Setting" />
+
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/logout"
+                android:title="Log out" />
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="app_name">Income Expense Tracker</string>
+    <string name="nav_header_title">Income Expense Tracker</string>
+    <string name="nav_header_subtitle">A Penny Saved is a Penny Earned.</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+</resources>

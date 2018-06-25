@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteY="81dp"
+    android:orientation="vertical"
+    android:layout_gravity="center">
+
+    <TextView
+        android:id="@+id/tvIncomeTitle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginStart="51dp"
+        android:gravity="center"
+        android:text="INCOME"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/etIncomeType"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etIncomeType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="33dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Income Type"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/etIncomeAmount"
+        app:layout_constraintEnd_toEndOf="@+id/tvIncomeTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvIncomeTitle" />
+
+    <EditText
+        android:id="@+id/etIncomeAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Amount"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/etIncomeDate"
+        app:layout_constraintStart_toStartOf="@+id/etIncomeType"
+        app:layout_constraintTop_toBottomOf="@+id/etIncomeType" />
+
+    <EditText
+        android:id="@+id/etIncomeDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Date"
+        android:inputType="date"
+        app:layout_constraintBottom_toTopOf="@+id/etIncomeTime"
+        app:layout_constraintStart_toStartOf="@+id/etIncomeAmount"
+        app:layout_constraintTop_toBottomOf="@+id/etIncomeAmount" />
+
+    <EditText
+        android:id="@+id/etIncomeTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Time"
+        android:inputType="time"
+        app:layout_constraintBottom_toTopOf="@+id/btnIncomeSubmit"
+        app:layout_constraintStart_toStartOf="@+id/etIncomeDate"
+        app:layout_constraintTop_toBottomOf="@+id/etIncomeDate" />
+
+    <Button
+        android:id="@+id/btnIncomeSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="140dp"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etIncomeTime" />
+
+
+</LinearLayout>
