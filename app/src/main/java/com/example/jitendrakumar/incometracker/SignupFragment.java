@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,9 +49,13 @@ public class SignupFragment extends Fragment {
                 boolean isInserted = myDb.insertData( name.getText().toString(), email.getText().toString(), mobile.getText().toString(), password.getText().toString() );
                 if (isInserted == true) {
                     Toast.makeText( getActivity(), "Data Saved to DataBase.", Toast.LENGTH_SHORT ).show();
+                    FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
+                    fragmentTransaction.replace( R.id.fragment_container, new LoginFragment());
+                    fragmentTransaction.commit();
                 } else {
                     Toast.makeText( getActivity(), "Data is not Saved to DataBase.", Toast.LENGTH_SHORT ).show();
                 }
+
             }
         } );
 

@@ -8,17 +8,19 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.jitendrakumar.incometracker.SignupFragment;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+import java.util.Date;
 
-    public static final String DATABASE_NAME = "User.db";
-    public static final String TABLE_NAME = "user_table";
+public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
+
+    public static final String DATABASE_NAME = "UserExpense.db";
+    public static final String TABLE_NAME = "expense_table";
     public static final String COL_1 = "ID";
-    public static final String COL_2 = "USERNAME";
-    public static final String COL_3 = "EMAIL";
-    public static final String COL_4 = "MOBILE";
-    public static final String COL_5 = "PASSWORD";
+    public static final String COL_2 = "EXPENSE_TYPE";
+    public static final String COL_3 = "AMOUNT";
+    public static final String COL_4 = "DATE";
+    public static final String COL_5 = "TIME";
 
-    public DatabaseHelper(Context context) {
+    public ExpenseDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
 
 
@@ -26,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,USERNAME TEXT UNIQUE NOT NULL,EMAIL TEXT, MOBILE INTEGER NOT NULL, PASSWORD TEXT NOT NULL) ");
+        db.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,EXPENSE_TYPE TEXT NOT NULL,AMOUNT FLOAT, DATE DATE NOT NULL, TIME TEXT NOT NULL) ");
     }
 
     @Override
@@ -37,13 +39,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     // Function insertData() to insert the data in the table/Database
 
-    public boolean insertData(String username, String email, String mobile, String password){
+    public boolean insertData(String expense_type, Float amount, Date date, String time){
         SQLiteDatabase db  = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put( COL_2, username );
-        contentValues.put( COL_3, email );
-        contentValues.put( COL_4, mobile );
-        contentValues.put( COL_5, password );
+        contentValues.put( COL_2, expense_type );
+        contentValues.put( COL_3, amount );
+        contentValues.put( COL_4, String.valueOf( date ) );
+        contentValues.put( COL_5, time );
         long res =  db.insert( TABLE_NAME, null, contentValues );
         if(res==-1)
         {
@@ -65,14 +67,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Function updateData() to update/change the existing data in database
 
-    public boolean updateData(String id, String username, String email, String mobile, String password){
+    public boolean updateData(String id, String expense_type, Float amount, Date date, String time){
         SQLiteDatabase db  = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put( COL_1, id );
-        contentValues.put( COL_2, username );
-        contentValues.put( COL_3, email );
-        contentValues.put( COL_4, mobile );
-        contentValues.put( COL_5, password );
+        contentValues.put( COL_2, expense_type );
+        contentValues.put( COL_3, amount );
+        contentValues.put( COL_4, String.valueOf( date ) );
+        contentValues.put( COL_5, time );
         db.update( TABLE_NAME, contentValues, "ID = ?", new String[] {id});
         return true;
     }
@@ -85,15 +87,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public Cursor getLoginData(String username){
-        SQLiteDatabase db  = this.getWritableDatabase();
-        String query = "SELECT * FROM TABLE_NAME WHERE USERNAME='" + username;
-
-        Cursor  cursor = db.rawQuery(query,null);
-
-        if (cursor != null) {
-            cursor.moveToFirst();
-        }
-        return cursor;
-    }
 }
+
