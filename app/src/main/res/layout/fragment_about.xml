@@ -35,7 +35,7 @@
             android:text="Jitendra Kumar"
             android:textSize="30sp"
             android:layout_gravity="center"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="15dp" />
 
     </LinearLayout>
 
@@ -49,14 +49,14 @@
             android:layout_height="wrap_content"
             android:text="Email Id :"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="jkgupta4398@gmail.com"
             android:textSize="17sp"
             android:textStyle="bold"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp" />
 
     </LinearLayout>
 
@@ -65,19 +65,30 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp">
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Mobile No :"/>
+            android:text="Mobile No :" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/tvPhone"
             android:text="9717321172"
             android:textSize="17sp"
             android:textStyle="bold"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp" />
+
+        <Button
+            android:id="@+id/btnCall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Call"
+            android:layout_marginLeft="10dp" />
 
     </LinearLayout>
 

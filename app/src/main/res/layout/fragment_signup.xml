@@ -74,10 +74,6 @@
             tools:layout_editor_absoluteX="70dp"
             tools:layout_editor_absoluteY="429dp" />
 
-
-
     </LinearLayout>
-
-
 
 </LinearLayout>

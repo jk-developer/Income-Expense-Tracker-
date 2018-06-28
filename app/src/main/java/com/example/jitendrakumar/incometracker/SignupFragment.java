@@ -7,8 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+
+import com.example.jitendrakumar.incometracker.database.DatabaseHelper;
 
 public class SignupFragment extends Fragment {
+
+    DatabaseHelper myDb;
+    EditText name, mobile, email, password, etId;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
