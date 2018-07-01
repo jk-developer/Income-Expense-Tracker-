@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.jitendrakumar.incometracker.SignupFragment;
-
 import java.util.Date;
 
 public class ExpenseDatabaseHelper extends SQLiteOpenHelper {

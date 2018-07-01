@@ -51,14 +51,15 @@
         app:layout_constraintStart_toStartOf="@+id/etIncomeType"
         app:layout_constraintTop_toBottomOf="@+id/etIncomeType" />
 
-    <EditText
-        android:id="@+id/etIncomeDate"
+    <TextView
+        android:id="@+id/tvIncomeDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:textSize="18sp"
         android:ems="10"
         android:gravity="center"
-        android:hint="Date"
+        android:hint="Select Date"
         android:inputType="date"
         app:layout_constraintBottom_toTopOf="@+id/etIncomeTime"
         app:layout_constraintStart_toStartOf="@+id/etIncomeAmount"

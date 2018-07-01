@@ -1,4 +1,4 @@
-package com.example.jitendrakumar.incometracker;
+package com.example.jitendrakumar.incometracker.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,11 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class ReportFragment extends Fragment {
+import com.example.jitendrakumar.incometracker.R;
 
+public class HomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate( R.layout.fragment_report, container, false );
+        return inflater.inflate( R.layout.fragment_home,container, false );
     }
 }

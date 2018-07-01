@@ -6,12 +6,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.jitendrakumar.incometracker.SignupFragment;
+import com.example.jitendrakumar.incometracker.helper.UserData;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-
-    public static final String DATABASE_NAME = "User.db";
+    public static final String TAG  = "RES";
+    private static final String DATABASE_NAME = "User.db";
     public static final String TABLE_NAME = "user_table";
+    private static final Integer VERSION = 1;
     public static final String COL_1 = "ID";
     public static final String COL_2 = "USERNAME";
     public static final String COL_3 = "EMAIL";
@@ -19,7 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_5 = "PASSWORD";
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, VERSION);
 
 
     }
@@ -85,15 +86,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public Cursor getLoginData(String username){
-        SQLiteDatabase db  = this.getWritableDatabase();
-        String query = "SELECT * FROM TABLE_NAME WHERE USERNAME='" + username;
+    public UserData getLoginData(String username){
+        SQLiteDatabase db  = this.getReadableDatabase();
+     //  String query = "select * from "+ TABLE_NAME+ "WHERE "+ COL_1 +"=" + username;
 
-        Cursor  cursor = db.rawQuery(query,null);
+        Cursor  cursor = db.rawQuery( "select * from user_table where " +COL_2+ " = ?", new String[]{username});
+       // Log.d( TAG, "getLoginData: " + cursor.getCount() );
 
         if (cursor != null) {
-            cursor.moveToFirst();
+            if(cursor.moveToNext()){
+              //  Log.d( TAG, "getLoginData: "+cursor.getString( cursor.getColumnIndexOrThrow( COL_2 ) ) );
+
+                Integer id = cursor.getInt( cursor.getColumnIndexOrThrow( COL_1));
+                String userName = cursor.getString( cursor.getColumnIndexOrThrow( COL_2 ) );
+                String pass = cursor.getString( cursor.getColumnIndexOrThrow( COL_5 ) );
+                return  new UserData(userName,pass,id);
+            }
+
         }
-        return cursor;
+        return null;
     }
 }

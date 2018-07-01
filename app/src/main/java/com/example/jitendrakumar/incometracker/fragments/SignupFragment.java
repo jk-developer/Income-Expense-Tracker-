@@ -1,6 +1,5 @@
-package com.example.jitendrakumar.incometracker;
+package com.example.jitendrakumar.incometracker.fragments;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.jitendrakumar.incometracker.R;
 import com.example.jitendrakumar.incometracker.database.DatabaseHelper;
 
 public class SignupFragment extends Fragment {

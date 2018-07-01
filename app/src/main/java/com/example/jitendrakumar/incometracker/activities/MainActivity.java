@@ -1,7 +1,5 @@
-package com.example.jitendrakumar.incometracker;
+package com.example.jitendrakumar.incometracker.activities;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,9 +8,16 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.jitendrakumar.incometracker.R;
+import com.example.jitendrakumar.incometracker.fragments.AboutFragment;
+import com.example.jitendrakumar.incometracker.fragments.ExpenseFragment;
+import com.example.jitendrakumar.incometracker.fragments.HomeFragment;
+import com.example.jitendrakumar.incometracker.fragments.IncomeFragment;
+import com.example.jitendrakumar.incometracker.fragments.LoginFragment;
+import com.example.jitendrakumar.incometracker.fragments.ReportFragment;
+import com.example.jitendrakumar.incometracker.fragments.SettingFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
