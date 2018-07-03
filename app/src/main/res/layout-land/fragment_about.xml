@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteY="81dp"
+    android:background="@color/fragmentBackground">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        
+    <TextView
+        android:id="@+id/tvAbout"
+        android:layout_width="228dp"
+        android:layout_height="58dp"
+        android:text="Developed By :"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="15dp"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="78dp"
+        tools:layout_editor_absoluteY="217dp"
+        android:textColor="@color/colorTexts"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/homebackground"
+            android:layout_weight="2"
+            android:layout_marginRight="10dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:text="Jitendra Kumar"
+            android:textSize="30sp"
+            android:layout_weight="4"
+            android:textColor="@color/colorTexts"/>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="354dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="Email Id :"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorTexts"/>
+
+            <TextView
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="jkgupta4398@gmail.com"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorTexts"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="316dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="5dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="Mobile No :"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorTexts"/>
+
+            <TextView
+                android:id="@+id/tvPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="9717321172"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorTexts"/>
+
+        </LinearLayout>
+
+</LinearLayout>
+    
+</ScrollView>

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
@@ -22,6 +23,8 @@ public class SignupFragment extends Fragment {
     DatabaseHelper myDb;
     EditText name, mobile, email, password;
     Button btnSignup, btnViewAll;
+    TextView tvLogin;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,6 +37,21 @@ public class SignupFragment extends Fragment {
         password = (EditText) view.findViewById( R.id.password );
         btnSignup = (Button) view.findViewById( R.id.btnSignup );
         btnViewAll = (Button) view.findViewById( R.id.btnViewAll );
+        tvLogin = (TextView) view.findViewById( R.id.tvLogin );
+
+        name.setHintTextColor(getResources().getColor(R.color.colorTexts));
+        mobile.setHintTextColor(getResources().getColor(R.color.colorTexts));
+        password.setHintTextColor(getResources().getColor(R.color.colorTexts));
+        email.setHintTextColor(getResources().getColor(R.color.colorTexts));
+
+        tvLogin.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace( R.id.fragment_container, new LoginFragment());
+                fragmentTransaction.commit();
+            }
+        } );
 
         adddatainDB();
         viewAllData();

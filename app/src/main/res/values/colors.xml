@@ -3,4 +3,10 @@
     <color name="colorPrimary">#250aed</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorBackground">#221f2f</color>
+    <color name="colorText">#1ad917</color>
+    <color name="colorTexts">#ffffff</color>
+    <color name="fragmentBackground">#2e2a37</color>
+    <color name="colorButton">#ffffff</color>
+    <color name="fragmentHome">#3e3650</color>
 </resources>

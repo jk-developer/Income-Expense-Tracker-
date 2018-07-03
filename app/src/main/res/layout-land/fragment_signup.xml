@@ -14,20 +14,20 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="260dp"
-            android:layout_height="44dp"
+            android:layout_width="374dp"
+            android:layout_height="70dp"
             android:layout_gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="70dp"
             android:gravity="center"
             android:text="Register Here "
-            android:textSize="25sp"
+            android:textSize="30sp"
             android:textStyle="bold"
-            android:layout_marginBottom="40dp"
             android:textColor="@color/colorTexts"/>
 
         <EditText
             android:id="@+id/name"
-            android:layout_width="250dp"
+            android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginBottom="15dp"
@@ -42,7 +42,7 @@
 
         <EditText
             android:id="@+id/email"
-            android:layout_width="250dp"
+            android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginBottom="15dp"
@@ -56,7 +56,7 @@
 
         <EditText
             android:id="@+id/mobile"
-            android:layout_width="250dp"
+            android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginBottom="15dp"
@@ -70,7 +70,7 @@
 
         <EditText
             android:id="@+id/password"
-            android:layout_width="250dp"
+            android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginBottom="15dp"
@@ -93,19 +93,19 @@
 
         <Button
             android:id="@+id/btnSignup"
-            android:layout_width="wrap_content"
+            android:layout_width="111dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="Sign up"
             tools:layout_editor_absoluteX="70dp"
             tools:layout_editor_absoluteY="429dp"
             android:background="@color/colorText"
-            android:textColor="@color/colorTexts"
+            android:textColor="@color/colorButton"
             android:gravity="center"/>
 
         <Button
             android:id="@+id/btnViewAll"
-            android:layout_width="wrap_content"
+            android:layout_width="111dp"
             android:layout_marginLeft="10dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -113,24 +113,27 @@
             tools:layout_editor_absoluteX="70dp"
             tools:layout_editor_absoluteY="429dp"
             android:background="@color/colorText"
-            android:textColor="@color/colorTexts"/>
+            android:textColor="@color/colorButton"/>
 
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:id="@+id/tvLogin"
-        android:text="Already a Member ? Login"
-        android:textStyle="bold"
-        android:textSize="17sp"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:textColor="@color/colorTexts"
-        />
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="255dp"
+            android:layout_height="39dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Already a Member ? Login"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorTexts"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
 </LinearLayout>
-
+    
 </ScrollView>

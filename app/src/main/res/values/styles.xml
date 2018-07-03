@@ -14,4 +14,8 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
+    <style name="GreenText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">#4c4460</item>
+    </style>
+
 </resources>

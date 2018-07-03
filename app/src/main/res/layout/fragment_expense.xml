@@ -1,91 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:layout_editor_absoluteY="81dp">
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteY="81dp"
+    android:background="@color/fragmentBackground">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
 
     <TextView
         android:id="@+id/tvExpenseTitle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="9dp"
-        android:layout_marginEnd="51dp"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
         android:gravity="center"
-        android:text="EXPENSES"
-        android:textSize="30sp"
+        android:padding="5dp"
+        android:text="EXPENSE"
+        android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/etExpenseType"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/colorTexts"/>
 
     <EditText
         android:id="@+id/etExpenseType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="33dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="19dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginStart="56dp"
         android:ems="10"
         android:gravity="center"
         android:hint="Expense Type"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/etExpenseAmount"
-        app:layout_constraintEnd_toEndOf="@+id/tvExpenseTitle"
-        app:layout_constraintTop_toBottomOf="@+id/tvExpenseTitle" />
+        android:padding="5dp" />
 
     <EditText
         android:id="@+id/etExpenseAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
         android:ems="10"
         android:gravity="center"
         android:hint="Amount"
         android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/etExpenseDate"
-        app:layout_constraintStart_toStartOf="@+id/etExpenseType"
-        app:layout_constraintTop_toBottomOf="@+id/etExpenseType" />
+        android:padding="5dp" />
 
     <EditText
         android:id="@+id/etExpenseDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="Date"
+        android:hint="Select Date"
         android:inputType="date"
-        app:layout_constraintBottom_toTopOf="@+id/etExpenseTime"
-        app:layout_constraintStart_toStartOf="@+id/etExpenseAmount"
-        app:layout_constraintTop_toBottomOf="@+id/etExpenseAmount" />
+        android:padding="5dp"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/etExpenseTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="22dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
         android:ems="10"
         android:gravity="center"
         android:hint="Time"
         android:inputType="time"
-        app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
-        app:layout_constraintStart_toStartOf="@+id/etExpenseDate"
-        app:layout_constraintTop_toBottomOf="@+id/etExpenseDate" />
+        android:padding="5dp" />
 
     <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnExpenseSubmit"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="146dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:padding="5dp"
         android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etExpenseTime" />
+        android:background="@color/colorText"
+        android:textColor="@color/colorTexts"
+       />
 
-
-</android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>

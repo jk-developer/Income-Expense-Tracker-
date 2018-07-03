@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteY="81dp"
+    android:background="@color/fragmentBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <TextView
         android:id="@+id/tvAbout"
@@ -17,7 +25,8 @@
         android:layout_marginTop="200dp"
         android:textSize="30sp"
         tools:layout_editor_absoluteX="78dp"
-        tools:layout_editor_absoluteY="217dp" />
+        tools:layout_editor_absoluteY="217dp"
+        android:textColor="@color/colorTexts"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,7 +44,8 @@
             android:text="Jitendra Kumar"
             android:textSize="30sp"
             android:layout_gravity="center"
-            android:layout_marginLeft="15dp" />
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/colorTexts"/>
 
     </LinearLayout>
 
@@ -49,14 +59,16 @@
             android:layout_height="wrap_content"
             android:text="Email Id :"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/colorTexts"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="jkgupta4398@gmail.com"
             android:textSize="17sp"
             android:textStyle="bold"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorTexts"/>
 
     </LinearLayout>
 
@@ -72,7 +84,8 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Mobile No :" />
+            android:text="Mobile No :"
+            android:textColor="@color/colorTexts"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,16 +93,12 @@
             android:text="9717321172"
             android:textSize="17sp"
             android:textStyle="bold"
-            android:layout_marginLeft="10dp" />
-
-        <Button
-            android:id="@+id/btnCall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Call"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/colorTexts"/>
 
     </LinearLayout>
 
 </LinearLayout>
+
+</ScrollView>

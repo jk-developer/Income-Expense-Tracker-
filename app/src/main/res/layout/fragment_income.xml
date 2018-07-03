@@ -1,93 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:layout_editor_absoluteY="81dp"
+    android:layout_gravity="center"
     android:orientation="vertical"
-    android:layout_gravity="center">
+    tools:layout_editor_absoluteY="81dp"
+    android:background="@color/fragmentBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <TextView
         android:id="@+id/tvIncomeTitle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="9dp"
-        android:layout_marginEnd="51dp"
-        android:layout_marginStart="51dp"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="25dp"
         android:gravity="center"
+        android:padding="5dp"
         android:text="INCOME"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/etIncomeType"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/colorTexts"/>
 
     <EditText
         android:id="@+id/etIncomeType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
-        android:layout_marginEnd="33dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="19dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginStart="56dp"
         android:ems="10"
         android:gravity="center"
         android:hint="Income Type"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/etIncomeAmount"
-        app:layout_constraintEnd_toEndOf="@+id/tvIncomeTitle"
-        app:layout_constraintTop_toBottomOf="@+id/tvIncomeTitle" />
+        android:padding="5dp" />
 
     <EditText
         android:id="@+id/etIncomeAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
         android:ems="10"
         android:gravity="center"
         android:hint="Amount"
         android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/etIncomeDate"
-        app:layout_constraintStart_toStartOf="@+id/etIncomeType"
-        app:layout_constraintTop_toBottomOf="@+id/etIncomeType" />
+        android:padding="5dp" />
 
-    <TextView
-        android:id="@+id/tvIncomeDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:textSize="18sp"
+    <EditText
+        android:id="@+id/etIncomeDate"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
         android:ems="10"
         android:gravity="center"
         android:hint="Select Date"
         android:inputType="date"
-        app:layout_constraintBottom_toTopOf="@+id/etIncomeTime"
-        app:layout_constraintStart_toStartOf="@+id/etIncomeAmount"
-        app:layout_constraintTop_toBottomOf="@+id/etIncomeAmount" />
+        android:padding="5dp"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/etIncomeTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="25dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
         android:ems="10"
         android:gravity="center"
         android:hint="Time"
         android:inputType="time"
-        app:layout_constraintBottom_toTopOf="@+id/btnIncomeSubmit"
-        app:layout_constraintStart_toStartOf="@+id/etIncomeDate"
-        app:layout_constraintTop_toBottomOf="@+id/etIncomeDate" />
+        android:padding="5dp" />
 
     <Button
         android:id="@+id/btnIncomeSubmit"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="140dp"
+        android:layout_gravity="center"
+        android:padding="5dp"
         android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etIncomeTime" />
+        android:textColor="@color/colorTexts"
+        android:background="@color/colorText"
+        android:layout_marginTop="25dp"/>
 
 
-</LinearLayout>
+   </LinearLayout>
+</ScrollView>

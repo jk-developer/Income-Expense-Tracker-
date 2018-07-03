@@ -7,35 +7,33 @@
     android:layout_gravity="center"
     android:orientation="vertical"
     tools:layout_editor_absoluteY="81dp"
-    android:background="@color/fragmentBackground"
-   >
-
+    android:background="@color/fragmentBackground">
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="385dp"
+            android:layout_height="65dp"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:gravity="center"
             android:text="INCOME EXPENSE TRACKER"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:textStyle="bold"
-            android:layout_marginBottom="40dp"
             android:textColor="@color/colorTexts"/>
 
         <EditText
             android:id="@+id/etUsername"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
+            android:layout_width="370dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
+            android:layout_margin="15dp"
+            android:layout_marginBottom="40dp"
             android:layout_marginEnd="61dp"
             android:layout_marginStart="61dp"
-            android:layout_marginTop="0dp"
             android:ems="10"
             android:gravity="center"
             android:hint="Username"
@@ -44,8 +42,8 @@
 
         <EditText
             android:id="@+id/etPassword"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
+            android:layout_width="370dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:layout_marginEnd="61dp"
@@ -54,24 +52,22 @@
             android:gravity="center"
             android:hint="Password"
             android:inputType="textPassword"
-            android:padding="5dp"
-            android:textColor="@color/colorTexts"/>
+            android:padding="5dp" />
 
         <Button
             android:id="@+id/btnLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_width="111dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:background="@color/colorText"
             android:gravity="center"
             android:text="Log In"
-            android:textColor="@color/colorTexts"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"/>
+            android:textColor="@color/colorTexts" />
 
         <TextView
             android:id="@+id/tvRegister"
-            android:layout_width="300dp"
-            android:layout_height="51dp"
+            android:layout_width="328dp"
+            android:layout_height="54dp"
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:layout_marginEnd="62dp"
@@ -83,9 +79,11 @@
             android:text="No Account yet ? Create one"
             android:textSize="17sp"
             android:textStyle="bold"
-            android:textColor="@color/colorTexts"
-           />
+            android:textColor="@color/colorTexts"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
-
+    
 </ScrollView>

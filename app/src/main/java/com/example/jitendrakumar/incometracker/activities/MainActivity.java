@@ -1,5 +1,6 @@
 package com.example.jitendrakumar.incometracker.activities;
 
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -23,16 +24,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private DrawerLayout drawerLayout;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main );
 
+        final NavigationView navigationView = findViewById( R.id.nav_view );
+
         android.support.v7.widget.Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
 
         drawerLayout = findViewById( R.id.drawer_layout );
-        NavigationView navigationView = findViewById( R.id.nav_view );
 
         navigationView.setNavigationItemSelectedListener( this );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawerLayout, toolbar,

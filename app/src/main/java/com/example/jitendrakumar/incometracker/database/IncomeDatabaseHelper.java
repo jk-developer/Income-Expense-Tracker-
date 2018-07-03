@@ -10,13 +10,14 @@ import java.util.Date;
 
 public class IncomeDatabaseHelper extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "UserIncome.db";
+    public static final String DATABASE_NAME = "User.db";
     public static final String TABLE_NAME = "income_table";
-    public static final String COL_1 = "ID";
+    public static final String COL_1 = "INCOME_ID";
     public static final String COL_2 = "INCOME_TYPE";
     public static final String COL_3 = "AMOUNT";
     public static final String COL_4 = "DATE";
     public static final String COL_5 = "TIME";
+    public static final String COL_6 = "ID";
 
     public IncomeDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -26,7 +27,7 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,INCOME_TYPE TEXT NOT NULL,AMOUNT FLOAT, DATE DATE NOT NULL, TIME TEXT NOT NULL) ");
+        db.execSQL("create table " + TABLE_NAME + " (INCOME_ID INTEGER PRIMARY KEY AUTOINCREMENT,INCOME_TYPE TEXT NOT NULL,AMOUNT FLOAT, DATE DATE NOT NULL, TIME TEXT NOT NULL, ID INTEGER FOREIGN KEY) ");
     }
 
     @Override

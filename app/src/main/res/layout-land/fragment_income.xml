@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteY="81dp"
+    android:background="@color/fragmentBackground">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/tvIncomeTitle"
+            android:layout_width="489dp"
+            android:layout_height="61dp"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="INCOME"
+            android:textSize="30sp"
+            tools:layout_editor_absoluteX="51dp"
+            tools:layout_editor_absoluteY="14dp"
+            android:textColor="@color/colorTexts"/>
+        <EditText
+            android:id="@+id/etIncomeType"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Income Type"
+            android:inputType="textPersonName"
+            android:padding="5dp"
+            tools:layout_editor_absoluteX="169dp"
+            tools:layout_editor_absoluteY="55dp" />
+
+
+
+
+        <EditText
+            android:id="@+id/etIncomeAmount"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Amount"
+            android:inputType="number"
+            android:padding="5dp"
+            tools:layout_editor_absoluteX="169dp"
+            tools:layout_editor_absoluteY="101dp" />
+
+        <EditText
+            android:id="@+id/etIncomeDate"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Select Date"
+            android:inputType="date"
+            android:padding="5dp"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="169dp"
+            tools:layout_editor_absoluteY="161dp" />
+
+
+        <EditText
+            android:id="@+id/etIncomeTime"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Time"
+            android:inputType="time"
+            android:padding="5dp"
+            tools:layout_editor_absoluteX="189dp"
+            tools:layout_editor_absoluteY="201dp" />
+
+        <Button
+            android:id="@+id/btnIncomeSubmit"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:text="Submit"
+            tools:layout_editor_absoluteX="237dp"
+            tools:layout_editor_absoluteY="257dp"
+            android:background="@color/colorText"
+            android:textColor="@color/colorTexts"/>
+
+    </LinearLayout>
+
+
+</ScrollView>
