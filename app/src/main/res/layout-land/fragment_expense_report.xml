@@ -29,7 +29,7 @@
             android:textColor="@color/colorTexts"/>
 
         <EditText
-            android:id="@+id/etFrom"
+            android:id="@+id/etExpenseFrom"
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -42,7 +42,7 @@
             android:padding="5dp" />
 
         <EditText
-            android:id="@+id/etTo"
+            android:id="@+id/etExpenseTo"
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -55,7 +55,7 @@
             android:padding="5dp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnViewExpenseReport"
             android:layout_width="111dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="190dp"

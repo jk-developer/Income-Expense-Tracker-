@@ -65,6 +65,12 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
+    public Cursor getAllIncomeReport(String userid, String dateFrom, String dateTo){
+        SQLiteDatabase db  = this.getWritableDatabase();
+        Cursor res  = db.rawQuery( "select * from "+TABLE_NAME3+" where USER_ID1 = "+userid+" and DATE >= "+ dateFrom + "and DATE <= "+ dateTo, null );
+        return res;
+    }
+
     // Function updateData() to update/change the existing data in database
 
     public boolean updateIncomeData(String income_id, String income_type, String amount, String date, String time){

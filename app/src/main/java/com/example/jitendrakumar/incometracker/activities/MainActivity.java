@@ -7,6 +7,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -22,7 +23,7 @@ import com.example.jitendrakumar.incometracker.fragments.SettingFragment;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
-
+   public android.support.v7.widget.Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         final NavigationView navigationView = findViewById( R.id.nav_view );
 
-        android.support.v7.widget.Toolbar toolbar = findViewById( R.id.toolbar );
+         toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
 
         drawerLayout = findViewById( R.id.drawer_layout );
@@ -60,47 +61,57 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
                         new HomeFragment()).commit();
+
                 break;
 
             case R.id.nav_login:
                 getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
                         new LoginFragment()).commit();
+                toolbar.setTitle( "Login" );
+
                 break;
 
             case R.id.nav_income:
                 getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
                         new IncomeFragment()).commit();
+                toolbar.setTitle( "Income" );
                 break;
 
             case R.id.nav_expense:
                 getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
                         new ExpenseFragment()).commit();
+                toolbar.setTitle( "Expense" );
                 break;
 
             case R.id.nav_income_report:
                 getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
                         new IncomeReportFragment()).commit();
+                toolbar.setTitle( "Income Report" );
                 break;
 
             case R.id.nav_expense_report:
                 getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
                         new IncomeReportFragment()).commit();
+                toolbar.setTitle( "Expense Report" );
                 break;
 
             case R.id.nav_about:
                 getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
                         new AboutFragment()).commit();
+                toolbar.setTitle( "About" );
                 break;
 
             case R.id.nav_setting:
             getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
                     new SettingFragment()).commit();
+                toolbar.setTitle( "Setting" );
             break;
 
             case R.id.nav_logout:

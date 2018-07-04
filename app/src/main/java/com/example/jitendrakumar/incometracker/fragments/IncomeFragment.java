@@ -25,7 +25,7 @@ public class IncomeFragment extends Fragment {
      EditText etIncomeType, etIncomeAmount, etIncomeDate, etIncomeTime;
      Button btnIncomeSubmit,btnIncomeViewAll;
      IncomeDatabaseHelper MyincomeDB;
-     public String id;
+     private String id;
 
     @Nullable
     @Override

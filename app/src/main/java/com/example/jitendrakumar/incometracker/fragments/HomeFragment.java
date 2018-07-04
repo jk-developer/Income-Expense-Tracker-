@@ -49,9 +49,29 @@ public class HomeFragment extends Fragment {
            FragmentManager expenseFragmentManager = getActivity().getSupportFragmentManager();
            FragmentTransaction expenseFragmentTransaction  = getFragmentManager().beginTransaction();
            ExpenseFragment expenseFragment = new ExpenseFragment();
-           expenseFragment.setArguments( income );
-           fragmentTransaction.replace( R.id.fragment_container,expenseFragment);
+           expenseFragment.setArguments( expense );
+           expenseFragmentTransaction.replace( R.id.fragment_container,expenseFragment);
            expenseFragmentTransaction.commit();
+
+            Bundle expense_report = new Bundle();
+            expense_report.putString( "userid", id.toString() );
+            FragmentManager expenseReportFragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction expenseReportFragmentTransaction  = getFragmentManager().beginTransaction();
+            ExpenseReportFragment expenseReportFragment = new ExpenseReportFragment();
+            expenseReportFragment.setArguments( expense_report );
+            expenseReportFragmentTransaction.replace( R.id.fragment_container,expenseReportFragment);
+            expenseReportFragmentTransaction.commit();
+
+            Bundle income_report = new Bundle();
+            income_report.putString( "userid", id.toString() );
+            FragmentManager incomeFragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction incomeFragmentTransaction  = getFragmentManager().beginTransaction();
+            ExpenseFragment incomeReportFragment = new ExpenseFragment();
+            incomeReportFragment.setArguments( income_report );
+            incomeFragmentTransaction.replace( R.id.fragment_container,incomeReportFragment);
+            incomeFragmentTransaction.commit();
+
+
        }
 
         return view;

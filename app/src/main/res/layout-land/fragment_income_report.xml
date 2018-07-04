@@ -29,7 +29,7 @@
             android:textColor="@color/colorTexts"/>
 
         <EditText
-            android:id="@+id/etFrom"
+            android:id="@+id/etIncomeFrom"
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -37,12 +37,12 @@
             android:layout_marginBottom="38dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="From"
+            android:hint="From Ex- yyyy-mm-dd"
             android:inputType="date"
             android:padding="5dp" />
 
         <EditText
-            android:id="@+id/etTo"
+            android:id="@+id/etIncomeTo"
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -50,12 +50,12 @@
             android:layout_marginBottom="40dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="To"
+            android:hint="To Ex- yyyy-mm-dd"
             android:inputType="date"
             android:padding="5dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnViewIncomeReport"
         android:layout_width="111dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="190dp"

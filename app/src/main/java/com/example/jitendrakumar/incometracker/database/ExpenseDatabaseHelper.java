@@ -61,7 +61,13 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getAllExpenseData(){
         SQLiteDatabase db  = this.getWritableDatabase();
-        Cursor res  = db.rawQuery( "select * from "+TABLE_NAME2, null );
+        Cursor res  = db.rawQuery( "select * from "+TABLE_NAME2 ,null);
+        return res;
+    }
+
+    public Cursor getAllExpenseReport(String userid, String datefrom, String dateto){
+        SQLiteDatabase db  = this.getWritableDatabase();
+        Cursor res  = db.rawQuery( "select * from "+TABLE_NAME2 + "where USER_ID2 = "+userid +" and DATE >= "+ datefrom + "and DATE <= "+ dateto,null);
         return res;
     }
 
