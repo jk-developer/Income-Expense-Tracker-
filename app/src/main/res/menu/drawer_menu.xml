@@ -21,12 +21,14 @@
             android:id="@+id/nav_expense"
             android:icon="@drawable/expense"
             android:title="Expense" />
-        <item
-            android:id="@+id/nav_report"
-            android:icon="@drawable/progress_report"
-            android:title="Report">
 
-        </item>
+        <item android:id="@+id/nav_income_report"
+                  android:icon="@drawable/login"
+                  android:title="Income Report"/>
+
+        <item android:id="@+id/nav_expense_report"
+                    android:icon="@drawable/login"
+                    android:title="Expense Report"/>
 
         <item
             android:id="@+id/nav_about"

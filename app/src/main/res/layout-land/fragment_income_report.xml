@@ -16,21 +16,21 @@
 
         <TextView
             android:id="@+id/tvReport"
-            android:layout_width="250dp"
+            android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginBottom="40dp"
             android:layout_marginTop="60dp"
             android:gravity="center"
             android:padding="5dp"
-            android:text="REPORT"
+            android:text="INCOME REPORT"
             android:textSize="25sp"
             android:textStyle="bold"
             android:textColor="@color/colorTexts"/>
 
         <EditText
             android:id="@+id/etFrom"
-            android:layout_width="250dp"
+            android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
@@ -43,7 +43,7 @@
 
         <EditText
             android:id="@+id/etTo"
-            android:layout_width="250dp"
+            android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
@@ -54,21 +54,23 @@
             android:inputType="date"
             android:padding="5dp" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:layout_marginBottom="190dp"
-            android:background="@color/colorText"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="Get Report"
-            android:textColor="@color/colorTexts" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="111dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="190dp"
+        android:text="Get Report"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        android:background="@color/colorText"
+        android:textColor="@color/colorTexts"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    
 </ScrollView>

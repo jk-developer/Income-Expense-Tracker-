@@ -1,6 +1,5 @@
 package com.example.jitendrakumar.incometracker.activities;
 
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,7 +16,7 @@ import com.example.jitendrakumar.incometracker.fragments.ExpenseFragment;
 import com.example.jitendrakumar.incometracker.fragments.HomeFragment;
 import com.example.jitendrakumar.incometracker.fragments.IncomeFragment;
 import com.example.jitendrakumar.incometracker.fragments.LoginFragment;
-import com.example.jitendrakumar.incometracker.fragments.ReportFragment;
+import com.example.jitendrakumar.incometracker.fragments.IncomeReportFragment;
 import com.example.jitendrakumar.incometracker.fragments.SettingFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -84,9 +83,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new ExpenseFragment()).commit();
                 break;
 
-            case R.id.nav_report:
+            case R.id.nav_income_report:
                 getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
-                        new ReportFragment()).commit();
+                        new IncomeReportFragment()).commit();
+                break;
+
+            case R.id.nav_expense_report:
+                getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
+                        new IncomeReportFragment()).commit();
                 break;
 
             case R.id.nav_about:

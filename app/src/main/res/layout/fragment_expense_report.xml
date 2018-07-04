@@ -23,7 +23,7 @@
             android:layout_marginTop="60dp"
             android:gravity="center"
             android:padding="5dp"
-            android:text="INCOME REPORT"
+            android:text="EXPENSE REPORT"
             android:textSize="25sp"
             android:textStyle="bold"
             android:textColor="@color/colorTexts"/>
@@ -66,9 +66,9 @@
             android:padding="5dp"
             android:text="Get Report"
             android:textColor="@color/colorTexts" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </ScrollView>

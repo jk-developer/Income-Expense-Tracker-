@@ -11,13 +11,13 @@ import android.widget.EditText;
 
 import com.example.jitendrakumar.incometracker.R;
 
-public class ReportFragment extends Fragment {
+public class IncomeReportFragment extends Fragment {
     EditText etFrom, etTo;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view =  inflater.inflate( R.layout.fragment_report, container, false );
+        View view =  inflater.inflate( R.layout.fragment_income_report, container, false );
         etFrom = (EditText)view.findViewById( R.id.etFrom);
         etTo = (EditText) view.findViewById( R.id.etTo);
 

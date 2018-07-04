@@ -23,7 +23,7 @@
             android:layout_marginTop="60dp"
             android:gravity="center"
             android:padding="5dp"
-            android:text="REPORT"
+            android:text="EXPENSE REPORT"
             android:textSize="25sp"
             android:textStyle="bold"
             android:textColor="@color/colorTexts"/>
@@ -54,23 +54,23 @@
             android:inputType="date"
             android:padding="5dp" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="111dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="190dp"
-        android:text="Get Report"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:padding="5dp"
-        android:layout_margin="10dp"
-        android:background="@color/colorText"
-        android:textColor="@color/colorTexts"/>
+        <Button
+            android:id="@+id/button"
+            android:layout_width="111dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="190dp"
+            android:text="Get Report"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="5dp"
+            android:layout_margin="10dp"
+            android:background="@color/colorText"
+            android:textColor="@color/colorTexts"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
-    
+
 </ScrollView>
