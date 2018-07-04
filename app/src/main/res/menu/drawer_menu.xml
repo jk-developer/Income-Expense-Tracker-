@@ -24,7 +24,9 @@
         <item
             android:id="@+id/nav_report"
             android:icon="@drawable/progress_report"
-            android:title="Report" />
+            android:title="Report">
+
+        </item>
 
         <item
             android:id="@+id/nav_about"

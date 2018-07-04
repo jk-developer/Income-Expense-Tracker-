@@ -78,13 +78,12 @@ public class LoginFragment extends Fragment {
                                 Bundle args = new Bundle();
                                 args.putString("id", dbid.toString());
                                 args.putString( "username", dbusername );
-                               // hf.setArguments(args);
                                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                               FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
-                               HomeFragment hf = new HomeFragment();
-                               hf.setArguments( args );
-                            fragmentTransaction.replace( R.id.fragment_container,hf);
-                            fragmentTransaction.commit();
+                                FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
+                                HomeFragment hf = new HomeFragment();
+                                hf.setArguments( args );
+                                fragmentTransaction.replace( R.id.fragment_container,hf);
+                                fragmentTransaction.commit();
                            }
 
                         }catch (Exception e){

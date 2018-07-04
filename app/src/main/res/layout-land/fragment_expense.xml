@@ -102,6 +102,18 @@
             android:textColor="@color/colorTexts"
             android:background="@color/colorText"/>
 
+        <Button
+            android:id="@+id/btnExpnenseViewAll"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:text="View all expenses"
+            android:background="@color/colorText"
+            android:textColor="@color/colorTexts"
+            />
+
     </LinearLayout>
 
 

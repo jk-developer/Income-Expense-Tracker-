@@ -1,36 +1,51 @@
 package com.example.jitendrakumar.incometracker.fragments;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
+import com.example.jitendrakumar.incometracker.database.DatabaseHelper;
+import com.example.jitendrakumar.incometracker.database.IncomeDatabaseHelper;
 
 public class IncomeFragment extends Fragment {
 
    // TextView tvIncomeDate;
   //  DatePickerDialog.OnDateSetListener myDateSetListener;
      EditText etIncomeType, etIncomeAmount, etIncomeDate, etIncomeTime;
+     Button btnIncomeSubmit,btnIncomeViewAll;
+     IncomeDatabaseHelper MyincomeDB;
+     public String id;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate( R.layout.fragment_income, container, false );
-
+        MyincomeDB = new IncomeDatabaseHelper( getContext());
         etIncomeType = (EditText) view.findViewById( R.id.etIncomeType );
         etIncomeAmount = (EditText) view.findViewById( R.id.etIncomeAmount);
         etIncomeDate = (EditText) view.findViewById( R.id.etIncomeDate );
         etIncomeTime = (EditText) view.findViewById( R.id.etIncomeTime );
+        btnIncomeSubmit = (Button)view.findViewById( R.id.btnIncomeSubmit );
+        btnIncomeViewAll = (Button)view.findViewById( R.id.btnIncomeViewAll );
 
         etIncomeType.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etIncomeAmount.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etIncomeDate.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etIncomeTime.setHintTextColor(getResources().getColor(R.color.colorTexts));
+
+        addDataInIncomeDB();
+        viewAllIncomeData();
 
      /*   tvIncomeDate = (TextView) view.findViewById( R.id.etIncomeDate );
         tvIncomeDate.setOnClickListener( new View.OnClickListener() {
@@ -58,6 +73,78 @@ public class IncomeFragment extends Fragment {
             }
         };
        */
+
+
         return view;
     }
+
+    public void addDataInIncomeDB() {
+        btnIncomeSubmit.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = getArguments();
+                if(bundle != null)
+                {
+                   id = bundle.getString("id");
+                }
+                try {
+                    boolean isInserted = MyincomeDB.insertIncomeData( etIncomeType.getText().toString(), etIncomeAmount.getText().toString(), etIncomeDate.getText().toString(), etIncomeTime.getText().toString() , id);
+                    if (isInserted == true) {
+                        Toast.makeText( getActivity(), "Data Saved to Income DataBase.", Toast.LENGTH_SHORT ).show();
+
+                    } else {
+                        Toast.makeText( getActivity(), "Data is not Saved to Income DataBase.", Toast.LENGTH_SHORT ).show();
+                    }
+
+                }
+                catch (NullPointerException e)
+                {
+                    e.printStackTrace();
+                }
+
+            }
+        } );
+
+
+    }
+
+    public void viewAllIncomeData(){
+        btnIncomeViewAll.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Cursor res = MyincomeDB.getAllIncomeData();
+                if(res.getCount() == 0)
+                {
+                    // Show message
+                    showMessage( "Error", "Nothing Found" );
+
+                    return;
+                }
+                else
+                {
+                    StringBuffer buffer = new StringBuffer(  );
+                    while (res.moveToNext()){
+                        buffer.append( "Income Id : "+ res.getString( 0 )+"\n" );
+                        buffer.append( "Income Type : "+ res.getString( 1 )+"\n" );
+                        buffer.append( "Income Amount : "+ res.getString( 2 )+"\n" );
+                        buffer.append( "Date : "+ res.getString( 3 )+"\n" );
+                        buffer.append( "Time : "+ res.getString( 4 )+"\n\n" );
+                        buffer.append( "User Id : "+ res.getString( 5 )+"\n\n" );
+                    }
+                    // Show all data
+                    showMessage( "Data", buffer.toString() );
+                }
+            }
+
+        } );
+    }
+
+    public void showMessage(String title, String Message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setCancelable( true );
+        builder.setTitle( title );
+        builder.setMessage( Message );
+        builder.show();
+    }
+
 }
