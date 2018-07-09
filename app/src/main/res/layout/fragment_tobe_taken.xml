@@ -15,7 +15,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvTobePaidTo"
+            android:id="@+id/tvTobeTakenFrom"
             android:layout_width="230dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -23,13 +23,13 @@
             android:layout_marginBottom="25dp"
             android:gravity="center"
             android:padding="5dp"
-            android:text="To be Paid To"
+            android:text="To be Taken From"
             android:textSize="30sp"
             android:textStyle="bold"
             android:textColor="@color/colorTexts"/>
 
         <EditText
-            android:id="@+id/etPersoName"
+            android:id="@+id/etPersonName"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -44,37 +44,37 @@
             android:padding="5dp" />
 
         <EditText
-            android:id="@+id/etPayingAmount"
+            android:id="@+id/etTakenAmount"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Paying Amount"
+            android:hint="Taken Amount"
             android:inputType="number"
             android:padding="5dp" />
 
         <EditText
-            android:id="@+id/etPayingReason"
+            android:id="@+id/etTakenReason"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:ems="10"
             android:gravity="center"
             android:hint="Reason ?"
-            android:inputType="time"
+            android:inputType="text"
             android:padding="5dp" />
 
         <EditText
-            android:id="@+id/etIncomeDate"
+            android:id="@+id/etTakenDate"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Last Date To be Paid"
+            android:hint="Last Date To be Taken"
             android:inputType="date"
             android:padding="5dp"
             android:textSize="18sp" />
@@ -82,7 +82,7 @@
 
 
         <Button
-            android:id="@+id/btnPayingSubmit"
+            android:id="@+id/btnTakenSubmit"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -93,12 +93,12 @@
             android:layout_marginTop="25dp"/>
 
         <Button
-            android:id="@+id/btnIncomeViewAllPaying"
+            android:id="@+id/btnViewAllTakenData"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="5dp"
-            android:text="View All Paying DATA"
+            android:text="View All Taken DATA"
             android:textColor="@color/colorTexts"
             android:background="@color/colorText"
             android:layout_marginTop="25dp"

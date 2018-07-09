@@ -24,6 +24,7 @@ import com.example.jitendrakumar.incometracker.fragments.SettingFragment;
 import com.example.jitendrakumar.incometracker.fragments.TobePaidFragment;
 import com.example.jitendrakumar.incometracker.fragments.TobeTakenFragment;
 import com.example.jitendrakumar.incometracker.fragments.TodoTaskFragment;
+import com.example.jitendrakumar.incometracker.helper.SessionManagement;
 import com.example.jitendrakumar.incometracker.helper.Task;
 
 import java.util.ArrayList;
@@ -34,16 +35,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public android.support.v7.widget.Toolbar toolbar;
     UserSessionManagement userSessionManagement;
     ArrayList<Task> tasks = new ArrayList<>(  );
-
+    HomeFragment homeFragment;
+    SessionManagement session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main );
 
-
+        session = new SessionManagement( MainActivity.this );
         NavigationView navigationView = (NavigationView) findViewById( R.id.nav_view );
-         toolbar = findViewById( R.id.toolbar );
+        toolbar = findViewById( R.id.toolbar );
          setSupportActionBar( toolbar );
 
          drawerLayout = findViewById( R.id.drawer_layout );
@@ -68,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             drawerLayout.closeDrawer( GravityCompat.START );
         }else{
             super.onBackPressed();
+
             
         }
     }
@@ -75,77 +78,172 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+         String username = session.getUserName();
+         switch (item.getItemId()){
             case R.id.nav_home:
-                getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
-                        new HomeFragment()).commit();
-                toolbar.setTitle( "Income Expense Tracker" );
+                if(username!=null)
+                {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace( R.id.fragment_container, new HomeFragment())
+                            .addToBackStack( null )
+                            .commit();
+                    toolbar.setTitle( "Income Expense Tracker" );
 
-                break;
+                    break;
+                }
+                else
+                    {
+                        Toast.makeText( MainActivity.this, "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
+                        break;
+                    }
+
 
             case R.id.nav_login:
-                getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
-                        new LoginFragment()).commit();
-                toolbar.setTitle( "Login" );
+                if(username!=null)
+                {
+                    Toast.makeText( MainActivity.this, session.getUserName()+", you are already Logged in!!!", Toast.LENGTH_SHORT ).show();
+                    break;
+                }else
+                {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace( R.id.fragment_container, new LoginFragment())
+                            .addToBackStack( null )
+                            .commit();
+                    toolbar.setTitle( "Login" );
+                    break;
+                }
 
-                break;
 
             case R.id.nav_income:
-                getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
-                        new IncomeFragment()).commit();
-                toolbar.setTitle( "Income" );
-                break;
+                if(username!=null){
+                    getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
+                            new IncomeFragment())
+                            .addToBackStack( null )
+                            .commit();
+                    toolbar.setTitle( "Income" );
+                    break;
+
+                }else
+                {
+                    Toast.makeText( MainActivity.this, "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
+                    break;
+                }
 
             case R.id.nav_expense:
-                getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
-                        new ExpenseFragment()).commit();
-                toolbar.setTitle( "Expense" );
-                break;
+                if(username!=null){
+                    getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
+                            new ExpenseFragment())
+                            .addToBackStack( null )
+                            .commit();
+                    toolbar.setTitle( "Expense" );
+                    break;
+                }else
+                {
+                    Toast.makeText( MainActivity.this, "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
+                    break;
+                }
+
 
             case R.id.nav_income_report:
-                getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
-                        new IncomeReportFragment()).commit();
-                toolbar.setTitle( "Income Report" );
-                break;
+                if(username!=null){
+                    getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
+                            new IncomeReportFragment())
+                            .addToBackStack( null )
+                            .commit();
+                    toolbar.setTitle( "Income Report" );
+                    break;
+
+                }else
+                {
+                    Toast.makeText( MainActivity.this, "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
+                    break;
+                }
 
             case R.id.nav_expense_report:
-                getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
-                        new IncomeReportFragment()).commit();
-                toolbar.setTitle( "Expense Report" );
-                break;
+                if(username!=null){
+                    getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
+                            new IncomeReportFragment())
+                            .addToBackStack( null )
+                            .commit();
+                    toolbar.setTitle( "Expense Report" );
+                    break;
+                }else
+                {
+                    Toast.makeText( MainActivity.this, "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
+                    break;
+                }
+
 
             case R.id.nav_todo_list:
-                getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
-                        new TodoTaskFragment()).commit();
-                toolbar.setTitle( "Todo Task" );
-                break;
+                if(username!=null){
+                    getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
+                            new TodoTaskFragment())
+                            .addToBackStack( null )
+                            .commit();
+                    toolbar.setTitle( "Todo Task" );
+                    break;
+                }else
+                {
+                    Toast.makeText( MainActivity.this, "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
+                    break;
+                }
+
 
             case R.id.nav_tobe_paid:
-                getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
-                        new TobePaidFragment()).commit();
-                toolbar.setTitle( "To be Paid To" );
-                break;
+                if(username!=null)
+                {
+                    getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
+                            new TobePaidFragment())
+                            .addToBackStack( null )
+                            .commit();
+                    toolbar.setTitle( "To be Paid To" );
+                    break;
+                }else
+                {
+                    Toast.makeText( MainActivity.this, "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
+                    break;
+                }
+
 
             case R.id.nav_tobe_taken:
-                getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
-                        new TobeTakenFragment()).commit();
-                toolbar.setTitle( "To be Taken From" );
-                break;
+                if(username!=null){
+                    getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
+                            new TobeTakenFragment())
+                            .addToBackStack( null )
+                            .commit();
+                    toolbar.setTitle( "To be Taken From" );
+                    break;
+                }else
+                {
+                    Toast.makeText( MainActivity.this, "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
+                    break;
+                }
+
 
             case R.id.nav_about:
                 getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
-                        new AboutFragment()).commit();
+                        new AboutFragment())
+                        .addToBackStack( null )
+                        .commit();
                 toolbar.setTitle( "About" );
                 break;
 
-            case R.id.nav_setting:
-            getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
-                    new SettingFragment()).commit();
-                toolbar.setTitle( "Setting" );
-            break;
-
             case R.id.nav_logout:
-                Toast.makeText( this, "logout action", Toast.LENGTH_SHORT ).show();
+                if(username!=null){
+                    session.removeUser();
+                    getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
+                            new HomeFragment())
+                            .addToBackStack( null )
+                            .commit();
+                    toolbar.setTitle( "Income Expense Tracker" );
+                    Toast.makeText( MainActivity.this, "Logged out successfully!!!" , Toast.LENGTH_SHORT).show();
+                    break;
+                }else
+                {
+                    Toast.makeText( MainActivity.this, "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
+                    break;
+                }
+
 
         }
         drawerLayout.closeDrawer( GravityCompat.START );

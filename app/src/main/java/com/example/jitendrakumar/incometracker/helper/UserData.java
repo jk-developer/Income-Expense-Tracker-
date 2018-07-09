@@ -1,14 +1,15 @@
 package com.example.jitendrakumar.incometracker.helper;
 
 public class UserData {
-    Integer id;
     String userName;
     String pass;
+    int id;
 
-   public UserData(String userName, String pass, Integer id){
-        this.id = id;
+   public UserData(String userName, String pass,int id){
+
         this.userName=userName;
         this.pass=pass;
+        this.id=id;
     }
 
     public String  getUserName(){
@@ -17,8 +18,6 @@ public class UserData {
     public  String getPass(){
         return pass;
     }
+    public int getId(){return id ;}
 
-    public Integer getId() {
-        return id;
-    }
 }

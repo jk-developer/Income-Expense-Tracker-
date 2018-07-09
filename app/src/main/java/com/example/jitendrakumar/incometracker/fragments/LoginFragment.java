@@ -1,5 +1,8 @@
 package com.example.jitendrakumar.incometracker.fragments;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,8 +20,10 @@ import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
 import com.example.jitendrakumar.incometracker.activities.UserSessionManagement;
+import com.example.jitendrakumar.incometracker.helper.SessionManagement;
 import com.example.jitendrakumar.incometracker.helper.UserData;
 import com.example.jitendrakumar.incometracker.database.DatabaseHelper;
+import com.example.jitendrakumar.incometracker.validations.InputValidation;
 
 public class LoginFragment extends Fragment {
 
@@ -26,6 +31,10 @@ public class LoginFragment extends Fragment {
     public final static String TAG = "RES";
     EditText etUsername, etPassword;
     TextView tvRegister;
+    InputValidation inputValidation;
+    SQLiteDatabase db;
+  //  UserData userData;
+
 
     @Nullable
     @Override
@@ -40,6 +49,8 @@ public class LoginFragment extends Fragment {
         etPassword = (EditText)view.findViewById( R.id.etPassword );
         etUsername.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etPassword.setHintTextColor(getResources().getColor(R.color.colorTexts));
+        etUsername.setTextColor( Color.parseColor("#00ff00"));
+        etPassword.setTextColor( Color.parseColor("#00ff00"));
 
         tvRegister.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -53,17 +64,66 @@ public class LoginFragment extends Fragment {
         btnLogin.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                SQLiteDatabase db = myDb.getDB();
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
-                Log.d( TAG, "onClick:  "+username +password.length()+" is currently ." );
+                try {
+                      if (username.length() == 0 || password.length() == 0) {
+                        Toast.makeText( getContext(), "Please First Fill all the Fields.", Toast.LENGTH_SHORT ).show();
+                         if (username.length() == 0 ){
+                             // showToast("Enter Your Name");
+                             etUsername.setError( "username is required!!!" );
+                         }
+                         if(password.length()==0)
+                         {
+                             etPassword.setError( "Password is required!!!" );
+                         }
 
-                if(username.length() == 0 || password.length() == 0){
-                    Toast.makeText( getContext(), "Please First Fill all the Fields.", Toast.LENGTH_SHORT ).show();
+                        }
+                        else if (username.length()!=0 && password.length()!=0) {
+                        //  userData = new UserData( username, password );
+                          UserData Data = myDb.getLoginData( username );
+                          if(Data !=null){
+                              String dbusername = Data.getUserName();
+                              String dbpassword = Data.getPass();
+                              int dbid = Data.getId();
+                              if (dbusername.equals( username ) && dbpassword.equals( password )) {
+                                  SessionManagement sessionManagement = new SessionManagement( getActivity());
+                                  sessionManagement.setUserName( dbusername );
+                                  sessionManagement.setUserPassword( dbpassword );
+                                  sessionManagement.setUserId( String.valueOf(dbid) );
+                                  Toast.makeText( getActivity(), "Logged in Successfully !!! ", Toast.LENGTH_SHORT ).show();
+                                  // HomeFragment hf = new HomeFragment();
+                                /*  Bundle args = new Bundle();
+                                  args.putString( "username", username );
+                                  args.putString( "userid", String.valueOf( dbid ) );
+                                  FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                  */
+                                  FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                                  HomeFragment hf = new HomeFragment();
+                                //  hf.setArguments( args );
+                                  fragmentTransaction.replace( R.id.fragment_container, hf );
+                                  fragmentTransaction.addToBackStack( null );
+                                  fragmentTransaction.commit();
+                                  Log.d( TAG, "onClick: sessionmange"+sessionManagement.getUserName() );
 
-                }else
-                {
-                    try {
-                         UserData res = myDb.getLoginData(username);
+                              }
+                              else{
+                                  Toast.makeText( getActivity(), "Either Username or Password is incorrect !!! ", Toast.LENGTH_SHORT ).show();
+                              }
+                          }
+                          else {
+                              Toast.makeText( getActivity(), "No Account Found for this Username, Please First Register", Toast.LENGTH_SHORT ).show();
+                          }
+
+                      }
+                      else {
+
+                            }
+
+
+                        /*    UserData res = myDb.getLoginData(username);
                          Integer dbid = res.getId();
                          String dbusername =  res.getUserName();
                          String dbpassword =  res.getPass();
@@ -73,31 +133,15 @@ public class LoginFragment extends Fragment {
                               Toast.makeText(getContext(), "Either Wrong username/password or Please Register First if not Registered"+dbusername+username, Toast.LENGTH_SHORT ).show();
                             }
                             else
-                            {
-                                UserSessionManagement userSessionManagement = new UserSessionManagement( getActivity() );
-                                userSessionManagement.setUsername( dbusername );
-                                userSessionManagement.setUserid( dbid );
-                                Toast.makeText( getActivity(), "Logged in Successfully !!! ", Toast.LENGTH_SHORT ).show();
-                               // HomeFragment hf = new HomeFragment();
-                                Bundle args = new Bundle();
-                                args.putString("id", dbid.toString());
-                                args.putString( "username", dbusername );
-                                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                                FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
-                                HomeFragment hf = new HomeFragment();
-                                hf.setArguments( args );
-                                fragmentTransaction.replace( R.id.fragment_container,hf);
-                                fragmentTransaction.commit();
-                                Toast.makeText( getActivity(), "after home fragment "+dbusername, Toast.LENGTH_SHORT ).show();
-                           }
+                            {  */
 
-                        }catch (Exception e){
+                }
+                catch (Exception e){
                         e.printStackTrace();
 
                     }
 
                 }
-            }
         });
      return view;
     }

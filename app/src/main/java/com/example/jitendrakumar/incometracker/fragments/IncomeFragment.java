@@ -1,6 +1,7 @@
 package com.example.jitendrakumar.incometracker.fragments;
 
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,9 +20,17 @@ import com.example.jitendrakumar.incometracker.activities.UserSessionManagement;
 import com.example.jitendrakumar.incometracker.database.DatabaseHelper;
 import com.example.jitendrakumar.incometracker.database.IncomeDatabaseHelper;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class IncomeFragment extends Fragment {
 
-   // TextView tvIncomeDate;
+    Pattern pattern;
+    Matcher matcher;
+    final String DATE_PATTERN = "(0?[1-9]|1[012]) [/.-] (0?[1-9]|[12][0-9]|3[01]) [/.-] ((19|20)\\d\\d)";
+
+
+    // TextView tvIncomeDate;
   //  DatePickerDialog.OnDateSetListener myDateSetListener;
      EditText etIncomeType, etIncomeAmount, etIncomeDate, etIncomeTime;
      Button btnIncomeSubmit,btnIncomeViewAll;
@@ -45,6 +54,12 @@ public class IncomeFragment extends Fragment {
         etIncomeAmount.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etIncomeDate.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etIncomeTime.setHintTextColor(getResources().getColor(R.color.colorTexts));
+        etIncomeDate.setTextColor( Color.parseColor("#00ff00"));
+        etIncomeAmount.setTextColor( Color.parseColor("#00ff00"));
+        etIncomeType.setTextColor( Color.parseColor("#00ff00"));
+        etIncomeTime.setTextColor( Color.parseColor("#00ff00"));
+
+
 
         addDataInIncomeDB();
         viewAllIncomeData();
@@ -84,13 +99,7 @@ public class IncomeFragment extends Fragment {
         btnIncomeSubmit.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = getArguments();
-                if(bundle != null)
-                {
-                   id = bundle.getString("id");
-                }
-                if(id != null )
-                {
+
                     try {
                         String incomeType = etIncomeType.getText().toString();
                         String incomeAmount = etIncomeAmount.getText().toString();
@@ -98,11 +107,21 @@ public class IncomeFragment extends Fragment {
                         String incomeTime = etIncomeTime.getText().toString();
                         if(incomeType.length() == 0)
                         {
-                            etIncomeType.setError( "Please enter some income type." );
+                            etIncomeType.setError( "Income Type is required!!!" );
                         }
-                        else
+                        if(incomeAmount.length() == 0)
                         {
-                            boolean isInserted = MyincomeDB.insertIncomeData( incomeType, incomeAmount , incomeDate,incomeTime , id);
+                            etIncomeAmount.setError( "Income Amount is required!!!" );
+                        }
+                        if(incomeDate.length() == 0){
+                            etIncomeDate.setError( "Date field is required!!! " );
+                        }
+                        if(incomeTime.length()==0)
+                        {
+                            etIncomeTime.setError( "Time field is required!!!" );
+                        }
+                        else {
+                            boolean isInserted = MyincomeDB.insertIncomeData( incomeType, incomeAmount , incomeDate,incomeTime);
                             if (isInserted == true) {
                                 Toast.makeText( getActivity(), "Data Saved to Income DataBase.", Toast.LENGTH_SHORT ).show();
 
@@ -110,21 +129,18 @@ public class IncomeFragment extends Fragment {
                                 Toast.makeText( getActivity(), "Data is not Saved to Income DataBase.", Toast.LENGTH_SHORT ).show();
                             }
                         }
+
+
+
                     }
                     catch (NullPointerException e)
                     {
                         e.printStackTrace();
                     }
 
-                }
-                else
-                {
-                    Toast.makeText( getActivity(), "Please First Login to Add the Income Data.", Toast.LENGTH_SHORT ).show();
-                }
 
             }
         } );
-
 
     }
 
@@ -149,7 +165,7 @@ public class IncomeFragment extends Fragment {
                         buffer.append( "Income Amount : "+ res.getString( 2 )+"\n" );
                         buffer.append( "Date : "+ res.getString( 3 )+"\n" );
                         buffer.append( "Time : "+ res.getString( 4 )+"\n\n" );
-                        buffer.append( "User Id : "+ res.getString( 5 )+"\n\n" );
+
                     }
                     // Show all data
                     showMessage( "Data", buffer.toString() );
@@ -166,5 +182,60 @@ public class IncomeFragment extends Fragment {
         builder.setMessage( Message );
         builder.show();
     }
+
+    public boolean validateDate(EditText date) {
+
+        matcher = pattern.matcher(date.getText().toString());
+
+        if(matcher.matches()){
+            matcher.reset();
+
+            if(matcher.find()){
+                String day = matcher.group(1);
+                String month = matcher.group(2);
+                int year = Integer.parseInt(matcher.group(3));
+
+                if (day.equals("31") &&
+                        (month.equals("4") || month .equals("6") || month.equals("9") ||
+                                month.equals("11") || month.equals("04") || month .equals("06") ||
+                                month.equals("09"))) {
+                    return false; // only 1,3,5,7,8,10,12 has 31 days
+                }
+
+                else if (month.equals("2") || month.equals("02")) {
+                    //leap year
+                    if(year % 4==0){
+                        if(day.equals("30") || day.equals("31")){
+                            return false;
+                        }
+                        else{
+                            return true;
+                        }
+                    }
+                    else{
+                        if(day.equals("29")||day.equals("30")||day.equals("31")){
+                            return false;
+                        }
+                        else{
+                            return true;
+                        }
+                    }
+                }
+
+                else{
+                    return true;
+                }
+            }
+
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+
+    }
+
 
 }

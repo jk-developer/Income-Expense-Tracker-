@@ -5,20 +5,22 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.Date;
 
 public class IncomeDatabaseHelper extends SQLiteOpenHelper {
+    public final static String TAG = "db";
 
     public static final String DATABASE_NAME = "Income.db";
     public static final String TABLE_NAME3 = "income_table";
+    private static final Integer VERSION = 1;
     public static final String COL_1 = "INCOME_ID";
     public static final String COL_2 = "INCOME_TYPE";
     public static final String COL_3 = "AMOUNT";
     public static final String COL_4 = "DATE";
     public static final String COL_5 = "TIME";
-    public static final String COL_6 = "USER_ID1";
 
     public IncomeDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -28,7 +30,7 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME3 + " (INCOME_ID INTEGER PRIMARY KEY AUTOINCREMENT,INCOME_TYPE TEXT NOT NULL,AMOUNT FLOAT, DATE TEXT NOT NULL, TIME TEXT NOT NULL, USER_ID1 INTEGER , FOREIGN KEY(USER_ID1) REFERENCES user_table(ID)) ");
+        db.execSQL("create table " + TABLE_NAME3 + " (INCOME_ID INTEGER PRIMARY KEY AUTOINCREMENT,INCOME_TYPE TEXT NOT NULL,AMOUNT FLOAT, DATE TEXT NOT NULL, TIME TEXT NOT NULL) ");
     }
 
     @Override
@@ -39,14 +41,14 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
     }
     // Function insertData() to insert the data in the table/Database
 
-    public boolean insertIncomeData(String income_type, String amount, String date, String time, String user_id){
+    public boolean insertIncomeData(String income_type, String amount, String date, String time){
         SQLiteDatabase db  = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put( COL_2, income_type );
         contentValues.put( COL_3, amount );
         contentValues.put( COL_4, date );
         contentValues.put( COL_5, time );
-        contentValues.put( COL_6,user_id);
+
         long res =  db.insert( TABLE_NAME3, null, contentValues );
         if(res==-1)
         {
@@ -66,10 +68,13 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public Cursor getAllIncomeReport(String userid, String dateFrom, String dateTo){
+    public Cursor getAllIncomeReport(String dateFrom, String dateTo){
         SQLiteDatabase db  = this.getWritableDatabase();
+        Log.d( TAG, "getAllIncomeReport: "+dateFrom+dateFrom );
 
-            Cursor res  = db.rawQuery( "select * from "+TABLE_NAME3+" where USER_ID1 = "+userid+" and DATE >= "+ dateFrom + " and DATE <= "+ dateTo, null );
+        Cursor res  = db.rawQuery( "select * from "+TABLE_NAME3+" where DATE >= "+ dateFrom + " and DATE <= "+ dateTo, null );
+        res.moveToNext();
+        //Log.d( TAG, "getAllIncomeReport: "+res.getString( 2 ) );
             return res;
     }
 

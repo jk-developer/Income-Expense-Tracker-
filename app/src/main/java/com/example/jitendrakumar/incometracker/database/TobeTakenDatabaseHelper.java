@@ -34,7 +34,7 @@ public class TobeTakenDatabaseHelper extends SQLiteOpenHelper {
     }
     // Function insertData() to insert the data in the table/Database
 
-    public boolean insertPayingData(String person_name, String taken_amount, String taken_reason, String taken_date){
+    public boolean insertTakenData(String person_name, String taken_amount, String taken_reason, String taken_date){
         SQLiteDatabase db  = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put( COL_2, person_name );
@@ -54,13 +54,13 @@ public class TobeTakenDatabaseHelper extends SQLiteOpenHelper {
 
     // Function getAllData() to get all data from the Database using Cursor
 
-    public Cursor getAllPayingData(){
+    public Cursor getAllTakenData(){
         SQLiteDatabase db  = this.getWritableDatabase();
         Cursor res  = db.rawQuery( "select * from "+TABLE_NAME5, null );
         return res;
     }
 
-    public Cursor getAllPayingReport(String takenid, String dateFrom, String dateTo){
+    public Cursor getAllTakenReport(String takenid, String dateFrom, String dateTo){
         SQLiteDatabase db  = this.getWritableDatabase();
 
         Cursor res  = db.rawQuery( "select * from "+TABLE_NAME5+" where TAKEN_ID = "+takenid+" and TAKEN_DATE >= "+ dateFrom + " and TAKEN_DATE <= "+ dateTo, null );

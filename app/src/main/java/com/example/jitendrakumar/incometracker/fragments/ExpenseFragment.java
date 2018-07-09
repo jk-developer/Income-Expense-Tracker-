@@ -1,6 +1,7 @@
 package com.example.jitendrakumar.incometracker.fragments;
 
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -38,6 +39,13 @@ public class ExpenseFragment extends Fragment {
         etExpenseDate.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etExpenseTime.setHintTextColor(getResources().getColor(R.color.colorTexts));
 
+        etExpenseAmount.setTextColor( Color.parseColor("#00ff00"));
+        etExpenseDate.setTextColor( Color.parseColor("#00ff00"));
+        etExpenseType.setTextColor( Color.parseColor("#00ff00"));
+        etExpenseTime.setTextColor( Color.parseColor("#00ff00"));
+
+
+
         addDataInExpenseDB();
         viewAllExpenseData();
 
@@ -62,13 +70,25 @@ public class ExpenseFragment extends Fragment {
                         String expenseAmount = etExpenseAmount.getText().toString();
                         String expenseDate =  etExpenseDate.getText().toString();
                         String expenseTime = etExpenseTime.getText().toString();
+
                         if(expenseType.length() == 0)
                         {
-                            etExpenseType.setError( "Please enter some income type." );
+                            etExpenseType.setError( "Income Type is required!!!" );
+                        }
+                        if(expenseAmount.length() == 0)
+                        {
+                            etExpenseAmount.setError( "Income Amount is required!!!" );
+                        }
+                        if(expenseDate.length() == 0){
+                            etExpenseDate.setError( "Date field is required!!! " );
+                        }
+                        if(expenseTime.length()==0)
+                        {
+                            etExpenseTime.setError( "Time field is required!!!" );
                         }
                         else
                         {
-                            boolean isInserted = MyexpenseDB.insertExpenseData( expenseType, expenseAmount, expenseDate, expenseTime , user_id);
+                            boolean isInserted = MyexpenseDB.insertExpenseData( expenseType, expenseAmount, expenseDate, expenseTime);
                             if (isInserted == true) {
                                 Toast.makeText( getActivity(), "Data Saved to Expense DataBase.", Toast.LENGTH_SHORT ).show();
 
@@ -116,7 +136,7 @@ public class ExpenseFragment extends Fragment {
                         buffer.append( "Income Amount : "+ res.getString( 2 )+"\n" );
                         buffer.append( "Date : "+ res.getString( 3 )+"\n" );
                         buffer.append( "Time : "+ res.getString( 4 )+"\n\n" );
-                        buffer.append( "User Id : "+ res.getString( 5 )+"\n\n" );
+
                     }
                     // Show all data
                     showMessage( "Data", buffer.toString() );

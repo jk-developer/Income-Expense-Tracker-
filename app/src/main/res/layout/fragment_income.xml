@@ -63,7 +63,7 @@
         android:layout_margin="10dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="Select Date"
+        android:hint="Date ex: YYYY-MM-DD"
         android:inputType="date"
         android:padding="5dp"
         android:textSize="18sp" />
@@ -75,7 +75,7 @@
         android:layout_gravity="center"
         android:ems="10"
         android:gravity="center"
-        android:hint="Time"
+        android:hint="Time ex: HH:MM"
         android:inputType="time"
         android:padding="5dp" />
 

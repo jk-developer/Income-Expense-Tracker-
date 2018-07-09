@@ -1,6 +1,7 @@
 package com.example.jitendrakumar.incometracker.fragments;
 
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -37,6 +38,10 @@ public class IncomeReportFragment extends Fragment {
 
         etIncomeFrom.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etIncomeTo.setHintTextColor(getResources().getColor(R.color.colorTexts));
+        etIncomeFrom.setTextColor( Color.parseColor("#00ff00"));
+        etIncomeTo.setTextColor( Color.parseColor("#00ff00"));
+
+
         showAllIncomeData();
         return view;
     }
@@ -45,17 +50,12 @@ public class IncomeReportFragment extends Fragment {
         btnViewIncomeReport.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = getArguments();
-                if(bundle != null)
-                {
-                    id = bundle.getString("id");
-                }
+
                 String dateFrom = etIncomeFrom.getText().toString();
                 String dateTo = etIncomeTo.getText().toString();
-                if(id != null)
-                {
+
                     Log.d( TAG, "onClick: before "+dateFrom + dateTo );
-                    Cursor res = myIncomeDB.getAllIncomeReport(id,dateFrom,dateTo);
+                    Cursor res = myIncomeDB.getAllIncomeReport(dateFrom,dateTo);
                     Log.d( TAG, "onClick: getAllIncome REport Function Run" );
                     if(res.getCount() == 0)
                     {
@@ -73,16 +73,11 @@ public class IncomeReportFragment extends Fragment {
                             buffer.append( "Income Amount : "+ res.getString( 2 )+"\n" );
                             buffer.append( "Date : "+ res.getString( 3 )+"\n" );
                             buffer.append( "Time : "+ res.getString( 4 )+"\n\n" );
-                            buffer.append( "User Id : "+ res.getString( 5 )+"\n\n" );
+
                         }
                         // Show all data
                         showMessage( "Data", buffer.toString() );
                     }
-                }
-                else
-                {
-                    Toast.makeText( getActivity(), "Please First Login into your account ", Toast.LENGTH_SHORT ).show();
-                }
 
             }
 

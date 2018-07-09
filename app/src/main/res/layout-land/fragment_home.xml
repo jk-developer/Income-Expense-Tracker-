@@ -23,23 +23,23 @@
         android:id="@+id/tvHello"
         android:layout_margin="2dp"
         android:gravity="center"
-        android:background="@color/colorText"/>
+        android:background="@color/background"
+        android:textColor="@color/colorTexts"/>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_weight="1"
         android:layout_margin="10dp">
 
         <LinearLayout
-            android:layout_width="170dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="1"
             android:layout_margin="5dp"
-            android:background="@color/colorText"
+            android:background="@color/homeitems"
+            android:layout_weight="1"
             android:clickable="true"
             android:id="@+id/homeLayout">
             <ImageView
@@ -51,7 +51,7 @@
             <TextView
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:text="Jitendra Kumar"
+                android:text="Todo Task"
                 android:textSize="18sp"
                 android:gravity="center"
                 android:padding="2dp"/>
@@ -59,11 +59,12 @@
 
 
         <LinearLayout
-            android:layout_width="170dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_margin="5dp"
-            android:background="@color/colorText"
+            android:background="@color/homeitems"
+            android:layout_weight="1"
             android:clickable="true"
             android:id="@+id/loginLayout">
             <ImageView
@@ -82,12 +83,12 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="170dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="1"
             android:layout_margin="5dp"
-            android:background="@color/colorText"
+            android:background="@color/homeitems"
+            android:layout_weight="1"
             android:clickable="true"
             android:id="@+id/incomeLayout">
             <ImageView
@@ -109,18 +110,17 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_weight="1"
         android:layout_margin="10dp">
 
         <LinearLayout
-            android:layout_width="170dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="1"
             android:layout_margin="5dp"
-            android:background="@color/colorText"
+            android:background="@color/homeitems"
+            android:layout_weight="1"
             android:clickable="true"
             android:id="@+id/expenseLayout">
             <ImageView
@@ -140,11 +140,12 @@
 
 
         <LinearLayout
-            android:layout_width="170dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_margin="5dp"
-            android:background="@color/colorText"
+            android:background="@color/homeitems"
+            android:layout_weight="1"
             android:clickable="true"
             android:id="@+id/incomeReportLayout">
             <ImageView
@@ -163,12 +164,12 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="170dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="1"
             android:layout_margin="5dp"
-            android:background="@color/colorText"
+            android:background="@color/homeitems"
+            android:layout_weight="1"
             android:clickable="true"
             android:id="@+id/expenseReportLayout">
             <ImageView
@@ -189,60 +190,86 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:orientation="horizontal"
-        android:layout_weight="1"
-        android:layout_margin="10dp">
 
         <LinearLayout
-            android:layout_width="170dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="5dp"
-            android:background="@color/colorText"
-            android:clickable="true"
-            android:id="@+id/aboutLayout">
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/login"
-                android:layout_gravity="center" />
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
 
-            <TextView
-                android:layout_width="170dp"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Jitendra Kumar"
-                android:textSize="18sp"
-                android:gravity="center"
-                android:padding="2dp" />
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@color/homeitems"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/tobePaidLayout">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/login"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="To be Paid To"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:padding="2dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@color/homeitems"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/tobeTakenLayout">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/login"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="To be Taken From"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:padding="2dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@color/homeitems"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/aboutLayout">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/login"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Jitendra Kumar"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:padding="2dp" />
+            </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_margin="5dp"
-            android:background="@color/colorText"
-            android:clickable="true"
-            android:id="@+id/settingLayout">
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/login"
-                android:layout_gravity="center"/>
 
-            <TextView
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:text="Jitendra Kumar"
-                android:textSize="18sp"
-                android:gravity="center"
-                android:padding="2dp"/>
-        </LinearLayout>
-
-    </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

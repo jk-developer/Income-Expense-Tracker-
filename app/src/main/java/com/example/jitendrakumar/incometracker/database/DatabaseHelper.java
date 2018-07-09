@@ -12,7 +12,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TAG  = "RES";
     private static final String DATABASE_NAME = "User.db";
     public static final String TABLE_NAME = "user_table";
-    private static final Integer VERSION = 1;
+    private static final Integer VERSION = 2;
     public static final String COL_1 = "ID";
     public static final String COL_2 = "USERNAME";
     public static final String COL_3 = "EMAIL";
@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,USERNAME TEXT UNIQUE NOT NULL,EMAIL TEXT, MOBILE INTEGER NOT NULL, PASSWORD TEXT NOT NULL) ");
+        db.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME TEXT  NOT NULL, EMAIL TEXT, MOBILE INTEGER NOT NULL, PASSWORD TEXT NOT NULL) ");
     }
 
     @Override
@@ -97,13 +97,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if(cursor.moveToNext()){
               //  Log.d( TAG, "getLoginData: "+cursor.getString( cursor.getColumnIndexOrThrow( COL_2 ) ) );
 
-                Integer id = cursor.getInt( cursor.getColumnIndexOrThrow( COL_1));
+               // Integer id = cursor.getInt( cursor.getColumnIndexOrThrow( COL_1));
                 String userName = cursor.getString( cursor.getColumnIndexOrThrow( COL_2 ) );
                 String pass = cursor.getString( cursor.getColumnIndexOrThrow( COL_5 ) );
+                int id = cursor.getInt( cursor.getColumnIndexOrThrow( COL_1 ) );
                 return  new UserData(userName,pass,id);
             }
 
         }
         return null;
+    }
+
+    public SQLiteDatabase getDB() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return  db;
     }
 }

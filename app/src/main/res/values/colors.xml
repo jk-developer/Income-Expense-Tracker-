@@ -5,8 +5,12 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorBackground">#221f2f</color>
     <color name="colorText">#1ad917</color>
+    <color name="background">#0b8dca</color>
     <color name="colorTexts">#ffffff</color>
     <color name="fragmentBackground">#2e2a37</color>
     <color name="colorButton">#ffffff</color>
     <color name="fragmentHome">#3e3650</color>
+    <color name="homelayout">#fff8ea</color>
+    <color name="homeitems">#92bc30</color>
+
 </resources>

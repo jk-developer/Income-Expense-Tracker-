@@ -29,7 +29,7 @@
             android:textColor="@color/colorTexts"/>
 
         <EditText
-            android:id="@+id/etPersoName"
+            android:id="@+id/etPersonName"
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -63,11 +63,11 @@
             android:ems="10"
             android:gravity="center"
             android:hint="Reason ?"
-            android:inputType="time"
+            android:inputType="text"
             android:padding="5dp" />
 
         <EditText
-            android:id="@+id/etIncomeDate"
+            android:id="@+id/etPayingDate"
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -93,7 +93,7 @@
             android:layout_marginTop="25dp"/>
 
         <Button
-            android:id="@+id/btnIncomeViewAllPaying"
+            android:id="@+id/btnViewAllPayingData"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

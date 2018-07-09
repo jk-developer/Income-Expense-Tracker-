@@ -21,35 +21,42 @@ import com.example.jitendrakumar.incometracker.R;
 import com.example.jitendrakumar.incometracker.activities.MainActivity;
 import com.example.jitendrakumar.incometracker.activities.MyAdapter;
 import com.example.jitendrakumar.incometracker.helper.HomeData;
+import com.example.jitendrakumar.incometracker.helper.SessionManagement;
 
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
     TextView tvHello;
     public String id;
-    LinearLayout homeLayout,incomeLayout,expenseLayout,incomeReportLayout,expenseReportLayout,aboutLayout,settingLayout,loginLayout;
+    LinearLayout todoLayout,incomeLayout,expenseLayout,incomeReportLayout,expenseReportLayout,aboutLayout,loginLayout,tobePaidLayout, tobeTakenLayout;
+    SessionManagement ses;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate( R.layout.fragment_home,container, false );
         tvHello = (TextView) view.findViewById( R.id.tvHello );
-        homeLayout = (LinearLayout) view.findViewById( R.id.homeLayout );
+        todoLayout = (LinearLayout) view.findViewById( R.id.todoLayout );
         incomeLayout = (LinearLayout) view.findViewById( R.id.incomeLayout );
         expenseLayout = (LinearLayout) view.findViewById( R.id.expenseLayout );
         incomeReportLayout = (LinearLayout) view.findViewById( R.id.incomeReportLayout );
         expenseReportLayout = (LinearLayout) view.findViewById( R.id.expenseReportLayout );
         loginLayout = (LinearLayout) view.findViewById( R.id.loginLayout );
         aboutLayout = (LinearLayout) view.findViewById( R.id.aboutLayout );
-        settingLayout = (LinearLayout) view.findViewById( R.id.settingLayout );
+        tobePaidLayout = (LinearLayout) view.findViewById( R.id.tobePaidLayout ) ;
+        tobeTakenLayout = (LinearLayout) view.findViewById( R.id.tobeTakenLayout );
+        ses = new SessionManagement( getContext() );
+
         tvHello.setVisibility(View.VISIBLE);
 
-        homeLayout.setOnClickListener( new View.OnClickListener() {
+        todoLayout.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Toast.makeText( getContext(), "home Layout clicked ", Toast.LENGTH_SHORT ).show();
                 FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace( R.id.fragment_container, new HomeFragment());
+                fragmentTransaction.replace( R.id.fragment_container, new TodoTaskFragment());
+                fragmentTransaction.addToBackStack( null );
                 fragmentTransaction.commit();
             }
         } );
@@ -57,125 +64,149 @@ public class HomeFragment extends Fragment {
         loginLayout.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText( getContext(), "login Layout clicked ", Toast.LENGTH_SHORT ).show();
-                FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace( R.id.fragment_container, new LoginFragment());
-                fragmentTransaction.commit();
+                 String username = ses.getUserName();
+                 if(ses.getUserName()!=null){
+                     Toast.makeText( getActivity(), ses.getUserName()+", you are already Logged in!!!" , Toast.LENGTH_SHORT).show();
+                 }
+                 else{
+                     Toast.makeText( getContext(), "login Layout clicked ", Toast.LENGTH_SHORT ).show();
+                     FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
+                     fragmentTransaction.replace( R.id.fragment_container, new LoginFragment());
+                     fragmentTransaction.addToBackStack( null );
+                     fragmentTransaction.commit();
+                 }
+
             }
         } );
 
         incomeLayout.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText( getContext(), "login Layout clicked ", Toast.LENGTH_SHORT ).show();
-                FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace( R.id.fragment_container, new IncomeFragment());
-                fragmentTransaction.commit();
+                 if (ses.getUserName()!=null){
+
+                     Toast.makeText( getContext(), "login Layout clicked ", Toast.LENGTH_SHORT ).show();
+                     FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
+                     fragmentTransaction.replace( R.id.fragment_container, new IncomeFragment());
+                     fragmentTransaction.addToBackStack( null );
+                     fragmentTransaction.commit();
+                 }
+                else{
+                    Toast.makeText( getActivity(), "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
+                }
+
             }
         } );
 
         expenseLayout.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText( getContext(), "login Layout clicked ", Toast.LENGTH_SHORT ).show();
-                FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace( R.id.fragment_container, new ExpenseFragment());
-                fragmentTransaction.commit();
+                if(ses.getUserName()!=null)
+                {
+                    Toast.makeText( getContext(), "login Layout clicked ", Toast.LENGTH_SHORT ).show();
+                    FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
+                    fragmentTransaction.replace( R.id.fragment_container, new ExpenseFragment());
+                    fragmentTransaction.addToBackStack( null );
+                    fragmentTransaction.commit();
+                }else{
+                    Toast.makeText( getActivity(), "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
+                }
+
             }
         } );
 
         incomeReportLayout.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText( getContext(), "login Layout clicked ", Toast.LENGTH_SHORT ).show();
-                FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace( R.id.fragment_container, new IncomeReportFragment());
-                fragmentTransaction.commit();
+                if(ses.getUserName()!=null)
+                {
+                    Toast.makeText( getContext(), "login Layout clicked ", Toast.LENGTH_SHORT ).show();
+                    FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
+                    fragmentTransaction.replace( R.id.fragment_container, new IncomeReportFragment());
+                    fragmentTransaction.addToBackStack( null );
+                    fragmentTransaction.commit();
+                }else{
+                    Toast.makeText( getActivity(), "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
+                }
+
             }
         } );
 
         expenseReportLayout.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText( getContext(), "login Layout clicked ", Toast.LENGTH_SHORT ).show();
-                FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace( R.id.fragment_container, new ExpenseReportFragment());
-                fragmentTransaction.commit();
+                if(ses.getUserName()!=null)
+                {
+                    Toast.makeText( getContext(), "login Layout clicked ", Toast.LENGTH_SHORT ).show();
+                    FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
+                    fragmentTransaction.replace( R.id.fragment_container, new ExpenseReportFragment());
+                    fragmentTransaction.addToBackStack( null );
+                    fragmentTransaction.commit();
+                }else{
+                    Toast.makeText( getActivity(), "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
+                }
+
+            }
+        } );
+
+        tobePaidLayout.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ses.getUserName()!=null){
+                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                    fragmentTransaction.replace( R.id.fragment_container, new TobePaidFragment() );
+                    fragmentTransaction.addToBackStack( null );
+                    fragmentTransaction.commit();
+                }else{
+                    Toast.makeText( getActivity(), "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
+                }
+
+            }
+        } );
+
+        tobeTakenLayout.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ses.getUserName()!=null){
+                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                    fragmentTransaction.replace( R.id.fragment_container, new TobeTakenFragment() );
+                    fragmentTransaction.addToBackStack( null );
+                    fragmentTransaction.commit();
+                }else{
+                    Toast.makeText( getActivity(), "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
+                }
+
             }
         } );
 
         aboutLayout.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Toast.makeText( getContext(), "login Layout clicked ", Toast.LENGTH_SHORT ).show();
                 FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace( R.id.fragment_container, new AboutFragment());
+                fragmentTransaction.addToBackStack( null );
                 fragmentTransaction.commit();
             }
         } );
 
-        settingLayout.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText( getContext(), "login Layout clicked ", Toast.LENGTH_SHORT ).show();
-                FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace( R.id.fragment_container, new SettingFragment());
-                fragmentTransaction.commit();
-            }
-        } );
 
-        Bundle bundle = getArguments();
-        if(bundle != null)
+        /* Bundle bundle = getArguments();
+        if(bundle != null) {
+
+            String username = bundle.getString( "username" );
+            id = bundle.getString( "userid" );
+            //Toast.makeText( getContext(), id+username, Toast.LENGTH_SHORT ).show();
+            */
+        if(ses.getUserName()!=null)
         {
-           id = bundle.getString("id");
-           String username = bundle.getString( "username" );
-           //Toast.makeText( getContext(), id+username, Toast.LENGTH_SHORT ).show();
-           tvHello.setText( "Hello, "+username +"Your Unique Id : "+id );
-
-           Bundle income = new Bundle();
-           income.putString("id", id.toString());
-           FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-           FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
-           IncomeFragment incomeFragment = new IncomeFragment();
-           incomeFragment.setArguments( income );
-           fragmentTransaction.replace( R.id.fragment_container,incomeFragment);
-           fragmentTransaction.commit();
-            Toast.makeText( getActivity(), "after income fragment "+id, Toast.LENGTH_SHORT ).show();
-
-            Bundle income_report = new Bundle();
-            income_report.putString( "userid", id.toString() );
-            FragmentManager incomeFragmentManager = getActivity().getSupportFragmentManager();
-            FragmentTransaction incomeFragmentTransaction  = getFragmentManager().beginTransaction();
-            ExpenseFragment incomeReportFragment = new ExpenseFragment();
-            incomeReportFragment.setArguments( income_report );
-            incomeFragmentTransaction.replace( R.id.fragment_container,incomeReportFragment);
-            incomeFragmentTransaction.commit();
-
-            Toast.makeText( getActivity(), "after increport fragment "+id, Toast.LENGTH_SHORT ).show();
-
-           Bundle expense = new Bundle();
-           expense.putString( "userid", id.toString() );
-           FragmentManager expenseFragmentManager = getActivity().getSupportFragmentManager();
-           FragmentTransaction expenseFragmentTransaction  = getFragmentManager().beginTransaction();
-           ExpenseFragment expenseFragment = new ExpenseFragment();
-           expenseFragment.setArguments( expense );
-           expenseFragmentTransaction.replace( R.id.fragment_container,expenseFragment);
-           expenseFragmentTransaction.commit();
-            Toast.makeText( getActivity(), "after expense fragment "+id, Toast.LENGTH_SHORT ).show();
-
-            Bundle expense_report = new Bundle();
-            expense_report.putString( "userid", id.toString() );
-            FragmentManager expenseReportFragmentManager = getActivity().getSupportFragmentManager();
-            FragmentTransaction expenseReportFragmentTransaction  = getFragmentManager().beginTransaction();
-            ExpenseReportFragment expenseReportFragment = new ExpenseReportFragment();
-            expenseReportFragment.setArguments( expense_report );
-            expenseReportFragmentTransaction.replace( R.id.fragment_container,expenseReportFragment);
-            expenseReportFragmentTransaction.commit();
-
-             Toast.makeText( getActivity(), "after exreport fragment "+id, Toast.LENGTH_SHORT ).show();
-
-                  }
-
-        return view;
+            tvHello.setText( "Hello, " + ses.getUserName() );
+        }
+        else
+        { }
+            return view;
+    }
+    public String findId(){
+        return id;
     }
 }

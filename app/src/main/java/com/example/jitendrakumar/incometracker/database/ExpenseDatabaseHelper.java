@@ -12,12 +12,13 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Expense.db";
     public static final String TABLE_NAME2 = "expense_table";
+
+    private static final Integer VERSION = 1;
     public static final String COL_1 = "ID";
     public static final String COL_2 = "EXPENSE_TYPE";
     public static final String COL_3 = "AMOUNT";
     public static final String COL_4 = "DATE";
     public static final String COL_5 = "TIME";
-    public static final String COL_6 = "USER_ID2";
 
     public ExpenseDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -27,7 +28,7 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME2 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,EXPENSE_TYPE TEXT NOT NULL,AMOUNT FLOAT, DATE DATE NOT NULL, TIME TEXT NOT NULL, USER_ID2 INTEGER , FOREIGN KEY(USER_ID2) REFERENCES user_table(ID)) ");
+        db.execSQL("create table " + TABLE_NAME2 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,EXPENSE_TYPE TEXT NOT NULL,AMOUNT FLOAT, DATE DATE NOT NULL, TIME TEXT NOT NULL) ");
     }
 
     @Override
@@ -38,14 +39,13 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
     }
     // Function insertData() to insert the data in the table/Database
 
-    public boolean insertExpenseData(String expense_type, String amount, String date, String time,String user_id){
+    public boolean insertExpenseData(String expense_type, String amount, String date, String time){
         SQLiteDatabase db  = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put( COL_2, expense_type );
         contentValues.put( COL_3, amount );
         contentValues.put( COL_4, date );
         contentValues.put( COL_5, time );
-        contentValues.put( COL_6,user_id );
         long res =  db.insert( TABLE_NAME2, null, contentValues );
         if(res==-1)
         {
@@ -65,9 +65,9 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public Cursor getAllExpenseReport(String userid, String datefrom, String dateto){
+    public Cursor getAllExpenseReport(String datefrom, String dateto){
         SQLiteDatabase db  = this.getWritableDatabase();
-        Cursor res  = db.rawQuery( "select * from "+TABLE_NAME2 + "where USER_ID2 = "+userid +" and DATE >= "+ datefrom + "and DATE <= "+ dateto,null);
+        Cursor res  = db.rawQuery( "select * from "+TABLE_NAME2 +"where "+ "DATE >= "+ datefrom + "and DATE <= "+ dateto,null);
         return res;
     }
 

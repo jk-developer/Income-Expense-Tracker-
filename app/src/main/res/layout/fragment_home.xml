@@ -19,12 +19,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="hello"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:layout_centerInParent="true"
         android:id="@+id/tvHello"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:background="@color/colorText"/>
+        android:background="@color/fragmentBackground"
+        android:textColor="@color/colorTexts"/>
 
 
     <LinearLayout
@@ -35,13 +36,14 @@
         android:layout_margin="10dp">
 
         <LinearLayout
-            android:layout_width="170dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_margin="5dp"
-            android:background="@color/colorText"
+            android:background="@color/homeitems"
+            android:layout_weight="1"
             android:clickable="true"
-            android:id="@+id/homeLayout">
+            android:id="@+id/todoLayout">
             <ImageView
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
@@ -51,19 +53,19 @@
             <TextView
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:text="Home"
+                android:text="Todo Task"
                 android:textSize="18sp"
                 android:gravity="center"
                 android:padding="2dp" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="170dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="1"
             android:layout_margin="5dp"
-            android:background="@color/colorText"
+            android:background="@color/homeitems"
+            android:layout_weight="1"
             android:clickable="true"
             android:id="@+id/loginLayout">
             <ImageView
@@ -87,15 +89,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="1"
             android:layout_margin="10dp">
 
             <LinearLayout
-                android:layout_width="170dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_margin="5dp"
-                android:background="@color/colorText"
+                android:background="@color/homeitems"
+                android:layout_weight="1"
                 android:clickable="true"
                 android:id="@+id/incomeLayout">
                 <ImageView
@@ -114,12 +116,12 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="170dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_weight="1"
                 android:layout_margin="5dp"
-                android:background="@color/colorText"
+                android:background="@color/homeitems"
+                android:layout_weight="1"
                 android:clickable="true"
                 android:id="@+id/expenseLayout">
                 <ImageView
@@ -139,19 +141,20 @@
 
         </LinearLayout>
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="1"
             android:layout_margin="10dp">
 
             <LinearLayout
-                android:layout_width="170dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_margin="5dp"
-                android:background="@color/colorText"
+                android:background="@color/homeitems"
+                android:layout_weight="1"
                 android:clickable="true"
                 android:id="@+id/incomeReportLayout">
                 <ImageView
@@ -170,12 +173,12 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="170dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_weight="1"
                 android:layout_margin="5dp"
-                android:background="@color/colorText"
+                android:background="@color/homeitems"
+                android:layout_weight="1"
                 android:clickable="true"
                 android:id="@+id/expenseReportLayout">
                 <ImageView
@@ -199,15 +202,72 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="1"
             android:layout_margin="10dp">
 
             <LinearLayout
-                android:layout_width="170dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_margin="5dp"
-                android:background="@color/colorText"
+                android:background="@color/homeitems"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/tobePaidLayout">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/login"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="To be Paid To"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:padding="2dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@color/homeitems"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/tobeTakenLayout">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/login"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="To be Taken From"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:padding="2dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@color/homeitems"
+                android:layout_weight="1"
                 android:clickable="true"
                 android:id="@+id/aboutLayout">
                 <ImageView
@@ -224,33 +284,13 @@
                     android:gravity="center"
                     android:padding="2dp" />
             </LinearLayout>
-
             <LinearLayout
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:background="@color/colorText"
-                android:clickable="true"
-                android:id="@+id/settingLayout">
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/login"
-                    android:layout_gravity="center"/>
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></LinearLayout>
 
-                <TextView
-                    android:layout_width="170dp"
-                    android:layout_height="wrap_content"
-                    android:text="Setting"
-                    android:textSize="18sp"
-                    android:gravity="center"
-                    android:padding="2dp"/>
-            </LinearLayout>
 
         </LinearLayout>
-
 
 
     </LinearLayout>

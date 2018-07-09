@@ -1,6 +1,7 @@
 package com.example.jitendrakumar.incometracker.fragments;
 
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -33,6 +34,10 @@ public class ExpenseReportFragment extends Fragment {
 
         etExpenseFrom.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etExpenseTo.setHintTextColor(getResources().getColor(R.color.colorTexts));
+        etExpenseFrom.setTextColor( Color.parseColor("#00ff00"));
+        etExpenseTo.setTextColor( Color.parseColor("#00ff00"));
+
+
         showAllExpenseData();
         return view;
     }
@@ -41,14 +46,10 @@ public class ExpenseReportFragment extends Fragment {
         btnViewExpenseReport.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = getArguments();
-                if(bundle != null)
-                {
-                    id = bundle.getString("id");
-                }
+
                 String expenseDateFrom = etExpenseFrom.getText().toString();
                 String expenseDateTo = etExpenseTo.getText().toString();
-                Cursor res = myExpenseDB.getAllExpenseReport(id,expenseDateFrom,expenseDateTo);
+                Cursor res = myExpenseDB.getAllExpenseReport(expenseDateFrom,expenseDateTo);
                 if(res.getCount() == 0)
                 {
                     // Show message
@@ -65,7 +66,7 @@ public class ExpenseReportFragment extends Fragment {
                         buffer.append( "Income Amount : "+ res.getString( 2 )+"\n" );
                         buffer.append( "Date : "+ res.getString( 3 )+"\n" );
                         buffer.append( "Time : "+ res.getString( 4 )+"\n\n" );
-                        buffer.append( "User Id : "+ res.getString( 5 )+"\n\n" );
+
                     }
                     // Show all data
                     showMessage( "Data", buffer.toString() );
