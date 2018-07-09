@@ -21,9 +21,10 @@
         android:textSize="22sp"
         android:layout_centerInParent="true"
         android:id="@+id/tvHello"
-        android:layout_margin="2dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
-        android:background="@color/background"
+        android:background="@color/fragmentBackground"
         android:textColor="@color/colorTexts"/>
 
 
@@ -76,7 +77,7 @@
             <TextView
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:text="Jitendra Kumar"
+                android:text="Login"
                 android:textSize="18sp"
                 android:gravity="center"
                 android:padding="2dp" />
@@ -100,7 +101,7 @@
             <TextView
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:text="Jitendra Kumar"
+                android:text="Income"
                 android:textSize="18sp"
                 android:gravity="center"
                 android:padding="2dp"/>
@@ -132,7 +133,7 @@
             <TextView
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:text="Jitendra Kumar"
+                android:text="Expense"
                 android:textSize="18sp"
                 android:gravity="center"
                 android:padding="2dp"/>
@@ -157,7 +158,7 @@
             <TextView
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:text="Jitendra Kumar"
+                android:text="Income Report"
                 android:textSize="18sp"
                 android:gravity="center"
                 android:padding="2dp" />
@@ -181,7 +182,7 @@
             <TextView
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:text="Jitendra Kumar"
+                android:text="Expense Report"
                 android:textSize="18sp"
                 android:gravity="center"
                 android:padding="2dp"/>
@@ -263,7 +264,7 @@
                 <TextView
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
-                    android:text="Jitendra Kumar"
+                    android:text="About Developer"
                     android:textSize="18sp"
                     android:gravity="center"
                     android:padding="2dp" />

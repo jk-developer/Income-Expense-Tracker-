@@ -19,6 +19,7 @@ import com.example.jitendrakumar.incometracker.R;
 import com.example.jitendrakumar.incometracker.activities.UserSessionManagement;
 import com.example.jitendrakumar.incometracker.database.DatabaseHelper;
 import com.example.jitendrakumar.incometracker.database.IncomeDatabaseHelper;
+import com.example.jitendrakumar.incometracker.helper.SessionManagement;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,14 +29,16 @@ public class IncomeFragment extends Fragment {
     Pattern pattern;
     Matcher matcher;
     final String DATE_PATTERN = "(0?[1-9]|1[012]) [/.-] (0?[1-9]|[12][0-9]|3[01]) [/.-] ((19|20)\\d\\d)";
+    SessionManagement sessonid;
 
 
     // TextView tvIncomeDate;
   //  DatePickerDialog.OnDateSetListener myDateSetListener;
      EditText etIncomeType, etIncomeAmount, etIncomeDate, etIncomeTime;
-     Button btnIncomeSubmit,btnIncomeViewAll;
+     Button btnIncomeSubmit,btnIncomeViewAll, btnIncomeUpdate, btnIncomeDelete;
      IncomeDatabaseHelper MyincomeDB;
      private String id;
+     IncomeUpdateFragment incomeUpdateFragment;
 
 
     @Nullable
@@ -43,12 +46,16 @@ public class IncomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate( R.layout.fragment_income, container, false );
         MyincomeDB = new IncomeDatabaseHelper( getContext());
+        sessonid = new SessionManagement( getContext() );
+        incomeUpdateFragment = new IncomeUpdateFragment();
         etIncomeType = (EditText) view.findViewById( R.id.etIncomeType );
         etIncomeAmount = (EditText) view.findViewById( R.id.etIncomeAmount);
         etIncomeDate = (EditText) view.findViewById( R.id.etIncomeDate );
         etIncomeTime = (EditText) view.findViewById( R.id.etIncomeTime );
         btnIncomeSubmit = (Button)view.findViewById( R.id.btnIncomeSubmit );
         btnIncomeViewAll = (Button)view.findViewById( R.id.btnIncomeViewAll );
+        btnIncomeUpdate = (Button)view.findViewById( R.id.btnIncomeUpdate);
+        btnIncomeDelete = (Button)view.findViewById( R.id.btnIncomeDelete );
 
         etIncomeType.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etIncomeAmount.setHintTextColor(getResources().getColor(R.color.colorTexts));
@@ -59,10 +66,9 @@ public class IncomeFragment extends Fragment {
         etIncomeType.setTextColor( Color.parseColor("#00ff00"));
         etIncomeTime.setTextColor( Color.parseColor("#00ff00"));
 
-
-
         addDataInIncomeDB();
         viewAllIncomeData();
+        updateIncome();
 
      /*   tvIncomeDate = (TextView) view.findViewById( R.id.etIncomeDate );
         tvIncomeDate.setOnClickListener( new View.OnClickListener() {
@@ -235,6 +241,30 @@ public class IncomeFragment extends Fragment {
             return false;
         }
 
+    }
+
+    public void updateIncome()
+    {
+        btnIncomeUpdate.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace( R.id.fragment_container, new IncomeUpdateFragment());
+                fragmentTransaction.addToBackStack( null );
+                fragmentTransaction.commit();
+
+               Toast.makeText( getActivity(), "Now fill the Fields to be updated!!!", Toast.LENGTH_SHORT ).show();
+              boolean isUpdated =  MyincomeDB.updateIncomeData(incomeUpdateFragment.getIncomeId() ,etIncomeType.getText().toString(), etIncomeAmount.getText().toString(),etIncomeDate.getText().toString(), etIncomeTime.getText().toString());
+              if (isUpdated==true)
+              {
+                  Toast.makeText( getActivity(), "Income Data of "+incomeUpdateFragment.getIncomeId()+" is updated successfully!!!", Toast.LENGTH_SHORT ).show();
+              }
+              else
+              {
+                  Toast.makeText( getActivity(), "Income Data of "+incomeUpdateFragment.getIncomeId()+" is not updated successfully!!!", Toast.LENGTH_SHORT ).show();
+              }
+            }
+        } );
     }
 
 

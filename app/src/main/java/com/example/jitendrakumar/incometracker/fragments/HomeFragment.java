@@ -49,7 +49,7 @@ public class HomeFragment extends Fragment {
 
         tvHello.setVisibility(View.VISIBLE);
 
-        todoLayout.setOnClickListener( new View.OnClickListener() {
+     /*   todoLayout.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -61,6 +61,7 @@ public class HomeFragment extends Fragment {
             }
         } );
 
+*/
         loginLayout.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="176dp"
-    android:background="@color/fragmentBackground"
+    android:background="@color/background"
     android:gravity="bottom"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
@@ -13,7 +13,7 @@
         android:layout_height="60dp"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="8dp"
-        android:src="@drawable/rupee" />
+        android:src="@drawable/ic_launcher" />
 
     <TextView
         android:layout_width="match_parent"
@@ -22,7 +22,8 @@
         android:text="@string/nav_header_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        />
 
     <TextView
         android:id="@+id/textView"
