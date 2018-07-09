@@ -7,7 +7,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -19,23 +21,32 @@ import com.example.jitendrakumar.incometracker.fragments.IncomeFragment;
 import com.example.jitendrakumar.incometracker.fragments.LoginFragment;
 import com.example.jitendrakumar.incometracker.fragments.IncomeReportFragment;
 import com.example.jitendrakumar.incometracker.fragments.SettingFragment;
+import com.example.jitendrakumar.incometracker.fragments.TobePaidFragment;
+import com.example.jitendrakumar.incometracker.fragments.TobeTakenFragment;
+import com.example.jitendrakumar.incometracker.fragments.TodoTaskFragment;
+import com.example.jitendrakumar.incometracker.helper.Task;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
-   public android.support.v7.widget.Toolbar toolbar;
+    public android.support.v7.widget.Toolbar toolbar;
+    UserSessionManagement userSessionManagement;
+    ArrayList<Task> tasks = new ArrayList<>(  );
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main );
 
-        final NavigationView navigationView = findViewById( R.id.nav_view );
 
+        NavigationView navigationView = (NavigationView) findViewById( R.id.nav_view );
          toolbar = findViewById( R.id.toolbar );
-        setSupportActionBar( toolbar );
+         setSupportActionBar( toolbar );
 
-        drawerLayout = findViewById( R.id.drawer_layout );
+         drawerLayout = findViewById( R.id.drawer_layout );
 
         navigationView.setNavigationItemSelectedListener( this );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawerLayout, toolbar,
@@ -57,8 +68,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             drawerLayout.closeDrawer( GravityCompat.START );
         }else{
             super.onBackPressed();
+            
         }
-
     }
 
 
@@ -68,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
                         new HomeFragment()).commit();
+                toolbar.setTitle( "Income Expense Tracker" );
 
                 break;
 
@@ -102,6 +114,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 toolbar.setTitle( "Expense Report" );
                 break;
 
+            case R.id.nav_todo_list:
+                getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
+                        new TodoTaskFragment()).commit();
+                toolbar.setTitle( "Todo Task" );
+                break;
+
+            case R.id.nav_tobe_paid:
+                getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
+                        new TobePaidFragment()).commit();
+                toolbar.setTitle( "To be Paid To" );
+                break;
+
+            case R.id.nav_tobe_taken:
+                getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
+                        new TobeTakenFragment()).commit();
+                toolbar.setTitle( "To be Taken From" );
+                break;
+
             case R.id.nav_about:
                 getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
                         new AboutFragment()).commit();
@@ -116,8 +146,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.nav_logout:
                 Toast.makeText( this, "logout action", Toast.LENGTH_SHORT ).show();
+
         }
         drawerLayout.closeDrawer( GravityCompat.START );
         return true;
     }
+
+
 }

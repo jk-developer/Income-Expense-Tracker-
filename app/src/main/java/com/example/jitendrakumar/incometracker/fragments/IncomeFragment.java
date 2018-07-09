@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
+import com.example.jitendrakumar.incometracker.activities.UserSessionManagement;
 import com.example.jitendrakumar.incometracker.database.DatabaseHelper;
 import com.example.jitendrakumar.incometracker.database.IncomeDatabaseHelper;
 
@@ -26,6 +27,7 @@ public class IncomeFragment extends Fragment {
      Button btnIncomeSubmit,btnIncomeViewAll;
      IncomeDatabaseHelper MyincomeDB;
      private String id;
+
 
     @Nullable
     @Override
@@ -87,19 +89,37 @@ public class IncomeFragment extends Fragment {
                 {
                    id = bundle.getString("id");
                 }
-                try {
-                    boolean isInserted = MyincomeDB.insertIncomeData( etIncomeType.getText().toString(), etIncomeAmount.getText().toString(), etIncomeDate.getText().toString(), etIncomeTime.getText().toString() , id);
-                    if (isInserted == true) {
-                        Toast.makeText( getActivity(), "Data Saved to Income DataBase.", Toast.LENGTH_SHORT ).show();
+                if(id != null )
+                {
+                    try {
+                        String incomeType = etIncomeType.getText().toString();
+                        String incomeAmount = etIncomeAmount.getText().toString();
+                        String incomeDate =  etIncomeDate.getText().toString();
+                        String incomeTime = etIncomeTime.getText().toString();
+                        if(incomeType.length() == 0)
+                        {
+                            etIncomeType.setError( "Please enter some income type." );
+                        }
+                        else
+                        {
+                            boolean isInserted = MyincomeDB.insertIncomeData( incomeType, incomeAmount , incomeDate,incomeTime , id);
+                            if (isInserted == true) {
+                                Toast.makeText( getActivity(), "Data Saved to Income DataBase.", Toast.LENGTH_SHORT ).show();
 
-                    } else {
-                        Toast.makeText( getActivity(), "Data is not Saved to Income DataBase.", Toast.LENGTH_SHORT ).show();
+                            } else {
+                                Toast.makeText( getActivity(), "Data is not Saved to Income DataBase.", Toast.LENGTH_SHORT ).show();
+                            }
+                        }
+                    }
+                    catch (NullPointerException e)
+                    {
+                        e.printStackTrace();
                     }
 
                 }
-                catch (NullPointerException e)
+                else
                 {
-                    e.printStackTrace();
+                    Toast.makeText( getActivity(), "Please First Login to Add the Income Data.", Toast.LENGTH_SHORT ).show();
                 }
 
             }

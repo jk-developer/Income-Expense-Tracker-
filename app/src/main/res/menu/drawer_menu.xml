@@ -31,6 +31,20 @@
                     android:title="Expense Report"/>
 
         <item
+            android:id="@+id/nav_todo_list"
+            android:icon="@drawable/home"
+            android:title="Todo Task" />
+        <item
+            android:id="@+id/nav_tobe_paid"
+            android:icon="@drawable/login"
+            android:title="To be Paid To" />
+
+        <item
+            android:id="@+id/nav_tobe_taken"
+            android:icon="@drawable/income"
+            android:title="To be Taken From" />
+
+        <item
             android:id="@+id/nav_about"
             android:icon="@drawable/about"
             android:title="About" />
@@ -41,6 +55,7 @@
             android:title="Setting" />
 
     </group>
+
 
     <item android:title="Communicate">
         <menu>

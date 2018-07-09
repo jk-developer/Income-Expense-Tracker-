@@ -1,27 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    tools:layout_editor_absoluteY="81dp"
+    android:background="@color/fragmentBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="hello"
-        android:textSize="22sp"
+        android:textSize="25sp"
         android:layout_centerInParent="true"
         android:id="@+id/tvHello"
-        android:layout_margin="2dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:textColor="@color/colorTexts" />
+        android:background="@color/colorText"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:id="@+id/rvHome"
-            tools:text= "RecyclerView">
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:background="@color/colorText"
+            android:clickable="true"
+            android:id="@+id/homeLayout">
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/login"
+                android:layout_gravity="center" />
 
-        </android.support.v7.widget.RecyclerView>
+            <TextView
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:padding="2dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@color/colorText"
+            android:clickable="true"
+            android:id="@+id/loginLayout">
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/login"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:padding="2dp"/>
+        </LinearLayout>
 
     </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_margin="10dp">
+
+            <LinearLayout
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@color/colorText"
+                android:clickable="true"
+                android:id="@+id/incomeLayout">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/login"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Income"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:padding="2dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:background="@color/colorText"
+                android:clickable="true"
+                android:id="@+id/expenseLayout">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/login"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Expense"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:padding="2dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_margin="10dp">
+
+            <LinearLayout
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@color/colorText"
+                android:clickable="true"
+                android:id="@+id/incomeReportLayout">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/login"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Income Report"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:padding="2dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:background="@color/colorText"
+                android:clickable="true"
+                android:id="@+id/expenseReportLayout">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/login"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Expense Report"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:padding="2dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_margin="10dp">
+
+            <LinearLayout
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@color/colorText"
+                android:clickable="true"
+                android:id="@+id/aboutLayout">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/login"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="About"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:padding="2dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:background="@color/colorText"
+                android:clickable="true"
+                android:id="@+id/settingLayout">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/login"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Setting"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:padding="2dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</ScrollView>
+

@@ -29,9 +29,11 @@ public class ExpenseReportFragment extends Fragment {
         etExpenseFrom = (EditText)view.findViewById( R.id.etExpenseFrom);
         etExpenseTo = (EditText) view.findViewById( R.id.etExpenseTo);
         btnViewExpenseReport = (Button) view.findViewById( R.id.btnViewExpenseReport);
+        myExpenseDB = new ExpenseDatabaseHelper( getContext());
 
         etExpenseFrom.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etExpenseTo.setHintTextColor(getResources().getColor(R.color.colorTexts));
+        showAllExpenseData();
         return view;
     }
 

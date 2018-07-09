@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteY="81dp"
+    android:background="@color/fragmentBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTobePaidTo"
+            android:layout_width="330dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="25dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="To be Paid To"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorTexts"/>
+
+        <EditText
+            android:id="@+id/etPersoName"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_marginBottom="19dp"
+            android:layout_marginEnd="56dp"
+            android:layout_marginStart="56dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Person Name"
+            android:inputType="textPersonName"
+            android:padding="5dp" />
+
+        <EditText
+            android:id="@+id/etPayingAmount"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Paying Amount"
+            android:inputType="number"
+            android:padding="5dp" />
+
+        <EditText
+            android:id="@+id/etPayingReason"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Reason ?"
+            android:inputType="time"
+            android:padding="5dp" />
+
+        <EditText
+            android:id="@+id/etIncomeDate"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Last Date To be Paid"
+            android:inputType="date"
+            android:padding="5dp"
+            android:textSize="18sp" />
+
+
+
+        <Button
+            android:id="@+id/btnPayingSubmit"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:text="Submit"
+            android:textColor="@color/colorTexts"
+            android:background="@color/colorText"
+            android:layout_marginTop="25dp"/>
+
+        <Button
+            android:id="@+id/btnIncomeViewAllPaying"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:text="View All Paying DATA"
+            android:textColor="@color/colorTexts"
+            android:background="@color/colorText"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="20dp"/>
+
+
+    </LinearLayout>
+</ScrollView>

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import java.util.Date;
 
@@ -67,8 +68,9 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getAllIncomeReport(String userid, String dateFrom, String dateTo){
         SQLiteDatabase db  = this.getWritableDatabase();
-        Cursor res  = db.rawQuery( "select * from "+TABLE_NAME3+" where USER_ID1 = "+userid+" and DATE >= "+ dateFrom + "and DATE <= "+ dateTo, null );
-        return res;
+
+            Cursor res  = db.rawQuery( "select * from "+TABLE_NAME3+" where USER_ID1 = "+userid+" and DATE >= "+ dateFrom + " and DATE <= "+ dateTo, null );
+            return res;
     }
 
     // Function updateData() to update/change the existing data in database

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
+import com.example.jitendrakumar.incometracker.activities.UserSessionManagement;
 import com.example.jitendrakumar.incometracker.helper.UserData;
 import com.example.jitendrakumar.incometracker.database.DatabaseHelper;
 
@@ -73,7 +74,10 @@ public class LoginFragment extends Fragment {
                             }
                             else
                             {
-                            Toast.makeText( getActivity(), "Logged in Successfully !!! ", Toast.LENGTH_SHORT ).show();
+                                UserSessionManagement userSessionManagement = new UserSessionManagement( getActivity() );
+                                userSessionManagement.setUsername( dbusername );
+                                userSessionManagement.setUserid( dbid );
+                                Toast.makeText( getActivity(), "Logged in Successfully !!! ", Toast.LENGTH_SHORT ).show();
                                // HomeFragment hf = new HomeFragment();
                                 Bundle args = new Bundle();
                                 args.putString("id", dbid.toString());
@@ -84,6 +88,7 @@ public class LoginFragment extends Fragment {
                                 hf.setArguments( args );
                                 fragmentTransaction.replace( R.id.fragment_container,hf);
                                 fragmentTransaction.commit();
+                                Toast.makeText( getActivity(), "after home fragment "+dbusername, Toast.LENGTH_SHORT ).show();
                            }
 
                         }catch (Exception e){

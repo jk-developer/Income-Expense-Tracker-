@@ -53,20 +53,41 @@ public class ExpenseFragment extends Fragment {
                 {
                     user_id = bundle.getString("id");
                 }
-                try {
-                    boolean isInserted = MyexpenseDB.insertExpenseData( etExpenseType.getText().toString(), etExpenseAmount.getText().toString(), etExpenseDate.getText().toString(), etExpenseTime.getText().toString() , user_id);
-                    if (isInserted == true) {
-                        Toast.makeText( getActivity(), "Data Saved to Expense DataBase.", Toast.LENGTH_SHORT ).show();
-
-                    } else {
-                        Toast.makeText( getActivity(), "Data is not Saved to Expense DataBase.", Toast.LENGTH_SHORT ).show();
-                    }
-
-                }
-                catch (NullPointerException e)
+                if(user_id != null)
                 {
-                    e.printStackTrace();
+
+                    try {
+
+                        String expenseType = etExpenseType.getText().toString();
+                        String expenseAmount = etExpenseAmount.getText().toString();
+                        String expenseDate =  etExpenseDate.getText().toString();
+                        String expenseTime = etExpenseTime.getText().toString();
+                        if(expenseType.length() == 0)
+                        {
+                            etExpenseType.setError( "Please enter some income type." );
+                        }
+                        else
+                        {
+                            boolean isInserted = MyexpenseDB.insertExpenseData( expenseType, expenseAmount, expenseDate, expenseTime , user_id);
+                            if (isInserted == true) {
+                                Toast.makeText( getActivity(), "Data Saved to Expense DataBase.", Toast.LENGTH_SHORT ).show();
+
+                            } else {
+                                Toast.makeText( getActivity(), "Data is not Saved to Expense DataBase.", Toast.LENGTH_SHORT ).show();
+                            }
+                        }
+                    }
+                    catch (NullPointerException e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
+                else
+                {
+                    Toast.makeText( getActivity(), "Please First Login to Add the Expense Data.", Toast.LENGTH_SHORT ).show();
+                }
+
+
 
             }
         } );
