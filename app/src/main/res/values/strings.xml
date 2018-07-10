@@ -26,7 +26,33 @@
     <string name="text_hello">Hello,</string>
     <string name="text_title">Income Expense Tracker</string>
 
+
+    <string name="hint_id">ID</string>
+
+    <string name="beneficiaryaddress">Address</string>
+    <string name="beneficiarycountry">Country</string>
+    <string name="register_benef">Register Beneficiary</string>
+    <string name="show_list_benef">List of Registered Beneficiary</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+
+    <string name="country_prompt">Choose a Day</string>
+
+    <string-array name="days_array">
+        <item>Choose a Day</item>
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+
+    </string-array>
+
+
 </resources>
+
+

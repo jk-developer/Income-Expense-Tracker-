@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:orientation="vertical"
     tools:layout_editor_absoluteY="81dp"
-    android:background="@color/fragmentBackground">
+    android:background="@drawable/gradient_background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,6 +56,18 @@
         android:inputType="number"
         android:padding="5dp" />
 
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="250dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:entries="@array/days_array"
+            android:prompt="@string/country_prompt"
+            android:padding="5dp"
+            android:layout_margin="10dp"
+            />
+
     <EditText
         android:id="@+id/etIncomeDate"
         android:layout_width="250dp"
@@ -80,7 +92,10 @@
         android:inputType="time"
         android:padding="5dp" />
 
-    <Button
+
+
+
+        <Button
         android:id="@+id/btnIncomeSubmit"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
@@ -88,23 +103,24 @@
         android:padding="5dp"
         android:text="Submit"
         android:textColor="@color/colorTexts"
-        android:background="@color/colorText"
+            android:background="@drawable/button_background"
         android:layout_marginTop="25dp"/>
+
      <LinearLayout
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
-         android:layout_marginBottom="20dp">
+         android:layout_marginBottom="30dp">
 
          <Button
              android:id="@+id/btnIncomeViewAll"
              android:layout_width="0dp"
-             android:layout_height="60dp"
+             android:layout_height="wrap_content"
              android:layout_weight="1"
              android:layout_gravity="center"
              android:padding="5dp"
              android:text="Get All Income "
              android:textColor="@color/colorTexts"
-             android:background="@color/colorText"
+             android:background="@drawable/button_background"
              android:layout_marginTop="25dp"
              android:layout_marginLeft="10dp"
              android:layout_marginRight="10dp"/>
@@ -112,26 +128,26 @@
          <Button
              android:id="@+id/btnIncomeUpdate"
              android:layout_width="0dp"
-             android:layout_height="60dp"
+             android:layout_height="wrap_content"
              android:layout_weight="1"
              android:layout_gravity="center"
              android:padding="5dp"
              android:text="update any income "
              android:textColor="@color/colorTexts"
-             android:background="@color/colorText"
+             android:background="@drawable/button_background"
              android:layout_marginTop="25dp"
              android:layout_marginRight="10dp"/>
 
          <Button
              android:id="@+id/btnIncomeDelete"
              android:layout_width="0dp"
-             android:layout_height="60dp"
+             android:layout_height="wrap_content"
              android:layout_weight="1"
              android:layout_gravity="center"
              android:padding="5dp"
              android:text="Delete any Income"
              android:textColor="@color/colorTexts"
-             android:background="@color/colorText"
+             android:background="@drawable/button_background"
              android:layout_marginTop="25dp"
              android:layout_marginRight="10dp" />
 

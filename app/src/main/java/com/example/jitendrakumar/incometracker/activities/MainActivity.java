@@ -7,9 +7,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -20,7 +17,6 @@ import com.example.jitendrakumar.incometracker.fragments.HomeFragment;
 import com.example.jitendrakumar.incometracker.fragments.IncomeFragment;
 import com.example.jitendrakumar.incometracker.fragments.LoginFragment;
 import com.example.jitendrakumar.incometracker.fragments.IncomeReportFragment;
-import com.example.jitendrakumar.incometracker.fragments.SettingFragment;
 import com.example.jitendrakumar.incometracker.fragments.TobePaidFragment;
 import com.example.jitendrakumar.incometracker.fragments.TobeTakenFragment;
 import com.example.jitendrakumar.incometracker.fragments.TodoTaskFragment;

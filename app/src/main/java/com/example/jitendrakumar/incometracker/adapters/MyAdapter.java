@@ -1,4 +1,4 @@
-package com.example.jitendrakumar.incometracker.activities;
+package com.example.jitendrakumar.incometracker.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;

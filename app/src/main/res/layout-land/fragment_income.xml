@@ -8,7 +8,7 @@
     android:layout_gravity="center"
     android:orientation="vertical"
     tools:layout_editor_absoluteY="81dp"
-    android:background="@color/fragmentBackground">
+    android:background="@drawable/gradient_background">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -59,6 +59,18 @@
             tools:layout_editor_absoluteX="169dp"
             tools:layout_editor_absoluteY="101dp" />
 
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="250dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:entries="@array/days_array"
+            android:prompt="@string/country_prompt"
+            android:padding="5dp"
+            android:layout_margin="10dp"
+            />
+
         <EditText
             android:id="@+id/etIncomeDate"
             android:layout_width="280dp"
@@ -99,7 +111,7 @@
             android:text="Submit"
             tools:layout_editor_absoluteX="237dp"
             tools:layout_editor_absoluteY="257dp"
-            android:background="@color/colorText"
+            android:background="@drawable/button_background"
             android:textColor="@color/colorTexts"/>
 
 
@@ -117,7 +129,7 @@
                 android:padding="5dp"
                 android:text="Get All Income "
                 android:textColor="@color/colorTexts"
-                android:background="@color/colorText"
+                android:background="@drawable/button_background"
                 android:layout_marginTop="25dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="20dp"/>
@@ -131,7 +143,7 @@
                 android:padding="5dp"
                 android:text="update any income "
                 android:textColor="@color/colorTexts"
-                android:background="@color/colorText"
+                android:background="@drawable/button_background"
                 android:layout_marginTop="25dp"
                 android:layout_marginRight="20dp"/>
 
@@ -144,7 +156,7 @@
                 android:padding="5dp"
                 android:text="Delete any Income"
                 android:textColor="@color/colorTexts"
-                android:background="@color/colorText"
+                android:background="@drawable/button_background"
                 android:layout_marginTop="25dp"
                 android:layout_marginRight="20dp" />
 

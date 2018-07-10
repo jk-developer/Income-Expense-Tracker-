@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:orientation="vertical"
     tools:layout_editor_absoluteY="81dp"
-    android:background="@drawable/gradient_background">
+    android:background="@color/fragmentBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvTobeTakenFrom"
+            android:id="@+id/tvIncomeTitle"
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -23,13 +23,14 @@
             android:layout_marginBottom="25dp"
             android:gravity="center"
             android:padding="5dp"
-            android:text="To be Taken From"
+            android:text="Update the Income"
             android:textSize="30sp"
             android:textStyle="bold"
             android:textColor="@color/colorTexts"/>
 
+
         <EditText
-            android:id="@+id/etPersonName"
+            android:id="@+id/etIncomeId"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -39,70 +40,86 @@
             android:layout_marginStart="56dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Person Name"
-            android:inputType="textPersonName"
-            android:padding="5dp" />
-
-        <EditText
-            android:id="@+id/etTakenAmount"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Taken Amount"
+            android:hint="Income Id you want to update"
             android:inputType="number"
             android:padding="5dp" />
 
         <EditText
-            android:id="@+id/etTakenReason"
+            android:id="@+id/etIncomeType"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_marginBottom="19dp"
+            android:layout_marginEnd="56dp"
+            android:layout_marginStart="56dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Reason ?"
-            android:inputType="text"
+            android:hint="Income Type"
+            android:inputType="textPersonName"
             android:padding="5dp" />
 
+
         <EditText
-            android:id="@+id/etTakenDate"
+            android:id="@+id/etIncomeAmount"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Last Date To be Taken"
+            android:hint="Amount"
+            android:inputType="number"
+            android:padding="5dp" />
+
+        <EditText
+            android:id="@+id/etIncomeDate"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Date ex: YYYY-MM-DD"
             android:inputType="date"
             android:padding="5dp"
             android:textSize="18sp" />
 
-
-
-        <Button
-            android:id="@+id/btnTakenSubmit"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
+        <EditText
+            android:id="@+id/etIncomeTime"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:padding="5dp"
-            android:text="Submit"
-            android:textColor="@color/colorTexts"
-            android:background="@drawable/button_background"
-            android:layout_marginTop="25dp"/>
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Time ex: HH:MM"
+            android:inputType="time"
+            android:padding="5dp" />
 
-        <Button
-            android:id="@+id/btnViewAllTakenData"
-            android:layout_width="120dp"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="5dp"
-            android:text="View All Taken DATA"
-            android:textColor="@color/colorTexts"
-            android:background="@drawable/button_background"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp">
+
+
+
+            <Button
+                android:id="@+id/btnIncomeUpdate"
+                android:layout_width="50dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:text="update any income "
+                android:textColor="@color/colorTexts"
+                android:background="@color/colorText"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="10dp"/>
+
+
+
+        </LinearLayout>
 
 
     </LinearLayout>

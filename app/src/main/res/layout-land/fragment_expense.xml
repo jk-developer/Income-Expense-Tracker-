@@ -8,7 +8,7 @@
     android:layout_gravity="center"
     android:orientation="vertical"
     tools:layout_editor_absoluteY="81dp"
-    android:background="@color/fragmentBackground">
+    android:background="@drawable/gradient_background">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -100,7 +100,7 @@
             tools:layout_editor_absoluteX="237dp"
             tools:layout_editor_absoluteY="257dp"
             android:textColor="@color/colorTexts"
-            android:background="@color/colorText"/>
+            android:background="@drawable/button_background"/>
 
         <Button
             android:id="@+id/btnExpnenseViewAll"
@@ -110,7 +110,7 @@
             android:layout_margin="10dp"
             android:padding="5dp"
             android:text="View all expenses"
-            android:background="@color/colorText"
+            android:background="@drawable/button_background"
             android:textColor="@color/colorTexts"
             />
 

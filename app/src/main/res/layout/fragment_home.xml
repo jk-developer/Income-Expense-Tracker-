@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:orientation="vertical"
     tools:layout_editor_absoluteY="81dp"
-    android:background="@color/fragmentBackground">
+    android:background="@drawable/gradient_background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:background="@color/fragmentBackground"
+        android:background="@drawable/hellogradient"
         android:textColor="@color/colorTexts"/>
 
 
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_margin="5dp"
-            android:background="@color/homeitems"
+            android:background="@drawable/layout_corner"
             android:layout_weight="1"
             android:clickable="true"
             android:id="@+id/todoLayout">
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_margin="5dp"
-            android:background="@color/homeitems"
+            android:background="@drawable/layout_corner"
             android:layout_weight="1"
             android:clickable="true"
             android:id="@+id/loginLayout">
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_margin="5dp"
-                android:background="@color/homeitems"
+                android:background="@drawable/layout_corner"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:id="@+id/incomeLayout">
@@ -121,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_margin="5dp"
-                android:background="@color/homeitems"
+                android:background="@drawable/layout_corner"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:id="@+id/expenseLayout">
@@ -154,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_margin="5dp"
-                android:background="@color/homeitems"
+                android:background="@drawable/layout_corner"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:id="@+id/incomeReportLayout">
@@ -178,7 +178,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_margin="5dp"
-                android:background="@color/homeitems"
+                android:background="@drawable/layout_corner"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:id="@+id/expenseReportLayout">
@@ -210,7 +210,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_margin="5dp"
-                android:background="@color/homeitems"
+                android:background="@drawable/layout_corner"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:id="@+id/tobePaidLayout">
@@ -234,7 +234,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_margin="5dp"
-                android:background="@color/homeitems"
+                android:background="@drawable/layout_corner"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:id="@+id/tobeTakenLayout">
@@ -267,7 +267,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_margin="5dp"
-                android:background="@color/homeitems"
+                android:background="@drawable/layout_corner"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:id="@+id/aboutLayout">

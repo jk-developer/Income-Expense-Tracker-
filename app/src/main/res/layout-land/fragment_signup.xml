@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:orientation="vertical"
     tools:layout_editor_absoluteY="81dp"
-    android:background="@color/fragmentBackground">
+    android:background="@drawable/gradient_background">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -99,7 +99,7 @@
             android:text="Sign up"
             tools:layout_editor_absoluteX="70dp"
             tools:layout_editor_absoluteY="429dp"
-            android:background="@color/colorText"
+            android:background="@drawable/button_background"
             android:textColor="@color/colorButton"
             android:gravity="center"/>
 
@@ -112,7 +112,7 @@
             android:text="View All"
             tools:layout_editor_absoluteX="70dp"
             tools:layout_editor_absoluteY="429dp"
-            android:background="@color/colorText"
+            android:background="@drawable/button_background"
             android:textColor="@color/colorButton"/>
 
 

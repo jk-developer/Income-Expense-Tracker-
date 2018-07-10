@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:orientation="vertical"
     tools:layout_editor_absoluteY="81dp"
-    android:background="@color/fragmentBackground">
+    android:background="@drawable/gradient_background">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,7 +28,7 @@
             android:textStyle="bold"
             android:textColor="@color/colorTexts"/>
 
-        <EditText
+        <TextView
             android:id="@+id/etIncomeFrom"
             android:layout_width="250dp"
             android:layout_height="50dp"
@@ -37,11 +37,12 @@
             android:layout_marginBottom="38dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="From Ex- yyyy-mm-dd"
+            android:hint="Choose start date"
             android:inputType="date"
-            android:padding="5dp" />
+            android:padding="5dp"
+            android:textColor="@color/colorTexts"/>
 
-        <EditText
+        <TextView
             android:id="@+id/etIncomeTo"
             android:layout_width="250dp"
             android:layout_height="50dp"
@@ -50,9 +51,10 @@
             android:layout_marginBottom="40dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="To Ex- yyyy-mm-dd"
+            android:hint="Choose Final Date"
             android:inputType="date"
-            android:padding="5dp" />
+            android:padding="5dp"
+            />
 
         <Button
             android:id="@+id/btnViewIncomeReport"
@@ -61,7 +63,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:layout_marginBottom="190dp"
-            android:background="@color/colorText"
+            android:background="@drawable/button_background"
             android:gravity="center"
             android:padding="5dp"
             android:text="Get Report"

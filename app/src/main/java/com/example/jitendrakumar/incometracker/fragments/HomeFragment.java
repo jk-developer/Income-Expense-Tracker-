@@ -1,15 +1,10 @@
 package com.example.jitendrakumar.incometracker.fragments;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
-import com.example.jitendrakumar.incometracker.activities.MainActivity;
-import com.example.jitendrakumar.incometracker.activities.MyAdapter;
-import com.example.jitendrakumar.incometracker.helper.HomeData;
 import com.example.jitendrakumar.incometracker.helper.SessionManagement;
-
-import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
     TextView tvHello;

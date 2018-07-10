@@ -1,26 +1,27 @@
 package com.example.jitendrakumar.incometracker.fragments;
 
-import android.database.Cursor;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
-import com.example.jitendrakumar.incometracker.activities.UserSessionManagement;
-import com.example.jitendrakumar.incometracker.database.DatabaseHelper;
+import com.example.jitendrakumar.incometracker.activities.IncomeReportActivity;
 import com.example.jitendrakumar.incometracker.database.IncomeDatabaseHelper;
+import com.example.jitendrakumar.incometracker.models.IncomeData;
 import com.example.jitendrakumar.incometracker.helper.SessionManagement;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +31,8 @@ public class IncomeFragment extends Fragment {
     Matcher matcher;
     final String DATE_PATTERN = "(0?[1-9]|1[012]) [/.-] (0?[1-9]|[12][0-9]|3[01]) [/.-] ((19|20)\\d\\d)";
     SessionManagement sessonid;
+    ArrayList<IncomeData> arrayList = new ArrayList<>( );
+    IncomeData incomeData;
 
 
     // TextView tvIncomeDate;
@@ -37,38 +40,38 @@ public class IncomeFragment extends Fragment {
      EditText etIncomeType, etIncomeAmount, etIncomeDate, etIncomeTime;
      Button btnIncomeSubmit,btnIncomeViewAll, btnIncomeUpdate, btnIncomeDelete;
      IncomeDatabaseHelper MyincomeDB;
-     private String id;
-     IncomeUpdateFragment incomeUpdateFragment;
+     Spinner spinner1;
+
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate( R.layout.fragment_income, container, false );
-        MyincomeDB = new IncomeDatabaseHelper( getContext());
+        MyincomeDB = new IncomeDatabaseHelper( getContext() );
         sessonid = new SessionManagement( getContext() );
-        incomeUpdateFragment = new IncomeUpdateFragment();
         etIncomeType = (EditText) view.findViewById( R.id.etIncomeType );
-        etIncomeAmount = (EditText) view.findViewById( R.id.etIncomeAmount);
+        etIncomeAmount = (EditText) view.findViewById( R.id.etIncomeAmount );
         etIncomeDate = (EditText) view.findViewById( R.id.etIncomeDate );
         etIncomeTime = (EditText) view.findViewById( R.id.etIncomeTime );
-        btnIncomeSubmit = (Button)view.findViewById( R.id.btnIncomeSubmit );
-        btnIncomeViewAll = (Button)view.findViewById( R.id.btnIncomeViewAll );
-        btnIncomeUpdate = (Button)view.findViewById( R.id.btnIncomeUpdate);
-        btnIncomeDelete = (Button)view.findViewById( R.id.btnIncomeDelete );
+        btnIncomeSubmit = (Button) view.findViewById( R.id.btnIncomeSubmit );
+        btnIncomeViewAll = (Button) view.findViewById( R.id.btnIncomeViewAll );
+        btnIncomeUpdate = (Button) view.findViewById( R.id.btnIncomeUpdate );
+        btnIncomeDelete = (Button) view.findViewById( R.id.btnIncomeDelete );
+        spinner1 = (Spinner) view.findViewById( R.id.spinner1 );
 
-        etIncomeType.setHintTextColor(getResources().getColor(R.color.colorTexts));
-        etIncomeAmount.setHintTextColor(getResources().getColor(R.color.colorTexts));
-        etIncomeDate.setHintTextColor(getResources().getColor(R.color.colorTexts));
-        etIncomeTime.setHintTextColor(getResources().getColor(R.color.colorTexts));
-        etIncomeDate.setTextColor( Color.parseColor("#00ff00"));
-        etIncomeAmount.setTextColor( Color.parseColor("#00ff00"));
-        etIncomeType.setTextColor( Color.parseColor("#00ff00"));
-        etIncomeTime.setTextColor( Color.parseColor("#00ff00"));
+        etIncomeType.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
+        etIncomeAmount.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
+        etIncomeDate.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
+        etIncomeTime.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
+        etIncomeDate.setTextColor( Color.parseColor( "#00ff00" ) );
+        etIncomeAmount.setTextColor( Color.parseColor( "#00ff00" ) );
+        etIncomeType.setTextColor( Color.parseColor( "#00ff00" ) );
+        etIncomeTime.setTextColor( Color.parseColor( "#00ff00" ) );
 
-        addDataInIncomeDB();
-        viewAllIncomeData();
-        updateIncome();
+                addDataInIncomeDB();
+                viewAllIncomeData();
+                spinnerDays();
 
      /*   tvIncomeDate = (TextView) view.findViewById( R.id.etIncomeDate );
         tvIncomeDate.setOnClickListener( new View.OnClickListener() {
@@ -97,10 +100,8 @@ public class IncomeFragment extends Fragment {
         };
        */
 
-
         return view;
     }
-
     public void addDataInIncomeDB() {
         btnIncomeSubmit.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -150,11 +151,8 @@ public class IncomeFragment extends Fragment {
 
     }
 
-    public void viewAllIncomeData(){
-        btnIncomeViewAll.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Cursor res = MyincomeDB.getAllIncomeData();
+
+          /*      Cursor res = MyincomeDB.getAllIncomeData();
                 if(res.getCount() == 0)
                 {
                     // Show message
@@ -179,6 +177,7 @@ public class IncomeFragment extends Fragment {
             }
 
         } );
+
     }
 
     public void showMessage(String title, String Message){
@@ -242,30 +241,31 @@ public class IncomeFragment extends Fragment {
         }
 
     }
+*/
+    public void spinnerDays(){
+        //https://developer.android.com/guide/topics/ui/controls/spinner
 
-    public void updateIncome()
-    {
-        btnIncomeUpdate.setOnClickListener( new View.OnClickListener() {
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.days_array, R.layout.single_day_item);
+
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinner1.setAdapter(adapter);
+
+    }
+
+    public void viewAllIncomeData() {
+
+        btnIncomeViewAll.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace( R.id.fragment_container, new IncomeUpdateFragment());
-                fragmentTransaction.addToBackStack( null );
-                fragmentTransaction.commit();
+                Intent i = new Intent( getActivity(), IncomeReportActivity.class );
+                startActivity( i );
 
-               Toast.makeText( getActivity(), "Now fill the Fields to be updated!!!", Toast.LENGTH_SHORT ).show();
-              boolean isUpdated =  MyincomeDB.updateIncomeData(incomeUpdateFragment.getIncomeId() ,etIncomeType.getText().toString(), etIncomeAmount.getText().toString(),etIncomeDate.getText().toString(), etIncomeTime.getText().toString());
-              if (isUpdated==true)
-              {
-                  Toast.makeText( getActivity(), "Income Data of "+incomeUpdateFragment.getIncomeId()+" is updated successfully!!!", Toast.LENGTH_SHORT ).show();
-              }
-              else
-              {
-                  Toast.makeText( getActivity(), "Income Data of "+incomeUpdateFragment.getIncomeId()+" is not updated successfully!!!", Toast.LENGTH_SHORT ).show();
-              }
             }
         } );
+
     }
+
 
 
 }
