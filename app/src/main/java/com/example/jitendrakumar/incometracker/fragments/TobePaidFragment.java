@@ -4,6 +4,7 @@ package com.example.jitendrakumar.incometracker.fragments;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -12,15 +13,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
 import com.example.jitendrakumar.incometracker.database.TobePaidDatabaseHelper;
+import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.DatePickerFragment;
 
 public class TobePaidFragment extends Fragment {
 
-    EditText etPersonName, etPayingAmount, etPayingReason, etPayingDate;
-    Button btnPayingSubmit, btnViewAllPayingData;
+    EditText etPersonName, etPayingAmount, etPayingReason;
+    Button btnPayingSubmit, btnViewAllPayingData, btnPayingDate;
+    TextView tvPayingDate;
     TobePaidDatabaseHelper tobePaidDatabaseHelper;
     public static final String TAG = "name";
 
@@ -32,19 +36,28 @@ public class TobePaidFragment extends Fragment {
         etPersonName = (EditText) view.findViewById( R.id.etPersonName );
         etPayingAmount = (EditText) view.findViewById( R.id.etPayingAmount );
         etPayingReason = (EditText) view.findViewById( R.id.etPayingReason );
-        etPayingDate = (EditText) view.findViewById( R.id.etPayingDate );
+        tvPayingDate = (TextView) view.findViewById( R.id.tvPayingDate );
         btnPayingSubmit = (Button) view.findViewById( R.id.btnPayingSubmit );
+        btnPayingDate = (Button) view.findViewById( R.id.btnPayingDate );
         btnViewAllPayingData = (Button) view.findViewById( R.id.btnViewAllPayingData );
 
         etPersonName.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etPayingReason.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etPayingAmount.setHintTextColor(getResources().getColor(R.color.colorTexts));
-        etPayingDate.setHintTextColor(getResources().getColor(R.color.colorTexts));
+       tvPayingDate.setHintTextColor(getResources().getColor(R.color.colorTexts));
 
         etPersonName.setTextColor( Color.parseColor("#00ff00"));
-        etPayingDate.setTextColor( Color.parseColor("#00ff00"));
+       tvPayingDate.setTextColor( Color.parseColor("#00ff00"));
         etPayingAmount.setTextColor( Color.parseColor("#00ff00"));
         etPayingReason.setTextColor( Color.parseColor("#00ff00"));
+
+        btnPayingDate.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment dialogFragment = new DatePickerFragment(tvPayingDate);
+                dialogFragment.show( getFragmentManager(), "date picker" );
+            }
+        } );
 
 
 
@@ -55,7 +68,7 @@ public class TobePaidFragment extends Fragment {
                     String personName = etPersonName.getText().toString();
                     Log.d( TAG, "onClick: "+personName );
                     String payingAmount = etPayingAmount.getText().toString();
-                    String payingDate =  etPayingDate.getText().toString();
+                    String payingDate =  tvPayingDate.getText().toString();
                     String payingReason = etPayingReason.getText().toString();
 
                         boolean isInserted = tobePaidDatabaseHelper.insertPayingData( personName, payingAmount ,payingReason,payingDate);

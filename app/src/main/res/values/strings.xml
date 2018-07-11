@@ -40,6 +40,8 @@
 
 
     <string name="country_prompt">Choose a Day</string>
+    <string name="income_prompt">Choose source of Income</string>
+
 
     <string-array name="days_array">
         <item>Choose a Day</item>

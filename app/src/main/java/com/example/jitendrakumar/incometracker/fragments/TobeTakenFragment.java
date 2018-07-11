@@ -4,6 +4,7 @@ package com.example.jitendrakumar.incometracker.fragments;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -12,17 +13,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
 import com.example.jitendrakumar.incometracker.database.TobePaidDatabaseHelper;
 import com.example.jitendrakumar.incometracker.database.TobeTakenDatabaseHelper;
+import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.DatePickerFragment;
+import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.TimePickerFragment;
 
 
 public class TobeTakenFragment extends Fragment {
 
-    EditText etPersonName, etTakenAmount, etTakenReason, etTakenDate;
-    Button btnTakenSubmit, btnViewAllTakenData;
+    EditText etPersonName, etTakenAmount, etTakenReason;
+    Button btnTakenSubmit, btnViewAllTakenData, btnTakenDate;
+    TextView tvTakenDate;
     TobeTakenDatabaseHelper tobeTakenDatabaseHelper;
     public static final String TAG = "name";
 
@@ -34,25 +39,28 @@ public class TobeTakenFragment extends Fragment {
         etPersonName = (EditText) view.findViewById( R.id.etPersonName );
         etTakenAmount = (EditText) view.findViewById( R.id.etTakenAmount );
         etTakenReason = (EditText) view.findViewById( R.id.etTakenReason);
-        etTakenDate = (EditText) view.findViewById( R.id.etTakenDate );
+        tvTakenDate = (TextView) view.findViewById( R.id.tvTakenDate );
         btnTakenSubmit = (Button) view.findViewById( R.id.btnTakenSubmit );
+        btnTakenDate = (Button) view.findViewById( R.id.btnTakenDate );
         btnViewAllTakenData = (Button) view.findViewById( R.id.btnViewAllTakenData );
-
-
-        Log.d( TAG, "onCreateView: etPersonName "+etPersonName.toString() );
-        Log.d( TAG, "onCreateView: etTakenAmount "+etTakenAmount.toString() );
-        Log.d( TAG, "onCreateView: etTakenReason "+etTakenReason.toString() );
-        Log.d( TAG, "onCreateView: etTakenDate "+etTakenDate.toString() );
 
         etPersonName.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etTakenReason.setHintTextColor(getResources().getColor(R.color.colorTexts));
-        etTakenDate.setHintTextColor(getResources().getColor(R.color.colorTexts));
+        tvTakenDate.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etTakenAmount.setHintTextColor(getResources().getColor(R.color.colorTexts));
 
         etTakenAmount.setTextColor( Color.parseColor("#00ff00"));
-        etTakenDate.setTextColor( Color.parseColor("#00ff00"));
+        tvTakenDate.setTextColor( Color.parseColor("#00ff00"));
         etTakenReason.setTextColor( Color.parseColor("#00ff00"));
         etPersonName.setTextColor( Color.parseColor("#00ff00"));
+
+        btnTakenDate.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = new DatePickerFragment(tvTakenDate);
+                newFragment.show(getFragmentManager(), "TimePicker");
+            }
+        } );
 
 
 
@@ -63,7 +71,7 @@ public class TobeTakenFragment extends Fragment {
                     String personName = etPersonName.getText().toString();
                     Log.d( TAG, "onClick: "+personName );
                     String takenAmount = etTakenReason.getText().toString();
-                    String takenDate =  etTakenDate.getText().toString();
+                    String takenDate =  tvTakenDate.getText().toString();
                     String takenReason = etTakenAmount.getText().toString();
 
                     boolean isInserted = tobeTakenDatabaseHelper.insertTakenData( personName, takenAmount ,takenReason,takenDate);

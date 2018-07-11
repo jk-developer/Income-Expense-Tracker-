@@ -16,61 +16,91 @@
 
         <TextView
             android:id="@+id/tvReport"
-            android:layout_width="280dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginBottom="40dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="40dp"
             android:gravity="center"
             android:padding="5dp"
-            android:text="EXPENSE REPORT"
+            android:text="Get your Expenses between two dates"
             android:textSize="25sp"
             android:textStyle="bold"
             android:textColor="@color/colorTexts"/>
 
-        <EditText
-            android:id="@+id/etExpenseFrom"
-            android:layout_width="280dp"
-            android:layout_height="50dp"
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:layout_marginBottom="38dp"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="From"
-            android:inputType="date"
-            android:padding="5dp" />
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:id="@+id/tvExpenseReportDateFrom"
+                android:layout_width="270dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="From (DD/MM/YYYY)"
+                android:inputType="date"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:background="@drawable/border"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/colorTexts"/>
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="45dp"
+                android:text="Pick Date"
+                android:layout_gravity="center"
+                android:textColor="@color/colorTexts"
+                android:background="@drawable/button_background"
+                android:id="@+id/btnExpenseReportDateFrom"/>
 
-        <EditText
-            android:id="@+id/etExpenseTo"
-            android:layout_width="280dp"
-            android:layout_height="50dp"
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:layout_marginBottom="40dp"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="To"
-            android:inputType="date"
-            android:padding="5dp" />
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:id="@+id/tvExpenseReportDateTo"
+                android:layout_width="270dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="To (DD/MM/YYYY)"
+                android:inputType="date"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:background="@drawable/border"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/colorTexts"/>
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="45dp"
+                android:text="Pick Date"
+                android:layout_gravity="center"
+                android:textColor="@color/colorTexts"
+                android:background="@drawable/button_background"
+                android:id="@+id/btnExpeneReportDateTo"/>
 
+        </LinearLayout>
         <Button
             android:id="@+id/btnViewExpenseReport"
-            android:layout_width="111dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="190dp"
-            android:text="Get Report"
             android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/button_background"
             android:gravity="center"
             android:padding="5dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/button_background"
-            android:textColor="@color/colorTexts"/>
-
+            android:text="Get Report"
+            android:textColor="@color/colorTexts" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-
     </LinearLayout>
 
 </ScrollView>

@@ -15,7 +15,7 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Income.db";
     public static final String TABLE_NAME3 = "income_table";
-    private static final Integer VERSION = 1;
+    private static final Integer VERSION = 2;
     public static final String COL_1 = "INCOME_ID";
     public static final String COL_2 = "INCOME_TYPE";
     public static final String COL_3 = "AMOUNT";
@@ -24,7 +24,7 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
 
 
     public IncomeDatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 2);
+        super(context, DATABASE_NAME, null, VERSION);
 
 
     }

@@ -16,24 +16,23 @@
 
         <TextView
             android:id="@+id/tvTobePaidTo"
-            android:layout_width="230dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_marginTop="35dp"
             android:layout_marginBottom="25dp"
             android:gravity="center"
             android:padding="5dp"
-            android:text="To be Paid To"
-            android:textSize="30sp"
+            android:text="Money To be Paid To"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/colorTexts"/>
 
         <EditText
             android:id="@+id/etPersonName"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
+            android:layout_width="280dp"
+            android:layout_height="45dp"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
             android:layout_marginBottom="19dp"
             android:layout_marginEnd="56dp"
             android:layout_marginStart="56dp"
@@ -41,43 +40,66 @@
             android:gravity="center"
             android:hint="Person Name"
             android:inputType="text"
-            android:padding="5dp" />
+            android:padding="5dp"
+            android:background="@drawable/border"
+            android:layout_margin="10dp"/>
 
         <EditText
             android:id="@+id/etPayingAmount"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
+            android:layout_width="280dp"
+            android:layout_height="45dp"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Paying Amount"
+            android:hint="Paying Amount(Rs)"
             android:inputType="number"
-            android:padding="5dp" />
+            android:padding="5dp"
+            android:background="@drawable/border"
+            android:layout_margin="10dp"/>
 
         <EditText
             android:id="@+id/etPayingReason"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
+            android:layout_width="280dp"
+            android:layout_height="45dp"
             android:layout_gravity="center"
             android:ems="10"
             android:gravity="center"
             android:hint="Reason ?"
             android:inputType="text"
-            android:padding="5dp" />
-
-        <EditText
-            android:id="@+id/etPayingDate"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Last Date To be Paid"
-            android:inputType="date"
             android:padding="5dp"
-            android:textSize="18sp" />
+            android:background="@drawable/border"
+            android:layout_margin="10dp"/>
+
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:id="@+id/tvPayingDate"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="DD/MM/YYYY"
+                android:inputType="date"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:background="@drawable/border"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/colorTexts"/>
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="45dp"
+                android:text="Pick Date"
+                android:layout_gravity="center"
+                android:textColor="@color/colorTexts"
+                android:background="@drawable/button_background"
+                android:id="@+id/btnPayingDate"/>
+
+        </LinearLayout>
+
 
 
 

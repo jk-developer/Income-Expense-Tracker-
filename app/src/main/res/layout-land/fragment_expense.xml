@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,102 +11,139 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <TextView
             android:id="@+id/tvExpenseTitle"
-            android:layout_width="489dp"
-            android:layout_height="61dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:padding="5dp"
-            android:text="EXPENSE"
-            android:textSize="30sp"
+            android:text="Add all your Expenses here "
+            android:textSize="25sp"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="51dp"
-            tools:layout_editor_absoluteY="14dp"
             android:textColor="@color/colorTexts"/>
+
         <EditText
             android:id="@+id/etExpenseType"
-            android:layout_width="280dp"
+            android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_marginBottom="19dp"
+            android:layout_marginEnd="56dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="20dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Expense Type"
+            android:hint="Expense Type ex-Shopping etc"
             android:inputType="textPersonName"
             android:padding="5dp"
-            tools:layout_editor_absoluteX="169dp"
-            tools:layout_editor_absoluteY="55dp" />
-
-
-
+            android:background="@drawable/border"/>
 
         <EditText
             android:id="@+id/etExpenseAmount"
-            android:layout_width="280dp"
+            android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Amount"
+            android:hint="Your Expense(Rs)"
             android:inputType="number"
             android:padding="5dp"
-            tools:layout_editor_absoluteX="169dp"
-            tools:layout_editor_absoluteY="101dp" />
+            android:background="@drawable/border"/>
 
-        <EditText
-            android:id="@+id/etExpenseDate"
-            android:layout_width="280dp"
-            android:layout_height="50dp"
+        <Spinner
+            android:id="@+id/spinnerExpense"
+            android:layout_width="300dp"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:ems="10"
             android:gravity="center"
-            android:hint="Select Date"
-            android:inputType="date"
-            android:padding="5dp"
-            android:textSize="18sp"
-            tools:layout_editor_absoluteX="169dp"
-            tools:layout_editor_absoluteY="161dp" />
-
-
-        <EditText
-            android:id="@+id/etExpenseTime"
-            android:layout_width="280dp"
             android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Time"
-            android:inputType="time"
+            android:entries="@array/days_array"
+            android:prompt="@string/country_prompt"
             android:padding="5dp"
-            tools:layout_editor_absoluteX="189dp"
-            tools:layout_editor_absoluteY="201dp" />
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border"/>
 
-        <Button
-            android:id="@+id/btnExpenseSubmit"
-            android:layout_width="100dp"
+        <LinearLayout
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:id="@+id/tvExpenseDate"
+                android:layout_width="220dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="DD/MM/YYYY"
+                android:inputType="date"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:background="@drawable/border"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/colorTexts"/>
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="45dp"
+                android:text="Pick Date"
+                android:layout_gravity="center"
+                android:textColor="@color/colorTexts"
+                android:background="@drawable/button_background"
+                android:id="@+id/btnExpenseDate"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/tvExpenseTime"
+                android:layout_width="220dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:hint="HH:MM"
+                android:gravity="center"
+                android:inputType="date"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:background="@drawable/border"
+                android:layout_marginRight="5dp"/>
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="45dp"
+                android:text="Pick Time"
+                android:layout_gravity="center"
+                android:textColor="@color/colorTexts"
+                android:background="@drawable/button_background"
+                android:id="@+id/btnExpenseTime"/>
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/btnExpenseSubmit"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:padding="5dp"
             android:text="Submit"
-            tools:layout_editor_absoluteX="237dp"
-            tools:layout_editor_absoluteY="257dp"
+            android:background="@drawable/button_background"
             android:textColor="@color/colorTexts"
-            android:background="@drawable/button_background"/>
+            />
 
         <Button
             android:id="@+id/btnExpnenseViewAll"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
             android:padding="5dp"
             android:text="View all expenses"
             android:background="@drawable/button_background"
@@ -115,6 +151,4 @@
             />
 
     </LinearLayout>
-
-
 </ScrollView>

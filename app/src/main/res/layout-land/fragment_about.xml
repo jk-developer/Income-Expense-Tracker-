@@ -31,7 +31,8 @@
                 android:layout_marginTop="30dp"
                 android:textSize="25sp"
                 tools:layout_editor_absoluteX="78dp"
-                tools:layout_editor_absoluteY="217dp" />
+                tools:layout_editor_absoluteY="217dp"
+                android:textColor="#000000"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -64,7 +65,8 @@
                     android:layout_weight="5"
                     android:orientation="vertical"
                     android:layout_gravity="center"
-                    android:padding="3dp">
+                    android:padding="3dp"
+                    android:layout_marginLeft="-30dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -78,7 +80,8 @@
                             android:layout_marginLeft="20dp"
                             android:padding="2dp"
                             android:layout_marginBottom="1dp"
-                            android:gravity="start"/>
+                            android:gravity="start"
+                            android:textColor="#000000"/>
 
 
                     </LinearLayout>
@@ -91,7 +94,8 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
                         android:padding="2dp"
-                        android:layout_marginBottom="1dp"/>
+                        android:layout_marginBottom="1dp"
+                        android:textColor="#000000"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -101,35 +105,29 @@
                         android:layout_gravity="center"
                         android:padding="2dp"
                         android:layout_marginBottom="4dp"
-                        android:layout_marginLeft="20dp"/>
+                        android:layout_marginLeft="20dp"
+                        android:textColor="#000000"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginLeft="40dp"
                         android:padding="2dp"
                         android:layout_marginBottom="3dp">
 
                         <ImageView
-                            android:layout_width="37dp"
-                            android:layout_height="37dp"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
                             android:src="@drawable/fb"
-                            android:layout_marginRight="30dp"
+                            android:layout_marginRight="70dp"
                             android:id="@+id/ivFacebook"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center" />
+
 
                         <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/whatsapp"
-                            android:layout_marginRight="30dp"
-                            android:id="@+id/ivWhatsapp"
-                            android:layout_gravity="center"/>
-
-                        <ImageView
-                            android:layout_width="43dp"
-                            android:layout_height="43dp"
+                            android:layout_width="38dp"
+                            android:layout_height="38dp"
                             android:src="@drawable/gmail"
                             android:layout_marginRight="30dp"
                             android:id="@+id/ivMail"
@@ -143,15 +141,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_gravity="bottom"
+            android:layout_gravity="center"
             android:padding="2dp"
-            android:layout_marginTop="70dp"
-            android:layout_marginLeft="220dp"
-            android:layout_marginRight="220dp"
-            android:layout_marginBottom="20dp">
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -161,7 +157,7 @@
                 android:gravity="center"
                 android:textSize="15sp"
                 android:text="Made with "
-                />
+                android:textColor="#000000" />
 
             <ImageView
                 android:layout_width="0dp"
@@ -169,7 +165,7 @@
                 android:layout_weight=".8"
                 android:src="@drawable/love"
                 android:layout_gravity="center"
-                />
+                android:textColor="#ff0000" />
 
             <TextView
                 android:layout_width="0dp"
@@ -178,7 +174,8 @@
                 android:text="for you !!!"
                 android:layout_gravity="center"
                 android:textSize="15sp"
-                android:gravity="center" />
+                android:gravity="center"
+                android:textColor="#000000"/>
         </LinearLayout>
 
 

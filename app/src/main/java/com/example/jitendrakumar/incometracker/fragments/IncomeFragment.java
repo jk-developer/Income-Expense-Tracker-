@@ -5,7 +5,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +15,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
 import com.example.jitendrakumar.incometracker.activities.IncomeReportActivity;
 import com.example.jitendrakumar.incometracker.database.IncomeDatabaseHelper;
+import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.DatePickerFragment;
+import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.TimePickerFragment;
 import com.example.jitendrakumar.incometracker.models.IncomeData;
 import com.example.jitendrakumar.incometracker.helper.SessionManagement;
 
@@ -25,7 +30,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class IncomeFragment extends Fragment {
+public class IncomeFragment extends Fragment{
 
     Pattern pattern;
     Matcher matcher;
@@ -33,15 +38,14 @@ public class IncomeFragment extends Fragment {
     SessionManagement sessonid;
     ArrayList<IncomeData> arrayList = new ArrayList<>( );
     IncomeData incomeData;
-
+    public static final String TAG = "res";
 
     // TextView tvIncomeDate;
-  //  DatePickerDialog.OnDateSetListener myDateSetListener;
-     EditText etIncomeType, etIncomeAmount, etIncomeDate, etIncomeTime;
-     Button btnIncomeSubmit,btnIncomeViewAll, btnIncomeUpdate, btnIncomeDelete;
+     EditText etIncomeType, etIncomeAmount;
+     TextView etIncomeDate, etIncomeTime;
+     Button btnIncomeSubmit,btnIncomeViewAll, btnIncomeUpdate, btnIncomeDelete,btnIncomeDate, btnIncomeTime;
      IncomeDatabaseHelper MyincomeDB;
      Spinner spinner1;
-
 
 
     @Nullable
@@ -52,12 +56,15 @@ public class IncomeFragment extends Fragment {
         sessonid = new SessionManagement( getContext() );
         etIncomeType = (EditText) view.findViewById( R.id.etIncomeType );
         etIncomeAmount = (EditText) view.findViewById( R.id.etIncomeAmount );
-        etIncomeDate = (EditText) view.findViewById( R.id.etIncomeDate );
-        etIncomeTime = (EditText) view.findViewById( R.id.etIncomeTime );
+        etIncomeDate = (TextView) view.findViewById( R.id.etIncomeDate );
+        etIncomeTime = (TextView) view.findViewById( R.id.etIncomeTime );
+        Log.d( TAG, "onCreateView: "+ etIncomeTime );
         btnIncomeSubmit = (Button) view.findViewById( R.id.btnIncomeSubmit );
         btnIncomeViewAll = (Button) view.findViewById( R.id.btnIncomeViewAll );
         btnIncomeUpdate = (Button) view.findViewById( R.id.btnIncomeUpdate );
         btnIncomeDelete = (Button) view.findViewById( R.id.btnIncomeDelete );
+        btnIncomeTime = (Button)view.findViewById( R.id.btnIncomeTime );
+        btnIncomeDate = (Button)view.findViewById( R.id.btnIncomeDate );
         spinner1 = (Spinner) view.findViewById( R.id.spinner1 );
 
         etIncomeType.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
@@ -99,6 +106,24 @@ public class IncomeFragment extends Fragment {
             }
         };
        */
+
+     btnIncomeTime.setOnClickListener( new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+             DialogFragment newFragment = new TimePickerFragment(etIncomeTime);
+             newFragment.show(getFragmentManager(), "TimePicker");
+
+         }
+     } );
+
+     btnIncomeDate.setOnClickListener( new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+             DialogFragment newFragment = new DatePickerFragment(etIncomeDate);
+             newFragment.show(getFragmentManager(), "DatePicker");
+
+         }
+     } );
 
         return view;
     }
@@ -265,7 +290,20 @@ public class IncomeFragment extends Fragment {
         } );
 
     }
+/*
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
+        etIncomeTime.setText( String.valueOf(hourOfDay)+":"+String.valueOf( minute ) );
+    }
 
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        etIncomeDate.setText( String.valueOf( year )+"-"+String.valueOf( month )+"-"+String.valueOf( dayOfMonth ) );
+    } */
 
+     public TextView getView()
+    {
+    return etIncomeDate;
+    }
 }

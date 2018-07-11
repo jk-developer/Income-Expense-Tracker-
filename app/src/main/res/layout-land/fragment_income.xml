@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,121 +8,147 @@
     android:orientation="vertical"
     tools:layout_editor_absoluteY="81dp"
     android:background="@drawable/gradient_background">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvIncomeTitle"
-            android:layout_width="489dp"
-            android:layout_height="61dp"
-            android:layout_gravity="center"
-            android:layout_margin="15dp"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="INCOME"
-            android:textSize="30sp"
-            tools:layout_editor_absoluteX="51dp"
-            tools:layout_editor_absoluteY="14dp"
-            android:textColor="@color/colorTexts"/>
-        <EditText
-            android:id="@+id/etIncomeType"
-            android:layout_width="280dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="25dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Add Your Income here"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorTexts"/>
+
+
+        <EditText
+
+            android:id="@+id/etIncomeType"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
             android:layout_margin="10dp"
+            android:layout_marginBottom="19dp"
+            android:layout_marginEnd="56dp"
+            android:layout_marginStart="56dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Income Type"
+            android:hint="Your source of Income"
             android:inputType="textPersonName"
             android:padding="5dp"
-            tools:layout_editor_absoluteX="169dp"
-            tools:layout_editor_absoluteY="55dp" />
-
-
-
+            android:background="@drawable/border"/>
 
         <EditText
             android:id="@+id/etIncomeAmount"
-            android:layout_width="280dp"
-            android:layout_height="50dp"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Amount"
+            android:hint="Your Amount(Rs)"
             android:inputType="number"
             android:padding="5dp"
-            tools:layout_editor_absoluteX="169dp"
-            tools:layout_editor_absoluteY="101dp" />
+            android:background="@drawable/border"/>
 
         <Spinner
             android:id="@+id/spinner1"
-            android:layout_width="250dp"
+            android:layout_width="300dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:entries="@array/days_array"
             android:prompt="@string/country_prompt"
             android:padding="5dp"
-            android:layout_margin="10dp"
-            />
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border"/>
 
-        <EditText
-            android:id="@+id/etIncomeDate"
-            android:layout_width="280dp"
-            android:layout_height="50dp"
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Select Date"
-            android:inputType="date"
-            android:padding="5dp"
-            android:textSize="18sp"
-            tools:layout_editor_absoluteX="169dp"
-            tools:layout_editor_absoluteY="161dp" />
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:id="@+id/etIncomeDate"
+                android:layout_width="220dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="DD/MM/YYYY"
+                android:inputType="date"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:background="@drawable/border"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/colorTexts"/>
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="45dp"
+                android:text="Pick Date"
+                android:layout_gravity="center"
+                android:textColor="@color/colorTexts"
+                android:background="@drawable/button_background"
+                android:id="@+id/btnIncomeDate"/>
 
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/etIncomeTime"
-            android:layout_width="280dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Time"
-            android:inputType="time"
-            android:padding="5dp"
-            tools:layout_editor_absoluteX="189dp"
-            tools:layout_editor_absoluteY="201dp" />
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/etIncomeTime"
+                android:layout_width="220dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:hint="HH:MM"
+                android:gravity="center"
+                android:inputType="date"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:background="@drawable/border"
+                android:layout_marginRight="5dp"/>
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="45dp"
+                android:text="Pick Time"
+                android:layout_gravity="center"
+                android:textColor="@color/colorTexts"
+                android:background="@drawable/button_background"
+                android:id="@+id/btnIncomeTime"/>
 
+        </LinearLayout>
         <Button
             android:id="@+id/btnIncomeSubmit"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
             android:padding="5dp"
             android:text="Submit"
-            tools:layout_editor_absoluteX="237dp"
-            tools:layout_editor_absoluteY="257dp"
+            android:textColor="@color/colorTexts"
             android:background="@drawable/button_background"
-            android:textColor="@color/colorTexts"/>
-
+            android:layout_marginTop="25dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="30dp">
 
             <Button
                 android:id="@+id/btnIncomeViewAll"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:padding="5dp"
@@ -132,12 +157,12 @@
                 android:background="@drawable/button_background"
                 android:layout_marginTop="25dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"/>
+                android:layout_marginRight="10dp"/>
 
             <Button
                 android:id="@+id/btnIncomeUpdate"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:padding="5dp"
@@ -145,12 +170,12 @@
                 android:textColor="@color/colorTexts"
                 android:background="@drawable/button_background"
                 android:layout_marginTop="25dp"
-                android:layout_marginRight="20dp"/>
+                android:layout_marginRight="10dp"/>
 
             <Button
                 android:id="@+id/btnIncomeDelete"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:padding="5dp"
@@ -158,13 +183,10 @@
                 android:textColor="@color/colorTexts"
                 android:background="@drawable/button_background"
                 android:layout_marginTop="25dp"
-                android:layout_marginRight="20dp" />
+                android:layout_marginRight="10dp" />
 
         </LinearLayout>
 
 
-
     </LinearLayout>
-
-
 </ScrollView>

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -12,31 +13,50 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.jitendrakumar.incometracker.R;
 import com.example.jitendrakumar.incometracker.database.ExpenseDatabaseHelper;
 import com.example.jitendrakumar.incometracker.database.IncomeDatabaseHelper;
+import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.DatePickerFragment;
 
 public class ExpenseReportFragment extends Fragment {
-    EditText etExpenseFrom, etExpenseTo;
+    TextView tvExpenseReportDateFrom, tvExpenseReportDateTo;
     ExpenseDatabaseHelper myExpenseDB;
-    Button btnViewExpenseReport;
+    Button btnViewExpenseReport,btnExpenseReportDateFrom,btnExpenseReportDateTo;
     private String id;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate( R.layout.fragment_expense_report, container, false );
-        etExpenseFrom = (EditText)view.findViewById( R.id.etExpenseFrom);
-        etExpenseTo = (EditText) view.findViewById( R.id.etExpenseTo);
+        tvExpenseReportDateFrom = (TextView) view.findViewById( R.id.tvExpenseReportDateFrom);
+        tvExpenseReportDateTo = (TextView) view.findViewById( R.id.tvExpenseReportDateTo);
         btnViewExpenseReport = (Button) view.findViewById( R.id.btnViewExpenseReport);
+        btnExpenseReportDateFrom = (Button)view.findViewById( R.id.btnExpenseReportDateFrom );
+        btnExpenseReportDateTo = (Button)view.findViewById( R.id.btnExpeneReportDateTo );
         myExpenseDB = new ExpenseDatabaseHelper( getContext());
 
-        etExpenseFrom.setHintTextColor(getResources().getColor(R.color.colorTexts));
-        etExpenseTo.setHintTextColor(getResources().getColor(R.color.colorTexts));
-        etExpenseFrom.setTextColor( Color.parseColor("#00ff00"));
-        etExpenseTo.setTextColor( Color.parseColor("#00ff00"));
+        tvExpenseReportDateFrom.setHintTextColor(getResources().getColor(R.color.colorTexts));
+        tvExpenseReportDateTo.setHintTextColor(getResources().getColor(R.color.colorTexts));
+        tvExpenseReportDateFrom.setTextColor( Color.parseColor("#00ff00"));
+        tvExpenseReportDateTo.setTextColor( Color.parseColor("#00ff00"));
 
+        btnExpenseReportDateFrom.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = new DatePickerFragment( tvExpenseReportDateFrom);
+                newFragment.show( getFragmentManager(), "TimePicker" );
+            }
+        } );
+
+        btnExpenseReportDateTo.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = new DatePickerFragment( tvExpenseReportDateTo);
+                newFragment.show( getFragmentManager(), "TimePicker" );
+            }
+        } );
 
         showAllExpenseData();
         return view;
@@ -47,8 +67,8 @@ public class ExpenseReportFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                String expenseDateFrom = etExpenseFrom.getText().toString();
-                String expenseDateTo = etExpenseTo.getText().toString();
+                String expenseDateFrom = tvExpenseReportDateFrom.getText().toString();
+                String expenseDateTo = tvExpenseReportDateTo.getText().toString();
                 Cursor res = myExpenseDB.getAllExpenseReport(expenseDateFrom,expenseDateTo);
                 if(res.getCount() == 0)
                 {

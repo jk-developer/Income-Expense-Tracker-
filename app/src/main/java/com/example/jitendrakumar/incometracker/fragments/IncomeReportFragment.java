@@ -25,17 +25,18 @@ import com.example.jitendrakumar.incometracker.R;
 import com.example.jitendrakumar.incometracker.activities.MainActivity;
 import com.example.jitendrakumar.incometracker.database.ExpenseDatabaseHelper;
 import com.example.jitendrakumar.incometracker.database.IncomeDatabaseHelper;
+import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.DatePickerFragment;
 
 import java.util.Calendar;
 
 @SuppressLint("ValidFragment")
-public class IncomeReportFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
-    TextView etIncomeFrom, etIncomeTo;
+public class IncomeReportFragment extends Fragment {
+    TextView tvIncomeReportDateFrom, tvIncomeReportDateTo;
     IncomeDatabaseHelper myIncomeDB;
-    Button btnViewIncomeReport;
+    Button btnViewIncomeReport, btnIncomeReportDateFrom, btnIncomeReportDateTo;
     private String id;
     public static final String TAG = "res";
-    private DatePickerDialog.OnDateSetListener mDateSetListener;
+
 
 
     @Nullable
@@ -43,21 +44,32 @@ public class IncomeReportFragment extends Fragment implements DatePickerDialog.O
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate( R.layout.fragment_income_report, container, false );
 
-        etIncomeFrom = (TextView) view.findViewById( R.id.etIncomeFrom);
-        etIncomeTo = (TextView) view.findViewById( R.id.etIncomeTo);
+        tvIncomeReportDateFrom = (TextView) view.findViewById( R.id.tvIncomeReportDateFrom);
+        tvIncomeReportDateTo = (TextView) view.findViewById( R.id.tvIncomeReportDateTo);
         btnViewIncomeReport = (Button)view.findViewById( R.id.btnViewIncomeReport );
+        btnIncomeReportDateFrom = (Button)view.findViewById( R.id.btnIncomeReportDateFrom );
+        btnIncomeReportDateTo  = (Button) view.findViewById( R.id.btnIncomeReportDateTo );
         myIncomeDB = new IncomeDatabaseHelper( getContext());
 
-        etIncomeFrom.setHintTextColor(getResources().getColor(R.color.colorTexts));
-        etIncomeTo.setHintTextColor(getResources().getColor(R.color.colorTexts));
-        etIncomeFrom.setTextColor( Color.parseColor("#00ff00"));
-        etIncomeTo.setTextColor( Color.parseColor("#00ff00"));
+        tvIncomeReportDateFrom.setHintTextColor(getResources().getColor(R.color.colorTexts));
+        tvIncomeReportDateTo.setHintTextColor(getResources().getColor(R.color.colorTexts));
+        tvIncomeReportDateFrom.setTextColor( Color.parseColor("#00ff00"));
+        tvIncomeReportDateTo.setTextColor( Color.parseColor("#00ff00"));
 
         showAllIncomeData();
-        etIncomeTo.setOnClickListener( new View.OnClickListener() {
+        btnIncomeReportDateFrom.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DialogFragment newFragment = new DatePickerFragment( tvIncomeReportDateFrom );
+                newFragment.show( getFragmentManager(), "TimePicker" );
+            }
+        } );
 
+        btnIncomeReportDateTo.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = new DatePickerFragment( tvIncomeReportDateTo );
+                newFragment.show( getFragmentManager(), "TimePicker" );
             }
         } );
 
@@ -66,25 +78,13 @@ public class IncomeReportFragment extends Fragment implements DatePickerDialog.O
         return view;
     }
 
-
-    public Dialog onCreateDialog() {
-        Calendar cal = Calendar.getInstance();
-
-        return new DatePickerDialog(getActivity(),
-                mDateSetListener, cal.get(Calendar.YEAR),
-                cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
-    }
-
-
-
-
     public void showAllIncomeData(){
         btnViewIncomeReport.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String dateFrom = etIncomeFrom.getText().toString();
-                String dateTo = etIncomeTo.getText().toString();
+                String dateFrom = tvIncomeReportDateFrom.getText().toString();
+                String dateTo = tvIncomeReportDateTo.getText().toString();
 
                     Log.d( TAG, "onClick: before "+dateFrom + dateTo );
                     Cursor res = myIncomeDB.getAllIncomeReport(dateFrom,dateTo);
@@ -116,7 +116,6 @@ public class IncomeReportFragment extends Fragment implements DatePickerDialog.O
         } );
     }
 
-
     public void showMessage(String title, String Message){
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setCancelable( true );
@@ -126,14 +125,4 @@ public class IncomeReportFragment extends Fragment implements DatePickerDialog.O
     }
 
 
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                String date = "You picked the following date: "+dayOfMonth+"/"+(month+1)+"/"+year;
-                etIncomeTo.setText(date);
-            }
-        };
-    }
 }
