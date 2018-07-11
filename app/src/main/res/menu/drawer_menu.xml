@@ -6,7 +6,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/home"
+            android:icon="@drawable/login"
             android:title="Home" />
         <item
             android:id="@+id/nav_login"
@@ -32,7 +32,7 @@
 
         <item
             android:id="@+id/nav_todo_list"
-            android:icon="@drawable/home"
+            android:icon="@drawable/login"
             android:title="Todo Task" />
         <item
             android:id="@+id/nav_tobe_paid"
@@ -45,9 +45,14 @@
             android:title="To be Taken From" />
 
         <item
+            android:id="@+id/nav_about_app"
+            android:icon="@drawable/income"
+            android:title="About app" />
+
+        <item
             android:id="@+id/nav_about"
             android:icon="@drawable/about"
-            android:title="About Developer" />
+            android:title="About Developers" />
 
     </group>
 

@@ -255,7 +255,7 @@
                 android:background="@drawable/layout_corner"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:id="@+id/aboutLayout">
+                android:id="@+id/aboutAppLayout">
                 <ImageView
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
@@ -265,15 +265,59 @@
                 <TextView
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
-                    android:text="About Developer"
+                    android:text="About app"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:padding="2dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
+
+                <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@drawable/layout_corner"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/aboutLayout">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/login"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="About Developers"
                     android:textSize="18sp"
                     android:gravity="center"
                     android:padding="2dp" />
             </LinearLayout>
 
-        </LinearLayout>
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"/>
 
-    </LinearLayout>
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
 
 </ScrollView>
 

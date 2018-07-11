@@ -13,6 +13,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="2dp">
+
     <TextView
         android:id="@+id/tvAbout"
         android:layout_width="228dp"
@@ -31,11 +38,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="40dp"
-        android:layout_marginBottom="40dp">
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:padding="2dp">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2">
+            android:layout_weight="2"
+            android:layout_gravity="center">
 
             <ImageView
                 android:layout_width="100dp"
@@ -68,7 +79,7 @@
 
             </LinearLayout>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="App Developer | App Designer "
                 android:gravity="center"
@@ -78,16 +89,17 @@
                 android:layout_marginBottom="1dp"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="C.O.E. | 3rd Year | DTU"
                 android:textSize="15sp"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:padding="2dp"
                 android:layout_marginBottom="4dp"/>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginLeft="30dp"
@@ -99,29 +111,69 @@
                     android:layout_height="37dp"
                     android:src="@drawable/fb"
                     android:layout_marginRight="30dp"
-                    android:id="@+id/ivFacebook"/>
+                    android:id="@+id/ivFacebook"
+                    android:layout_gravity="center"/>
 
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/whatsapp"
                     android:layout_marginRight="30dp"
-                    android:id="@+id/ivWhatsapp"/>
+                    android:id="@+id/ivWhatsapp"
+                    android:layout_gravity="center"/>
 
                 <ImageView
                     android:layout_width="43dp"
                     android:layout_height="43dp"
                     android:src="@drawable/gmail"
                     android:layout_marginRight="30dp"
-                    android:id="@+id/ivMail"/>
+                    android:id="@+id/ivMail"
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
 
-
-
-
         </LinearLayout>
     </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:padding="2dp"
+        android:layout_margin="100dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="3.2"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:text="Made with "
+            />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight=".8"
+            android:src="@drawable/love"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.8"
+            android:text="for you !!!"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:gravity="center" />
+    </LinearLayout>
+
+
 
     </LinearLayout>
 
