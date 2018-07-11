@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
-import com.example.jitendrakumar.incometracker.adapters.BeneficiaryRecyclerAdapter;
+import com.example.jitendrakumar.incometracker.adapters.MyIncomeAdapter;
 import com.example.jitendrakumar.incometracker.database.IncomeDatabaseHelper;
 import com.example.jitendrakumar.incometracker.models.IncomeData;
 
@@ -20,25 +21,27 @@ public class IncomeReportActivity extends AppCompatActivity {
     IncomeDatabaseHelper MyincomeDB;
     ArrayList<IncomeData> arrayList = new ArrayList<>( );
     IncomeData incomeData;
-    BeneficiaryRecyclerAdapter beneficiaryRecyclerAdapter;
+    MyIncomeAdapter myIncomeAdapter;
+    CheckBox checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_income_report );
-        MyincomeDB  = new IncomeDatabaseHelper( IncomeReportActivity.this );
+        MyincomeDB = new IncomeDatabaseHelper( IncomeReportActivity.this );
         rvIncomeReport = (RecyclerView) findViewById( R.id.rvIncomeReport );
+        checkBox = (CheckBox) findViewById( R.id.checkBox );
 
-        ArrayList<IncomeData> myincomelist = new ArrayList<>( );
+        ArrayList<IncomeData> myincomelist = new ArrayList<>();
         myincomelist = getArrayList();
 
-        beneficiaryRecyclerAdapter = new BeneficiaryRecyclerAdapter(myincomelist, this);
+        myIncomeAdapter = new MyIncomeAdapter( myincomelist, this );
 
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        rvIncomeReport.setLayoutManager(mLayoutManager);
-        rvIncomeReport.setItemAnimator(new DefaultItemAnimator());
-        rvIncomeReport.setHasFixedSize(true);
-        rvIncomeReport.setAdapter(beneficiaryRecyclerAdapter);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager( getApplicationContext() );
+        rvIncomeReport.setLayoutManager( mLayoutManager );
+        rvIncomeReport.setItemAnimator( new DefaultItemAnimator() );
+        rvIncomeReport.setHasFixedSize( true );
+        rvIncomeReport.setAdapter( myIncomeAdapter );
 
     }
 
@@ -57,7 +60,7 @@ public class IncomeReportActivity extends AppCompatActivity {
                 String incAmount =  res.getString( 2 );
                 String incDate = res.getString( 3 );
                 String incTime =  res.getString( 4 );
-                incomeData = new IncomeData( Integer.valueOf( incId ), incType, Double.valueOf( incAmount ),incDate, incTime );
+                incomeData = new IncomeData( Integer.valueOf( incId ), incType, Double.valueOf( incAmount ),incDate, incTime);
                 arrayList.add( incomeData);
             }
 
@@ -66,15 +69,12 @@ public class IncomeReportActivity extends AppCompatActivity {
     }
 
     public void updateList(IncomeData incData) {
-                 MyincomeDB.updateIncomeData( String.valueOf( incData.getIncomeId()), incData.getInputType(), String.valueOf( incData.getInputAmount()), incData.getDate(), incData.getTime());
+                 MyincomeDB.updateIncomeData( String.valueOf( incData.getIncomeId()), incData.getInputType(), String.valueOf( incData.getInputAmount()), incData.getDate(), incData.getTime() );
     }
 
     public void deleteList(IncomeData incomeData){
         MyincomeDB.deleteIncomeData(String.valueOf( incomeData.getIncomeId() ) );
     }
 
-    public void refreshIncome()
-    {
 
-    }
 }

@@ -1,5 +1,6 @@
 package com.example.jitendrakumar.incometracker.activities;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,18 +20,14 @@ import com.example.jitendrakumar.incometracker.fragments.LoginFragment;
 import com.example.jitendrakumar.incometracker.fragments.IncomeReportFragment;
 import com.example.jitendrakumar.incometracker.fragments.TobePaidFragment;
 import com.example.jitendrakumar.incometracker.fragments.TobeTakenFragment;
-import com.example.jitendrakumar.incometracker.fragments.TodoTaskFragment;
 import com.example.jitendrakumar.incometracker.helper.SessionManagement;
-import com.example.jitendrakumar.incometracker.helper.Task;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
-    public android.support.v7.widget.Toolbar toolbar;
-    UserSessionManagement userSessionManagement;
-    ArrayList<Task> tasks = new ArrayList<>(  );
+    public android.support.v7.widget.Toolbar toolbar;;
     HomeFragment homeFragment;
     SessionManagement session;
 
@@ -172,10 +169,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.nav_todo_list:
                 if(username!=null){
-                    getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
-                            new TodoTaskFragment())
-                            .addToBackStack( null )
-                            .commit();
+                    Intent in = new Intent( MainActivity.this, TodoActivity.class );
+                    startActivity(in);
                     toolbar.setTitle( "Todo Task" );
                     break;
                 }else

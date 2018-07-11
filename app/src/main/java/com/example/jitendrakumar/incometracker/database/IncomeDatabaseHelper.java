@@ -22,8 +22,9 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_4 = "DATE";
     public static final String COL_5 = "TIME";
 
+
     public IncomeDatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, 2);
 
 
     }
@@ -41,13 +42,14 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
     }
     // Function insertData() to insert the data in the table/Database
 
-    public boolean insertIncomeData(String income_type, String amount, String date, String time){
+    public boolean insertIncomeData(String income_type, String amount, String date, String time, boolean isChecked){
         SQLiteDatabase db  = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put( COL_2, income_type );
         contentValues.put( COL_3, amount );
         contentValues.put( COL_4, date );
         contentValues.put( COL_5, time );
+
 
         long res =  db.insert( TABLE_NAME3, null, contentValues );
         if(res==-1)

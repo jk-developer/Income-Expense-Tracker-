@@ -1,4 +1,4 @@
-package com.example.jitendrakumar.incometracker.helper;
+package com.example.jitendrakumar.incometracker.models;
 
 public class UserData {
     String userName;

@@ -1,9 +1,11 @@
 package com.example.jitendrakumar.incometracker.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
+import com.example.jitendrakumar.incometracker.activities.TodoActivity;
 import com.example.jitendrakumar.incometracker.helper.SessionManagement;
 
 public class HomeFragment extends Fragment {
@@ -39,19 +42,19 @@ public class HomeFragment extends Fragment {
 
         tvHello.setVisibility(View.VISIBLE);
 
-     /*   todoLayout.setOnClickListener( new View.OnClickListener() {
+       todoLayout.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Toast.makeText( getContext(), "home Layout clicked ", Toast.LENGTH_SHORT ).show();
-                FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace( R.id.fragment_container, new TodoTaskFragment());
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.addToBackStack( null );
                 fragmentTransaction.commit();
+                Intent i =  new Intent( getActivity(), TodoActivity.class );
+                startActivity( i );
             }
+
         } );
 
-*/
+
         loginLayout.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {

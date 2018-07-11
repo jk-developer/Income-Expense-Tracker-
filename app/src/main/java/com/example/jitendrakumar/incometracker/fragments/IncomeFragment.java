@@ -128,7 +128,7 @@ public class IncomeFragment extends Fragment {
                             etIncomeTime.setError( "Time field is required!!!" );
                         }
                         else {
-                            boolean isInserted = MyincomeDB.insertIncomeData( incomeType, incomeAmount , incomeDate,incomeTime);
+                            boolean isInserted = MyincomeDB.insertIncomeData( incomeType, incomeAmount , incomeDate,incomeTime, false);
                             if (isInserted == true) {
                                 Toast.makeText( getActivity(), "Data Saved to Income DataBase.", Toast.LENGTH_SHORT ).show();
 

@@ -5,12 +5,15 @@ public class IncomeData {
     String inputType;
     Double inputAmount;
 
+
+
     public IncomeData(int incomeId, String inputType, Double inputAmount, String date, String time) {
         this.incomeId = incomeId;
         this.inputType = inputType;
         this.inputAmount = inputAmount;
         Date = date;
         Time = time;
+
     }
 
     public int getIncomeId() {

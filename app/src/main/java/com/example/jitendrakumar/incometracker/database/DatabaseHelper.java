@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.jitendrakumar.incometracker.helper.UserData;
+import com.example.jitendrakumar.incometracker.models.UserData;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TAG  = "RES";

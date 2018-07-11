@@ -14,183 +14,184 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="hello"
-        android:textSize="22sp"
-        android:layout_centerInParent="true"
-        android:id="@+id/tvHello"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:background="@drawable/hellogradient"
-        android:textColor="@color/colorTexts"/>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
-
-        <LinearLayout
-            android:layout_width="0dp"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="5dp"
-            android:background="@color/homeitems"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:id="@+id/homeLayout">
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/login"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:text="Todo Task"
-                android:textSize="18sp"
-                android:gravity="center"
-                android:padding="2dp"/>
-        </LinearLayout>
+            tools:text="hello"
+            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:id="@+id/tvHello"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:background="@drawable/hellogradient"
+            android:textColor="@color/colorTexts"/>
 
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="5dp"
-            android:background="@color/homeitems"
+            android:orientation="horizontal"
             android:layout_weight="1"
-            android:clickable="true"
-            android:id="@+id/loginLayout">
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/login"
-                android:layout_gravity="center" />
+            android:layout_margin="10dp">
 
-            <TextView
-                android:layout_width="170dp"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Login"
-                android:textSize="18sp"
-                android:gravity="center"
-                android:padding="2dp" />
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@drawable/layout_corner"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/todoLayout">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/login"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Todo Task"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:padding="2dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@drawable/layout_corner"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/loginLayout">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/login"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Login"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:padding="2dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@drawable/layout_corner"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/incomeLayout">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/login"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Income"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:padding="2dp" />
+            </LinearLayout>
+
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="5dp"
-            android:background="@color/homeitems"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:id="@+id/incomeLayout">
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/login"
-                android:layout_gravity="center"/>
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
 
-            <TextView
-                android:layout_width="170dp"
+
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Income"
-                android:textSize="18sp"
-                android:gravity="center"
-                android:padding="2dp"/>
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@drawable/layout_corner"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/expenseLayout">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/login"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Expense"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:padding="2dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@drawable/layout_corner"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/incomeReportLayout">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/login"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Income Report"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:padding="2dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@drawable/layout_corner"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/expenseReportLayout">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/login"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Expense Report"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:padding="2dp"/>
+            </LinearLayout>
+
+
         </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="5dp"
-            android:background="@color/homeitems"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:id="@+id/expenseLayout">
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/login"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:text="Expense"
-                android:textSize="18sp"
-                android:gravity="center"
-                android:padding="2dp"/>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="5dp"
-            android:background="@color/homeitems"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:id="@+id/incomeReportLayout">
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/login"
-                android:layout_gravity="center" />
-
-            <TextView
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:text="Income Report"
-                android:textSize="18sp"
-                android:gravity="center"
-                android:padding="2dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="5dp"
-            android:background="@color/homeitems"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:id="@+id/expenseReportLayout">
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/login"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:text="Expense Report"
-                android:textSize="18sp"
-                android:gravity="center"
-                android:padding="2dp"/>
-        </LinearLayout>
-
-
-    </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -203,7 +204,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_margin="5dp"
-                android:background="@color/homeitems"
+                android:background="@drawable/layout_corner"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:id="@+id/tobePaidLayout">
@@ -227,7 +228,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_margin="5dp"
-                android:background="@color/homeitems"
+                android:background="@drawable/layout_corner"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:id="@+id/tobeTakenLayout">
@@ -251,7 +252,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_margin="5dp"
-                android:background="@color/homeitems"
+                android:background="@drawable/layout_corner"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:id="@+id/aboutLayout">
@@ -269,10 +270,10 @@
                     android:gravity="center"
                     android:padding="2dp" />
             </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
 
 </ScrollView>
-
 

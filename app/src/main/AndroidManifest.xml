@@ -23,7 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.IncomeReportActivity" />
-        <activity android:name=".activities.ExpenseReportActivity"></activity>
+        <activity android:name=".activities.ExpenseReportActivity" />
+        <activity android:name=".activities.TodoActivity"></activity>
     </application>
 
 </manifest>

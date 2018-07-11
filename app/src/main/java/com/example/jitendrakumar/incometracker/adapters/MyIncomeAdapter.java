@@ -12,14 +12,14 @@ import com.example.jitendrakumar.incometracker.models.IncomeData;
 
 import java.util.ArrayList;
 
-public class BeneficiaryRecyclerAdapter extends RecyclerView.Adapter<BeneficiaryRecyclerAdapter.BeneficiaryViewHolder>  {
+public class MyIncomeAdapter extends RecyclerView.Adapter<MyIncomeAdapter.BeneficiaryViewHolder>  {
 
     private ArrayList<IncomeData> listBeneficiary;
     private Context mContext;
     private ArrayList<IncomeData> mFilteredList;
 
 
-    public BeneficiaryRecyclerAdapter(ArrayList<IncomeData> listBeneficiary, Context mContext) {
+    public MyIncomeAdapter(ArrayList<IncomeData> listBeneficiary, Context mContext) {
         this.listBeneficiary = listBeneficiary;
         this.mContext = mContext;
         this.mFilteredList = listBeneficiary;
@@ -48,9 +48,6 @@ public class BeneficiaryRecyclerAdapter extends RecyclerView.Adapter<Beneficiary
 
     }
 
-
-
-
     @Override
     public BeneficiaryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // inflating recycler item view
@@ -74,9 +71,6 @@ public class BeneficiaryRecyclerAdapter extends RecyclerView.Adapter<Beneficiary
     public int getItemCount() {
         return mFilteredList.size();
     }
-
-
-
 }
 
 
