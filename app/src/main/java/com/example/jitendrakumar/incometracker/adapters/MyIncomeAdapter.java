@@ -3,6 +3,7 @@ package com.example.jitendrakumar.incometracker.adapters;
 import android.content.Context;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ public class MyIncomeAdapter extends RecyclerView.Adapter<MyIncomeAdapter.Benefi
     private ArrayList<IncomeData> listBeneficiary;
     private Context mContext;
     private ArrayList<IncomeData> mFilteredList;
+    public static final String TAG = "res";
 
 
     public MyIncomeAdapter(ArrayList<IncomeData> listBeneficiary, Context mContext) {
@@ -62,8 +64,17 @@ public class MyIncomeAdapter extends RecyclerView.Adapter<MyIncomeAdapter.Benefi
         holder.tvIncomeReportId.setText(String.valueOf( listBeneficiary.get(position).getIncomeId() ));
         holder.tvIncomeReportType.setText(listBeneficiary.get(position).getInputType());
         holder.tvIncomeReportAmount.setText(String.valueOf( listBeneficiary.get(position).getInputAmount() ));
-        holder.tvIncomeReportDate.setText(listBeneficiary.get(position).getDate());
-        holder.tvIncomeReportTime.setText(listBeneficiary.get(position).getTime());
+        int year = Integer.parseInt( listBeneficiary.get( position ).getIncomeDate().trim().substring( 6 ) );
+        Log.d( TAG, "onBindViewHolder: year"+year );
+        Log.d( TAG, "onBindViewHolder: length"+listBeneficiary.get( position ).getIncomeDate().length() );
+        int month = Integer.parseInt( listBeneficiary.get( position ).getIncomeDate().trim().substring( 3,5 ) );
+        int day = Integer.parseInt( listBeneficiary.get( position ).getIncomeDate().trim().substring( 0,2 ) );
+        int hour = Integer.parseInt( listBeneficiary.get( position ).getIncomeTime().trim().substring( 0,2 ) );
+        int minute = Integer.parseInt( listBeneficiary.get( position ).getIncomeTime().trim().substring( 3 ) );
+        String Date = Integer.toString( day )+"/"+Integer.toString( month )+"/"+Integer.toString( year );
+        String Time = Integer.toString( hour )+":"+Integer.toString( minute );
+        holder.tvIncomeReportDate.setText(Date);
+        holder.tvIncomeReportTime.setText(Time);
 
     }
 

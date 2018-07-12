@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.widget.Toast
 import com.example.jitendrakumar.incometracker.R
 import com.example.jitendrakumar.incometracker.adapters.MyTodoAdapter
 import com.example.jitendrakumar.incometracker.database.db.TaskTable
@@ -51,10 +52,21 @@ class TodoActivity : AppCompatActivity() {
                     etTaskDate.text.toString(),
                     false
             )
-            val id = TaskTable.addTask(db, newTask)
-            refreshTodos()
-            Log.d("TASK", "INSERTED AT ${id}")
-            taskAdapter.notifyDataSetChanged()
+            if(etTaskName.text.toString().length==0)
+            {
+                etTaskName.setError("Task Name field is required!!!");
+            }
+            if(etTaskDate.text.toString().length==0)
+            {
+                Toast.makeText(this, "Task Date field is required!!!", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                val id = TaskTable.addTask(db, newTask)
+                refreshTodos()
+                Log.d("TASK", "INSERTED AT ${id}")
+                taskAdapter.notifyDataSetChanged()
+            }
+
         }
 
         btnClearTask.setOnClickListener {

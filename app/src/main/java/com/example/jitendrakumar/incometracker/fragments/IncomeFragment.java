@@ -80,32 +80,6 @@ public class IncomeFragment extends Fragment{
                 viewAllIncomeData();
                 spinnerDays();
 
-     /*   tvIncomeDate = (TextView) view.findViewById( R.id.etIncomeDate );
-        tvIncomeDate.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get( Calendar.YEAR );
-                int month = cal.get( Calendar.MONTH );
-                int day = cal.get( Calendar.DAY_OF_MONTH );
-
-                DatePickerDialog dialog = new DatePickerDialog( getContext(), android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        myDateSetListener,
-                        year, month, day );
-                dialog.getWindow().setBackgroundDrawable( new ColorDrawable( Color.TRANSPARENT ) );
-                dialog.show();
-            }
-        } );
-
-        myDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month = month + 1;
-                String date = dayOfMonth + "/" + month + "/" + year;
-                tvIncomeDate.setText( date );
-            }
-        };
-       */
 
      btnIncomeTime.setOnClickListener( new View.OnClickListener() {
          @Override
@@ -137,6 +111,12 @@ public class IncomeFragment extends Fragment{
                         String incomeAmount = etIncomeAmount.getText().toString();
                         String incomeDate =  etIncomeDate.getText().toString();
                         String incomeTime = etIncomeTime.getText().toString();
+                        int year = Integer.parseInt(incomeDate.substring( 6));
+                        int month = Integer.parseInt( incomeDate.substring( 3,5 ));
+                        int day = Integer.parseInt( incomeDate.substring( 0,2));
+                        int hour = Integer.parseInt( incomeTime.substring( 0,2 ));
+                        int minute = Integer.parseInt( incomeTime.substring( 3));
+                        Log.d( TAG, "onClick: "+day+month+year+hour+minute );
                         if(incomeType.length() == 0)
                         {
                             etIncomeType.setError( "Income Type is required!!!" );
@@ -153,7 +133,7 @@ public class IncomeFragment extends Fragment{
                             etIncomeTime.setError( "Time field is required!!!" );
                         }
                         else {
-                            boolean isInserted = MyincomeDB.insertIncomeData( incomeType, incomeAmount , incomeDate,incomeTime, false);
+                            boolean isInserted = MyincomeDB.insertIncomeData( incomeType, incomeAmount , year, month, day, hour, minute);
                             if (isInserted == true) {
                                 Toast.makeText( getActivity(), "Data Saved to Income DataBase.", Toast.LENGTH_SHORT ).show();
 
@@ -162,114 +142,18 @@ public class IncomeFragment extends Fragment{
                             }
                         }
 
-
-
                     }
                     catch (NullPointerException e)
                     {
                         e.printStackTrace();
                     }
 
-
             }
         } );
 
     }
 
-
-          /*      Cursor res = MyincomeDB.getAllIncomeData();
-                if(res.getCount() == 0)
-                {
-                    // Show message
-                    showMessage( "Error", "Nothing Found" );
-
-                    return;
-                }
-                else
-                {
-                    StringBuffer buffer = new StringBuffer(  );
-                    while (res.moveToNext()){
-                        buffer.append( "Income Id : "+ res.getString( 0 )+"\n" );
-                        buffer.append( "Income Type : "+ res.getString( 1 )+"\n" );
-                        buffer.append( "Income Amount : "+ res.getString( 2 )+"\n" );
-                        buffer.append( "Date : "+ res.getString( 3 )+"\n" );
-                        buffer.append( "Time : "+ res.getString( 4 )+"\n\n" );
-
-                    }
-                    // Show all data
-                    showMessage( "Data", buffer.toString() );
-                }
-            }
-
-        } );
-
-    }
-
-    public void showMessage(String title, String Message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setCancelable( true );
-        builder.setTitle( title );
-        builder.setMessage( Message );
-        builder.show();
-    }
-
-    public boolean validateDate(EditText date) {
-
-        matcher = pattern.matcher(date.getText().toString());
-
-        if(matcher.matches()){
-            matcher.reset();
-
-            if(matcher.find()){
-                String day = matcher.group(1);
-                String month = matcher.group(2);
-                int year = Integer.parseInt(matcher.group(3));
-
-                if (day.equals("31") &&
-                        (month.equals("4") || month .equals("6") || month.equals("9") ||
-                                month.equals("11") || month.equals("04") || month .equals("06") ||
-                                month.equals("09"))) {
-                    return false; // only 1,3,5,7,8,10,12 has 31 days
-                }
-
-                else if (month.equals("2") || month.equals("02")) {
-                    //leap year
-                    if(year % 4==0){
-                        if(day.equals("30") || day.equals("31")){
-                            return false;
-                        }
-                        else{
-                            return true;
-                        }
-                    }
-                    else{
-                        if(day.equals("29")||day.equals("30")||day.equals("31")){
-                            return false;
-                        }
-                        else{
-                            return true;
-                        }
-                    }
-                }
-
-                else{
-                    return true;
-                }
-            }
-
-            else{
-                return false;
-            }
-        }
-        else{
-            return false;
-        }
-
-    }
-*/
     public void spinnerDays(){
-        //https://developer.android.com/guide/topics/ui/controls/spinner
-
         ArrayAdapter adapter = ArrayAdapter.createFromResource(getContext(),
                 R.array.days_array, R.layout.single_day_item);
 
@@ -289,21 +173,5 @@ public class IncomeFragment extends Fragment{
             }
         } );
 
-    }
-/*
-    @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
-        etIncomeTime.setText( String.valueOf(hourOfDay)+":"+String.valueOf( minute ) );
-    }
-
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        etIncomeDate.setText( String.valueOf( year )+"-"+String.valueOf( month )+"-"+String.valueOf( dayOfMonth ) );
-    } */
-
-     public TextView getView()
-    {
-    return etIncomeDate;
     }
 }

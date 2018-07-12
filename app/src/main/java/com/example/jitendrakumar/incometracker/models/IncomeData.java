@@ -5,15 +5,12 @@ public class IncomeData {
     String inputType;
     Double inputAmount;
 
-
-
-    public IncomeData(int incomeId, String inputType, Double inputAmount, String date, String time) {
+    public IncomeData(int incomeId, String inputType, Double inputAmount, String incomeDate, String incomeTime) {
         this.incomeId = incomeId;
         this.inputType = inputType;
         this.inputAmount = inputAmount;
-        Date = date;
-        Time = time;
-
+        this.incomeDate = incomeDate;
+        this.incomeTime = incomeTime;
     }
 
     public int getIncomeId() {
@@ -40,24 +37,22 @@ public class IncomeData {
         this.inputAmount = inputAmount;
     }
 
-    public String getDate() {
-        return Date;
+    public String getIncomeDate() {
+        return incomeDate;
     }
 
-    public void setDate(String date) {
-        Date = date;
+    public void setIncomeDate(String incomeDate) {
+        this.incomeDate = incomeDate;
     }
 
-    public String getTime() {
-        return Time;
+    public String getIncomeTime() {
+        return incomeTime;
     }
 
-    public void setTime(String time) {
-        Time = time;
+    public void setIncomeTime(String incomeTime) {
+        this.incomeTime = incomeTime;
     }
 
-    // String Day;
-    String Date;
-    String Time;
-
+    String incomeDate;
+    String incomeTime;
 }

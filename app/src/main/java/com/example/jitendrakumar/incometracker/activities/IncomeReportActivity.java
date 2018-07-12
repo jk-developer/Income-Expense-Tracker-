@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ public class IncomeReportActivity extends AppCompatActivity {
     IncomeData incomeData;
     MyIncomeAdapter myIncomeAdapter;
     CheckBox checkBox;
+    public static final String TAG = "date";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,26 +57,35 @@ public class IncomeReportActivity extends AppCompatActivity {
         else
         {
             while (res.moveToNext()){
-                String incId = res.getString( 0 );
+                int incId = res.getInt( 0 );
                 String incType =  res.getString( 1 );
-                String incAmount =  res.getString( 2 );
-                String incDate = res.getString( 3 );
-                String incTime =  res.getString( 4 );
-                incomeData = new IncomeData( Integer.valueOf( incId ), incType, Double.valueOf( incAmount ),incDate, incTime);
+                Double incAmount =  res.getDouble( 2 );
+                int incYear = res.getInt( 3 );
+                int incMonth = res.getInt( 4 );
+                int incDay = res.getInt( 5 );
+                int incHour = res.getInt( 6 );
+                int incMinute = res.getInt( 7 );
+                Log.d( TAG, "getArrayList: details"+incId + incType+ incAmount+incYear+incMonth+incDay+incHour+incMinute);
+                String Date = Integer.toString( incDay )+"/"+Integer.toString( incMonth )+"/"+Integer.toString( incYear );
+                Log.d( TAG, "getArrayList: date "+Date );
+                String Time = Integer.toString( incHour )+":"+Integer.toString( incMinute );
+                Log.d( TAG, "getArrayList: time"+Time );
+                incomeData = new IncomeData(incId, incType, incAmount,Date, Time);
                 arrayList.add( incomeData);
             }
 
         }
         return arrayList;
     }
-
+/*
     public void updateList(IncomeData incData) {
-                 MyincomeDB.updateIncomeData( String.valueOf( incData.getIncomeId()), incData.getInputType(), String.valueOf( incData.getInputAmount()), incData.getDate(), incData.getTime() );
+                 MyincomeDB.updateIncomeData(String.valueOf( incData.getIncomeId() ), incData.getInputType(), incData.getInputAmount(),
+                         incData.getIncomeYear(), incData.getIncomeMonth(), incData.getIncomeDay(), incData.getIncomeHour(), incData.getIncomeMinute());
     }
 
     public void deleteList(IncomeData incomeData){
         MyincomeDB.deleteIncomeData(String.valueOf( incomeData.getIncomeId() ) );
     }
-
+*/
 
 }

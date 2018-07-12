@@ -81,25 +81,37 @@ public class SignupFragment extends Fragment {
                 String mob =  mobile.getText().toString();
                 String em = email.getText().toString();
                 String pass = password.getText().toString();
+                if(username.length()==0){
+                    name.setError( "Username field is required!!!" );
+                }
+                if(mob.length()==0){
+                    mobile.setError( "Mobile field is required!!!" );
+                }
+                if(em.length()==0){
+                    email.setError( "Email field is required!!!" );
+                }
+                if(pass.length()==0){
+                    password.setError( "Password field is required!!!" );
+                }
+                else{
+                    if((validate( name, mobile, email, password)==true)){
 
-                   if((validate( name, mobile, email, password)==true)){
-
-                       if((validateMobile( mobile)==true) && validateEmail( email )==true){
-                           isInserted = myDb.insertData(username,em, mob , pass );
-                           if (isInserted == true) {
-                               Toast.makeText( getActivity(), "Data Saved to DataBase.", Toast.LENGTH_SHORT ).show();
-                               FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
-                               fragmentTransaction.replace( R.id.fragment_container, new LoginFragment());
-                               fragmentTransaction.commit();
-                           } else {
-                               Toast.makeText( getActivity(), "Data is not Saved to DataBase.", Toast.LENGTH_SHORT ).show();
-                           }
-                       }
-                   }
+                        if((validateMobile( mobile)==true) && validateEmail( email )==true){
+                            isInserted = myDb.insertData(username,em, mob , pass );
+                            if (isInserted == true) {
+                                Toast.makeText( getActivity(), "Data Saved to DataBase.", Toast.LENGTH_SHORT ).show();
+                                FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
+                                fragmentTransaction.replace( R.id.fragment_container, new LoginFragment());
+                                fragmentTransaction.commit();
+                            } else {
+                                Toast.makeText( getActivity(), "Data is not Saved to DataBase.", Toast.LENGTH_SHORT ).show();
+                            }
+                        }
+                    }
                   /*  else{
                        Toast.makeText( getActivity(), "something wrong", Toast.LENGTH_SHORT ).show();
                 }  */
-
+                }
             }
         } );
 

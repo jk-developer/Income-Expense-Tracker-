@@ -15,12 +15,15 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Income.db";
     public static final String TABLE_NAME3 = "income_table";
-    private static final Integer VERSION = 2;
+    private static final Integer VERSION = 3;
     public static final String COL_1 = "INCOME_ID";
     public static final String COL_2 = "INCOME_TYPE";
     public static final String COL_3 = "AMOUNT";
-    public static final String COL_4 = "DATE";
-    public static final String COL_5 = "TIME";
+    public static final String COL_4 = "DATE_YEAR";
+    public static final String COL_5 = "DATE_MONTH";
+    public static final String COL_6 = "DATE_DAY";
+    public static final String COL_7 = "TIME_HOUR";
+    public static final String COL_8 = "TIME_MINUTE";
 
 
     public IncomeDatabaseHelper(Context context) {
@@ -31,7 +34,8 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME3 + " (INCOME_ID INTEGER PRIMARY KEY AUTOINCREMENT,INCOME_TYPE TEXT NOT NULL,AMOUNT FLOAT, DATE TEXT NOT NULL, TIME TEXT NOT NULL) ");
+        db.execSQL("create table " + TABLE_NAME3 + " (INCOME_ID INTEGER PRIMARY KEY AUTOINCREMENT,INCOME_TYPE TEXT NOT NULL, AMOUNT FLOAT NOT NULL," +
+                " DATE_YEAR INTEGER NOT NULL, DATE_MONTH INTEGER NOT NULL, DATE_DAY INTEGER NOT NULL, TIME_HOUR INTEGER NOT NULL, TIME_MINUTE NOT NULL) ");
     }
 
     @Override
@@ -42,14 +46,16 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
     }
     // Function insertData() to insert the data in the table/Database
 
-    public boolean insertIncomeData(String income_type, String amount, String date, String time, boolean isChecked){
+    public boolean insertIncomeData(String income_type, String amount,int year, int month, int day, int hour, int minute){
         SQLiteDatabase db  = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put( COL_2, income_type );
         contentValues.put( COL_3, amount );
-        contentValues.put( COL_4, date );
-        contentValues.put( COL_5, time );
-
+        contentValues.put( COL_4, year );
+        contentValues.put( COL_5, month );
+        contentValues.put( COL_6, day );
+        contentValues.put( COL_7 , hour);
+        contentValues.put( COL_8, minute );
 
         long res =  db.insert( TABLE_NAME3, null, contentValues );
         if(res==-1)
@@ -70,26 +76,26 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public Cursor getAllIncomeReport(String dateFrom, String dateTo){
+    public Cursor getAllIncomeReport(int years, int yearf, int months, int monthf,  int days, int dayf ){
         SQLiteDatabase db  = this.getWritableDatabase();
-        Log.d( TAG, "getAllIncomeReport: "+dateFrom+dateFrom );
-
-        Cursor res  = db.rawQuery( "select * from "+TABLE_NAME3+" where DATE >= "+ dateFrom + " and DATE <= "+ dateTo, null );
-        res.moveToNext();
-        //Log.d( TAG, "getAllIncomeReport: "+res.getString( 2 ) );
+        Cursor res  = db.rawQuery( "select * from "+TABLE_NAME3+" where YEAR >= "+years + " and YEAR <= "+ yearf+" and DATE_MONTH >="+months +" and DATE_MONTH <="+monthf+" and DATE_DAY >="+days+" and DATE_DAY <="+dayf, null );
             return res;
     }
 
     // Function updateData() to update/change the existing data in database
 
-    public boolean updateIncomeData(String income_id, String income_type, String amount, String date, String time){
+    public boolean updateIncomeData(String income_id, String income_type, double amount, int year, int month, int day, int hour, int minute){
         SQLiteDatabase db  = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put( COL_1, income_id );
         contentValues.put( COL_2, income_type );
         contentValues.put( COL_3, amount );
-        contentValues.put( COL_4,  date );
-        contentValues.put( COL_5, time );
+        contentValues.put( COL_4,  year);
+        contentValues.put( COL_5, month);
+        contentValues.put( COL_5, month );
+        contentValues.put( COL_6, day );
+        contentValues.put( COL_7, hour );
+        contentValues.put( COL_8, minute );
         db.update( TABLE_NAME3, contentValues, "INCOME_ID = ?", new String[] {income_id});
         return true;
     }

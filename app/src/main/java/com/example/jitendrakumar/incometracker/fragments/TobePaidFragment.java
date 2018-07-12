@@ -71,6 +71,21 @@ public class TobePaidFragment extends Fragment {
                     String payingDate =  tvPayingDate.getText().toString();
                     String payingReason = etPayingReason.getText().toString();
 
+                    if (personName.length()==0){
+                        etPersonName.setError( "Person Name field is required!!!" );
+                    }
+                    if(payingAmount.length()==0){
+                        etPayingAmount.setError( "Paying Amount field is required!!!" );
+                    }
+                    if(payingDate.length()==0)
+                    {
+                        Toast.makeText( getActivity(), "Date field is required!!!", Toast.LENGTH_SHORT ).show();
+                    }
+                    if(payingReason.length()==0){
+                        etPayingReason.setError( "Reason field is required!!!" );
+                    }
+                    else{
+
                         boolean isInserted = tobePaidDatabaseHelper.insertPayingData( personName, payingAmount ,payingReason,payingDate);
                         if (isInserted == true) {
                             Toast.makeText( getActivity(), "Data Saved to Paying DataBase.", Toast.LENGTH_SHORT ).show();
@@ -79,6 +94,7 @@ public class TobePaidFragment extends Fragment {
                             Toast.makeText( getActivity(), "Data is not Saved to Paying DataBase.", Toast.LENGTH_SHORT ).show();
                         }
                     }
+                }
                 catch (NullPointerException e)
                 {
                     e.printStackTrace();

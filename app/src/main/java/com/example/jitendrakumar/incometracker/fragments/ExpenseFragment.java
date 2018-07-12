@@ -94,17 +94,18 @@ public class ExpenseFragment extends Fragment {
                     String expenseTime = tvExpenseTime.getText().toString();
 
                     if (expenseType.length() == 0) {
-                        etExpenseType.setError( "Income Type is required!!!" );
+                        etExpenseType.setError( "Expense Type is required!!!" );
                     }
-                    if (expenseAmount.length() == 0) {
-                        etExpenseAmount.setError( "Income Amount is required!!!" );
+                    else if (expenseAmount.length() == 0) {
+                        etExpenseAmount.setError( "Expense Amount is required!!!" );
                     }
-                    if (expenseDate.length() == 0) {
-                        tvExpenseDate.setError( "Date field is required!!! " );
+                    else if (expenseDate.length() == 0) {
+                        Toast.makeText( getActivity(),"Date field is required!!! ", Toast.LENGTH_SHORT ).show();
                     }
-                    if (expenseTime.length() == 0) {
-                        tvExpenseTime.setError( "Time field is required!!!" );
-                    } else {
+                    else if (expenseTime.length() == 0) {
+                        Toast.makeText( getActivity(),"Time field is required!!! ", Toast.LENGTH_SHORT ).show();
+                    }
+                    else {
                         boolean isInserted = MyexpenseDB.insertExpenseData( expenseType, expenseAmount, expenseDate, expenseTime );
                         if (isInserted == true) {
                             Toast.makeText( getActivity(), "Data Saved to Expense DataBase.", Toast.LENGTH_SHORT ).show();

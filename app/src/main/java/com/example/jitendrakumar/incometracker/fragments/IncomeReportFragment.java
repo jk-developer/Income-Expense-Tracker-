@@ -85,9 +85,14 @@ public class IncomeReportFragment extends Fragment {
 
                 String dateFrom = tvIncomeReportDateFrom.getText().toString();
                 String dateTo = tvIncomeReportDateTo.getText().toString();
-
-                    Log.d( TAG, "onClick: before "+dateFrom + dateTo );
-                    Cursor res = myIncomeDB.getAllIncomeReport(dateFrom,dateTo);
+                int years = Integer.parseInt(dateFrom.substring( 6,9 ));
+                int months = Integer.parseInt( dateFrom.substring( 3,4 ));
+                int days = Integer.parseInt( dateFrom.substring( 0,1));
+                int yearf = Integer.parseInt(dateTo.substring( 6,9 ));
+                int monthf = Integer.parseInt(dateTo.substring( 3,4 ));
+                int dayf = Integer.parseInt( dateTo.substring( 0,1));
+                    Log.d( TAG, "onClick: before "+yearf + months );
+                    Cursor res = myIncomeDB.getAllIncomeReport(years, yearf, months, monthf, days, dayf);
                     Log.d( TAG, "onClick: getAllIncome REport Function Run" );
                     if(res.getCount() == 0)
                     {
@@ -100,11 +105,13 @@ public class IncomeReportFragment extends Fragment {
                     {
                         StringBuffer buffer = new StringBuffer(  );
                         while (res.moveToNext()){
-                            buffer.append( "Income Id : "+ res.getString( 0 )+"\n" );
+                            buffer.append( "Income Id : "+ res.getInt( 0 )+"\n" );
                             buffer.append( "Income Type : "+ res.getString( 1 )+"\n" );
-                            buffer.append( "Income Amount : "+ res.getString( 2 )+"\n" );
-                            buffer.append( "Date : "+ res.getString( 3 )+"\n" );
-                            buffer.append( "Time : "+ res.getString( 4 )+"\n\n" );
+                            buffer.append( "Income Amount : "+ res.getDouble( 2 )+"\n" );
+                            String date = res.getInt( 5 )+"/"+res.getInt( 4 )+"/"+res.getInt( 3 );
+                            String time = res.getInt( 6 )+":"+res.getInt( 7 );
+                            buffer.append( "Date : "+date+"\n" );
+                            buffer.append( "Time : "+ time+"\n\n" );
 
                         }
                         // Show all data

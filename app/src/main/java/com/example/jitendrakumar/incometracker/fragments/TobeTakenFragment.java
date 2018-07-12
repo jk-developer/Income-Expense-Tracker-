@@ -73,13 +73,27 @@ public class TobeTakenFragment extends Fragment {
                     String takenAmount = etTakenReason.getText().toString();
                     String takenDate =  tvTakenDate.getText().toString();
                     String takenReason = etTakenAmount.getText().toString();
+                    if (personName.length()==0){
+                        etPersonName.setError( "Person Name field is required!!!" );
+                    }
+                    if(takenAmount.length()==0){
+                        etTakenAmount.setError( "Paying Amount field is required!!!" );
+                    }
+                    if(takenDate.length()==0)
+                    {
+                        Toast.makeText( getActivity(), "Date field is required!!!", Toast.LENGTH_SHORT ).show();
+                    }
+                    if(takenReason.length()==0){
+                        etTakenReason.setError( "Reason field is required!!!" );
+                    }
+                    else if(personName.length()!=0 && takenAmount.length()!=0 && takenReason.length()!=0 && takenAmount.length()!=0 && takenDate.length()!=0){
+                        boolean isInserted = tobeTakenDatabaseHelper.insertTakenData( personName, takenAmount ,takenReason,takenDate);
+                        if (isInserted == true) {
+                            Toast.makeText( getActivity(), "Data Saved to Taken DataBase.", Toast.LENGTH_SHORT ).show();
 
-                    boolean isInserted = tobeTakenDatabaseHelper.insertTakenData( personName, takenAmount ,takenReason,takenDate);
-                    if (isInserted == true) {
-                        Toast.makeText( getActivity(), "Data Saved to Taken DataBase.", Toast.LENGTH_SHORT ).show();
-
-                    } else {
-                        Toast.makeText( getActivity(), "Data is not Saved to Taken DataBase.", Toast.LENGTH_SHORT ).show();
+                        } else {
+                            Toast.makeText( getActivity(), "Data is not Saved to Taken DataBase.", Toast.LENGTH_SHORT ).show();
+                        }
                     }
                 }
                 catch (NullPointerException e)
