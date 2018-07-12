@@ -25,6 +25,7 @@ public class IncomeReportActivity extends AppCompatActivity {
     MyIncomeAdapter myIncomeAdapter;
     CheckBox checkBox;
     public static final String TAG = "date";
+    private double totalIncome = 0.00 ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,7 @@ public class IncomeReportActivity extends AppCompatActivity {
                 Log.d( TAG, "getArrayList: time"+Time );
                 incomeData = new IncomeData(incId, incType, incAmount,Date, Time);
                 arrayList.add( incomeData);
+                totalIncome = totalIncome +incAmount;
             }
 
         }
@@ -87,5 +89,6 @@ public class IncomeReportActivity extends AppCompatActivity {
         MyincomeDB.deleteIncomeData(String.valueOf( incomeData.getIncomeId() ) );
     }
 */
+
 
 }

@@ -70,9 +70,9 @@ public class TobeTakenFragment extends Fragment {
                 try {
                     String personName = etPersonName.getText().toString();
                     Log.d( TAG, "onClick: "+personName );
-                    String takenAmount = etTakenReason.getText().toString();
+                    String takenAmount = etTakenAmount.getText().toString();
                     String takenDate =  tvTakenDate.getText().toString();
-                    String takenReason = etTakenAmount.getText().toString();
+                    String takenReason = etTakenReason.getText().toString();
                     if (personName.length()==0){
                         etPersonName.setError( "Person Name field is required!!!" );
                     }

@@ -14,6 +14,7 @@ import java.util.Calendar;
 @SuppressLint("ValidFragment")
 public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener{
     private TextView tvTime;
+    private Calendar c;
 
     @SuppressLint("ValidFragment")
     public TimePickerFragment(TextView etIncomeTime) {
@@ -23,7 +24,7 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Calendar c = Calendar.getInstance();
+         c = Calendar.getInstance();
         int hour = c.get( Calendar.HOUR_OF_DAY );
         int minute = c.get( Calendar.MINUTE );
         return new TimePickerDialog( getActivity(), (TimePickerDialog.OnTimeSetListener) this, hour, minute, android.text.format.DateFormat.is24HourFormat(getContext()) );
@@ -40,5 +41,14 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         tvTime.setText(hour+":0"+minute);
         else
             tvTime.setText( hour+":"+minute );
+    }
+    public String checkAmPm(){
+        String am_pm = " ";
+        if (c.get(Calendar.AM_PM) == Calendar.AM)
+            am_pm = "AM";
+        else if (c.get(Calendar.AM_PM) == Calendar.PM)
+            am_pm = "PM";
+
+        return am_pm;
     }
 }

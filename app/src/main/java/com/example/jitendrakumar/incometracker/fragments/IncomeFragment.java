@@ -46,6 +46,7 @@ public class IncomeFragment extends Fragment{
      Button btnIncomeSubmit,btnIncomeViewAll, btnIncomeUpdate, btnIncomeDelete,btnIncomeDate, btnIncomeTime;
      IncomeDatabaseHelper MyincomeDB;
      Spinner spinner1;
+   private  int year, month , day, hour, minute;
 
 
     @Nullable
@@ -87,6 +88,7 @@ public class IncomeFragment extends Fragment{
              DialogFragment newFragment = new TimePickerFragment(etIncomeTime);
              newFragment.show(getFragmentManager(), "TimePicker");
 
+
          }
      } );
 
@@ -111,12 +113,25 @@ public class IncomeFragment extends Fragment{
                         String incomeAmount = etIncomeAmount.getText().toString();
                         String incomeDate =  etIncomeDate.getText().toString();
                         String incomeTime = etIncomeTime.getText().toString();
-                        int year = Integer.parseInt(incomeDate.substring( 6));
-                        int month = Integer.parseInt( incomeDate.substring( 3,5 ));
-                        int day = Integer.parseInt( incomeDate.substring( 0,2));
-                        int hour = Integer.parseInt( incomeTime.substring( 0,2 ));
-                        int minute = Integer.parseInt( incomeTime.substring( 3));
-                        Log.d( TAG, "onClick: "+day+month+year+hour+minute );
+                        // Extracting year month and day integer value from the Date String DD/MM/YYYY
+                        String[]dateParts = incomeDate.toString().split("/");
+                        try {
+                            year = safeParseInt(dateParts[2]);
+                            month = safeParseInt(dateParts[0]);
+                            day = safeParseInt(dateParts[1]);
+                        } catch (Exception e) {
+                            Toast.makeText( getActivity(), "Error in parsing Date", Toast.LENGTH_SHORT ).show();
+                        }
+                        String timeStr = incomeTime.toString();
+                        String[] timeParts = timeStr.split( ":" );
+                        try {
+                            hour = safeParseInt( timeParts[0] );
+                            minute = safeParseInt( timeParts[1] );
+                        }catch (Exception e)
+                        {
+                            Toast.makeText( getActivity(), "Error in parsing Time", Toast.LENGTH_SHORT ).show();
+                        }
+
                         if(incomeType.length() == 0)
                         {
                             etIncomeType.setError( "Income Type is required!!!" );
@@ -173,5 +188,13 @@ public class IncomeFragment extends Fragment{
             }
         } );
 
+    }
+
+    public int safeParseInt(String number) throws Exception {
+        if(number != null) {
+            return Integer.parseInt(number.trim());
+        } else {
+            throw new NullPointerException("Date string is invalid");
+        }
     }
 }

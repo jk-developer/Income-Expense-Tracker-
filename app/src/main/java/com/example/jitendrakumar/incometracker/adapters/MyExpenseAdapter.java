@@ -32,15 +32,14 @@ public class MyExpenseAdapter extends RecyclerView.Adapter<MyExpenseAdapter.MyVi
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             // inflating recycler item view
             View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.single_income_item, parent, false);
+                    .inflate(R.layout.single_expense_item, parent, false);
 
             return new MyViewHolder(itemView);
         }
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        holder.tvExpenseReportId.setText(String.valueOf( listBeneficiary.get(position).getExpenseId() ));
-        Log.d( TAG, "onBindViewHolder: "+holder.tvExpenseReportId );
+        holder.tvExpenseReportId.setText(String.valueOf(listBeneficiary.get(position).getExpenseId() ));
         holder.tvExpenseReportType.setText(listBeneficiary.get(position).getExpenseType());
         holder.tvExpenseReportAmount.setText(String.valueOf( listBeneficiary.get(position).getExpenseAmount() ));
         holder.tvExpenseReportDate.setText(listBeneficiary.get(position).getExpenseDate());

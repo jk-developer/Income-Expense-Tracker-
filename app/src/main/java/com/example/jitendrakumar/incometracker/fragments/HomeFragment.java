@@ -15,15 +15,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
+import com.example.jitendrakumar.incometracker.activities.IncomeReportActivity;
 import com.example.jitendrakumar.incometracker.activities.TodoActivity;
+import com.example.jitendrakumar.incometracker.database.ExpenseDatabaseHelper;
+import com.example.jitendrakumar.incometracker.database.IncomeDatabaseHelper;
+import com.example.jitendrakumar.incometracker.database.TobePaidDatabaseHelper;
+import com.example.jitendrakumar.incometracker.database.TobeTakenDatabaseHelper;
 import com.example.jitendrakumar.incometracker.helper.SessionManagement;
 
 public class HomeFragment extends Fragment {
     TextView tvHello;
     public String id;
-    LinearLayout todoLayout,incomeLayout,expenseLayout,incomeReportLayout,expenseReportLayout,aboutLayout,loginLayout,tobePaidLayout, tobeTakenLayout;
+    LinearLayout todoLayout,incomeLayout,expenseLayout,incomeReportLayout,expenseReportLayout,aboutLayout,loginLayout,tobePaidLayout, tobeTakenLayout,aboutAppLayout;
     SessionManagement ses;
-
+    TextView incomeTotal,expenseTotal,savingTotal, paidtoTotal, takenTotal;
+    IncomeDatabaseHelper incomeDatabaseHelper;
+    ExpenseDatabaseHelper expenseDatabaseHelper;
+    TobePaidDatabaseHelper tobePaidDatabaseHelper;
+    TobeTakenDatabaseHelper tobeTakenDatabaseHelper;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,8 +47,26 @@ public class HomeFragment extends Fragment {
         aboutLayout = (LinearLayout) view.findViewById( R.id.aboutLayout );
         tobePaidLayout = (LinearLayout) view.findViewById( R.id.tobePaidLayout ) ;
         tobeTakenLayout = (LinearLayout) view.findViewById( R.id.tobeTakenLayout );
-        ses = new SessionManagement( getContext() );
+        aboutAppLayout = (LinearLayout)view.findViewById( R.id.aboutAppLayout );
+        incomeTotal = (TextView) view.findViewById( R.id.incomeTotal );
+        expenseTotal = (TextView) view.findViewById( R.id.expenseTotal );
+        savingTotal = (TextView)view.findViewById( R.id.savingTotal );
+        paidtoTotal = (TextView) view.findViewById( R.id.paidtoTotal );
+        takenTotal = (TextView) view.findViewById( R.id.takenTotal );
 
+        incomeDatabaseHelper = new IncomeDatabaseHelper( getContext() );
+        expenseDatabaseHelper = new ExpenseDatabaseHelper( getContext() );
+        tobePaidDatabaseHelper = new TobePaidDatabaseHelper( getContext() );
+        tobeTakenDatabaseHelper = new TobeTakenDatabaseHelper( getContext() );
+
+        incomeTotal.setText( String.valueOf( incomeDatabaseHelper.getTotalIncome()+" Rs" ) );
+        expenseTotal.setText( String.valueOf( expenseDatabaseHelper.getTotalExpense()+" Rs"));
+        savingTotal.setText( String.valueOf( incomeDatabaseHelper.getTotalIncome()-expenseDatabaseHelper.getTotalExpense())+" Rs" );
+        paidtoTotal.setText( String.valueOf( tobePaidDatabaseHelper.getTotalPaidTo())+" Rs" );
+        takenTotal.setText( String.valueOf( tobeTakenDatabaseHelper.getTotalTaken())+" Rs" );
+
+        ses = new SessionManagement( getContext() );
+    //    incomeTotal.setText( String.valueOf(incomeReportActivity.getTotalIncome()));
         tvHello.setVisibility(View.VISIBLE);
 
        todoLayout.setOnClickListener( new View.OnClickListener() {
@@ -163,6 +190,21 @@ public class HomeFragment extends Fragment {
                 if (ses.getUserName()!=null){
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                     fragmentTransaction.replace( R.id.fragment_container, new TobeTakenFragment() );
+                    fragmentTransaction.addToBackStack( null );
+                    fragmentTransaction.commit();
+                }else{
+                    Toast.makeText( getActivity(), "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
+                }
+
+            }
+        } );
+
+        aboutAppLayout.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ses.getUserName()!=null){
+                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                    fragmentTransaction.replace( R.id.fragment_container, new AboutAppFragment() );
                     fragmentTransaction.addToBackStack( null );
                     fragmentTransaction.commit();
                 }else{

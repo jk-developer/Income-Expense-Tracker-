@@ -26,6 +26,8 @@
     <string name="text_hello">Hello,</string>
     <string name="text_title">Income Expense Tracker</string>
 
+    <string name="about_app">If you can track your incomes and expenses religiously, you can actually reduce your expenditures and start saving. But it’s so hard to actually track down every one of your expenditure and keep a tab on all of it. That’s where this income expense tracker come in handy.</string>
+
 
     <string name="hint_id">ID</string>
 

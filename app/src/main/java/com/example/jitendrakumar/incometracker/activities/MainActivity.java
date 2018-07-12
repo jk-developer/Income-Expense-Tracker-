@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
+import com.example.jitendrakumar.incometracker.fragments.AboutAppFragment;
 import com.example.jitendrakumar.incometracker.fragments.AboutFragment;
 import com.example.jitendrakumar.incometracker.fragments.ExpenseFragment;
 import com.example.jitendrakumar.incometracker.fragments.HomeFragment;
@@ -210,13 +211,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     break;
                 }
 
+             case R.id.nav_about_app:
+                 getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
+                         new AboutAppFragment())
+                         .addToBackStack( null )
+                         .commit();
+                 toolbar.setTitle( "About App" );
+                 break;
 
             case R.id.nav_about:
                 getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
                         new AboutFragment())
                         .addToBackStack( null )
                         .commit();
-                toolbar.setTitle( "About" );
+                toolbar.setTitle( "About me" );
                 break;
 
             case R.id.nav_logout:

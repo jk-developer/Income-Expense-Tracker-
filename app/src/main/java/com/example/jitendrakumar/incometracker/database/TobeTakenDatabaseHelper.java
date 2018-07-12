@@ -23,7 +23,7 @@ public class TobeTakenDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME5 + " (TAKEN_ID INTEGER PRIMARY KEY AUTOINCREMENT,PERSON_NAME TEXT NOT NULL,TAKEN_AMOUNT FLOAT, TAKEN_REASON TEXT NOT NULL, TAKEN_DATE TEXT NOT NULL)");
+        db.execSQL("create table " + TABLE_NAME5 + " (TAKEN_ID INTEGER PRIMARY KEY AUTOINCREMENT,PERSON_NAME TEXT NOT NULL,TAKEN_AMOUNT FLOAT NOT NULL, TAKEN_REASON TEXT NOT NULL, TAKEN_DATE TEXT NOT NULL)");
     }
 
     @Override
@@ -88,5 +88,16 @@ public class TobeTakenDatabaseHelper extends SQLiteOpenHelper {
         return db.delete( TABLE_NAME5, "iNCOME_ID = ?",new String[] {income_id}  );
 
     }
+
+    public float getTotalTaken()
+    {
+        SQLiteDatabase db  = this.getWritableDatabase();
+        Cursor cur = db.rawQuery( "SELECT SUM(TAKEN_AMOUNT) FROM "+TABLE_NAME5, null );
+        if(cur.moveToFirst()){
+            return cur.getFloat( 0 );
+        }
+        return (float) 0.0;
+    }
+
 
 }

@@ -90,4 +90,14 @@ public class TobePaidDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public float getTotalPaidTo()
+    {
+        SQLiteDatabase db  = this.getWritableDatabase();
+        Cursor cur = db.rawQuery( "SELECT SUM(PAYING_AMOUNT) FROM "+TABLE_NAME4, null );
+        if(cur.moveToFirst()){
+            return cur.getFloat( 0 );
+        }
+        return (float) 0.0;
+    }
+
 }

@@ -3,6 +3,7 @@ package com.example.jitendrakumar.incometracker.fragments;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
+import com.example.jitendrakumar.incometracker.activities.BarChartActivity;
+import com.example.jitendrakumar.incometracker.activities.IncomePiechartActivity;
 import com.example.jitendrakumar.incometracker.activities.MainActivity;
 import com.example.jitendrakumar.incometracker.database.ExpenseDatabaseHelper;
 import com.example.jitendrakumar.incometracker.database.IncomeDatabaseHelper;
@@ -33,9 +36,10 @@ import java.util.Calendar;
 public class IncomeReportFragment extends Fragment {
     TextView tvIncomeReportDateFrom, tvIncomeReportDateTo;
     IncomeDatabaseHelper myIncomeDB;
-    Button btnViewIncomeReport, btnIncomeReportDateFrom, btnIncomeReportDateTo;
+    Button btnViewIncomeReport, btnIncomeReportDateFrom, btnIncomeReportDateTo, btnIncomeBarchart,btnIncomePiechart;
     private String id;
     public static final String TAG = "res";
+    private int years, yearf, months, monthf, days,dayf;
 
 
 
@@ -49,6 +53,8 @@ public class IncomeReportFragment extends Fragment {
         btnViewIncomeReport = (Button)view.findViewById( R.id.btnViewIncomeReport );
         btnIncomeReportDateFrom = (Button)view.findViewById( R.id.btnIncomeReportDateFrom );
         btnIncomeReportDateTo  = (Button) view.findViewById( R.id.btnIncomeReportDateTo );
+        btnIncomeBarchart = (Button) view.findViewById( R.id.btnIncomeBarchart );
+        btnIncomePiechart = (Button) view.findViewById( R.id.btnIncomePiechart );
         myIncomeDB = new IncomeDatabaseHelper( getContext());
 
         tvIncomeReportDateFrom.setHintTextColor(getResources().getColor(R.color.colorTexts));
@@ -73,7 +79,21 @@ public class IncomeReportFragment extends Fragment {
             }
         } );
 
+        btnIncomeBarchart.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent i = new Intent( getActivity(), BarChartActivity.class );
+               startActivity( i );
+            }
+        } );
 
+        btnIncomePiechart.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent( getActivity(), IncomePiechartActivity.class );
+                startActivity( i );
+            }
+        } );
 
         return view;
     }
@@ -85,16 +105,25 @@ public class IncomeReportFragment extends Fragment {
 
                 String dateFrom = tvIncomeReportDateFrom.getText().toString();
                 String dateTo = tvIncomeReportDateTo.getText().toString();
-                int years = Integer.parseInt(dateFrom.substring( 6,9 ));
-                int months = Integer.parseInt( dateFrom.substring( 3,4 ));
-                int days = Integer.parseInt( dateFrom.substring( 0,1));
-                int yearf = Integer.parseInt(dateTo.substring( 6,9 ));
-                int monthf = Integer.parseInt(dateTo.substring( 3,4 ));
-                int dayf = Integer.parseInt( dateTo.substring( 0,1));
-                    Log.d( TAG, "onClick: before "+yearf + months );
-                    Cursor res = myIncomeDB.getAllIncomeReport(years, yearf, months, monthf, days, dayf);
-                    Log.d( TAG, "onClick: getAllIncome REport Function Run" );
-                    if(res.getCount() == 0)
+                String dateStr = dateFrom.toString();
+                String[]dateParts = dateStr.split("/");
+                try {
+                    years = safeParseInt(dateParts[2]);
+                    months = safeParseInt(dateParts[0]);
+                    days = safeParseInt(dateParts[1]);
+                } catch (Exception e) {
+                    Toast.makeText( getActivity(), "Error in Parsing the DateFrom!!!", Toast.LENGTH_SHORT).show();
+                }
+                try {
+                    yearf = safeParseInt(dateParts[2]);
+                    monthf = safeParseInt(dateParts[0]);
+                    dayf = safeParseInt(dateParts[1]);
+                } catch (Exception e) {
+                    Toast.makeText( getActivity(), "Error in Parsing the DateTo!!!", Toast.LENGTH_SHORT).show();
+                }
+                Cursor res = myIncomeDB.getAllIncomeReport(years, yearf, months, monthf, days, dayf);
+                Log.d( TAG, "onClick: result"+res.getCount() );
+                if(res.getCount() == 0)
                     {
                         // Show message
                         showMessage( "Error", "Nothing Found" );
@@ -129,6 +158,14 @@ public class IncomeReportFragment extends Fragment {
         builder.setTitle( title );
         builder.setMessage( Message );
         builder.show();
+    }
+
+    public int safeParseInt(String number) throws Exception {
+        if(number != null) {
+            return Integer.parseInt(number.trim());
+        } else {
+            throw new NullPointerException("Date string is invalid");
+        }
     }
 
 

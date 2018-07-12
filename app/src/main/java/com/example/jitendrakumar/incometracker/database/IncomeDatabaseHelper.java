@@ -78,7 +78,7 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getAllIncomeReport(int years, int yearf, int months, int monthf,  int days, int dayf ){
         SQLiteDatabase db  = this.getWritableDatabase();
-        Cursor res  = db.rawQuery( "select * from "+TABLE_NAME3+" where YEAR >= "+years + " and YEAR <= "+ yearf+" and DATE_MONTH >="+months +" and DATE_MONTH <="+monthf+" and DATE_DAY >="+days+" and DATE_DAY <="+dayf, null );
+        Cursor res  = db.rawQuery( "select * from "+TABLE_NAME3+" where (DATE_YEAR >= "+years + " and DATE_YEAR <= "+ yearf+") and (DATE_MONTH >="+months +" and DATE_MONTH <="+monthf+") and (DATE_DAY >="+days+" and DATE_DAY <="+dayf+")", null );
             return res;
     }
 
@@ -106,6 +106,16 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db  = this.getWritableDatabase();
         return db.delete( TABLE_NAME3, "iNCOME_ID = ?",new String[] {income_id}  );
 
+    }
+
+    public float getTotalIncome()
+    {
+        SQLiteDatabase db  = this.getWritableDatabase();
+        Cursor cur = db.rawQuery( "SELECT SUM(AMOUNT) FROM "+TABLE_NAME3, null );
+        if(cur.moveToFirst()){
+            return cur.getFloat( 0 );
+        }
+        return (float) 0.0;
     }
 
 }

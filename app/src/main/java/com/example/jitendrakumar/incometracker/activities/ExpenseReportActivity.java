@@ -51,12 +51,12 @@ public class ExpenseReportActivity extends AppCompatActivity {
         else
         {
             while (res.moveToNext()){
-                String expId = res.getString( 0 );
+                int expId = res.getInt( 0 );
                 String expType =  res.getString( 1 );
-                String expAmount =  res.getString( 2 );
+                double expAmount =  res.getDouble( 2 );
                 String expDate = res.getString( 3 );
                 String expTime =  res.getString( 4 );
-                expenseData = new ExpenseData( Integer.valueOf( expId), expType, Double.valueOf( expAmount ),expDate, expTime );
+                expenseData = new ExpenseData( expId, expType, expAmount ,expDate, expTime );
                 arrayList.add( expenseData);
             }
 

@@ -93,5 +93,15 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public float getTotalExpense()
+    {
+        SQLiteDatabase db  = this.getWritableDatabase();
+        Cursor cur = db.rawQuery( "SELECT SUM(AMOUNT) FROM "+TABLE_NAME2, null );
+        if(cur.moveToFirst()){
+            return cur.getFloat( 0 );
+        }
+        return (float) 0.0;
+    }
+
 }
 
