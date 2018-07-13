@@ -93,6 +93,11 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public void deleteAllData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from "+ TABLE_NAME2);
+    }
+
     public float getTotalExpense()
     {
         SQLiteDatabase db  = this.getWritableDatabase();

@@ -7,28 +7,8 @@
     <string name="nav_header_title">Income Expense Tracker</string>
     <string name="nav_header_subtitle">A Penny Saved is a Penny Earned.</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="text_accounts">All Accounts</string>
-    <string name="hint_password">Password</string>
-    <string name="hint_confirm_password">Confirm Password</string>
-    <string name="text_login">Login</string>
-    <string name="text_register">Register</string>
-    <string name="error_message_name">Enter Full Name</string>
-    <string name="error_message_email">Enter Valid Email</string>
-    <string name="error_message_age">Enter Age</string>
-    <string name="error_message_password">Enter Password</string>
-    <string name="success_message">Registration Successful !!!</string>
-    <string name="text_not_member">No account yet? Create one</string>
-    <string name="text_already_member">Already a member ?  Login</string>
-    <string name="error_email_exists">Email Already Exists,Try Another</string>
-    <string name="error_password_match">Password Does Not Matches !!!</string>
-    <string name="error_valid_email_password">Wrong Email or Password !!!</string>
-    <string name="action_settings">Settings</string>
-    <string name="text_hello">Hello,</string>
-    <string name="text_title">Income Expense Tracker</string>
 
     <string name="about_app">If you can track your incomes and expenses religiously, you can actually reduce your expenditures and start saving. But it’s so hard to actually track down every one of your expenditure and keep a tab on all of it. That’s where this income expense tracker come in handy.</string>
-
-
     <string name="hint_id">ID</string>
 
     <string name="beneficiaryaddress">Address</string>
@@ -43,6 +23,12 @@
 
     <string name="country_prompt">Choose a Day</string>
     <string name="income_prompt">Choose source of Income</string>
+
+    <string name="btn_sign_up">Sign Up</string>
+    <string name="err_msg_name">Enter your full name!!!</string>
+    <string name="err_msg_email">Enter valid email address!!!</string>
+    <string name="err_msg_password">Enter the password!!!</string>
+    <string name="err_msg_mobile">Enter the valid Mobile!!!</string>
 
 
     <string-array name="days_array">

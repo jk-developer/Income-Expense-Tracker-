@@ -15,15 +15,15 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvTobePaidTo"
+            android:id="@+id/tvTobeTakenFrom"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="25dp"
             android:gravity="center"
             android:padding="5dp"
-            android:text="Money To be Paid To"
+            android:text="Add Lent Money here "
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/colorTexts"/>
@@ -33,32 +33,32 @@
             android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
+            android:layout_margin="10dp"
             android:layout_marginBottom="19dp"
             android:layout_marginEnd="56dp"
             android:layout_marginStart="56dp"
             android:ems="10"
             android:gravity="center"
             android:hint="Person Name"
-            android:inputType="text"
+            android:inputType="textPersonName"
             android:padding="5dp"
-            android:background="@drawable/border"
-            android:layout_margin="10dp"/>
+            android:background="@drawable/border"/>
 
         <EditText
-            android:id="@+id/etPayingAmount"
+            android:id="@+id/etTakenAmount"
             android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
+            android:layout_margin="10dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Paying Amount(Rs)"
-            android:inputType="number"
+            android:hint="Lent Amount(Rs)"
+            android:inputType="numberDecimal"
             android:padding="5dp"
-            android:background="@drawable/border"
-            android:layout_margin="10dp"/>
+            android:background="@drawable/border"/>
 
         <EditText
-            android:id="@+id/etPayingReason"
+            android:id="@+id/etTakenReason"
             android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
@@ -75,8 +75,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="20dp">
+
             <TextView
-                android:id="@+id/tvPayingDate"
+                android:id="@+id/tvTakenDate"
                 android:layout_width="200dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
@@ -96,15 +97,12 @@
                 android:layout_gravity="center"
                 android:textColor="@color/colorTexts"
                 android:background="@drawable/button_background"
-                android:id="@+id/btnPayingDate"/>
+                android:id="@+id/btnTakenDate"/>
 
         </LinearLayout>
 
-
-
-
         <Button
-            android:id="@+id/btnPayingSubmit"
+            android:id="@+id/btnTakenSubmit"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -115,12 +113,12 @@
             android:layout_marginTop="25dp"/>
 
         <Button
-            android:id="@+id/btnViewAllPayingData"
-            android:layout_width="120dp"
+            android:id="@+id/btnViewAllTakenData"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="5dp"
-            android:text="View All Paying DATA"
+            android:text="View All DATA"
             android:textColor="@color/colorTexts"
             android:background="@drawable/button_background"
             android:layout_marginTop="25dp"

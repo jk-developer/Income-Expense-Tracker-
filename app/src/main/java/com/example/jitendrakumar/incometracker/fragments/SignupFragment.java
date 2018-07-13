@@ -5,15 +5,19 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -26,6 +30,7 @@ public class SignupFragment extends Fragment {
 
     DatabaseHelper myDb;
     EditText name, mobile, email, password;
+    private TextInputLayout inputLayoutName, inputLayoutEmail, inputLayoutPassword,inputLayoutMobile;
     Button btnSignup, btnViewAll;
     TextView tvLogin;
     boolean isInserted;
@@ -37,6 +42,10 @@ public class SignupFragment extends Fragment {
         View view =  inflater.inflate( R.layout.fragment_signup, container, false );
         myDb = new DatabaseHelper( getContext());
 
+        inputLayoutName = (TextInputLayout) view.findViewById(R.id.input_layout_name);
+        inputLayoutMobile = (TextInputLayout) view.findViewById(R.id.input_layout_mobile);
+        inputLayoutEmail = (TextInputLayout) view.findViewById(R.id.input_layout_email);
+        inputLayoutPassword = (TextInputLayout) view.findViewById(R.id.input_layout_password);
         name = (EditText) view.findViewById( R.id.name );
         mobile = (EditText) view.findViewById( R.id.mobile );
         email = (EditText) view.findViewById( R.id.email );
@@ -44,6 +53,11 @@ public class SignupFragment extends Fragment {
         btnSignup = (Button) view.findViewById( R.id.btnSignup );
         btnViewAll = (Button) view.findViewById( R.id.btnViewAll );
         tvLogin = (TextView) view.findViewById( R.id.tvLogin );
+
+        name.addTextChangedListener(new MyTextWatcher(name));
+        email.addTextChangedListener(new MyTextWatcher(email));
+        mobile.addTextChangedListener(new MyTextWatcher(mobile));
+        password.addTextChangedListener(new MyTextWatcher(password));
 
         name.setHintTextColor(getResources().getColor(R.color.colorTexts));
         mobile.setHintTextColor(getResources().getColor(R.color.colorTexts));
@@ -71,6 +85,7 @@ public class SignupFragment extends Fragment {
 
 
       return view;
+
     }
 
     public void adddatainDB() {
@@ -81,7 +96,7 @@ public class SignupFragment extends Fragment {
                 String mob =  mobile.getText().toString();
                 String em = email.getText().toString();
                 String pass = password.getText().toString();
-                if(username.length()==0){
+          /*      if(username.length()==0){
                     name.setError( "Username field is required!!!" );
                 }
                 if(mob.length()==0){
@@ -94,27 +109,24 @@ public class SignupFragment extends Fragment {
                     password.setError( "Password field is required!!!" );
                 }
                 else{
-                    if((validate( name, mobile, email, password)==true)){
+                   // if((validate( name, mobile, email, password)==true)){   */
+                         if(submitForm())
+                         {
+                             isInserted = myDb.insertData(username,em, mob , pass );
+                             if (isInserted == true) {
+                                 Toast.makeText( getActivity(), "Data Saved to DataBase.", Toast.LENGTH_SHORT ).show();
+                                 FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
+                                 fragmentTransaction.replace( R.id.fragment_container, new LoginFragment());
+                                 fragmentTransaction.commit();
+                             } else {
+                                 Toast.makeText( getActivity(), "Data is not Saved to DataBase.", Toast.LENGTH_SHORT ).show();
+                             }
+                         }
 
-                        if((validateMobile( mobile)==true) && validateEmail( email )==true){
-                            isInserted = myDb.insertData(username,em, mob , pass );
-                            if (isInserted == true) {
-                                Toast.makeText( getActivity(), "Data Saved to DataBase.", Toast.LENGTH_SHORT ).show();
-                                FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
-                                fragmentTransaction.replace( R.id.fragment_container, new LoginFragment());
-                                fragmentTransaction.commit();
-                            } else {
-                                Toast.makeText( getActivity(), "Data is not Saved to DataBase.", Toast.LENGTH_SHORT ).show();
-                            }
-                        }
-                    }
-                  /*  else{
-                       Toast.makeText( getActivity(), "something wrong", Toast.LENGTH_SHORT ).show();
-                }  */
-                }
+                       // }
+                //}
             }
         } );
-
 
     }
 
@@ -155,85 +167,124 @@ public class SignupFragment extends Fragment {
         builder.setMessage( Message );
         builder.show();
     }
-/*
-    public int validateUsername(String username) {
-        int temp = 0;
-        Cursor result = myDb.getAllData();
-        if (result.getCount() == 0) {
 
-            return 1;
-        } else {
+   public boolean validateMobile() {
 
-            while (result.moveToNext()) {
-
-                String dbuser = result.getString( 1 );
-                if (dbuser.equals( username )) {
-                    temp = 1;
-
-                } else {
-                    temp = 0;
-
-                }
-            }
-            if (temp == 0) {
-                return 1;
-            } else {
-                return 0;
-            }
-
-        }
-
-    }
-
-  */
-   public boolean validateMobile(EditText mob) {
-       String MobilePattern = "[0-9]{10}";
-       if (mob.getText().toString().matches( MobilePattern )) {
-
-           Toast.makeText( getActivity(), "phone number is valid", Toast.LENGTH_SHORT ).show();
-           return true;
-
-       } else if (!mob.getText().toString().matches( MobilePattern )) {
-
-           mob.setError( "Please enter valid 10 digit phone number" );
+       if (mobile.getText().toString().trim().isEmpty() || mobile.getText().toString().trim().length()!=10) {
+           inputLayoutMobile.setError(getString(R.string.err_msg_mobile));
+           requestFocus(mobile);
            return false;
+       } else {
+           inputLayoutMobile.setErrorEnabled(false);
        }
-       return false;
+
+       return true;
    }
 
-   public boolean validateEmail(EditText em)
-   {
-           String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-           if (em.getText().toString().matches(emailPattern)) {
 
-               Toast.makeText( getActivity(), "Email is Valid ", Toast.LENGTH_SHORT ).show();
-                return true;
+    /**
+     * Validating form
+     */
+    private boolean submitForm() {
+        if (!validateName()) {
+            return false;
+        }
 
-           } else if(!em.getText().toString().matches(emailPattern)) {
+        if (!validateEmail()) {
+            return false;
+        }
 
-               //  Toast.makeText(getApplicationContext(),"Please Enter Valid Email Address",Toast.LENGTH_SHORT).show();
-               em.setError( "Please Enter Valid Address " );
-              return false;
+        if (!validatePassword()) {
+            return false;
+        }
+        if(!validateMobile()){
+            return false;
+        }
 
-           }
-           return false;
-       }
+        Toast.makeText(getActivity(), "Thank You!", Toast.LENGTH_SHORT).show();
+        return true;
+    }
 
-    private boolean validate(EditText name, EditText mob, EditText em, EditText password){
+    private boolean validateName() {
+        if (name.getText().toString().trim().isEmpty()) {
+            inputLayoutName.setError(getString(R.string.err_msg_name));
+            requestFocus(name);
+            return false;
+        } else {
+            inputLayoutName.setErrorEnabled(false);
+        }
 
+        return true;
+    }
 
-           if (name.getText().toString().length() > 25) {
+    private boolean validateEmail() {
+        String Email = email.getText().toString().trim();
 
-               // Toast.makeText(getApplicationContext(), "pls enter less the 25 character in user name", Toast.LENGTH_SHORT).show();
-               name.setError( "Please enter less than 25 characters in Username" );
-               return false;
-           }
+        if (Email.isEmpty() || !isValidEmail(Email)) {
+            inputLayoutEmail.setError(getString(R.string.err_msg_email));
+            requestFocus(email);
+            return false;
+        } else {
+            inputLayoutEmail.setErrorEnabled(false);
+        }
 
-           if (name.getText().toString().length() == 0 || mob.getText().toString().length() == 0 || em.getText().toString().length() == 0 || password.length() == 0) {
-               Toast.makeText( getActivity(), "Please Fill All Empty Fields!!!", Toast.LENGTH_SHORT ).show();
-               return false;
-           }
-           return true;
-       }
+        return true;
+    }
+
+    private boolean validatePassword() {
+        if (password.getText().toString().trim().isEmpty()) {
+            inputLayoutPassword.setError(getString(R.string.err_msg_password));
+            requestFocus(password);
+            return false;
+        } else {
+            inputLayoutPassword.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
+    private static boolean isValidEmail(String email) {
+        return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
+    }
+
+    public class MyTextWatcher implements TextWatcher {
+
+        private View view;
+
+        private MyTextWatcher(View view) {
+            this.view = view;
+        }
+
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        }
+
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        }
+
+        public void afterTextChanged(Editable editable) {
+            switch (view.getId()) {
+                case R.id.name:
+                    validateName();
+                    break;
+                case R.id.email:
+                    validateEmail();
+                    break;
+
+                case R.id.mobile:
+                    validateMobile();
+                    break;
+                case R.id.password:
+                    validatePassword();
+                    break;
+            }
+        }
+    }
+
 
 }

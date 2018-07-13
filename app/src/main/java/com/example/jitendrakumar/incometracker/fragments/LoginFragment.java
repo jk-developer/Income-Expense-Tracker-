@@ -30,7 +30,7 @@ public class LoginFragment extends Fragment {
     TextView tvRegister;
     InputValidation inputValidation;
     SQLiteDatabase db;
-  //  UserData userData;
+    //  UserData userData;
 
 
     @Nullable
@@ -66,65 +66,64 @@ public class LoginFragment extends Fragment {
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
                 try {
-                      if (username.length() == 0 || password.length() == 0) {
+                    if (username.length() == 0 || password.length() == 0) {
                         Toast.makeText( getContext(), "Please First Fill all the Fields.", Toast.LENGTH_SHORT ).show();
-                         if (username.length() == 0 ){
-                             // showToast("Enter Your Name");
-                             etUsername.setError( "username is required!!!" );
-                         }
-                         if(password.length()==0)
-                         {
-                             etPassword.setError( "Password is required!!!" );
-                         }
-
+                        if (username.length() == 0 ){
+                            // showToast("Enter Your Name");
+                            etUsername.setError( "username is required!!!" );
                         }
-                        else if (username.length()!=0 && password.length()!=0) {
+                        if(password.length()==0)
+                        {
+                            etPassword.setError( "Password is required!!!" );
+                        }
+
+                    }
+                    else if (username.length()!=0 && password.length()!=0) {
                         //  userData = new UserData( username, password );
-                          UserData Data = myDb.getLoginData( username );
-                          if(Data !=null){
-                              String dbusername = Data.getUserName();
-                              String dbpassword = Data.getPass();
-                              int dbid = Data.getId();
-                              if (dbusername.equals( username ) && dbpassword.equals( password )) {
-                                  SessionManagement sessionManagement = new SessionManagement( getActivity());
-                                  sessionManagement.setUserName( dbusername );
-                                  sessionManagement.setUserPassword( dbpassword );
-                                  sessionManagement.setUserId( String.valueOf(dbid) );
-                                  Toast.makeText( getActivity(), "Logged in Successfully !!! ", Toast.LENGTH_SHORT ).show();
-                                  // HomeFragment hf = new HomeFragment();
+                        UserData Data = myDb.getLoginData( username );
+                        if(Data !=null){
+                            String dbusername = Data.getUserName();
+                            String dbpassword = Data.getPass();
+                            int dbid = Data.getId();
+                            if (dbusername.equals( username ) && dbpassword.equals( password )) {
+                                SessionManagement sessionManagement = new SessionManagement( getActivity());
+                                sessionManagement.setUserName( dbusername );
+                                sessionManagement.setUserPassword( dbpassword );
+                                sessionManagement.setUserId( String.valueOf(dbid) );
+                                Toast.makeText( getActivity(), "Logged in Successfully !!! ", Toast.LENGTH_SHORT ).show();
+                                // HomeFragment hf = new HomeFragment();
                                 /*  Bundle args = new Bundle();
                                   args.putString( "username", username );
                                   args.putString( "userid", String.valueOf( dbid ) );
                                   FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                   */
-                                  FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                                  HomeFragment hf = new HomeFragment();
+                                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                                HomeFragment hf = new HomeFragment();
                                 //  hf.setArguments( args );
-                                  fragmentTransaction.replace( R.id.fragment_container, hf );
-                                  fragmentTransaction.addToBackStack( null );
-                                  fragmentTransaction.commit();
-                                  Log.d( TAG, "onClick: sessionmange"+sessionManagement.getUserName() );
-
-                              }
-                              else{
-                                  Toast.makeText( getActivity(), "Either Username or Password is incorrect !!! ", Toast.LENGTH_SHORT ).show();
-                              }
-                          }
-                          else {
-                              Toast.makeText( getActivity(), "No Account Found for this Username, Please First Register", Toast.LENGTH_SHORT ).show();
-                          }
-
-                      }
-                      else {
+                                fragmentTransaction.replace( R.id.fragment_container, hf );
+                                fragmentTransaction.addToBackStack( null );
+                                fragmentTransaction.commit();
+                                Log.d( TAG, "onClick: sessionmange"+sessionManagement.getUserName() );
 
                             }
+                            else{
+                                Toast.makeText( getActivity(), "Either Username or Password is incorrect !!! ", Toast.LENGTH_SHORT ).show();
+                            }
+                        }
+                        else {
+                            Toast.makeText( getActivity(), "No Account Found for this Username, Please First Register", Toast.LENGTH_SHORT ).show();
+                        }
+
+                    }
+                    else {
+
+                    }
 
 
                         /*    UserData res = myDb.getLoginData(username);
                          Integer dbid = res.getId();
                          String dbusername =  res.getUserName();
                          String dbpassword =  res.getPass();
-
                             if(!(username.equals( dbusername )) || !(password.equals(dbpassword)))
                             {
                               Toast.makeText(getContext(), "Either Wrong username/password or Please Register First if not Registered"+dbusername+username, Toast.LENGTH_SHORT ).show();
@@ -134,13 +133,13 @@ public class LoginFragment extends Fragment {
 
                 }
                 catch (Exception e){
-                        e.printStackTrace();
-
-                    }
+                    e.printStackTrace();
 
                 }
+
+            }
         });
-     return view;
+        return view;
     }
 
 

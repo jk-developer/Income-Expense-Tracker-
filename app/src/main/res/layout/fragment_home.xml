@@ -57,7 +57,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Your total incomes"
+                    android:text="Total Incomes"
                     android:textSize="18sp"
                     android:padding="3dp"
                     android:layout_gravity="center"
@@ -91,7 +91,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Your total expense"
+                    android:text="Total Expenses"
                     android:textSize="18sp"
                     android:padding="3dp"
                     android:layout_gravity="center"
@@ -125,7 +125,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Your total savings"
+                    android:text="Total Savings"
                     android:textSize="18sp"
                     android:padding="3dp"
                     android:layout_gravity="center"
@@ -159,7 +159,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Your paid to"
+                    android:text="Total Borrowed money "
                     android:textSize="18sp"
                     android:padding="3dp"
                     android:layout_gravity="center"
@@ -192,7 +192,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="getting amount"
+                    android:text="Total Lent money "
                     android:textSize="18sp"
                     android:padding="3dp"
                     android:layout_gravity="center"
@@ -235,10 +235,11 @@
             android:clickable="true"
             android:id="@+id/todoLayout">
             <ImageView
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/login"
-                android:layout_gravity="center" />
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/task"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"/>
 
             <TextView
                 android:layout_width="170dp"
@@ -246,7 +247,9 @@
                 android:text="Todo Task"
                 android:textSize="18sp"
                 android:gravity="center"
-                android:padding="2dp" />
+                android:padding="2dp"
+                android:layout_marginBottom="18dp"
+                android:textColor="#000000"/>
         </LinearLayout>
 
         <LinearLayout
@@ -259,10 +262,12 @@
             android:clickable="true"
             android:id="@+id/loginLayout">
             <ImageView
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/login"
-                android:layout_gravity="center"/>
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/login_user"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                />
 
             <TextView
                 android:layout_width="170dp"
@@ -270,7 +275,10 @@
                 android:text="Login"
                 android:textSize="18sp"
                 android:gravity="center"
-                android:padding="2dp"/>
+                android:padding="2dp"
+                android:layout_marginBottom="18dp"
+                android:textColor="#000000"
+                />
         </LinearLayout>
 
     </LinearLayout>
@@ -291,18 +299,21 @@
                 android:clickable="true"
                 android:id="@+id/incomeLayout">
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/login"
-                    android:layout_gravity="center" />
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/home_income"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"/>
 
                 <TextView
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
-                    android:text="Income"
+                    android:text="Add Income"
                     android:textSize="18sp"
                     android:gravity="center"
-                    android:padding="2dp" />
+                    android:padding="2dp"
+                    android:layout_marginBottom="18dp"
+                    android:textColor="#000000"/>
             </LinearLayout>
 
             <LinearLayout
@@ -315,18 +326,21 @@
                 android:clickable="true"
                 android:id="@+id/expenseLayout">
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/login"
-                    android:layout_gravity="center"/>
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/home_income"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"/>
 
                 <TextView
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
-                    android:text="Expense"
+                    android:text="Add Expense"
                     android:textSize="18sp"
                     android:gravity="center"
-                    android:padding="2dp"/>
+                    android:padding="2dp"
+                    android:layout_marginBottom="18dp"
+                    android:textColor="#000000"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -348,10 +362,11 @@
                 android:clickable="true"
                 android:id="@+id/incomeReportLayout">
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/login"
-                    android:layout_gravity="center" />
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/my_report"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"/>
 
                 <TextView
                     android:layout_width="170dp"
@@ -359,7 +374,9 @@
                     android:text="Income Report"
                     android:textSize="18sp"
                     android:gravity="center"
-                    android:padding="2dp" />
+                    android:padding="2dp"
+                    android:layout_marginBottom="18dp"
+                    android:textColor="#000000"/>
             </LinearLayout>
 
             <LinearLayout
@@ -372,10 +389,12 @@
                 android:clickable="true"
                 android:id="@+id/expenseReportLayout">
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/login"
-                    android:layout_gravity="center"/>
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/my_report"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    />
 
                 <TextView
                     android:layout_width="170dp"
@@ -383,7 +402,9 @@
                     android:text="Expense Report"
                     android:textSize="18sp"
                     android:gravity="center"
-                    android:padding="2dp"/>
+                    android:padding="2dp"
+                    android:layout_marginBottom="18dp"
+                    android:textColor="#000000"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -404,18 +425,21 @@
                 android:clickable="true"
                 android:id="@+id/tobePaidLayout">
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/login"
-                    android:layout_gravity="center" />
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/borrow_lend"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"/>
 
                 <TextView
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
-                    android:text="To be Paid To"
+                    android:text="Add Borrow "
                     android:textSize="18sp"
                     android:gravity="center"
-                    android:padding="2dp" />
+                    android:padding="2dp"
+                    android:layout_marginBottom="18dp"
+                    android:textColor="#000000"/>
             </LinearLayout>
 
             <LinearLayout
@@ -428,18 +452,21 @@
                 android:clickable="true"
                 android:id="@+id/tobeTakenLayout">
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/login"
-                    android:layout_gravity="center"/>
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/borrow_lend"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"/>
 
                 <TextView
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
-                    android:text="To be Taken From"
+                    android:text="Add Lend"
                     android:textSize="18sp"
                     android:gravity="center"
-                    android:padding="2dp"/>
+                    android:padding="2dp"
+                    android:layout_marginBottom="18dp"
+                    android:textColor="#000000"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -461,19 +488,23 @@
                 android:clickable="true"
                 android:id="@+id/aboutLayout">
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/login"
-                    android:layout_gravity="center" />
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/developer"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"/>
 
                 <TextView
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
-                    android:text="About Developers"
+                    android:text="About Developer"
                     android:textSize="18sp"
                     android:gravity="center"
-                    android:padding="2dp" />
+                    android:padding="2dp"
+                    android:layout_marginBottom="18dp"
+                    android:textColor="#000000"/>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -484,10 +515,11 @@
                 android:clickable="true"
                 android:id="@+id/aboutAppLayout">
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/login"
-                    android:layout_gravity="center" />
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:src="@drawable/about_app"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"/>
 
                 <TextView
                     android:layout_width="170dp"
@@ -495,7 +527,9 @@
                     android:text="About app"
                     android:textSize="18sp"
                     android:gravity="center"
-                    android:padding="2dp" />
+                    android:padding="2dp"
+                    android:layout_marginBottom="23dp"
+                    android:textColor="#000000"/>
             </LinearLayout>
 
         </LinearLayout>

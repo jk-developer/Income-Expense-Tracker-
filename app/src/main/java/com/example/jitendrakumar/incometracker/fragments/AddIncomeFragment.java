@@ -11,10 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +28,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class IncomeFragment extends Fragment{
+public class AddIncomeFragment extends Fragment{
 
     Pattern pattern;
     Matcher matcher;
@@ -45,14 +43,13 @@ public class IncomeFragment extends Fragment{
      TextView etIncomeDate, etIncomeTime;
      Button btnIncomeSubmit,btnIncomeViewAll, btnIncomeUpdate, btnIncomeDelete,btnIncomeDate, btnIncomeTime;
      IncomeDatabaseHelper MyincomeDB;
-     Spinner spinner1;
    private  int year, month , day, hour, minute;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate( R.layout.fragment_income, container, false );
+        View view = inflater.inflate( R.layout.fragment_add_income, container, false );
         MyincomeDB = new IncomeDatabaseHelper( getContext() );
         sessonid = new SessionManagement( getContext() );
         etIncomeType = (EditText) view.findViewById( R.id.etIncomeType );
@@ -66,7 +63,6 @@ public class IncomeFragment extends Fragment{
         btnIncomeDelete = (Button) view.findViewById( R.id.btnIncomeDelete );
         btnIncomeTime = (Button)view.findViewById( R.id.btnIncomeTime );
         btnIncomeDate = (Button)view.findViewById( R.id.btnIncomeDate );
-        spinner1 = (Spinner) view.findViewById( R.id.spinner1 );
 
         etIncomeType.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
         etIncomeAmount.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
@@ -79,7 +75,6 @@ public class IncomeFragment extends Fragment{
 
                 addDataInIncomeDB();
                 viewAllIncomeData();
-                spinnerDays();
 
 
      btnIncomeTime.setOnClickListener( new View.OnClickListener() {
@@ -168,14 +163,6 @@ public class IncomeFragment extends Fragment{
 
     }
 
-    public void spinnerDays(){
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(getContext(),
-                R.array.days_array, R.layout.single_day_item);
-
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        spinner1.setAdapter(adapter);
-
-    }
 
     public void viewAllIncomeData() {
 

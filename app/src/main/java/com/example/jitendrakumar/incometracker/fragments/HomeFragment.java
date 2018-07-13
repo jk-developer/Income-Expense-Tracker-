@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,12 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
-import com.example.jitendrakumar.incometracker.activities.IncomeReportActivity;
 import com.example.jitendrakumar.incometracker.activities.TodoActivity;
 import com.example.jitendrakumar.incometracker.database.ExpenseDatabaseHelper;
 import com.example.jitendrakumar.incometracker.database.IncomeDatabaseHelper;
-import com.example.jitendrakumar.incometracker.database.TobePaidDatabaseHelper;
-import com.example.jitendrakumar.incometracker.database.TobeTakenDatabaseHelper;
+import com.example.jitendrakumar.incometracker.database.BorrowDatabaseHelper;
+import com.example.jitendrakumar.incometracker.database.LendDatabaseHelper;
 import com.example.jitendrakumar.incometracker.helper.SessionManagement;
 
 public class HomeFragment extends Fragment {
@@ -31,8 +29,8 @@ public class HomeFragment extends Fragment {
     TextView incomeTotal,expenseTotal,savingTotal, paidtoTotal, takenTotal;
     IncomeDatabaseHelper incomeDatabaseHelper;
     ExpenseDatabaseHelper expenseDatabaseHelper;
-    TobePaidDatabaseHelper tobePaidDatabaseHelper;
-    TobeTakenDatabaseHelper tobeTakenDatabaseHelper;
+    BorrowDatabaseHelper borrowDatabaseHelper;
+    LendDatabaseHelper lendDatabaseHelper;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,14 +54,14 @@ public class HomeFragment extends Fragment {
 
         incomeDatabaseHelper = new IncomeDatabaseHelper( getContext() );
         expenseDatabaseHelper = new ExpenseDatabaseHelper( getContext() );
-        tobePaidDatabaseHelper = new TobePaidDatabaseHelper( getContext() );
-        tobeTakenDatabaseHelper = new TobeTakenDatabaseHelper( getContext() );
+        borrowDatabaseHelper = new BorrowDatabaseHelper( getContext() );
+        lendDatabaseHelper = new LendDatabaseHelper( getContext() );
 
         incomeTotal.setText( String.valueOf( incomeDatabaseHelper.getTotalIncome()+" Rs" ) );
         expenseTotal.setText( String.valueOf( expenseDatabaseHelper.getTotalExpense()+" Rs"));
         savingTotal.setText( String.valueOf( incomeDatabaseHelper.getTotalIncome()-expenseDatabaseHelper.getTotalExpense())+" Rs" );
-        paidtoTotal.setText( String.valueOf( tobePaidDatabaseHelper.getTotalPaidTo())+" Rs" );
-        takenTotal.setText( String.valueOf( tobeTakenDatabaseHelper.getTotalTaken())+" Rs" );
+        paidtoTotal.setText( String.valueOf( borrowDatabaseHelper.getTotalPaidTo())+" Rs" );
+        takenTotal.setText( String.valueOf( lendDatabaseHelper.getTotalTaken())+" Rs" );
 
         ses = new SessionManagement( getContext() );
     //    incomeTotal.setText( String.valueOf(incomeReportActivity.getTotalIncome()));
@@ -107,7 +105,7 @@ public class HomeFragment extends Fragment {
 
                      Toast.makeText( getContext(), "login Layout clicked ", Toast.LENGTH_SHORT ).show();
                      FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
-                     fragmentTransaction.replace( R.id.fragment_container, new IncomeFragment());
+                     fragmentTransaction.replace( R.id.fragment_container, new AddIncomeFragment());
                      fragmentTransaction.addToBackStack( null );
                      fragmentTransaction.commit();
                  }
@@ -125,7 +123,7 @@ public class HomeFragment extends Fragment {
                 {
                     Toast.makeText( getContext(), "login Layout clicked ", Toast.LENGTH_SHORT ).show();
                     FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
-                    fragmentTransaction.replace( R.id.fragment_container, new ExpenseFragment());
+                    fragmentTransaction.replace( R.id.fragment_container, new AddExpenseFragment());
                     fragmentTransaction.addToBackStack( null );
                     fragmentTransaction.commit();
                 }else{
@@ -174,7 +172,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 if (ses.getUserName()!=null){
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                    fragmentTransaction.replace( R.id.fragment_container, new TobePaidFragment() );
+                    fragmentTransaction.replace( R.id.fragment_container, new BorrowFragment() );
                     fragmentTransaction.addToBackStack( null );
                     fragmentTransaction.commit();
                 }else{
@@ -189,7 +187,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 if (ses.getUserName()!=null){
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                    fragmentTransaction.replace( R.id.fragment_container, new TobeTakenFragment() );
+                    fragmentTransaction.replace( R.id.fragment_container, new LendFragment() );
                     fragmentTransaction.addToBackStack( null );
                     fragmentTransaction.commit();
                 }else{

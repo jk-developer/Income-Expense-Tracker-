@@ -17,24 +17,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
-import com.example.jitendrakumar.incometracker.database.TobePaidDatabaseHelper;
-import com.example.jitendrakumar.incometracker.database.TobeTakenDatabaseHelper;
+import com.example.jitendrakumar.incometracker.database.LendDatabaseHelper;
 import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.DatePickerFragment;
-import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.TimePickerFragment;
 
 
-public class TobeTakenFragment extends Fragment {
+public class LendFragment extends Fragment {
 
     EditText etPersonName, etTakenAmount, etTakenReason;
     Button btnTakenSubmit, btnViewAllTakenData, btnTakenDate;
     TextView tvTakenDate;
-    TobeTakenDatabaseHelper tobeTakenDatabaseHelper;
+    LendDatabaseHelper lendDatabaseHelper;
     public static final String TAG = "name";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate( R.layout.fragment_tobe_taken, container, false );
-        tobeTakenDatabaseHelper = new TobeTakenDatabaseHelper( getContext());
+        View view = inflater.inflate( R.layout.fragment_lend, container, false );
+        lendDatabaseHelper = new LendDatabaseHelper( getContext());
 
         etPersonName = (EditText) view.findViewById( R.id.etPersonName );
         etTakenAmount = (EditText) view.findViewById( R.id.etTakenAmount );
@@ -87,7 +85,7 @@ public class TobeTakenFragment extends Fragment {
                         etTakenReason.setError( "Reason field is required!!!" );
                     }
                     else if(personName.length()!=0 && takenAmount.length()!=0 && takenReason.length()!=0 && takenAmount.length()!=0 && takenDate.length()!=0){
-                        boolean isInserted = tobeTakenDatabaseHelper.insertTakenData( personName, takenAmount ,takenReason,takenDate);
+                        boolean isInserted = lendDatabaseHelper.insertTakenData( personName, takenAmount ,takenReason,takenDate);
                         if (isInserted == true) {
                             Toast.makeText( getActivity(), "Data Saved to Taken DataBase.", Toast.LENGTH_SHORT ).show();
 
@@ -112,7 +110,7 @@ public class TobeTakenFragment extends Fragment {
         btnViewAllTakenData.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Cursor res = tobeTakenDatabaseHelper.getAllTakenData();
+                Cursor res = lendDatabaseHelper.getAllTakenData();
                 if(res.getCount() == 0)
                 {
                     // Show message

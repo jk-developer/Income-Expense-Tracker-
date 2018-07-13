@@ -17,21 +17,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
-import com.example.jitendrakumar.incometracker.database.TobePaidDatabaseHelper;
+import com.example.jitendrakumar.incometracker.database.BorrowDatabaseHelper;
 import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.DatePickerFragment;
 
-public class TobePaidFragment extends Fragment {
+public class BorrowFragment extends Fragment {
 
     EditText etPersonName, etPayingAmount, etPayingReason;
     Button btnPayingSubmit, btnViewAllPayingData, btnPayingDate;
     TextView tvPayingDate;
-    TobePaidDatabaseHelper tobePaidDatabaseHelper;
+    BorrowDatabaseHelper borrowDatabaseHelper;
     public static final String TAG = "name";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate( R.layout.fragment_tobe_paid, container, false );
-        tobePaidDatabaseHelper = new TobePaidDatabaseHelper( getContext());
+        View view = inflater.inflate( R.layout.fragment_borrow, container, false );
+        borrowDatabaseHelper = new BorrowDatabaseHelper( getContext());
 
         etPersonName = (EditText) view.findViewById( R.id.etPersonName );
         etPayingAmount = (EditText) view.findViewById( R.id.etPayingAmount );
@@ -86,7 +86,7 @@ public class TobePaidFragment extends Fragment {
                     }
                     else{
 
-                        boolean isInserted = tobePaidDatabaseHelper.insertPayingData( personName, payingAmount ,payingReason,payingDate);
+                        boolean isInserted = borrowDatabaseHelper.insertPayingData( personName, payingAmount ,payingReason,payingDate);
                         if (isInserted == true) {
                             Toast.makeText( getActivity(), "Data Saved to Paying DataBase.", Toast.LENGTH_SHORT ).show();
 
@@ -111,7 +111,7 @@ public class TobePaidFragment extends Fragment {
         btnViewAllPayingData.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Cursor res = tobePaidDatabaseHelper.getAllPayingData();
+                Cursor res = borrowDatabaseHelper.getAllPayingData();
                 if(res.getCount() == 0)
                 {
                     // Show message

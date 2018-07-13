@@ -59,19 +59,6 @@
             android:padding="5dp"
             android:background="@drawable/border"/>
 
-        <Spinner
-            android:id="@+id/spinner1"
-            android:layout_width="300dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_height="45dp"
-            android:entries="@array/days_array"
-            android:prompt="@string/country_prompt"
-            android:padding="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/border"/>
-
         <LinearLayout
             android:layout_width="300dp"
             android:layout_height="wrap_content"

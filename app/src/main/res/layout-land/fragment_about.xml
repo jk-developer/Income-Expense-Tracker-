@@ -163,9 +163,9 @@
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_weight=".8"
-                android:src="@drawable/love"
+                android:src="@drawable/heart"
                 android:layout_gravity="center"
-                android:textColor="#ff0000" />
+                android:layout_marginRight="2dp" />
 
             <TextView
                 android:layout_width="0dp"

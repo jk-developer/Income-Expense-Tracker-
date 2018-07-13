@@ -19,18 +19,18 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="35dp"
             android:layout_marginBottom="25dp"
             android:gravity="center"
             android:padding="5dp"
-            android:text="Money To be Taken From"
-            android:textSize="20sp"
+            android:text="Add Lent Money here"
+            android:textSize="25sp"
             android:textStyle="bold"
             android:textColor="@color/colorTexts"/>
 
         <EditText
             android:id="@+id/etPersonName"
-            android:layout_width="280dp"
+            android:layout_width="350dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
@@ -46,20 +46,20 @@
 
         <EditText
             android:id="@+id/etTakenAmount"
-            android:layout_width="280dp"
+            android:layout_width="350dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Taken Amount"
-            android:inputType="number"
+            android:hint="Taken Amount(Rs)"
+            android:inputType="numberDecimal"
             android:padding="5dp"
             android:background="@drawable/border"/>
 
         <EditText
             android:id="@+id/etTakenReason"
-            android:layout_width="280dp"
+            android:layout_width="350dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
             android:ems="10"
@@ -67,18 +67,18 @@
             android:hint="Reason ?"
             android:inputType="text"
             android:padding="5dp"
-            android:background="@drawable/border"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            android:background="@drawable/border"/>
 
         <LinearLayout
-            android:layout_width="280dp"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="20dp">
 
             <TextView
                 android:id="@+id/tvTakenDate"
-                android:layout_width="200dp"
+                android:layout_width="270dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:ems="10"
@@ -101,6 +101,7 @@
 
         </LinearLayout>
 
+
         <Button
             android:id="@+id/btnTakenSubmit"
             android:layout_width="100dp"
@@ -118,7 +119,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="5dp"
-            android:text="View All DATA"
+            android:text="View All TAken DATA"
             android:textColor="@color/colorTexts"
             android:background="@drawable/button_background"
             android:layout_marginTop="25dp"
