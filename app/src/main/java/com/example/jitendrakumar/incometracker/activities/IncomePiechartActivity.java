@@ -12,7 +12,7 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
+//import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
@@ -22,32 +22,32 @@ public class IncomePiechartActivity extends AppCompatActivity {
     PieChart idIncomePiechart;
     private static String TAG = "MainActivity";
     private float[] yData = {25.3f, 10.6f, 66.76f, 44.32f, 46.01f, 16.89f, 23.9f};
-    private String[] xData = {"Mitch", "Jessica" , "Mohammad" , "Kelsey", "Sam", "Robert", "Ashley"};
+    private String[] xData = {"Mitch", "Jessica", "Mohammad", "Kelsey", "Sam", "Robert", "Ashley"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_income_piechart );
-        Log.d(TAG, "onCreate: starting to create chart");
+        Log.d( TAG, "onCreate: starting to create chart" );
 
-        idIncomePiechart = (PieChart) findViewById(R.id.idIncomePiechart);
+        idIncomePiechart = (PieChart) findViewById( R.id.idIncomePiechart );
 
-      //  idIncomePiechart.setDescription("Sales by employee (In Thousands $) ");
-        idIncomePiechart.setRotationEnabled(true);
+        //  idIncomePiechart.setDescription("Sales by employee (In Thousands $) ");
+        idIncomePiechart.setRotationEnabled( true );
         //pieChart.setUsePercentValues(true);
         //pieChart.setHoleColor(Color.BLUE);
         //pieChart.setCenterTextColor(Color.BLACK);
-        idIncomePiechart.setHoleRadius(25f);
-        idIncomePiechart.setTransparentCircleAlpha(0);
-        idIncomePiechart.setCenterText("Super Cool Chart");
-        idIncomePiechart.setCenterTextSize(10);
+        idIncomePiechart.setHoleRadius( 25f );
+        idIncomePiechart.setTransparentCircleAlpha( 0 );
+        idIncomePiechart.setCenterText( "Super Cool Chart" );
+        idIncomePiechart.setCenterTextSize( 10 );
         //pieChart.setDrawEntryLabels(true);
         //pieChart.setEntryLabelTextSize(20);
         //More options just check out the documentation!
-
+/*
         addDataSet();
 
-        idIncomePiechart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+      idIncomePiechart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
                 Log.d(TAG, "onValueSelected: Value select from chart.");
@@ -66,6 +66,7 @@ public class IncomePiechartActivity extends AppCompatActivity {
                 String employee = xData[pos1 + 1];
                 Toast.makeText(IncomePiechartActivity.this, "Employee " + employee + "\n" + "Sales: $" + sales + "K", Toast.LENGTH_LONG).show();
             }
+
 
             @Override
             public void onNothingSelected() {
@@ -115,5 +116,8 @@ public class IncomePiechartActivity extends AppCompatActivity {
         idIncomePiechart.setData(pieData);
         idIncomePiechart.invalidate();
 
+    }
+}
+*/
     }
 }

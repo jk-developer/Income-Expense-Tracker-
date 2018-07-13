@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
+import com.example.jitendrakumar.incometracker.activities.ExpenseBarchartActivity;
 import com.example.jitendrakumar.incometracker.activities.ExpenseReportActivity;
 import com.example.jitendrakumar.incometracker.database.ExpenseDatabaseHelper;
 import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.DatePickerFragment;
@@ -30,7 +31,7 @@ public class AddExpenseFragment extends Fragment {
     EditText  etExpenseAmount;
     TextView tvExpenseDate, tvExpenseTime, tvHintExpenseDate,tvExpenseType,tvExpenseInput, tvExpenseHintTime;
     ExpenseDatabaseHelper MyexpenseDB;
-    Button btnExpenseSubmit, btnExpnenseViewAll;
+    Button btnExpenseSubmit, btnExpnenseViewAll, btnExpnenseBarchart;
     SessionManagement s;
     private CharSequence expense[] = {"Food", "Leisure","Transport","Clothes", "Travel","Health","Hobbies","Gifts","Household",
     "Groceries","Gadgets","Kids", "Loans", "Education","Holidays","Savings","Beauty","Sports","Mobile","Other"};
@@ -45,6 +46,7 @@ public class AddExpenseFragment extends Fragment {
         tvExpenseTime = (TextView) view.findViewById( R.id.tvExpenseTime );
         btnExpenseSubmit = (Button) view.findViewById( R.id.btnExpenseSubmit );
         btnExpnenseViewAll = (Button) view.findViewById( R.id.btnExpnenseViewAll );
+        btnExpnenseBarchart = (Button)view.findViewById( R.id.btnExpnenseBarchart );
         tvHintExpenseDate = (TextView) view.findViewById( R.id.tvHintExpenseDate );
         tvExpenseHintTime = (TextView) view.findViewById( R.id.tvExpenseHintTime );
         s = new SessionManagement( getContext() );
@@ -71,6 +73,14 @@ public class AddExpenseFragment extends Fragment {
 
         addDataInExpenseDB();
         viewAllExpenseData();
+
+        btnExpnenseBarchart.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent( getActivity(), ExpenseBarchartActivity.class );
+                startActivity( i );
+            }
+        } );
 
         tvExpenseType.setOnClickListener( new View.OnClickListener() {
             @Override

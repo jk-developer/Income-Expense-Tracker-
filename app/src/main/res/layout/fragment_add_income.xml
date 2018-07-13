@@ -23,50 +23,74 @@
         android:layout_marginBottom="25dp"
         android:gravity="center"
         android:padding="5dp"
-        android:text="Add Your Income here"
+        android:text="Add all your Incomes here"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/colorTexts"/>
 
+        <EditText
+            android:id="@+id/etIncomeAmount"
+            android:layout_width="270dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Your Income amount(Rs)"
+            android:inputType="numberDecimal"
+            android:padding="5dp"
+            android:background="@drawable/border"/>
+        <LinearLayout
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border">
 
-    <EditText
+            <TextView
+                android:id="@+id/tvIncomeInput"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="Regular Salary"
+                android:inputType="textPersonName"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:textColor="@color/colorTexts"
 
-        android:id="@+id/etIncomeType"
-        android:layout_width="250dp"
-        android:layout_height="45dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:layout_marginBottom="19dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginStart="56dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Your source of Income"
-        android:inputType="textPersonName"
-        android:padding="5dp"
-        android:background="@drawable/border"/>
+                />
 
-    <EditText
-        android:id="@+id/etIncomeAmount"
-        android:layout_width="250dp"
-        android:layout_height="45dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Your Amount(Rs)"
-        android:inputType="number"
-        android:padding="5dp"
-        android:background="@drawable/border"/>
+            <TextView
+                android:id="@+id/tvIncomeType"
+                android:layout_width="110dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="Category"
+                android:inputType="textPersonName"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:textColor="@color/colorTexts"
+                />
+
+
+        </LinearLayout>
+
 
         <LinearLayout
-            android:layout_width="250dp"
+            android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border">
             <TextView
-                android:id="@+id/etIncomeDate"
-                android:layout_width="170dp"
+                android:id="@+id/tvIncomeDate"
+                android:layout_width="180dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:ems="10"
@@ -75,27 +99,27 @@
                 android:inputType="date"
                 android:padding="5dp"
                 android:textSize="18sp"
-                android:background="@drawable/border"
-                android:layout_marginRight="5dp"
                 android:textColor="@color/colorTexts"/>
-            <Button
-                android:layout_width="75dp"
+            <TextView
+                android:layout_width="85dp"
                 android:layout_height="45dp"
-                android:text="Pick Date"
+                android:text="Date"
                 android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="18sp"
                 android:textColor="@color/colorTexts"
-                android:background="@drawable/button_background"
-                android:id="@+id/btnIncomeDate"/>
+                android:id="@+id/tvHintIncomeDate"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="250dp"
+            android:layout_width="270dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:background="@drawable/border">
             <TextView
-                android:id="@+id/etIncomeTime"
-                android:layout_width="170dp"
+                android:id="@+id/tvIncomeTime"
+                android:layout_width="180dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:ems="10"
@@ -104,18 +128,20 @@
                 android:inputType="date"
                 android:padding="5dp"
                 android:textSize="18sp"
-                android:background="@drawable/border"
-                android:layout_marginRight="5dp"/>
-            <Button
-                android:layout_width="75dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/colorTexts"/>
+            <TextView
+                android:layout_width="85dp"
                 android:layout_height="45dp"
-                android:text="Pick Time"
+                android:text="Time"
                 android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="18sp"
                 android:textColor="@color/colorTexts"
-                android:background="@drawable/button_background"
-                android:id="@+id/btnIncomeTime"/>
+                android:id="@+id/tvIncomeHintTime"/>
 
         </LinearLayout>
+
         <Button
         android:id="@+id/btnIncomeSubmit"
         android:layout_width="100dp"

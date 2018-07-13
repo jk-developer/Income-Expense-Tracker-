@@ -108,5 +108,17 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
         return (float) 0.0;
     }
 
+  /*  public float getMonthlyExpense(int i)
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor curs = DB.rawQuery( "SELECT SUM(AMOUNT) FROM "+TABLE_NAME2+" WHERE DATE_MONTH ="+i, null );
+        if(curs.moveToFirst()){
+            return curs.getFloat( 0 );
+        }
+        return (float) 0.0;
+
+    } */
+
+
 }
 

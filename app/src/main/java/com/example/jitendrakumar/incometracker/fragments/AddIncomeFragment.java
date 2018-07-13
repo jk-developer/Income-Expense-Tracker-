@@ -1,5 +1,6 @@
 package com.example.jitendrakumar.incometracker.fragments;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +27,7 @@ import com.example.jitendrakumar.incometracker.models.IncomeData;
 import com.example.jitendrakumar.incometracker.helper.SessionManagement;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,11 +42,13 @@ public class AddIncomeFragment extends Fragment{
     public static final String TAG = "res";
 
     // TextView tvIncomeDate;
-     EditText etIncomeType, etIncomeAmount;
-     TextView etIncomeDate, etIncomeTime;
-     Button btnIncomeSubmit,btnIncomeViewAll, btnIncomeUpdate, btnIncomeDelete,btnIncomeDate, btnIncomeTime;
+     EditText  etIncomeAmount;
+     TextView tvIncomeDate, tvIncomeTime, tvIncomeHintDate, tvIncomeHintTime, tvIncomeType, tvIncomeInput;
+     Button btnIncomeSubmit,btnIncomeViewAll, btnIncomeUpdate, btnIncomeDelete;
      IncomeDatabaseHelper MyincomeDB;
-   private  int year, month , day, hour, minute;
+     private  int year, month , day, hour, minute;
+    private CharSequence income[] = {"Regular Salary", "Buissness Profits","Rental Income","Savings", "Gifts","Pocket Money"," Investments ","Governmental grants","Retirement Income",
+            "Bonus","Other"};
 
 
     @Nullable
@@ -52,45 +57,107 @@ public class AddIncomeFragment extends Fragment{
         View view = inflater.inflate( R.layout.fragment_add_income, container, false );
         MyincomeDB = new IncomeDatabaseHelper( getContext() );
         sessonid = new SessionManagement( getContext() );
-        etIncomeType = (EditText) view.findViewById( R.id.etIncomeType );
+        tvIncomeType = (TextView) view.findViewById( R.id.tvIncomeType );
+        tvIncomeInput = (TextView) view.findViewById( R.id.tvIncomeInput );
         etIncomeAmount = (EditText) view.findViewById( R.id.etIncomeAmount );
-        etIncomeDate = (TextView) view.findViewById( R.id.etIncomeDate );
-        etIncomeTime = (TextView) view.findViewById( R.id.etIncomeTime );
-        Log.d( TAG, "onCreateView: "+ etIncomeTime );
+        tvIncomeDate = (TextView) view.findViewById( R.id.tvIncomeDate );
+        tvIncomeTime = (TextView) view.findViewById( R.id.tvIncomeTime );
         btnIncomeSubmit = (Button) view.findViewById( R.id.btnIncomeSubmit );
         btnIncomeViewAll = (Button) view.findViewById( R.id.btnIncomeViewAll );
         btnIncomeUpdate = (Button) view.findViewById( R.id.btnIncomeUpdate );
         btnIncomeDelete = (Button) view.findViewById( R.id.btnIncomeDelete );
-        btnIncomeTime = (Button)view.findViewById( R.id.btnIncomeTime );
-        btnIncomeDate = (Button)view.findViewById( R.id.btnIncomeDate );
+        tvIncomeHintDate= (TextView) view.findViewById( R.id.tvHintIncomeDate);
+        tvIncomeHintTime = (TextView) view.findViewById( R.id.tvExpenseHintTime );
+        tvIncomeHintDate = (TextView) view.findViewById( R.id.tvHintIncomeDate );
+        tvIncomeHintTime = (TextView) view.findViewById( R.id.tvIncomeHintTime );
 
-        etIncomeType.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get( Calendar.YEAR );
+        int month = cal.get( Calendar.MONTH);
+        int day = cal.get( Calendar.DAY_OF_MONTH );
+        int hour = cal.get( Calendar.HOUR_OF_DAY );
+        int minute = cal.get( Calendar.MINUTE );
+        tvIncomeDate.setText( day+"/"+month+"/"+year );
+        tvIncomeTime.setText( hour+":"+minute );
+
+        tvIncomeType.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle( "Select Expense Category" );
+                builder.setItems( income, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText( getContext(), ""+income[which],Toast.LENGTH_SHORT ).show();
+                    }
+                } );
+
+                builder.setNegativeButton( "CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        builder.setCancelable( true );
+                    }
+                } );
+
+                builder.setPositiveButton( "OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(which==-1)
+                        {
+                            Toast.makeText( getContext(), "Select some  expense category", Toast.LENGTH_SHORT ).show();
+                            tvIncomeType.setError( "Select some expense category!!!" );
+                        }else {
+                            tvIncomeType.setText( income[which].toString());
+
+                        }
+
+
+                    }
+                } );
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+            }
+        } );
+
+        tvIncomeType.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
+        tvIncomeInput.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
         etIncomeAmount.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
-        etIncomeDate.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
-        etIncomeTime.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
-        etIncomeDate.setTextColor( Color.parseColor( "#00ff00" ) );
+        tvIncomeDate.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
+        tvIncomeTime.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
+        tvIncomeDate.setTextColor( Color.parseColor( "#00ff00" ) );
         etIncomeAmount.setTextColor( Color.parseColor( "#00ff00" ) );
-        etIncomeType.setTextColor( Color.parseColor( "#00ff00" ) );
-        etIncomeTime.setTextColor( Color.parseColor( "#00ff00" ) );
+        tvIncomeType.setTextColor( Color.parseColor( "#00ff00" ) );
+        tvIncomeTime.setTextColor( Color.parseColor( "#00ff00" ) );
+        tvIncomeInput.setTextColor( Color.parseColor( "#00ff00" ) );
+
 
                 addDataInIncomeDB();
                 viewAllIncomeData();
 
+        btnIncomeDelete.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyincomeDB.deleteAllRecords();
+                Toast.makeText( getActivity(), "All the Records are deleted ", Toast.LENGTH_SHORT ).show();
+            }
+        } );
 
-     btnIncomeTime.setOnClickListener( new View.OnClickListener() {
+
+     tvIncomeHintTime.setOnClickListener( new View.OnClickListener() {
          @Override
          public void onClick(View v) {
-             DialogFragment newFragment = new TimePickerFragment(etIncomeTime);
+             DialogFragment newFragment = new TimePickerFragment(tvIncomeTime);
              newFragment.show(getFragmentManager(), "TimePicker");
 
 
          }
      } );
 
-     btnIncomeDate.setOnClickListener( new View.OnClickListener() {
+     tvIncomeHintDate.setOnClickListener( new View.OnClickListener() {
          @Override
          public void onClick(View v) {
-             DialogFragment newFragment = new DatePickerFragment(etIncomeDate);
+             DialogFragment newFragment = new DatePickerFragment(tvIncomeDate);
              newFragment.show(getFragmentManager(), "DatePicker");
 
          }
@@ -104,10 +171,10 @@ public class AddIncomeFragment extends Fragment{
             public void onClick(View view) {
 
                     try {
-                        String incomeType = etIncomeType.getText().toString();
+                        String incomeType = tvIncomeInput.getText().toString();
                         String incomeAmount = etIncomeAmount.getText().toString();
-                        String incomeDate =  etIncomeDate.getText().toString();
-                        String incomeTime = etIncomeTime.getText().toString();
+                        String incomeDate =  tvIncomeDate.getText().toString();
+                        String incomeTime = tvIncomeTime.getText().toString();
                         // Extracting year month and day integer value from the Date String DD/MM/YYYY
                         String[]dateParts = incomeDate.toString().split("/");
                         try {
@@ -127,20 +194,20 @@ public class AddIncomeFragment extends Fragment{
                             Toast.makeText( getActivity(), "Error in parsing Time", Toast.LENGTH_SHORT ).show();
                         }
 
-                        if(incomeType.length() == 0)
+                  /*      if(incomeT.length() == 0)
                         {
-                            etIncomeType.setError( "Income Type is required!!!" );
-                        }
+                            tvIncomeInput.setError( "Income Type is required!!!" );
+                        }   */
                         if(incomeAmount.length() == 0)
                         {
                             etIncomeAmount.setError( "Income Amount is required!!!" );
                         }
                         if(incomeDate.length() == 0){
-                            etIncomeDate.setError( "Date field is required!!! " );
+                            tvIncomeDate.setError( "Date field is required!!! " );
                         }
                         if(incomeTime.length()==0)
                         {
-                            etIncomeTime.setError( "Time field is required!!!" );
+                            tvIncomeTime.setError( "Time field is required!!!" );
                         }
                         else {
                             boolean isInserted = MyincomeDB.insertIncomeData( incomeType, incomeAmount , year, month, day, hour, minute);

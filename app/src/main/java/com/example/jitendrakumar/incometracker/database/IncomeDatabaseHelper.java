@@ -118,5 +118,21 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
         return (float) 0.0;
     }
 
+    public float getMonthlyIncome(int i)
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+            Cursor curs = DB.rawQuery( "SELECT SUM(AMOUNT) FROM "+TABLE_NAME3+" WHERE DATE_MONTH ="+i, null );
+            if(curs.moveToFirst()){
+                return curs.getFloat( 0 );
+            }
+            return (float) 0.0;
+
+    }
+
+    public void deleteAllRecords(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL( "DELETE FROM "+TABLE_NAME3 );
+    }
+
 }
 

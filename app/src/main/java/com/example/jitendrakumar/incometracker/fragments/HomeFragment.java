@@ -14,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
+import com.example.jitendrakumar.incometracker.activities.ExpenseReportActivity;
+import com.example.jitendrakumar.incometracker.activities.IncomeReportActivity;
 import com.example.jitendrakumar.incometracker.activities.TodoActivity;
 import com.example.jitendrakumar.incometracker.database.ExpenseDatabaseHelper;
 import com.example.jitendrakumar.incometracker.database.IncomeDatabaseHelper;
@@ -62,6 +64,22 @@ public class HomeFragment extends Fragment {
         savingTotal.setText( String.valueOf( incomeDatabaseHelper.getTotalIncome()-expenseDatabaseHelper.getTotalExpense())+" Rs" );
         paidtoTotal.setText( String.valueOf( borrowDatabaseHelper.getTotalPaidTo())+" Rs" );
         takenTotal.setText( String.valueOf( lendDatabaseHelper.getTotalTaken())+" Rs" );
+
+        incomeTotal.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent( getActivity(), IncomeReportActivity.class );
+                startActivity( i );
+            }
+        } );
+
+        expenseTotal.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent( getActivity(), ExpenseReportActivity.class );
+                startActivity( intent );
+            }
+        } );
 
         ses = new SessionManagement( getContext() );
     //    incomeTotal.setText( String.valueOf(incomeReportActivity.getTotalIncome()));
