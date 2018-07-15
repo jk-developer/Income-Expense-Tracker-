@@ -22,13 +22,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.IncomeReportActivity" />
+        <activity
+            android:name=".activities.IncomeReportActivity"
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".activities.ExpenseReportActivity" />
-        <activity android:name=".activities.TodoActivity" />
+        <activity
+            android:name=".activities.TodoActivity"
+            android:parentActivityName=".activities.MainActivity"></activity>
         <activity android:name=".activities.BarChartActivity" />
         <activity android:name=".activities.ExpenseBarchartActivity" />
         <activity android:name=".activities.SavingBarchartActivity" />
-        <activity android:name=".activities.IncomePiechartActivity"></activity>
+        <activity android:name=".activities.IncomePiechartActivity" />
+        <activity
+            android:name=".activities.IncomeItemsActivity"
+            android:parentActivityName=".activities.IncomeReportActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activities.ExpenseItemsActivity"></activity>
     </application>
 
 </manifest>

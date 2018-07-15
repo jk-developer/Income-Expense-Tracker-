@@ -44,10 +44,10 @@ public class AddIncomeFragment extends Fragment{
     // TextView tvIncomeDate;
      EditText  etIncomeAmount;
      TextView tvIncomeDate, tvIncomeTime, tvIncomeHintDate, tvIncomeHintTime, tvIncomeType, tvIncomeInput;
-     Button btnIncomeSubmit,btnIncomeViewAll, btnIncomeUpdate, btnIncomeDelete;
+     Button btnIncomeSubmit;
      IncomeDatabaseHelper MyincomeDB;
      private  int year, month , day, hour, minute;
-    private CharSequence income[] = {"Regular Salary", "Buissness Profits","Rental Income","Savings", "Gifts","Pocket Money"," Investments ","Governmental grants","Retirement Income",
+     private CharSequence income[] = {"Regular Salary", "Buissness Profits","Rental Income","Savings", "Gifts","Pocket Money"," Investments ","Governmental grants","Retirement Income",
             "Bonus","Other"};
 
 
@@ -63,9 +63,6 @@ public class AddIncomeFragment extends Fragment{
         tvIncomeDate = (TextView) view.findViewById( R.id.tvIncomeDate );
         tvIncomeTime = (TextView) view.findViewById( R.id.tvIncomeTime );
         btnIncomeSubmit = (Button) view.findViewById( R.id.btnIncomeSubmit );
-        btnIncomeViewAll = (Button) view.findViewById( R.id.btnIncomeViewAll );
-        btnIncomeUpdate = (Button) view.findViewById( R.id.btnIncomeUpdate );
-        btnIncomeDelete = (Button) view.findViewById( R.id.btnIncomeDelete );
         tvIncomeHintDate= (TextView) view.findViewById( R.id.tvHintIncomeDate);
         tvIncomeHintTime = (TextView) view.findViewById( R.id.tvExpenseHintTime );
         tvIncomeHintDate = (TextView) view.findViewById( R.id.tvHintIncomeDate );
@@ -88,7 +85,7 @@ public class AddIncomeFragment extends Fragment{
                 builder.setItems( income, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText( getContext(), ""+income[which],Toast.LENGTH_SHORT ).show();
+                        tvIncomeInput.setText( income[which].toString());
                     }
                 } );
 
@@ -104,10 +101,9 @@ public class AddIncomeFragment extends Fragment{
                     public void onClick(DialogInterface dialog, int which) {
                         if(which==-1)
                         {
-                            Toast.makeText( getContext(), "Select some  expense category", Toast.LENGTH_SHORT ).show();
-                            tvIncomeType.setError( "Select some expense category!!!" );
+
                         }else {
-                            tvIncomeType.setText( income[which].toString());
+                            tvIncomeInput.setText( income[which].toString());
 
                         }
 
@@ -131,20 +127,9 @@ public class AddIncomeFragment extends Fragment{
         tvIncomeTime.setTextColor( Color.parseColor( "#00ff00" ) );
         tvIncomeInput.setTextColor( Color.parseColor( "#00ff00" ) );
 
+        addDataInIncomeDB();
 
-                addDataInIncomeDB();
-                viewAllIncomeData();
-
-        btnIncomeDelete.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MyincomeDB.deleteAllRecords();
-                Toast.makeText( getActivity(), "All the Records are deleted ", Toast.LENGTH_SHORT ).show();
-            }
-        } );
-
-
-     tvIncomeHintTime.setOnClickListener( new View.OnClickListener() {
+        tvIncomeHintTime.setOnClickListener( new View.OnClickListener() {
          @Override
          public void onClick(View v) {
              DialogFragment newFragment = new TimePickerFragment(tvIncomeTime);
@@ -169,8 +154,7 @@ public class AddIncomeFragment extends Fragment{
         btnIncomeSubmit.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                    try {
+                   try {
                         String incomeType = tvIncomeInput.getText().toString();
                         String incomeAmount = etIncomeAmount.getText().toString();
                         String incomeDate =  tvIncomeDate.getText().toString();
@@ -210,9 +194,11 @@ public class AddIncomeFragment extends Fragment{
                             tvIncomeTime.setError( "Time field is required!!!" );
                         }
                         else {
-                            boolean isInserted = MyincomeDB.insertIncomeData( incomeType, incomeAmount , year, month, day, hour, minute);
-                            if (isInserted == true) {
+                            boolean isInserted = MyincomeDB.insertIncomeData( incomeType, Float.parseFloat( incomeAmount ) , year, month, day, hour, minute);
+                            if(isInserted == true) {
                                 Toast.makeText( getActivity(), "Data Saved to Income DataBase.", Toast.LENGTH_SHORT ).show();
+                                Intent in = new Intent( getContext(), IncomeReportActivity.class );
+                                startActivity( in );
 
                             } else {
                                 Toast.makeText( getActivity(), "Data is not Saved to Income DataBase.", Toast.LENGTH_SHORT ).show();
@@ -224,20 +210,6 @@ public class AddIncomeFragment extends Fragment{
                     {
                         e.printStackTrace();
                     }
-
-            }
-        } );
-
-    }
-
-
-    public void viewAllIncomeData() {
-
-        btnIncomeViewAll.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent( getActivity(), IncomeReportActivity.class );
-                startActivity( i );
 
             }
         } );

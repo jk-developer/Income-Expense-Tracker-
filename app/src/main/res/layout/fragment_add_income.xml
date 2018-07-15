@@ -19,8 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:padding="5dp"
         android:text="Add all your Incomes here"
@@ -36,7 +35,7 @@
             android:layout_margin="20dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Your Income amount(Rs)"
+            android:hint="Amount(Rs) "
             android:inputType="numberDecimal"
             android:padding="5dp"
             android:background="@drawable/border"/>
@@ -55,17 +54,17 @@
                 android:layout_gravity="center"
                 android:ems="10"
                 android:gravity="center"
-                android:hint="Regular Salary"
+                android:text="Regular Salary"
                 android:inputType="textPersonName"
-                android:padding="5dp"
-                android:textSize="18sp"
+                android:padding="3dp"
+                android:textSize="17sp"
                 android:textColor="@color/colorTexts"
 
                 />
 
             <TextView
                 android:id="@+id/tvIncomeType"
-                android:layout_width="110dp"
+                android:layout_width="120dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
@@ -144,61 +143,15 @@
 
         <Button
         android:id="@+id/btnIncomeSubmit"
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="5dp"
-        android:text="Submit"
+        android:text="Save"
         android:textColor="@color/colorTexts"
             android:background="@drawable/button_background"
-        android:layout_marginTop="25dp"/>
+        android:layout_marginTop="15dp" />
 
-     <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_marginBottom="50dp">
-
-         <Button
-             android:id="@+id/btnIncomeViewAll"
-             android:layout_width="0dp"
-             android:layout_height="wrap_content"
-             android:layout_weight="1"
-             android:layout_gravity="center"
-             android:padding="5dp"
-             android:text="Get All Income "
-             android:textColor="@color/colorTexts"
-             android:background="@drawable/button_background"
-             android:layout_marginTop="25dp"
-             android:layout_marginLeft="10dp"
-             android:layout_marginRight="10dp"/>
-
-         <Button
-             android:id="@+id/btnIncomeUpdate"
-             android:layout_width="0dp"
-             android:layout_height="wrap_content"
-             android:layout_weight="1"
-             android:layout_gravity="center"
-             android:padding="5dp"
-             android:text="update any income "
-             android:textColor="@color/colorTexts"
-             android:background="@drawable/button_background"
-             android:layout_marginTop="25dp"
-             android:layout_marginRight="10dp"/>
-
-         <Button
-             android:id="@+id/btnIncomeDelete"
-             android:layout_width="0dp"
-             android:layout_height="wrap_content"
-             android:layout_weight="1"
-             android:layout_gravity="center"
-             android:padding="5dp"
-             android:text="Delete any Income"
-             android:textColor="@color/colorTexts"
-             android:background="@drawable/button_background"
-             android:layout_marginTop="25dp"
-             android:layout_marginRight="10dp" />
-
-     </LinearLayout>
 
 
     </LinearLayout>

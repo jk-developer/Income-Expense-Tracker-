@@ -29,9 +29,10 @@ import java.util.Calendar;
 
 public class AddExpenseFragment extends Fragment {
     EditText  etExpenseAmount;
-    TextView tvExpenseDate, tvExpenseTime, tvHintExpenseDate,tvExpenseType,tvExpenseInput, tvExpenseHintTime;
+    TextView tvExpenseDate, tvExpenseTime, tvHintExpenseDate,tvExpenseType, tvExpenseHintType, tvExpenseHintTime;
     ExpenseDatabaseHelper MyexpenseDB;
     Button btnExpenseSubmit, btnExpnenseViewAll, btnExpnenseBarchart;
+    private int eyear, emonth, eday, ehour, eminute;
     SessionManagement s;
     private CharSequence expense[] = {"Food", "Leisure","Transport","Clothes", "Travel","Health","Hobbies","Gifts","Household",
     "Groceries","Gadgets","Kids", "Loans", "Education","Holidays","Savings","Beauty","Sports","Mobile","Other"};
@@ -39,8 +40,9 @@ public class AddExpenseFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate( R.layout.fragment_add_expense, container, false );
         MyexpenseDB = new ExpenseDatabaseHelper( getContext() );
+       // tvExpenseType = (TextView) view.findViewById( R.id.tvExpenseType );
         tvExpenseType = (TextView) view.findViewById( R.id.tvExpenseType );
-        tvExpenseInput = (TextView) view.findViewById( R.id.tvExpenseInput );
+        tvExpenseHintType  = (TextView) view.findViewById( R.id.tvExpenseHintType );
         etExpenseAmount = (EditText) view.findViewById( R.id.etExpenseAmount );
         tvExpenseDate = (TextView) view.findViewById( R.id.tvExpenseDate );
         tvExpenseTime = (TextView) view.findViewById( R.id.tvExpenseTime );
@@ -55,10 +57,13 @@ public class AddExpenseFragment extends Fragment {
         int year = c.get( Calendar.YEAR );
         int month = c.get( Calendar.MONTH);
         int day = c.get( Calendar.DAY_OF_MONTH );
+        int hour = c.get( Calendar.HOUR_OF_DAY );
+        int minute = c.get( Calendar.MINUTE );
         tvExpenseDate.setText( day+"/"+month+"/"+year );
+        tvExpenseTime.setText( hour+":"+minute );
 
         tvExpenseType.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
-        tvExpenseInput.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
+        tvExpenseHintType.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
         etExpenseAmount.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
         tvExpenseDate.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
         tvExpenseTime.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
@@ -66,7 +71,7 @@ public class AddExpenseFragment extends Fragment {
         etExpenseAmount.setTextColor( Color.parseColor( "#00ff00" ) );
         tvExpenseDate.setTextColor( Color.parseColor( "#00ff00" ) );
         tvExpenseType.setTextColor( Color.parseColor( "#00ff00" ) );
-        tvExpenseInput.setTextColor( Color.parseColor( "#00ff00" ) );
+        tvExpenseHintType.setTextColor( Color.parseColor( "#00ff00" ) );
         tvExpenseTime.setTextColor( Color.parseColor( "#00ff00" ) );
 
 
@@ -82,7 +87,7 @@ public class AddExpenseFragment extends Fragment {
             }
         } );
 
-        tvExpenseType.setOnClickListener( new View.OnClickListener() {
+        tvExpenseHintType.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -90,6 +95,7 @@ public class AddExpenseFragment extends Fragment {
                 builder.setItems( expense, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        tvExpenseType.setText( expense[which].toString());
                        Toast.makeText( getContext(), ""+expense[which],Toast.LENGTH_SHORT ).show();
                     }
                 } );
@@ -107,7 +113,7 @@ public class AddExpenseFragment extends Fragment {
                         if(which==-1)
                         {
                             Toast.makeText( getContext(), "Select some  expense category", Toast.LENGTH_SHORT ).show();
-                            tvExpenseType.setError( "Select some expense category!!!" );
+                          //  tvExpenseType.setError( "Select some expense category!!!" );
                         }else {
                             tvExpenseType.setText( expense[which].toString());
 
@@ -154,6 +160,26 @@ public class AddExpenseFragment extends Fragment {
                     String expenseDate = tvExpenseDate.getText().toString();
                     String expenseTime = tvExpenseTime.getText().toString();
 
+                    // Extracting year month and day integer value from the Date String DD/MM/YYYY
+                    String[]dateParts = expenseDate.toString().split("/");
+                    try {
+                        eyear = safeParseInt(dateParts[2]);
+                        emonth = safeParseInt(dateParts[0]);
+                        eday = safeParseInt(dateParts[1]);
+                    } catch (Exception e) {
+                        Toast.makeText( getActivity(), "Error in parsing Date", Toast.LENGTH_SHORT ).show();
+                    }
+                    String timeStr = expenseTime.toString();
+                    String[] timeParts = timeStr.split( ":" );
+                    try {
+                        ehour = safeParseInt( timeParts[0] );
+                        eminute = safeParseInt( timeParts[1] );
+                    }catch (Exception e)
+                    {
+                        Toast.makeText( getActivity(), "Error in parsing Time", Toast.LENGTH_SHORT ).show();
+                    }
+
+
                     if (expenseType.length() == 0) {
                         tvExpenseType.setError( "Expense Type is required!!!" );
                     }
@@ -167,7 +193,7 @@ public class AddExpenseFragment extends Fragment {
                         Toast.makeText( getActivity(),"Time field is required!!! ", Toast.LENGTH_SHORT ).show();
                     }
                     else {
-                        boolean isInserted = MyexpenseDB.insertExpenseData( expenseType, expenseAmount, expenseDate, expenseTime );
+                        boolean isInserted = MyexpenseDB.insertExpenseData( expenseType, Float.parseFloat( expenseAmount ),eyear, emonth, eday, ehour,eminute );
                         if (isInserted == true) {
                             Toast.makeText( getActivity(), "Data Saved to Expense DataBase.", Toast.LENGTH_SHORT ).show();
 
@@ -194,6 +220,14 @@ public class AddExpenseFragment extends Fragment {
 
             }
         } );
+    }
+
+    private int safeParseInt(String number) throws Exception {
+        if(number != null) {
+            return Integer.parseInt(number.trim());
+        } else {
+            throw new NullPointerException("Date string is invalid");
+        }
     }
 
 

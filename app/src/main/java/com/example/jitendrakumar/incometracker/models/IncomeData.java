@@ -3,9 +3,9 @@ package com.example.jitendrakumar.incometracker.models;
 public class IncomeData {
     int incomeId;
     String inputType;
-    Double inputAmount;
+    float inputAmount;
 
-    public IncomeData(int incomeId, String inputType, Double inputAmount, String incomeDate, String incomeTime) {
+    public IncomeData(int incomeId, String inputType, float inputAmount, String incomeDate, String incomeTime) {
         this.incomeId = incomeId;
         this.inputType = inputType;
         this.inputAmount = inputAmount;
@@ -29,11 +29,11 @@ public class IncomeData {
         this.inputType = inputType;
     }
 
-    public Double getInputAmount() {
+    public float getInputAmount() {
         return inputAmount;
     }
 
-    public void setInputAmount(Double inputAmount) {
+    public void setInputAmount(float inputAmount) {
         this.inputAmount = inputAmount;
     }
 

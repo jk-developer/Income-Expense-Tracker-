@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.Editable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -34,8 +35,7 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME3 + " (INCOME_ID INTEGER PRIMARY KEY AUTOINCREMENT,INCOME_TYPE TEXT NOT NULL, AMOUNT FLOAT NOT NULL," +
-                " DATE_YEAR INTEGER NOT NULL, DATE_MONTH INTEGER NOT NULL, DATE_DAY INTEGER NOT NULL, TIME_HOUR INTEGER NOT NULL, TIME_MINUTE NOT NULL) ");
+        db.execSQL("create table " + TABLE_NAME3 + " (INCOME_ID INTEGER PRIMARY KEY AUTOINCREMENT, INCOME_TYPE TEXT NOT NULL, AMOUNT FLOAT NOT NULL, DATE_YEAR INTEGER NOT NULL, DATE_MONTH INTEGER NOT NULL, DATE_DAY INTEGER NOT NULL, TIME_HOUR INTEGER NOT NULL, TIME_MINUTE INTEGER NOT NULL) ");
     }
 
     @Override
@@ -46,7 +46,7 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
     }
     // Function insertData() to insert the data in the table/Database
 
-    public boolean insertIncomeData(String income_type, String amount,int year, int month, int day, int hour, int minute){
+    public boolean insertIncomeData(String income_type, float amount,int year, int month, int day, int hour, int minute){
         SQLiteDatabase db  = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put( COL_2, income_type );
@@ -84,7 +84,7 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
 
     // Function updateData() to update/change the existing data in database
 
-    public boolean updateIncomeData(String income_id, String income_type, double amount, int year, int month, int day, int hour, int minute){
+    public boolean updateIncomeData(String income_id, String income_type, float amount, int year, int month, int day, int hour, int minute){
         SQLiteDatabase db  = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put( COL_1, income_id );
@@ -132,6 +132,7 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
     public void deleteAllRecords(){
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL( "DELETE FROM "+TABLE_NAME3 );
+      //  db.rawQuery( "ALTER TABLE "+TABLE_NAME3+ "INCOME_ID =""+ 0,null )
     }
 
 }

@@ -58,10 +58,10 @@ public class ExpenseReportFragment extends Fragment {
             }
         } );
 
-        showAllExpenseData();
+    //    showAllExpenseData();
         return view;
     }
-
+/*
     public void showAllExpenseData(){
         btnViewExpenseReport.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -69,7 +69,7 @@ public class ExpenseReportFragment extends Fragment {
 
                 String expenseDateFrom = tvExpenseReportDateFrom.getText().toString();
                 String expenseDateTo = tvExpenseReportDateTo.getText().toString();
-                Cursor res = myExpenseDB.getAllExpenseReport(expenseDateFrom,expenseDateTo);
+            /*  //  Cursor res = myExpenseDB.getAllExpenseReport(expenseDateFrom,expenseDateTo);
                 if(res.getCount() == 0)
                 {
                     // Show message
@@ -96,6 +96,7 @@ public class ExpenseReportFragment extends Fragment {
         } );
     }
 
+
     public void showMessage(String title, String Message){
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setCancelable( true );
@@ -103,4 +104,9 @@ public class ExpenseReportFragment extends Fragment {
         builder.setMessage( Message );
         builder.show();
     }
-}
+
+    */
+            }
+
+
+

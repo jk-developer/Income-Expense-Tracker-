@@ -9,6 +9,7 @@ import com.example.jitendrakumar.incometracker.R
 import com.example.jitendrakumar.incometracker.adapters.MyTodoAdapter
 import com.example.jitendrakumar.incometracker.database.db.TaskTable
 import com.example.jitendrakumar.incometracker.database.db.TodoDbHelper
+import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.DatePickerFragment
 import com.example.jitendrakumar.incometracker.models.Todo
 import kotlinx.android.synthetic.main.activity_todo.*
 
@@ -19,6 +20,10 @@ class TodoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_todo)
+
+        supportActionBar!!.title = "Todo Task"
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
         val db = TodoDbHelper(this).writableDatabase
 
         rvTasks.layoutManager = LinearLayoutManager(this)
@@ -43,7 +48,6 @@ class TodoActivity : AppCompatActivity() {
         rvTasks.adapter = taskAdapter
 
         refreshTodos()
-
 
         btnAddTask.setOnClickListener {
             val newTask = Todo(

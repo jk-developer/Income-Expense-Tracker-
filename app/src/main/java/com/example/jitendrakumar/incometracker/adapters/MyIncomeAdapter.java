@@ -1,6 +1,7 @@
 package com.example.jitendrakumar.incometracker.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
@@ -8,9 +9,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
+import com.example.jitendrakumar.incometracker.activities.IncomeItemsActivity;
 import com.example.jitendrakumar.incometracker.activities.MainActivity;
 import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.TimePickerFragment;
 import com.example.jitendrakumar.incometracker.models.IncomeData;
@@ -25,6 +28,8 @@ public class MyIncomeAdapter extends RecyclerView.Adapter<MyIncomeAdapter.Benefi
     public static final String TAG = "res";
     private int year , month, day, hour, minute;
     TimePickerFragment timePickerFragment;
+    IncomeData incomeData;
+
 
     public MyIncomeAdapter(ArrayList<IncomeData> listBeneficiary, Context mContext) {
         this.listBeneficiary = listBeneficiary;
@@ -32,7 +37,7 @@ public class MyIncomeAdapter extends RecyclerView.Adapter<MyIncomeAdapter.Benefi
         this.mFilteredList = listBeneficiary;
         }
 
-    public class BeneficiaryViewHolder extends RecyclerView.ViewHolder {
+    public class BeneficiaryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public AppCompatTextView tvIncomeReportId;
         public AppCompatTextView tvIncomeReportType;
         public AppCompatTextView tvIncomeReportAmount;
@@ -41,12 +46,27 @@ public class MyIncomeAdapter extends RecyclerView.Adapter<MyIncomeAdapter.Benefi
 
         public BeneficiaryViewHolder(View view) {
             super(view);
+            view.setOnClickListener(this);
             tvIncomeReportId = (AppCompatTextView)view.findViewById( R.id.tvIncomeReportId );
             tvIncomeReportType = (AppCompatTextView)view.findViewById( R.id.tvIncomeReportType );
             tvIncomeReportAmount = (AppCompatTextView)view.findViewById( R.id.tvIncomeReportAmount );
             tvIncomeReportDate = (AppCompatTextView)view.findViewById( R.id.tvIncomeReportDate );
             tvIncomeReportTime = (AppCompatTextView)view.findViewById( R.id.tvIncomeReportTime );
 
+        }
+
+        @Override
+        public void onClick(View v) {
+            incomeData = new IncomeData( listBeneficiary.get( getPosition()).getIncomeId(), listBeneficiary.get( getPosition()).getInputType(), listBeneficiary.get( getPosition()).getInputAmount(), listBeneficiary.get( getPosition() ).getIncomeDate(), listBeneficiary.get(getPosition()).getIncomeTime());
+            Toast.makeText( mContext, getPosition()+ incomeData.getInputType()+ incomeData.getInputAmount()+"is clicked", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent( mContext, IncomeItemsActivity.class );
+            i.putExtra( "amount",incomeData.getInputAmount());
+            i.putExtra( "Date", incomeData.getIncomeDate() );
+            i.putExtra( "Time", incomeData.getIncomeTime() );
+            i.putExtra( "Type", incomeData.getInputType());
+            i.putExtra( "incomeId", incomeData.getIncomeId() );
+            Log.d( TAG, "onClick: "+ incomeData.getInputAmount()+incomeData.getIncomeTime()+incomeData.getIncomeId() );
+            mContext.startActivity( i );
         }
     }
 

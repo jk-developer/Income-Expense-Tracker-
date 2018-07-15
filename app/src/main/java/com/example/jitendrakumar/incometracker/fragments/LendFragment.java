@@ -20,12 +20,14 @@ import com.example.jitendrakumar.incometracker.R;
 import com.example.jitendrakumar.incometracker.database.LendDatabaseHelper;
 import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.DatePickerFragment;
 
+import java.util.Calendar;
+
 
 public class LendFragment extends Fragment {
 
     EditText etPersonName, etTakenAmount, etTakenReason;
-    Button btnTakenSubmit, btnViewAllTakenData, btnTakenDate;
-    TextView tvTakenDate;
+    Button btnTakenSubmit, btnViewAllTakenData;
+    TextView tvLendDate, tvHintLendDate;
     LendDatabaseHelper lendDatabaseHelper;
     public static final String TAG = "name";
 
@@ -37,25 +39,33 @@ public class LendFragment extends Fragment {
         etPersonName = (EditText) view.findViewById( R.id.etPersonName );
         etTakenAmount = (EditText) view.findViewById( R.id.etTakenAmount );
         etTakenReason = (EditText) view.findViewById( R.id.etTakenReason);
-        tvTakenDate = (TextView) view.findViewById( R.id.tvTakenDate );
+        tvLendDate = (TextView) view.findViewById( R.id.tvLendDate );
+        tvHintLendDate = (TextView)view.findViewById( R.id.tvHintLendDate );
         btnTakenSubmit = (Button) view.findViewById( R.id.btnTakenSubmit );
-        btnTakenDate = (Button) view.findViewById( R.id.btnTakenDate );
         btnViewAllTakenData = (Button) view.findViewById( R.id.btnViewAllTakenData );
 
         etPersonName.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etTakenReason.setHintTextColor(getResources().getColor(R.color.colorTexts));
-        tvTakenDate.setHintTextColor(getResources().getColor(R.color.colorTexts));
+        tvLendDate.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etTakenAmount.setHintTextColor(getResources().getColor(R.color.colorTexts));
 
         etTakenAmount.setTextColor( Color.parseColor("#00ff00"));
-        tvTakenDate.setTextColor( Color.parseColor("#00ff00"));
+        tvLendDate.setTextColor( Color.parseColor("#00ff00"));
         etTakenReason.setTextColor( Color.parseColor("#00ff00"));
         etPersonName.setTextColor( Color.parseColor("#00ff00"));
 
-        btnTakenDate.setOnClickListener( new View.OnClickListener() {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get( Calendar.YEAR );
+        int month = cal.get( Calendar.MONTH);
+        int day = cal.get( Calendar.DAY_OF_MONTH );
+        int hour = cal.get( Calendar.HOUR_OF_DAY );
+        int minute = cal.get( Calendar.MINUTE );
+        tvLendDate.setText( day+"/"+month+"/"+year );
+
+        tvHintLendDate.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment newFragment = new DatePickerFragment(tvTakenDate);
+                DialogFragment newFragment = new DatePickerFragment(tvLendDate);
                 newFragment.show(getFragmentManager(), "TimePicker");
             }
         } );
@@ -69,7 +79,7 @@ public class LendFragment extends Fragment {
                     String personName = etPersonName.getText().toString();
                     Log.d( TAG, "onClick: "+personName );
                     String takenAmount = etTakenAmount.getText().toString();
-                    String takenDate =  tvTakenDate.getText().toString();
+                    String takenDate =  tvLendDate.getText().toString();
                     String takenReason = etTakenReason.getText().toString();
                     if (personName.length()==0){
                         etPersonName.setError( "Person Name field is required!!!" );

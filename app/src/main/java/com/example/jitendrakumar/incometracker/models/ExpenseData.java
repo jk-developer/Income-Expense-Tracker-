@@ -3,9 +3,9 @@ package com.example.jitendrakumar.incometracker.models;
 public class ExpenseData {
     int expenseId;
     String expenseType;
-    Double expenseAmount;
+    float expenseAmount;
 
-    public ExpenseData(int expensId, String expenseType, Double expenseAmount, String expenseDate, String expenseTime) {
+    public ExpenseData(int expensId, String expenseType, float expenseAmount, String expenseDate, String expenseTime) {
         this.expenseId = expensId;
         this.expenseType = expenseType;
         this.expenseAmount = expenseAmount;
@@ -29,11 +29,11 @@ public class ExpenseData {
         this.expenseType = expenseType;
     }
 
-    public Double getExpenseAmount() {
+    public float getExpenseAmount() {
         return expenseAmount;
     }
 
-    public void setExpenseAmount(Double expenseAmount) {
+    public void setExpenseAmount(float expenseAmount) {
         this.expenseAmount = expenseAmount;
     }
 

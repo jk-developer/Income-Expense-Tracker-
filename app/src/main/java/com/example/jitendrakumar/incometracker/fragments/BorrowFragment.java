@@ -20,11 +20,13 @@ import com.example.jitendrakumar.incometracker.R;
 import com.example.jitendrakumar.incometracker.database.BorrowDatabaseHelper;
 import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.DatePickerFragment;
 
+import java.util.Calendar;
+
 public class BorrowFragment extends Fragment {
 
     EditText etPersonName, etPayingAmount, etPayingReason;
-    Button btnPayingSubmit, btnViewAllPayingData, btnPayingDate;
-    TextView tvPayingDate;
+    Button btnPayingSubmit, btnViewAllPayingData;
+    TextView tvBorrowDate, tvHintBorrowDate;
     BorrowDatabaseHelper borrowDatabaseHelper;
     public static final String TAG = "name";
 
@@ -36,25 +38,33 @@ public class BorrowFragment extends Fragment {
         etPersonName = (EditText) view.findViewById( R.id.etPersonName );
         etPayingAmount = (EditText) view.findViewById( R.id.etPayingAmount );
         etPayingReason = (EditText) view.findViewById( R.id.etPayingReason );
-        tvPayingDate = (TextView) view.findViewById( R.id.tvPayingDate );
+        tvBorrowDate = (TextView) view.findViewById( R.id.tvBorrowDate );
         btnPayingSubmit = (Button) view.findViewById( R.id.btnPayingSubmit );
-        btnPayingDate = (Button) view.findViewById( R.id.btnPayingDate );
+        tvHintBorrowDate = (TextView) view.findViewById( R.id.tvHintBorrowDate );
         btnViewAllPayingData = (Button) view.findViewById( R.id.btnViewAllPayingData );
 
         etPersonName.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etPayingReason.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etPayingAmount.setHintTextColor(getResources().getColor(R.color.colorTexts));
-       tvPayingDate.setHintTextColor(getResources().getColor(R.color.colorTexts));
+        tvBorrowDate.setHintTextColor(getResources().getColor(R.color.colorTexts));
 
         etPersonName.setTextColor( Color.parseColor("#00ff00"));
-       tvPayingDate.setTextColor( Color.parseColor("#00ff00"));
+        tvBorrowDate.setTextColor( Color.parseColor("#00ff00"));
         etPayingAmount.setTextColor( Color.parseColor("#00ff00"));
         etPayingReason.setTextColor( Color.parseColor("#00ff00"));
 
-        btnPayingDate.setOnClickListener( new View.OnClickListener() {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get( Calendar.YEAR );
+        int month = cal.get( Calendar.MONTH);
+        int day = cal.get( Calendar.DAY_OF_MONTH );
+        int hour = cal.get( Calendar.HOUR_OF_DAY );
+        int minute = cal.get( Calendar.MINUTE );
+        tvBorrowDate.setText( day+"/"+month+"/"+year );
+
+        tvHintBorrowDate.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment dialogFragment = new DatePickerFragment(tvPayingDate);
+                DialogFragment dialogFragment = new DatePickerFragment(tvBorrowDate);
                 dialogFragment.show( getFragmentManager(), "date picker" );
             }
         } );
@@ -68,7 +78,7 @@ public class BorrowFragment extends Fragment {
                     String personName = etPersonName.getText().toString();
                     Log.d( TAG, "onClick: "+personName );
                     String payingAmount = etPayingAmount.getText().toString();
-                    String payingDate =  tvPayingDate.getText().toString();
+                    String payingDate =  tvBorrowDate.getText().toString();
                     String payingReason = etPayingReason.getText().toString();
 
                     if (personName.length()==0){

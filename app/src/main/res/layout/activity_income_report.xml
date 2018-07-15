@@ -8,16 +8,36 @@
     tools:context=".activities.IncomeReportActivity"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Your All Income Data"
-        android:textSize="25sp"
-        android:gravity="center"
-        android:padding="2dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold"/>
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_margin="2dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Your All Income Data"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:padding="2dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:layout_weight="8"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="2"
+            android:src="@drawable/add_more"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:id="@+id/ivAddMore" />
+
+
+    </LinearLayout>
 
 
     <android.support.v7.widget.RecyclerView

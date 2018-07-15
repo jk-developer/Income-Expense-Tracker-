@@ -35,7 +35,7 @@
             android:layout_margin="20dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Your Expense amount(Rs)"
+            android:hint="Amount(Rs) "
             android:inputType="numberDecimal"
             android:padding="5dp"
             android:background="@drawable/border"/>
@@ -48,13 +48,13 @@
          android:background="@drawable/border">
 
          <TextView
-             android:id="@+id/tvExpenseInput"
+             android:id="@+id/tvExpenseType"
              android:layout_width="160dp"
              android:layout_height="50dp"
              android:layout_gravity="center"
              android:ems="10"
              android:gravity="center"
-             android:hint="Food"
+            android:text="Food"
              android:inputType="textPersonName"
              android:padding="5dp"
              android:textSize="18sp"
@@ -63,7 +63,7 @@
              />
 
          <TextView
-             android:id="@+id/tvExpenseType"
+             android:id="@+id/tvExpenseHintType"
              android:layout_width="110dp"
              android:layout_height="50dp"
              android:layout_gravity="center"

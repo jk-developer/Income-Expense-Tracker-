@@ -52,7 +52,7 @@
             android:layout_margin="10dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Taken Amount(Rs)"
+            android:hint="Lent Amount(Rs)"
             android:inputType="numberDecimal"
             android:padding="5dp"
             android:background="@drawable/border"/>
@@ -64,7 +64,7 @@
             android:layout_gravity="center"
             android:ems="10"
             android:gravity="center"
-            android:hint="Reason ?"
+            android:hint="Description"
             android:inputType="text"
             android:padding="5dp"
             android:layout_margin="10dp"
@@ -74,10 +74,10 @@
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="20dp">
-
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border">
             <TextView
-                android:id="@+id/tvTakenDate"
+                android:id="@+id/tvLendDate"
                 android:layout_width="270dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
@@ -87,20 +87,18 @@
                 android:inputType="date"
                 android:padding="5dp"
                 android:textSize="18sp"
-                android:background="@drawable/border"
-                android:layout_marginRight="5dp"
                 android:textColor="@color/colorTexts"/>
-            <Button
+            <TextView
                 android:layout_width="75dp"
                 android:layout_height="45dp"
-                android:text="Pick Date"
+                android:text="Date"
                 android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="18sp"
                 android:textColor="@color/colorTexts"
-                android:background="@drawable/button_background"
-                android:id="@+id/btnTakenDate"/>
+                android:id="@+id/tvHintLendDate"/>
 
         </LinearLayout>
-
 
         <Button
             android:id="@+id/btnTakenSubmit"
@@ -108,7 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="5dp"
-            android:text="Submit"
+            android:text="Save"
             android:textColor="@color/colorTexts"
             android:background="@drawable/button_background"
             android:layout_marginTop="25dp"/>

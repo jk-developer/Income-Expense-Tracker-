@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="4dp"
+        android:layout_margin="3dp"
         android:orientation="vertical"
         android:padding="5dp"
         android:background="@drawable/adaptergradient">
@@ -40,25 +40,21 @@
                 android:id="@+id/tvIncomeReportId"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="3"
                 tools:text="ID"
                 android:textColor="#000"
                 android:textSize="18sp"
                 android:layout_gravity="center"
-                android:gravity="start"/>
+                android:gravity="start"
+                android:padding="3dp"/>
 
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_weight=".9"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-              />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="0dp"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatTextView
@@ -82,14 +78,15 @@
                 android:textColor="#000"
                 android:textSize="18sp"
                 android:layout_gravity="center"
-                android:gravity="start"/>
+                android:gravity="start"
+                android:padding="3dp"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="0dp"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatTextView
@@ -109,9 +106,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                tools:text="INCOME AMOUNT"
-                android:textColor="#000"
-                android:textSize="18sp"
+                tools:text="0.0"
+                android:textColor="#0f9b0f"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:padding="3dp"
                 android:layout_gravity="center"
                 android:gravity="start"
                 />
@@ -120,7 +119,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="0dp"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatTextView
@@ -144,7 +143,8 @@
                 android:textColor="#000"
                 android:textSize="18sp"
                 android:layout_gravity="center"
-                android:gravity="start"/>
+                android:gravity="start"
+                android:padding="3dp"/>
 
 
         </LinearLayout>
@@ -152,7 +152,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="0dp"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatTextView

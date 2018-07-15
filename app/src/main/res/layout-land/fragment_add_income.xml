@@ -19,8 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_marginTop="35dp"
-            android:layout_marginBottom="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
             android:gravity="center"
             android:padding="5dp"
             android:text="Add Your Income here"
@@ -30,43 +30,68 @@
 
 
         <EditText
-
-            android:id="@+id/etIncomeType"
-            android:layout_width="300dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:layout_marginBottom="19dp"
-            android:layout_marginEnd="56dp"
-            android:layout_marginStart="56dp"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Your source of Income"
-            android:inputType="textPersonName"
-            android:padding="5dp"
-            android:background="@drawable/border"/>
-
-        <EditText
             android:id="@+id/etIncomeAmount"
             android:layout_width="300dp"
-            android:layout_height="45dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_margin="20dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Your Amount(Rs)"
-            android:inputType="number"
+            android:hint="Amount(Rs) "
+            android:inputType="numberDecimal"
             android:padding="5dp"
             android:background="@drawable/border"/>
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border">
+
+            <TextView
+                android:id="@+id/tvIncomeInput"
+                android:layout_width="180dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:gravity="center"
+                android:text="Regular Salary"
+                android:inputType="textPersonName"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:textColor="@color/colorTexts"
+
+                />
+
+            <TextView
+                android:id="@+id/tvIncomeType"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:ems="10"
+                android:gravity="center"
+                android:text="Category"
+                android:inputType="textPersonName"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:textColor="@color/colorTexts"
+                />
+
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border">
             <TextView
-                android:id="@+id/etIncomeDate"
-                android:layout_width="220dp"
+                android:id="@+id/tvIncomeDate"
+                android:layout_width="195dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:ems="10"
@@ -75,27 +100,27 @@
                 android:inputType="date"
                 android:padding="5dp"
                 android:textSize="18sp"
-                android:background="@drawable/border"
-                android:layout_marginRight="5dp"
                 android:textColor="@color/colorTexts"/>
-            <Button
-                android:layout_width="75dp"
+            <TextView
+                android:layout_width="100dp"
                 android:layout_height="45dp"
-                android:text="Pick Date"
+                android:text="Date"
                 android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="18sp"
                 android:textColor="@color/colorTexts"
-                android:background="@drawable/button_background"
-                android:id="@+id/btnIncomeDate"/>
+                android:id="@+id/tvHintIncomeDate"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:background="@drawable/border">
             <TextView
-                android:id="@+id/etIncomeTime"
-                android:layout_width="220dp"
+                android:id="@+id/tvIncomeTime"
+                android:layout_width="195dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:ems="10"
@@ -104,16 +129,18 @@
                 android:inputType="date"
                 android:padding="5dp"
                 android:textSize="18sp"
-                android:background="@drawable/border"
-                android:layout_marginRight="5dp"/>
-            <Button
-                android:layout_width="75dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/colorTexts"/>
+            <TextView
+                android:layout_width="100dp"
                 android:layout_height="45dp"
-                android:text="Pick Time"
+                android:text="Time"
                 android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="18sp"
                 android:textColor="@color/colorTexts"
-                android:background="@drawable/button_background"
-                android:id="@+id/btnIncomeTime"/>
+                android:id="@+id/tvIncomeHintTime"/>
+
 
         </LinearLayout>
         <Button
@@ -122,57 +149,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="5dp"
-            android:text="Submit"
+            android:text="Save"
             android:textColor="@color/colorTexts"
             android:background="@drawable/button_background"
-            android:layout_marginTop="25dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp">
-
-            <Button
-                android:id="@+id/btnIncomeViewAll"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:padding="5dp"
-                android:text="Get All Income "
-                android:textColor="@color/colorTexts"
-                android:background="@drawable/button_background"
-                android:layout_marginTop="25dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
-
-            <Button
-                android:id="@+id/btnIncomeUpdate"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:padding="5dp"
-                android:text="update any income "
-                android:textColor="@color/colorTexts"
-                android:background="@drawable/button_background"
-                android:layout_marginTop="25dp"
-                android:layout_marginRight="10dp"/>
-
-            <Button
-                android:id="@+id/btnIncomeDelete"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:padding="5dp"
-                android:text="Delete any Income"
-                android:textColor="@color/colorTexts"
-                android:background="@drawable/button_background"
-                android:layout_marginTop="25dp"
-                android:layout_marginRight="10dp" />
-
-        </LinearLayout>
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"/>
 
 
     </LinearLayout>

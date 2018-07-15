@@ -1,5 +1,8 @@
 package com.example.jitendrakumar.incometracker.activities;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,12 +10,16 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
 import com.example.jitendrakumar.incometracker.adapters.MyIncomeAdapter;
 import com.example.jitendrakumar.incometracker.database.IncomeDatabaseHelper;
+import com.example.jitendrakumar.incometracker.fragments.AddIncomeFragment;
+import com.example.jitendrakumar.incometracker.fragments.LoginFragment;
 import com.example.jitendrakumar.incometracker.models.IncomeData;
 
 import java.util.ArrayList;
@@ -23,17 +30,21 @@ public class IncomeReportActivity extends AppCompatActivity {
     ArrayList<IncomeData> arrayList = new ArrayList<>( );
     IncomeData incomeData;
     MyIncomeAdapter myIncomeAdapter;
-    CheckBox checkBox;
     public static final String TAG = "date";
-    private double totalIncome = 0.00 ;
+    private float totalIncome = (float) 0.00;
+    ImageView ivAddMore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_income_report );
+
+        getSupportActionBar().setTitle( "Income List" );
+        getSupportActionBar().setDisplayHomeAsUpEnabled( true );
+
         MyincomeDB = new IncomeDatabaseHelper( IncomeReportActivity.this );
         rvIncomeReport = (RecyclerView) findViewById( R.id.rvIncomeReport );
-        checkBox = (CheckBox) findViewById( R.id.checkBox );
+        ivAddMore = (ImageView) findViewById( R.id.ivAddMore );
 
         ArrayList<IncomeData> myincomelist = new ArrayList<>();
         myincomelist = getArrayList();
@@ -45,6 +56,13 @@ public class IncomeReportActivity extends AppCompatActivity {
         rvIncomeReport.setItemAnimator( new DefaultItemAnimator() );
         rvIncomeReport.setHasFixedSize( true );
         rvIncomeReport.setAdapter( myIncomeAdapter );
+
+        ivAddMore.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                }
+        } );
 
     }
 
@@ -60,7 +78,7 @@ public class IncomeReportActivity extends AppCompatActivity {
             while (res.moveToNext()){
                 int incId = res.getInt( 0 );
                 String incType =  res.getString( 1 );
-                Double incAmount =  res.getDouble( 2 );
+                float incAmount =  res.getFloat( 2 );
                 int incYear = res.getInt( 3 );
                 int incMonth = res.getInt( 4 );
                 int incDay = res.getInt( 5 );
