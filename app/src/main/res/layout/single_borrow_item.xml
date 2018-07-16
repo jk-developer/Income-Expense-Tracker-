@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    card_view:cardCornerRadius="5dp"
+    tools:context=".activities.BorrowActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="3dp"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:background="@drawable/adaptergradient">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Borrow Id   "
+                android:textColor="#000"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:layout_marginRight="5dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvBorrowDataId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                tools:text="ID"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:padding="3dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Person Name "
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:layout_marginRight="5dp"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvBorrowDataPersonName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                tools:text="Person Name"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:padding="3dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Amount   "
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:layout_marginRight="5dp"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvBorrowDataAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                tools:text="0.0"
+                android:textColor="#0f9b0f"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:padding="3dp"
+                android:layout_gravity="center"
+                android:gravity="start"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Description "
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:layout_marginRight="5dp"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvBorrowDataDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                tools:text="Description"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:padding="3dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Date  "
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:layout_marginRight="5dp"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvBorrowDataDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                tools:text="date"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:gravity="start"/>
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

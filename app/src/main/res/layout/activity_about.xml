@@ -40,21 +40,22 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="40dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="2dp"
                 android:layout_marginRight="5dp"
                 android:padding="2dp">
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2.5"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp">
+                    android:layout_weight="2">
 
                     <ImageView
-                        android:layout_width="125dp"
-                        android:layout_height="125dp"
-                        android:layout_marginLeft="40dp"
-                        android:src="@drawable/jitendra3" />
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_marginLeft="5dp"
+                        android:src="@drawable/jitendra3"
+                        android:layout_gravity="center"/>
 
 
                 </LinearLayout>
@@ -62,11 +63,9 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
+                    android:layout_weight="4"
                     android:orientation="vertical"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    android:layout_marginLeft="-30dp">
+                    android:layout_marginLeft="2dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -75,12 +74,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Jitendra Kumar"
-                            android:textSize="33sp"
+                            android:textSize="30sp"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="25dp"
-                            android:padding="1dp"
+                            android:layout_marginLeft="15dp"
+                            android:padding="2dp"
                             android:layout_marginBottom="1dp"
-                            android:gravity="start"
                             android:textColor="#000000"/>
 
 
@@ -89,45 +87,45 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="App Developer | App Designer "
-                        android:gravity="start"
-                        android:textSize="20sp"
+                        android:gravity="center"
+                        android:textSize="16sp"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
                         android:padding="1dp"
                         android:layout_marginBottom="1dp"
+                        android:layout_marginLeft="5dp"
                         android:textColor="#000000"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="C.O.E. | 3rd Year | DTU"
-                        android:textSize="20sp"
+                        android:textSize="17sp"
                         android:layout_gravity="center"
+                        android:gravity="center"
                         android:padding="1dp"
                         android:layout_marginBottom="3dp"
-                        android:layout_marginLeft="20dp"
                         android:textColor="#000000"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginLeft="40dp"
+                        android:layout_marginLeft="30dp"
                         android:padding="2dp"
                         android:layout_marginBottom="3dp">
 
                         <ImageView
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:src="@drawable/fb"
                             android:layout_marginRight="70dp"
+                            android:layout_marginLeft="15dp"
                             android:id="@+id/ivFacebook"
-                            android:layout_gravity="center" />
-
+                            android:layout_gravity="center"/>
 
                         <ImageView
-                            android:layout_width="41dp"
-                            android:layout_height="41dp"
+                            android:layout_width="37dp"
+                            android:layout_height="37dp"
                             android:src="@drawable/gmail"
                             android:layout_marginRight="30dp"
                             android:id="@+id/ivMail"
@@ -146,8 +144,8 @@
             android:orientation="horizontal"
             android:layout_gravity="center"
             android:padding="2dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginTop="180dp"
+            >
 
             <TextView
                 android:layout_width="0dp"
@@ -165,7 +163,7 @@
                 android:layout_weight=".8"
                 android:src="@drawable/heart"
                 android:layout_gravity="center"
-                android:layout_marginRight="2dp" />
+                android:layout_marginRight="2dp"/>
 
             <TextView
                 android:layout_width="0dp"

@@ -23,7 +23,7 @@ public class LendDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME5 + " (TAKEN_ID INTEGER PRIMARY KEY AUTOINCREMENT,PERSON_NAME TEXT NOT NULL,TAKEN_AMOUNT FLOAT NOT NULL, TAKEN_REASON TEXT NOT NULL, TAKEN_DATE TEXT NOT NULL)");
+        db.execSQL("create table " + TABLE_NAME5 + " (TAKEN_ID INTEGER PRIMARY KEY AUTOINCREMENT, PERSON_NAME TEXT NOT NULL, TAKEN_AMOUNT FLOAT NOT NULL, TAKEN_REASON TEXT NOT NULL, TAKEN_DATE TEXT NOT NULL)");
     }
 
     @Override
@@ -69,23 +69,23 @@ public class LendDatabaseHelper extends SQLiteOpenHelper {
 
     // Function updateData() to update/change the existing data in database
 
-    public boolean updateIncomeData(String income_id, String income_type, String amount, String date, String time){
+    public boolean updateLendData(String lend_id, String person,  float amount, String desc, String date){
         SQLiteDatabase db  = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put( COL_1, income_id );
-        contentValues.put( COL_2, income_type );
+        contentValues.put( COL_1, lend_id );
+        contentValues.put( COL_2, person );
         contentValues.put( COL_3, amount );
-        contentValues.put( COL_4,  date );
-        contentValues.put( COL_5, time );
-        db.update( TABLE_NAME5, contentValues, "INCOME_ID = ?", new String[] {income_id});
+        contentValues.put( COL_4,  desc);
+        contentValues.put( COL_5, date );
+        db.update( TABLE_NAME5, contentValues, "TAKEN_ID = ?", new String[] {lend_id});
         return true;
     }
 
     // Function deleteData() to delete any data/record from the database
 
-    public Integer deleteIncomeData(String income_id){
+    public Integer deleteLendData(String lend_id){
         SQLiteDatabase db  = this.getWritableDatabase();
-        return db.delete( TABLE_NAME5, "iNCOME_ID = ?",new String[] {income_id}  );
+        return db.delete( TABLE_NAME5, "TAKEN_ID = ?",new String[] {lend_id}  );
 
     }
 

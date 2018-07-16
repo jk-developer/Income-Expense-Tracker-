@@ -2,6 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:id="@+id/action_signup"
+        android:orderInCategory="100"
+        android:title="Sign up"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_about_app"
+        android:orderInCategory="100"
+        android:title="About App"
+        app:showAsAction="never"/>
+
     <item
         android:id="@+id/action_supportus"
         android:orderInCategory="100"

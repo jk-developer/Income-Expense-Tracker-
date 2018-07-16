@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class ExpenseReportActivity extends AppCompatActivity {
 
-    RecyclerView rvIncomeReport;
+    RecyclerView rvExpenseReport;
     ExpenseDatabaseHelper MyexpenseDB;
     ArrayList<ExpenseData> arrayList = new ArrayList<>( );
     ExpenseData expenseData;
@@ -35,17 +35,17 @@ public class ExpenseReportActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled( true );
 
         MyexpenseDB  = new ExpenseDatabaseHelper( ExpenseReportActivity.this );
-        rvIncomeReport = (RecyclerView) findViewById( R.id.rvIncomeReport );
+        rvExpenseReport = (RecyclerView) findViewById( R.id.rvExpenseReport );
 
         ArrayList<ExpenseData> myexpenselist = new ArrayList<>( );
         myexpenselist = getArrayList();
 
         myExpenseAdapter = new MyExpenseAdapter(myexpenselist, getApplicationContext());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        rvIncomeReport.setLayoutManager(mLayoutManager);
-        rvIncomeReport.setItemAnimator(new DefaultItemAnimator());
-        rvIncomeReport.setHasFixedSize(true);
-        rvIncomeReport.setAdapter(myExpenseAdapter);
+        rvExpenseReport.setLayoutManager(mLayoutManager);
+        rvExpenseReport.setItemAnimator(new DefaultItemAnimator());
+        rvExpenseReport.setHasFixedSize(true);
+        rvExpenseReport.setAdapter(myExpenseAdapter);
 
     }
 

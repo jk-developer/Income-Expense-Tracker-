@@ -9,9 +9,6 @@
             android:icon="@drawable/home"
             android:title="Home" />
 
-        <item android:id="@+id/nav_signup"
-            android:icon="@drawable/login_user"
-            android:title="Sign up"/>
 
         <item
             android:id="@+id/nav_login"
@@ -50,14 +47,19 @@
             android:title="Add Lend " />
 
         <item
-            android:id="@+id/nav_about_app"
-            android:icon="@drawable/about_app"
-            android:title="About App"/>
+            android:id="@+id/nav_borrow_report"
+            android:icon="@drawable/my_report"
+            android:title="Borrow Report " />
+
+        <item
+            android:id="@+id/nav_lend_report"
+            android:icon="@drawable/my_report"
+            android:title="Lend Report " />
 
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/about"
-            android:title="About Developers" />
+            android:title="About Developer" />
 
     </group>
 

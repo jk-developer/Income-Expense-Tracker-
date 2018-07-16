@@ -70,23 +70,23 @@ public class BorrowDatabaseHelper extends SQLiteOpenHelper {
 
     // Function updateData() to update/change the existing data in database
 
-    public boolean updateIncomeData(String income_id, String income_type, String amount, String date, String time){
+    public boolean updateBorrowData(String borrow_id, String person, float amount, String desc, String date){
         SQLiteDatabase db  = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put( COL_1, income_id );
-        contentValues.put( COL_2, income_type );
+        contentValues.put( COL_1, borrow_id );
+        contentValues.put( COL_2, person );
         contentValues.put( COL_3, amount );
-        contentValues.put( COL_4,  date );
-        contentValues.put( COL_5, time );
-        db.update( TABLE_NAME4, contentValues, "INCOME_ID = ?", new String[] {income_id});
+        contentValues.put( COL_4, desc );
+        contentValues.put( COL_5,  date );
+        db.update( TABLE_NAME4, contentValues, "PAYING_ID = ?", new String[] {borrow_id});
         return true;
     }
 
     // Function deleteData() to delete any data/record from the database
 
-    public Integer deleteIncomeData(String income_id){
+    public Integer deleteBorrowData(String borrow_id){
         SQLiteDatabase db  = this.getWritableDatabase();
-        return db.delete( TABLE_NAME4, "iNCOME_ID = ?",new String[] {income_id}  );
+        return db.delete( TABLE_NAME4, "PAYING_ID = ?",new String[] {borrow_id}  );
 
     }
 
