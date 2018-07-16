@@ -98,6 +98,11 @@ public class LendDatabaseHelper extends SQLiteOpenHelper {
         }
         return (float) 0.0;
     }
-
+  /*
+    public Cursor getMonthData(int months, int monthf){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor r = db.rawQuery( "SELECT * FROM "+ TABLE_NAME5+ " WHERE " )
+    }
+*/
 
 }

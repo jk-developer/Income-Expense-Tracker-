@@ -210,9 +210,10 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 if(ses.getUserName()!=null)
                 {
-                    Toast.makeText( getContext(), "borrowReport Layout clicked ", Toast.LENGTH_SHORT ).show();
-                    Intent i = new Intent( getActivity(), BorrowActivity.class );
-                    startActivity( i );
+                    FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
+                    fragmentTransaction.replace( R.id.fragment_container, new BorrowReportFragment());
+                    fragmentTransaction.addToBackStack( null );
+                    fragmentTransaction.commit();
                 }else{
                     Toast.makeText( getActivity(), "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
                 }
@@ -225,9 +226,11 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 if(ses.getUserName()!=null)
                 {
-                    Toast.makeText( getContext(), "lendReport Layout clicked ", Toast.LENGTH_SHORT ).show();
-                    Intent in = new Intent( getActivity(), LendActivity.class );
-                    startActivity( in );
+                    FragmentTransaction fragmentTransaction  = getFragmentManager().beginTransaction();
+                    fragmentTransaction.replace( R.id.fragment_container, new LendReportFragment());
+                    fragmentTransaction.addToBackStack( null );
+                    fragmentTransaction.commit();
+
                 }else{
                     Toast.makeText( getActivity(), "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
                 }
@@ -243,7 +246,8 @@ public class HomeFragment extends Fragment {
                     fragmentTransaction.replace( R.id.fragment_container, new BorrowFragment() );
                     fragmentTransaction.addToBackStack( null );
                     fragmentTransaction.commit();
-                }else{
+                }
+                else{
                     Toast.makeText( getActivity(), "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
                 }
 
@@ -258,7 +262,8 @@ public class HomeFragment extends Fragment {
                     fragmentTransaction.replace( R.id.fragment_container, new LendFragment() );
                     fragmentTransaction.addToBackStack( null );
                     fragmentTransaction.commit();
-                }else{
+                }
+                else{
                     Toast.makeText( getActivity(), "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
                 }
 

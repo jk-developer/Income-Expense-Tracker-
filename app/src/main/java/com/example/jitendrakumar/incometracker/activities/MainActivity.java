@@ -19,8 +19,10 @@ import android.widget.Toast;
 import com.example.jitendrakumar.incometracker.R;
 import com.example.jitendrakumar.incometracker.database.ExpenseDatabaseHelper;
 import com.example.jitendrakumar.incometracker.fragments.AddExpenseFragment;
+import com.example.jitendrakumar.incometracker.fragments.BorrowReportFragment;
 import com.example.jitendrakumar.incometracker.fragments.HomeFragment;
 import com.example.jitendrakumar.incometracker.fragments.AddIncomeFragment;
+import com.example.jitendrakumar.incometracker.fragments.LendReportFragment;
 import com.example.jitendrakumar.incometracker.fragments.LoginFragment;
 import com.example.jitendrakumar.incometracker.fragments.IncomeReportFragment;
 import com.example.jitendrakumar.incometracker.fragments.BorrowFragment;
@@ -400,8 +402,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.nav_borrow_report:
                 if(username!=null){
-                    Intent i = new Intent(MainActivity.this, BorrowActivity.class);
-                    startActivity( i );
+                    getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
+                            new BorrowReportFragment())
+                            .addToBackStack( null )
+                            .commit();
+                    toolbar.setTitle( "Borrow Report " );
                     break;
                 }else
                 {
@@ -411,8 +416,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.nav_lend_report:
                 if(username!=null){
-                    Intent intent = new Intent(MainActivity.this, LendActivity.class);
-                    startActivity( intent );
+                    getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
+                            new LendReportFragment())
+                            .addToBackStack( null )
+                            .commit();
+                    toolbar.setTitle( "Lend Report " );
                     break;
                 }else
                 {
