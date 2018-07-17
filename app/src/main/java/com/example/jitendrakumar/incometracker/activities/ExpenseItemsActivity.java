@@ -94,10 +94,12 @@ public class ExpenseItemsActivity extends AppCompatActivity implements DatePicke
                 item_builder.setPositiveButton( "DELETE RECORD", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText( ExpenseItemsActivity.this, "this before"+id , Toast.LENGTH_SHORT).show();
                         expenseDb.deleteExpenseData( String.valueOf( id ) );
-                        Intent i = new Intent( ExpenseItemsActivity.this, IncomeReportActivity.class );
+                        Toast.makeText( ExpenseItemsActivity.this, "this eafter"+id , Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent( ExpenseItemsActivity.this, ExpenseReportActivity.class );
                         startActivity( i );
-                        //  Toast.makeText( IncomeItemsActivity.this, "this income is deleted"+id , Toast.LENGTH_SHORT).show();
+                         Toast.makeText( ExpenseItemsActivity.this, "this expense is deleted"+id , Toast.LENGTH_SHORT).show();
                     }
                 } );
                 item_builder.setNegativeButton( "CANCEL", new DialogInterface.OnClickListener() {
@@ -145,7 +147,7 @@ public class ExpenseItemsActivity extends AppCompatActivity implements DatePicke
 
 
                         if(expenseDb.updateExpenseData( String.valueOf( id ), tvCategory.getText().toString() ,Float.parseFloat(etValue.getText().toString()) ,year, month, day, hour, minute)) {
-                            Intent i = new Intent( ExpenseItemsActivity.this, IncomeReportActivity.class );
+                            Intent i = new Intent( ExpenseItemsActivity.this, ExpenseReportActivity.class );
                             startActivity( i );
                             Toast.makeText( ExpenseItemsActivity.this, "this expense is updated" + id, Toast.LENGTH_SHORT ).show();
                         }

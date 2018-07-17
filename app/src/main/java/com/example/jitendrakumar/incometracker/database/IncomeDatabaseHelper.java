@@ -5,11 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.text.Editable;
 import android.util.Log;
-import android.widget.Toast;
-
-import java.util.Date;
 
 public class IncomeDatabaseHelper extends SQLiteOpenHelper {
     public final static String TAG = "db";
@@ -46,7 +42,7 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
     }
     // Function insertData() to insert the data in the table/Database
 
-    public boolean insertIncomeData(String income_type, float amount,int year, int month, int day, int hour, int minute){
+    public boolean insertIncomeData(String income_type, float amount, int year, int month, int day, int hour, int minute){
         SQLiteDatabase db  = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put( COL_2, income_type );
@@ -104,7 +100,7 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
 
     public Integer deleteIncomeData(String income_id){
         SQLiteDatabase db  = this.getWritableDatabase();
-        return db.delete( TABLE_NAME3, "iNCOME_ID = ?",new String[] {income_id}  );
+        return db.delete( TABLE_NAME3, "INCOME_ID = ?",new String[] {income_id}  );
 
     }
 
@@ -118,14 +114,21 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
         return (float) 0.0;
     }
 
-    public float getMonthlyIncome(int i)
+    public Cursor getMonthlyIncome()
     {
         SQLiteDatabase DB = this.getWritableDatabase();
-            Cursor curs = DB.rawQuery( "SELECT SUM(AMOUNT) FROM "+TABLE_NAME3+" WHERE DATE_MONTH ="+i, null );
-            if(curs.moveToFirst()){
-                return curs.getFloat( 0 );
-            }
-            return (float) 0.0;
+            Cursor curs = DB.rawQuery( "SELECT DATE_DAY, SUM(AMOUNT) FROM "+TABLE_NAME3+" GROUP BY(DATE_DAY)", null );
+        Log.d( TAG, "getMonthlyIncome: "+curs.getCount() );
+           return curs;
+
+    }
+
+    public Cursor getDaywiseIncome()
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor curs = DB.rawQuery( "SELECT DATE_MONTH, SUM(AMOUNT) FROM "+TABLE_NAME3+" GROUP BY(DATE_MONTH)", null );
+        Log.d( TAG, "getDaywiseIncome: "+curs.getCount() );
+        return curs;
 
     }
 
@@ -141,6 +144,24 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
         Cursor c = db.rawQuery( "SELECT * FROM "+TABLE_NAME3+ " WHERE INCOME_TYPE = " + cat, null );
         Log.d( TAG, "SELECT * FROM "+TABLE_NAME3+ " WHERE "+COL_2 + "= " + cat );
         return c;
+    }
+
+    public Cursor getRecordbwMonths(int m1, int m2){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor r = db.rawQuery( "SELECT * FROM "+TABLE_NAME3+ " WHERE DATE_DAY BETWEEN "+m1 + " AND "+ m2+ " ORDER BY DATE_DAY", null );
+        return r;
+    }
+
+    public Cursor getRecordbwDays(int m1, int m2, int d1, int d2){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor r = db.rawQuery( "SELECT * FROM "+TABLE_NAME3+ " WHERE (DATE_DAY BETWEEN "+m1 + " AND "+ m2+ ") AND (DATE_MONTH BETWEEN "+d1 + " AND "+ d2+ ") ORDER BY DATE_DAY, DATE_MONTH", null );
+        return r;
+    }
+
+    public Cursor getRecordbwyears(int y1, int y2, int m1, int m2, int d1, int d2){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor record = db.rawQuery( "SELECT * FROM "+TABLE_NAME3+ " WHERE (DATE_YEAR BETWEEN "+y1 + " AND "+ y2 + ") AND (DATE_DAY BETWEEN "+m1 + " AND "+ m2+ ") AND (DATE_MONTH BETWEEN "+d1 + " AND "+ d2+ ") ORDER BY DATE_YEAR, DATE_DAY, DATE_MONTH", null );
+        return record;
     }
 
 }

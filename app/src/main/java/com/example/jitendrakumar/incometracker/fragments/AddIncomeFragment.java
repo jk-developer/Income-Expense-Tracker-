@@ -163,8 +163,8 @@ public class AddIncomeFragment extends Fragment{
                         String[]dateParts = incomeDate.toString().split("/");
                         try {
                             year = safeParseInt(dateParts[2]);
-                            month = safeParseInt(dateParts[0]);
-                            day = safeParseInt(dateParts[1]);
+                            month = safeParseInt(dateParts[1]);
+                            day = safeParseInt(dateParts[0]);
                         } catch (Exception e) {
                             Toast.makeText( getActivity(), "Error in parsing Date", Toast.LENGTH_SHORT ).show();
                         }
@@ -178,10 +178,6 @@ public class AddIncomeFragment extends Fragment{
                             Toast.makeText( getActivity(), "Error in parsing Time", Toast.LENGTH_SHORT ).show();
                         }
 
-                  /*      if(incomeT.length() == 0)
-                        {
-                            tvIncomeInput.setError( "Income Type is required!!!" );
-                        }   */
                         if(incomeAmount.length() == 0)
                         {
                             etIncomeAmount.setError( "Income Amount is required!!!" );

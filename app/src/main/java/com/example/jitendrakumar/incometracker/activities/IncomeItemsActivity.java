@@ -65,6 +65,7 @@ public class IncomeItemsActivity extends AppCompatActivity implements DatePicker
         int incmonth = c.get( Calendar.MONTH);
         int incday = c.get( Calendar.DAY_OF_MONTH );
 
+
         final DatePickerDialog datePickerDialog = new DatePickerDialog(this, IncomeItemsActivity.this, incyear, incmonth, incday);
 
         Calendar cTime = Calendar.getInstance();
@@ -89,6 +90,7 @@ public class IncomeItemsActivity extends AppCompatActivity implements DatePicker
         etValue.setText(String.valueOf(amt));
         tvTime.setText( time );
         tvCategory.setText( type );
+       // etValue.setSelection(String.valueOf( amt ).toString().length());
 
         tvDate.setHintTextColor( getResources().getColor(R.color.colorPrimaryDark) );
         tvCategory.setHintTextColor( getResources().getColor(R.color.colorPrimaryDark) );
@@ -143,8 +145,8 @@ public class IncomeItemsActivity extends AppCompatActivity implements DatePicker
                         String[]dateParts = newDate.split("/");
                         try {
                             year = safeParseInt(dateParts[2]);
-                            month = safeParseInt(dateParts[0]);
-                            day = safeParseInt(dateParts[1]);
+                            month = safeParseInt(dateParts[1]);
+                            day = safeParseInt(dateParts[0]);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

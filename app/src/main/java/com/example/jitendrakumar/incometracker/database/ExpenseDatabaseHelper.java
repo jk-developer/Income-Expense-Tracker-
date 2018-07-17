@@ -14,7 +14,7 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "Expense.db";
     public static final String TABLE_NAME2 = "expense_table";
 
-    private static final Integer VERSION = 3;
+    private static final Integer VERSION = 4;
     public static final String COL_1 = "ID";
     public static final String COL_2 = "EXPENSE_TYPE";
     public static final String COL_3 = "AMOUNT";
@@ -26,7 +26,7 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
 
 
     public ExpenseDatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, VERSION);
 
 
     }
@@ -75,7 +75,7 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
     public Cursor getAllExpenseData(){
         SQLiteDatabase db  = this.getWritableDatabase();
         Cursor res  = db.rawQuery( "select * from "+TABLE_NAME2 ,null);
-       // Log.d( "db", "getAllExpenseData: "+ res.getCount() );
+ //       Log.d( "db", "getAllExpenseData: "+ res.getInt( 6 ));
         return res;
     }
 
@@ -99,8 +99,7 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put( COL_7, hour );
         contentValues.put( COL_8, minute );
 
-
-        db.update( TABLE_NAME2, contentValues, "EXPENSE_ID = ?", new String[] {expense_id});
+        db.update( TABLE_NAME2, contentValues, "ID = ?", new String[] {expense_id});
         return true;
     }
 
@@ -108,7 +107,7 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
 
     public Integer deleteExpenseData(String expense_id){
         SQLiteDatabase db  = this.getWritableDatabase();
-        return db.delete( TABLE_NAME2, "EXPENSE_ID = ?",new String[] {expense_id}  );
+        return db.delete( TABLE_NAME2, "ID = ?",new String[] {expense_id}  );
 
     }
 
@@ -126,6 +125,16 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
         }
         return (float) 0.0;
     }
+
+    public Cursor getMonthlyExpense()
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor curs = DB.rawQuery( "SELECT EXPENSE_MONTH, SUM(AMOUNT) FROM "+TABLE_NAME2+" GROUP BY(EXPENSE_MONTH)", null );
+        Log.d( "EXPENSE", "getMonthlyIncome: "+curs.getCount() );
+        return curs;
+
+    }
+
 
   /*  public float getMonthlyExpense(int i)
     {

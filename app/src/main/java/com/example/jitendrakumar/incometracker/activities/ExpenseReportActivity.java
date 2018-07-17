@@ -58,18 +58,21 @@ public class ExpenseReportActivity extends AppCompatActivity {
         }
         else
         {
+            Log.d( "count", "getArrayList: "+res.getCount()+" " );
             while (res.moveToNext()){
+                Log.d( "count", "getArrayList: "+res.getInt( 0 )+"-> "+ res.getInt( 6 ) );
                 int expId = res.getInt( 0 );
                 String expType =  res.getString( 1 );
                 float incAmount =  res.getFloat( 2 );
                 int incYear = res.getInt( 3 );
                 int incMonth = res.getInt( 4 );
                 int incDay = res.getInt( 5 );
+                Log.d( "count", "getArrayList: "+res.getFloat( 2 )+"-> "+ res.getInt( 5 ) );
                 int incHour = res.getInt( 6 );
                 int incMinute = res.getInt( 7 );
              //   Log.d( TAG, "getArrayList: details"+incId + incType+ incAmount+incYear+incMonth+incDay+incHour+incMinute);
                 String Date = Integer.toString( incDay )+"/"+Integer.toString( incMonth )+"/"+Integer.toString( incYear );
-              //  Log.d( TAG, "getArrayList: date "+Date );
+               Log.d( "date", "getArrayList: date "+Date );
                 String Time = Integer.toString( incHour )+":"+Integer.toString( incMinute );
              //   Log.d( TAG, "getArrayList: time"+Time );
                 expenseData = new ExpenseData(expId, expType, incAmount, Date, Time);

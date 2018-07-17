@@ -12,11 +12,12 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
-//import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.highlight.Highlight;
+// import com.github.mikephil.charting.data.PieEntry;
+// import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class IncomePiechartActivity extends AppCompatActivity {
     PieChart idIncomePiechart;
@@ -31,20 +32,20 @@ public class IncomePiechartActivity extends AppCompatActivity {
         Log.d( TAG, "onCreate: starting to create chart" );
 
         idIncomePiechart = (PieChart) findViewById( R.id.idIncomePiechart );
-
-        //  idIncomePiechart.setDescription("Sales by employee (In Thousands $) ");
+/*
+       // idIncomePiechart.setDescription("Sales by employee (In Thousands $) ");
         idIncomePiechart.setRotationEnabled( true );
-        //pieChart.setUsePercentValues(true);
-        //pieChart.setHoleColor(Color.BLUE);
-        //pieChart.setCenterTextColor(Color.BLACK);
+        idIncomePiechart.setUsePercentValues(true);
+        idIncomePiechart.setHoleColor(Color.BLUE);
+        idIncomePiechart.setCenterTextColor(Color.BLACK);
         idIncomePiechart.setHoleRadius( 25f );
         idIncomePiechart.setTransparentCircleAlpha( 0 );
         idIncomePiechart.setCenterText( "Super Cool Chart" );
         idIncomePiechart.setCenterTextSize( 10 );
-        //pieChart.setDrawEntryLabels(true);
-        //pieChart.setEntryLabelTextSize(20);
-        //More options just check out the documentation!
-/*
+        idIncomePiechart.setDrawEntryLabels(true);
+        idIncomePiechart.setEntryLabelTextSize(20);
+
+
         addDataSet();
 
       idIncomePiechart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
@@ -112,12 +113,13 @@ public class IncomePiechartActivity extends AppCompatActivity {
         legend.setPosition(Legend.LegendPosition.LEFT_OF_CHART);
 
         //create pie data object
-        PieData pieData = new PieData(pieDataSet);
+        PieData pieData = new PieData( (List<String>) pieDataSet );
         idIncomePiechart.setData(pieData);
         idIncomePiechart.invalidate();
-
-    }
-}
 */
     }
-}
+
+    }
+
+
+

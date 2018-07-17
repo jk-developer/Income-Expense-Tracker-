@@ -1,8 +1,10 @@
 package com.example.jitendrakumar.incometracker.activities;
 
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
 import com.example.jitendrakumar.incometracker.database.ExpenseDatabaseHelper;
@@ -22,36 +24,45 @@ public class ExpenseBarchartActivity extends AppCompatActivity {
     private float monthlyExpenses[] = new float[12];
     public static final String TAG = "incomes";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_expense_barchart );
         barChart = (BarChart) findViewById(R.id.barChart);
-/*
+
         expenseDB = new ExpenseDatabaseHelper( this );
         for(int i=0;i<12;i++)
             monthlyExpenses[i]= (float) 0.0;
 
-        for(int j=1;j<=12;j++)
+        Cursor res = expenseDB.getMonthlyExpense();
+        if(res.getCount() == 0)
         {
-         //   monthlyExpenses[j-1] =  expenseDB.getMonthlyIncome(j);
-            Log.d( TAG, "onCreate: incomes "+monthlyExpenses[j-1]+"\n" );
+            Toast.makeText( ExpenseBarchartActivity.this, "Nothing Found in Databse!!!", Toast.LENGTH_SHORT ).show();
+
         }
-   */
+        else {
+            int i = 0;
+            while (res.moveToNext()) {
+                int month = res.getInt( 0 );
+                float amount = res.getFloat( 1 );
+                monthlyExpenses[month-1] = amount;
+                Log.d( TAG, "onCreate: month " + month+"amount"+amount );
+
+            }
+        }
         ArrayList<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(12f, 0));
-        entries.add(new BarEntry(5f, 1));
-        entries.add(new BarEntry(6f, 2));
-        entries.add(new BarEntry(19f, 3));
-        entries.add(new BarEntry(8f, 4));
-        entries.add(new BarEntry(5f, 5));
-        entries.add(new BarEntry(12f, 6));
-        entries.add(new BarEntry(19f, 7));
-        entries.add(new BarEntry(9f, 8));
-        entries.add(new BarEntry(19f, 9));
-        entries.add(new BarEntry(5f, 10));
-        entries.add(new BarEntry(15f, 11));
+        entries.add(new BarEntry(monthlyExpenses[0], 0));
+        entries.add(new BarEntry(monthlyExpenses[1], 1));
+        entries.add(new BarEntry(monthlyExpenses[2], 2));
+        entries.add(new BarEntry(monthlyExpenses[3], 3));
+        entries.add(new BarEntry(monthlyExpenses[4], 4));
+        entries.add(new BarEntry(monthlyExpenses[5], 5));
+        entries.add(new BarEntry(monthlyExpenses[6], 6));
+        entries.add(new BarEntry(monthlyExpenses[7], 7));
+        entries.add(new BarEntry(monthlyExpenses[8], 8));
+        entries.add(new BarEntry(monthlyExpenses[9], 9));
+        entries.add(new BarEntry(monthlyExpenses[10], 10));
+        entries.add(new BarEntry(monthlyExpenses[11], 11));
 
         BarDataSet bardataset = new BarDataSet(entries, "Cells");
 
@@ -72,7 +83,7 @@ public class ExpenseBarchartActivity extends AppCompatActivity {
         BarData data = new BarData(labels, bardataset);
         barChart.setData(data); // set the data and list of lables into chart
 
-        barChart.setDescription("Income Report for the year 2018");  // set the description
+        barChart.setDescription("Expense Report for the year 2018");  // set the description
 
         bardataset.setColors( ColorTemplate.COLORFUL_COLORS);
 

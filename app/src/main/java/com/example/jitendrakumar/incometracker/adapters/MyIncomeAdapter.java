@@ -90,8 +90,8 @@ public class MyIncomeAdapter extends RecyclerView.Adapter<MyIncomeAdapter.Benefi
         String[]dateParts = dateStr.split("/");
         try {
             year = safeParseInt(dateParts[2]);
-            month = safeParseInt(dateParts[0]);
-            day = safeParseInt(dateParts[1]);
+            month = safeParseInt(dateParts[1]);
+            day = safeParseInt(dateParts[0]);
         } catch (Exception e) {
             Log.d( TAG, "onBindViewHolder: Error in Date Parsing  " );
         }
@@ -120,21 +120,8 @@ public class MyIncomeAdapter extends RecyclerView.Adapter<MyIncomeAdapter.Benefi
         else {
              Date = day +"/"+month +"/"+year ;
         }
-     /*   String Time ="";
-        String format = timePickerFragment.checkAmPm();
-        if(format.equals( "AM" ) && hour<=9){
-             Time =  "0"+hour+":"+minute +format;
-        }
-        if(format.equals( "AM" ) && hour>9 && hour<=12){
-             Time =  hour+":"+minute +format;
-        }
-        if(format.equals( "PM" ) && hour>12){
-             Time =  "0"+hour+":"+minute +format;
-        }
-        if(format.equals( "AM" ) && hour==0){
-             Time =  "0"+hour+":"+minute +format;
-        }
-*/       String Time = hour+":"+minute;
+
+         String Time = hour+":"+minute;
          holder.tvIncomeReportDate.setText(Date);
          holder.tvIncomeReportTime.setText(Time);
 

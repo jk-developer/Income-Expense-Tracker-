@@ -100,4 +100,10 @@ public class BorrowDatabaseHelper extends SQLiteOpenHelper {
         return (float) 0.0;
     }
 
+    public Cursor getDataNamewise(String pName){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor name = db.rawQuery( "SELECT * FROM "+ TABLE_NAME4+ " WHERE PERSON_NAME = "+ pName, null );
+        return name;
+    }
+
 }

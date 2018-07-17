@@ -20,6 +20,8 @@ import android.widget.Toast;
 import com.example.jitendrakumar.incometracker.R;
 import com.example.jitendrakumar.incometracker.activities.ExpenseBarchartActivity;
 import com.example.jitendrakumar.incometracker.activities.ExpenseReportActivity;
+import com.example.jitendrakumar.incometracker.activities.IncomeReportActivity;
+import com.example.jitendrakumar.incometracker.activities.MainActivity;
 import com.example.jitendrakumar.incometracker.database.ExpenseDatabaseHelper;
 import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.DatePickerFragment;
 import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.TimePickerFragment;
@@ -196,6 +198,8 @@ public class AddExpenseFragment extends Fragment {
                         boolean isInserted = MyexpenseDB.insertExpenseData( expenseType, Float.parseFloat( expenseAmount ),eyear, emonth, eday, ehour,eminute );
                         if (isInserted == true) {
                             Toast.makeText( getActivity(), "Data Saved to Expense DataBase.", Toast.LENGTH_SHORT ).show();
+                            Intent i = new Intent( getActivity(), ExpenseReportActivity.class );
+                            startActivity( i );
 
                         } else {
                             Toast.makeText( getActivity(), "Data is not Saved to Expense DataBase.", Toast.LENGTH_SHORT ).show();

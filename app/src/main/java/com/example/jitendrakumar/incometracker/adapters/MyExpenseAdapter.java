@@ -95,8 +95,8 @@ public class MyExpenseAdapter extends RecyclerView.Adapter<MyExpenseAdapter.MyVi
              Time =  "0"+hour+":"+minute +format;
         }
 */       String Time = exphour+":"+expminute;
-        holder.tvExpenseReportDate.setText(Date);
-        holder.tvExpenseReportTime.setText(Time);
+         holder.tvExpenseReportDate.setText(Date);
+         holder.tvExpenseReportTime.setText(Time);
 
 
     }
@@ -129,6 +129,8 @@ public class MyExpenseAdapter extends RecyclerView.Adapter<MyExpenseAdapter.MyVi
         public void onClick(View v) {
             expenseData= new ExpenseData( listBeneficiary.get( getPosition()).getExpenseId(), listBeneficiary.get( getPosition()).getExpenseType(), listBeneficiary.get( getPosition()).getExpenseAmount(), listBeneficiary.get( getPosition() ).getExpenseDate(), listBeneficiary.get(getPosition()).getExpenseTime());
             Intent i = new Intent( mContext, ExpenseItemsActivity.class );
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
             i.putExtra( "amount",expenseData.getExpenseAmount());
             i.putExtra( "Date", expenseData.getExpenseDate() );
             i.putExtra( "Time", expenseData.getExpenseTime());

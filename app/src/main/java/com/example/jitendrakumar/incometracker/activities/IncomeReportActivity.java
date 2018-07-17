@@ -60,7 +60,7 @@ public class IncomeReportActivity extends AppCompatActivity {
         ivAddMore.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                  Toast.makeText( IncomeReportActivity.this, "ADD More is clicked ", Toast.LENGTH_SHORT ).show();
                 }
         } );
 
@@ -84,12 +84,25 @@ public class IncomeReportActivity extends AppCompatActivity {
                 int incDay = res.getInt( 5 );
                 int incHour = res.getInt( 6 );
                 int incMinute = res.getInt( 7 );
-                Log.d( TAG, "getArrayList: details"+incId + incType+ incAmount+incYear+incMonth+incDay+incHour+incMinute);
-                String Date = Integer.toString( incDay )+"/"+Integer.toString( incMonth )+"/"+Integer.toString( incYear );
-                Log.d( TAG, "getArrayList: date "+Date );
+
+                String Date = "";
+                if(incMonth<=9 && incDay<=9)
+                {
+                    Date = "0"+incDay +"/0"+incMonth +"/"+incYear ;
+                }
+                if(incMonth<=9 && incDay>9){
+                    Date = incDay +"/0"+incMonth +"/"+incYear ;
+                }
+                if(incMonth>9 && incDay<=9){
+                    Date = "0"+incDay +"/"+incMonth +"/"+incYear ;
+                }
+                else {
+                    Date = incDay +"/"+incMonth +"/"+incYear ;
+                }
+              
                 String Time = Integer.toString( incHour )+":"+Integer.toString( incMinute );
                 Log.d( TAG, "getArrayList: time"+Time );
-                incomeData = new IncomeData(incId, incType, incAmount,Date, Time);
+                incomeData = new IncomeData(incId, incType, incAmount, Date, Time);
                 arrayList.add( incomeData);
                 totalIncome = totalIncome +incAmount;
             }
