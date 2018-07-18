@@ -33,6 +33,9 @@ public class IncomeReportActivity extends AppCompatActivity {
     public static final String TAG = "date";
     private float totalIncome = (float) 0.00;
     ImageView ivAddMore;
+   private int HomeIncome, DatewiseIncomeReport, AddIncome;
+   private int yrs, yrf, mths,mthf, dys, dyf;
+  private Cursor res;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +70,30 @@ public class IncomeReportActivity extends AppCompatActivity {
     }
 
     public ArrayList<IncomeData> getArrayList(){
-        Cursor res = MyincomeDB.getAllIncomeData();
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            //The key argument here must match that used in the other activity
+            AddIncome = extras.getInt( "fromAdd" );
+            HomeIncome = extras.getInt( "fromHomeIncome");
+        /*   DatewiseIncomeReport = extras.getInt( "fromDate" );
+
+            yrs = extras.getInt( "ys");
+            yrf = extras.getInt( "yf" );
+            mths = extras.getInt( "ms" );
+            mthf = extras.getInt( "mf");
+            dys = extras.getInt( "ds" );
+            dyf = extras.getInt( "df" );
+            */
+
+        }
+        if(HomeIncome == 2 || AddIncome ==2){
+             res = MyincomeDB.getAllIncomeData();
+        }
+       /* if(DatewiseIncomeReport == 1){
+             res = MyincomeDB.getRecordbwyears( yrs,yrf,mths, mthf, dys, dyf );
+        }
+       */
         if(res.getCount() == 0)
         {
             Toast.makeText( IncomeReportActivity.this, "Nothing Found in Databse!!!", Toast.LENGTH_SHORT ).show();
@@ -99,7 +125,7 @@ public class IncomeReportActivity extends AppCompatActivity {
                 else {
                     Date = incDay +"/"+incMonth +"/"+incYear ;
                 }
-              
+
                 String Time = Integer.toString( incHour )+":"+Integer.toString( incMinute );
                 Log.d( TAG, "getArrayList: time"+Time );
                 incomeData = new IncomeData(incId, incType, incAmount, Date, Time);

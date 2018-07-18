@@ -92,9 +92,9 @@ public class SignupFragment extends Fragment {
         btnSignup.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username = name.getText().toString();
-                String mob =  mobile.getText().toString();
-                String em = email.getText().toString();
+                String username = name.getText().toString().trim();
+                String mob =  mobile.getText().toString().trim();
+                String em = email.getText().toString().trim();
                 String pass = password.getText().toString();
           /*      if(username.length()==0){
                     name.setError( "Username field is required!!!" );

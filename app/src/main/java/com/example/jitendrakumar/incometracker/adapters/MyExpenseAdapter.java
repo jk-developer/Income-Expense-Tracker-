@@ -50,8 +50,8 @@ public class MyExpenseAdapter extends RecyclerView.Adapter<MyExpenseAdapter.MyVi
         String[]dateParts = dateStr.split("/");
         try {
             expyear = safeParseInt(dateParts[2]);
-            expmonth = safeParseInt(dateParts[0]);
-            expday = safeParseInt(dateParts[1]);
+            expmonth = safeParseInt(dateParts[1]);
+            expday = safeParseInt(dateParts[0]);
         } catch (Exception e) {
             Log.d( TAG, "onBindViewHolder: Error in Date Parsing  " );
         }

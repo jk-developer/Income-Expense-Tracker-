@@ -127,26 +127,30 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getMonthlyExpense()
-    {
-        SQLiteDatabase DB = this.getWritableDatabase();
-        Cursor curs = DB.rawQuery( "SELECT EXPENSE_MONTH, SUM(AMOUNT) FROM "+TABLE_NAME2+" GROUP BY(EXPENSE_MONTH)", null );
-        Log.d( "EXPENSE", "getMonthlyIncome: "+curs.getCount() );
-        return curs;
+   {
+                SQLiteDatabase DB = this.getWritableDatabase();
+                Cursor curs = DB.rawQuery( "SELECT EXPENSE_MONTH, SUM(AMOUNT) FROM "+TABLE_NAME2+" GROUP BY(EXPENSE_MONTH)", null );
+                Log.d( "EXPENSE", "getMonthlyIncome: "+curs.getCount() );
+                return curs;
+   }
 
+    public Cursor getRecordbwMonths(int m1, int m2){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor r = db.rawQuery( "SELECT * FROM "+TABLE_NAME2+ " WHERE EXPENSE_MONTH BETWEEN "+m1 + " AND "+ m2+ " ORDER BY EXPENSE_MONTH", null );
+        return r;
     }
 
+    public Cursor getRecordbwDays(int y1, int y2, int m1, int m2){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor r = db.rawQuery( "SELECT * FROM "+TABLE_NAME2+ " WHERE (EXPENSE_YEAR BETWEEN "+y1 + " AND "+ y2+ ") AND (EXPENSE_MONTH BETWEEN "+m1 + " AND "+ m2+ ") ORDER BY EXPENSE_YEAR, EXPENSE_MONTH", null );
+        return r;
+    }
 
-  /*  public float getMonthlyExpense(int i)
-    {
-        SQLiteDatabase DB = this.getWritableDatabase();
-        Cursor curs = DB.rawQuery( "SELECT SUM(AMOUNT) FROM "+TABLE_NAME2+" WHERE DATE_MONTH ="+i, null );
-        if(curs.moveToFirst()){
-            return curs.getFloat( 0 );
-        }
-        return (float) 0.0;
-
-    } */
-
+    public Cursor getRecordbwyears(int y1, int y2, int m1, int m2, int d1, int d2){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor record = db.rawQuery( "SELECT * FROM "+TABLE_NAME2+ " WHERE (EXPENSE_YEAR BETWEEN "+y1 + " AND "+ y2 + ") AND (EXPENSE_MONTH BETWEEN "+m1 + " AND "+ m2+ ") AND (EXPENSE_DAY BETWEEN "+d1 + " AND "+ d2+ ") ORDER BY EXPENSE_YEAR, EXPENSE_MONTH,EXPENSE_DAY", null );
+        return record;
+    }
 
 }
 

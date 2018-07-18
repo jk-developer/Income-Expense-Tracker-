@@ -1,5 +1,6 @@
 package com.example.jitendrakumar.incometracker.fragments;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
+import com.example.jitendrakumar.incometracker.activities.UpdatePasswordActivity;
 import com.example.jitendrakumar.incometracker.helper.SessionManagement;
 import com.example.jitendrakumar.incometracker.models.UserData;
 import com.example.jitendrakumar.incometracker.database.DatabaseHelper;
@@ -27,9 +29,10 @@ public class LoginFragment extends Fragment {
     DatabaseHelper myDb;
     public final static String TAG = "RES";
     EditText etUsername, etPassword;
-    TextView tvRegister;
+    TextView tvRegister, tvUpdatePassword;
     InputValidation inputValidation;
     SQLiteDatabase db;
+    int dbid;
     //  UserData userData;
 
 
@@ -44,6 +47,7 @@ public class LoginFragment extends Fragment {
         Button btnLogin = (Button) view.findViewById( R.id.btnLogin );
         etUsername = (EditText) view.findViewById( R.id.etUsername );
         etPassword = (EditText)view.findViewById( R.id.etPassword );
+        tvUpdatePassword = (TextView)view.findViewById( R.id.tvUpdatePassword );
         etUsername.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etPassword.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etUsername.setTextColor( Color.parseColor("#00ff00"));
@@ -57,6 +61,7 @@ public class LoginFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         } );
+
 
         btnLogin.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -84,30 +89,36 @@ public class LoginFragment extends Fragment {
                         if(Data !=null){
                             String dbusername = Data.getUserName();
                             String dbpassword = Data.getPass();
-                            int dbid = Data.getId();
-                            if (dbusername.equals( username ) && dbpassword.equals( password )) {
-                                SessionManagement sessionManagement = new SessionManagement( getActivity());
-                                sessionManagement.setUserName( dbusername );
-                                sessionManagement.setUserPassword( dbpassword );
-                                sessionManagement.setUserId( String.valueOf(dbid) );
-                                Toast.makeText( getActivity(), "Logged in Successfully !!! ", Toast.LENGTH_SHORT ).show();
-                                // HomeFragment hf = new HomeFragment();
-                                /*  Bundle args = new Bundle();
-                                  args.putString( "username", username );
-                                  args.putString( "userid", String.valueOf( dbid ) );
-                                  FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                                  */
-                                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                                HomeFragment hf = new HomeFragment();
-                                //  hf.setArguments( args );
-                                fragmentTransaction.replace( R.id.fragment_container, hf );
-                                fragmentTransaction.addToBackStack( null );
-                                fragmentTransaction.commit();
-                                Log.d( TAG, "onClick: sessionmange"+sessionManagement.getUserName() );
+                             dbid = Data.getId();
+                            if (dbusername.equals( username )) {
+
+                                  if(!dbpassword.equals( password )){
+                                      tvUpdatePassword.setVisibility( View.VISIBLE );
+                                  }
+                                  if(dbpassword.equals( password )) {
+                                      SessionManagement sessionManagement = new SessionManagement( getActivity() );
+                                      sessionManagement.setUserName( dbusername );
+                                      sessionManagement.setUserPassword( dbpassword );
+                                      sessionManagement.setUserId( String.valueOf( dbid ) );
+                                      Toast.makeText( getActivity(), "Logged in Successfully !!! ", Toast.LENGTH_SHORT ).show();
+                                      tvUpdatePassword.setVisibility( View.INVISIBLE );
+
+                                      FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                                      HomeFragment hf = new HomeFragment();
+                                      //  hf.setArguments( args );
+                                      fragmentTransaction.replace( R.id.fragment_container, hf );
+                                      fragmentTransaction.addToBackStack( null );
+                                      fragmentTransaction.commit();
+                                      Log.d( TAG, "onClick: sessionmange" + sessionManagement.getUserName() );
+
+                                  }else{
+                                      Toast.makeText( getActivity(), "Password is incorrect !!! ", Toast.LENGTH_SHORT ).show();
+                                      tvUpdatePassword.setVisibility( View.VISIBLE );
+                                  }
 
                             }
                             else{
-                                Toast.makeText( getActivity(), "Either Username or Password is incorrect !!! ", Toast.LENGTH_SHORT ).show();
+                                Toast.makeText( getActivity(), "Username is incorrect !!! ", Toast.LENGTH_SHORT ).show();
                             }
                         }
                         else {
@@ -139,6 +150,17 @@ public class LoginFragment extends Fragment {
 
             }
         });
+
+        tvUpdatePassword.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), UpdatePasswordActivity.class);
+                i.putExtra( "userid", dbid );
+                Log.d( TAG, "onClick: dbid"+ dbid );
+                startActivity( i );
+            }
+        } );
+
         return view;
     }
 

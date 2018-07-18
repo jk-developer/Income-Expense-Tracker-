@@ -166,8 +166,8 @@ public class AddExpenseFragment extends Fragment {
                     String[]dateParts = expenseDate.toString().split("/");
                     try {
                         eyear = safeParseInt(dateParts[2]);
-                        emonth = safeParseInt(dateParts[0]);
-                        eday = safeParseInt(dateParts[1]);
+                        emonth = safeParseInt(dateParts[1]);
+                        eday = safeParseInt(dateParts[0]);
                     } catch (Exception e) {
                         Toast.makeText( getActivity(), "Error in parsing Date", Toast.LENGTH_SHORT ).show();
                     }

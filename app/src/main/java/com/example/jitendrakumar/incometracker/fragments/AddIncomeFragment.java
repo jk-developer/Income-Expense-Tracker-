@@ -194,6 +194,7 @@ public class AddIncomeFragment extends Fragment{
                             if(isInserted == true) {
                                 Toast.makeText( getActivity(), "Data Saved to Income DataBase.", Toast.LENGTH_SHORT ).show();
                                 Intent in = new Intent( getContext(), IncomeReportActivity.class );
+                                in.putExtra( "fromAdd", 2 );
                                 startActivity( in );
 
                             } else {

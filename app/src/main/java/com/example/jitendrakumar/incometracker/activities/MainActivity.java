@@ -20,6 +20,7 @@ import com.example.jitendrakumar.incometracker.R;
 import com.example.jitendrakumar.incometracker.database.ExpenseDatabaseHelper;
 import com.example.jitendrakumar.incometracker.fragments.AddExpenseFragment;
 import com.example.jitendrakumar.incometracker.fragments.BorrowReportFragment;
+import com.example.jitendrakumar.incometracker.fragments.ExpenseReportFragment;
 import com.example.jitendrakumar.incometracker.fragments.HomeFragment;
 import com.example.jitendrakumar.incometracker.fragments.AddIncomeFragment;
 import com.example.jitendrakumar.incometracker.fragments.LendReportFragment;
@@ -91,20 +92,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.action_signup:
                 if (user != null) {
                     final AlertDialog.Builder signup_builder = new AlertDialog.Builder( MainActivity.this );
-                    signup_builder.setMessage( "You are already registered and logged in, do you want to create another account ?" );
+                    signup_builder.setMessage( "Sorry, You are already registered and logged in." );
                     signup_builder.setTitle( "Alert!" );
                     signup_builder.setIcon( R.drawable.signup_alert );
-                    signup_builder.setPositiveButton( "Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace( R.id.fragment_container, new SignupFragment() )
-                                    .addToBackStack( null )
-                                    .commit();
-                            toolbar.setTitle( "Sign up" );
-                        }
-                    } );
-
                     signup_builder.setNegativeButton( "Cancel", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -116,30 +106,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     alertDialog.show();
                     return true;
                 } else {
-                    final AlertDialog.Builder signin_builder = new AlertDialog.Builder( MainActivity.this );
-                    signin_builder.setMessage( "You are not logged in, if already Registered, then  login into your account " );
-                    signin_builder.setTitle( "Alert!" );
-                    signin_builder.setIcon( R.drawable.signup_alert );
-                    signin_builder.setPositiveButton( "Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace( R.id.fragment_container, new LoginFragment() )
+                             getSupportFragmentManager().beginTransaction()
+                                    .replace( R.id.fragment_container, new SignupFragment() )
                                     .addToBackStack( null )
                                     .commit();
-                            toolbar.setTitle( "Login" );
-                        }
-                    } );
+                            toolbar.setTitle( "Signup" );
 
-                    signin_builder.setNegativeButton( "Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            signin_builder.setCancelable( true );
-                        }
-                    } );
-
-                    AlertDialog alert = signin_builder.create();
-                    alert.show();
                     return true;
                 }
 
@@ -147,10 +119,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                   Intent about_app = new Intent( MainActivity.this, AboutAppActivity.class );
                   startActivity( about_app );
                   return true;
-
-                    case R.id.action_supportus:
-                        Toast.makeText( MainActivity.this, "support us action clicked", Toast.LENGTH_SHORT ).show();
-                        return true;
 
                     case R.id.action_rate_us:
                         Toast.makeText( MainActivity.this, "Rate us action clicked", Toast.LENGTH_SHORT ).show();
@@ -345,7 +313,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_expense_report:
                 if(username!=null){
                     getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
-                            new IncomeReportFragment())
+                            new ExpenseReportFragment())
                             .addToBackStack( null )
                             .commit();
                     toolbar.setTitle( "Expense Report" );

@@ -112,4 +112,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         return  db;
     }
+
+    public Cursor getParticularData(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor r = db.rawQuery( "SELECT * FROM "+TABLE_NAME+ " WHERE ID = "+id, null );
+        return r;
+    }
 }

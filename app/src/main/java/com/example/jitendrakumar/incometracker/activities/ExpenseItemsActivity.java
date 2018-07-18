@@ -129,8 +129,8 @@ public class ExpenseItemsActivity extends AppCompatActivity implements DatePicke
                         String[]dateParts = newDate.split("/");
                         try {
                             year = safeParseInt(dateParts[2]);
-                            month = safeParseInt(dateParts[0]);
-                            day = safeParseInt(dateParts[1]);
+                            month = safeParseInt(dateParts[1]);
+                            day = safeParseInt(dateParts[0]);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

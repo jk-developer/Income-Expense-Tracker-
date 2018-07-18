@@ -13,12 +13,6 @@
         android:title="About App"
         app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/action_supportus"
-        android:orderInCategory="100"
-        android:title="Support us"
-        app:showAsAction="never" />
-
 
     <item
         android:id="@+id/action_sendfeedback"

@@ -101,6 +101,24 @@
             android:textColor="@color/colorTexts"
            />
 
+        <TextView
+            android:id="@+id/tvUpdatePassword"
+            android:layout_width="200dp"
+            android:layout_height="51dp"
+            android:layout_gravity="center"
+            android:layout_margin="30dp"
+            android:layout_marginEnd="62dp"
+            android:layout_marginStart="62dp"
+            android:layout_marginTop="0dp"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="Forgot Password ?"
+            android:textSize="17sp"
+            android:visibility="invisible"
+            android:textStyle="bold"
+            android:textColor="#ff0b0f"
+            />
+
     </LinearLayout>
 
 </ScrollView>

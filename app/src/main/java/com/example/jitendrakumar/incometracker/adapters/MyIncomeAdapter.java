@@ -120,7 +120,7 @@ public class MyIncomeAdapter extends RecyclerView.Adapter<MyIncomeAdapter.Benefi
         else {
              Date = day +"/"+month +"/"+year ;
         }
-
+        Log.d( TAG, "onBindViewHolder: "+Date );
          String Time = hour+":"+minute;
          holder.tvIncomeReportDate.setText(Date);
          holder.tvIncomeReportTime.setText(Time);

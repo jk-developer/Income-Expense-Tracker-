@@ -117,51 +117,41 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
     public Cursor getMonthlyIncome()
     {
         SQLiteDatabase DB = this.getWritableDatabase();
-            Cursor curs = DB.rawQuery( "SELECT DATE_DAY, SUM(AMOUNT) FROM "+TABLE_NAME3+" GROUP BY(DATE_DAY)", null );
+            Cursor curs = DB.rawQuery( "SELECT DATE_MONTH, SUM(AMOUNT) FROM "+TABLE_NAME3+" GROUP BY(DATE_MONTH)", null );
         Log.d( TAG, "getMonthlyIncome: "+curs.getCount() );
            return curs;
-
-    }
-
-    public Cursor getDaywiseIncome()
-    {
-        SQLiteDatabase DB = this.getWritableDatabase();
-        Cursor curs = DB.rawQuery( "SELECT DATE_MONTH, SUM(AMOUNT) FROM "+TABLE_NAME3+" GROUP BY(DATE_MONTH)", null );
-        Log.d( TAG, "getDaywiseIncome: "+curs.getCount() );
-        return curs;
 
     }
 
     public void deleteAllRecords(){
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL( "DELETE FROM "+TABLE_NAME3 );
-      //  db.rawQuery( "ALTER TABLE "+TABLE_NAME3+ "INCOME_ID =""+ 0,null )
+
     }
 
-    public Cursor getRecordCategorywise(String cat){
-        SQLiteDatabase db = this.getWritableDatabase();
-        Log.d( TAG, "getRecordCategorywise: "+cat );
-        Cursor c = db.rawQuery( "SELECT * FROM "+TABLE_NAME3+ " WHERE INCOME_TYPE = " + cat, null );
-        Log.d( TAG, "SELECT * FROM "+TABLE_NAME3+ " WHERE "+COL_2 + "= " + cat );
-        return c;
-    }
 
     public Cursor getRecordbwMonths(int m1, int m2){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor r = db.rawQuery( "SELECT * FROM "+TABLE_NAME3+ " WHERE DATE_DAY BETWEEN "+m1 + " AND "+ m2+ " ORDER BY DATE_DAY", null );
+        Cursor r = db.rawQuery( "SELECT * FROM "+TABLE_NAME3+ " WHERE DATE_MONTH BETWEEN "+m1 + " AND "+ m2+ " ORDER BY DATE_MONTH", null );
         return r;
     }
 
-    public Cursor getRecordbwDays(int m1, int m2, int d1, int d2){
+    public Cursor getRecordbwDays(int y1, int y2, int m1, int m2){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor r = db.rawQuery( "SELECT * FROM "+TABLE_NAME3+ " WHERE (DATE_DAY BETWEEN "+m1 + " AND "+ m2+ ") AND (DATE_MONTH BETWEEN "+d1 + " AND "+ d2+ ") ORDER BY DATE_DAY, DATE_MONTH", null );
+        Cursor r = db.rawQuery( "SELECT * FROM "+TABLE_NAME3+ " WHERE (DATE_YEAR BETWEEN "+y1 + " AND "+ y2+ ") AND (DATE_MONTH BETWEEN "+m1 + " AND "+ m2+ ") ORDER BY DATE_YEAR, DATE_MONTH", null );
         return r;
     }
 
     public Cursor getRecordbwyears(int y1, int y2, int m1, int m2, int d1, int d2){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor record = db.rawQuery( "SELECT * FROM "+TABLE_NAME3+ " WHERE (DATE_YEAR BETWEEN "+y1 + " AND "+ y2 + ") AND (DATE_DAY BETWEEN "+m1 + " AND "+ m2+ ") AND (DATE_MONTH BETWEEN "+d1 + " AND "+ d2+ ") ORDER BY DATE_YEAR, DATE_DAY, DATE_MONTH", null );
+        Cursor record = db.rawQuery( "SELECT * FROM "+TABLE_NAME3+ " WHERE (DATE_YEAR BETWEEN "+y1 + " AND "+ y2 + ") AND (DATE_MONTH BETWEEN "+m1 + " AND "+ m2+ ") AND (DATE_DAY BETWEEN "+d1 + " AND "+ d2+ ") ORDER BY DATE_YEAR, DATE_MONTH, DATE_DAY", null );
         return record;
+    }
+
+    public Cursor getRecordsCategorywise(String cat){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery( "SELECT * FROM "+ TABLE_NAME3+ " WHERE INCOME_TYPE ="+cat, null );
+        return res;
     }
 
 }

@@ -1,8 +1,7 @@
 package com.example.jitendrakumar.incometracker.fragments;
 
 import android.annotation.SuppressLint;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -17,30 +16,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
 import com.example.jitendrakumar.incometracker.activities.BarChartActivity;
-import com.example.jitendrakumar.incometracker.activities.IncomePiechartActivity;
-import com.example.jitendrakumar.incometracker.activities.MainActivity;
-import com.example.jitendrakumar.incometracker.database.ExpenseDatabaseHelper;
 import com.example.jitendrakumar.incometracker.database.IncomeDatabaseHelper;
 import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.DatePickerFragment;
-import com.example.jitendrakumar.incometracker.models.IncomeData;
 
 import java.util.Calendar;
 
 @SuppressLint("ValidFragment")
 public class IncomeReportFragment extends Fragment {
-    TextView tvIncomeReportDateFrom, tvIncomeReportDateTo;
+    TextView tvIncomeReportDateFrom, tvIncomeReportDateTo, tvHintIncomeReportDateFrom, tvHintIncomeReportDateTo,tvIncomeReportType,tvIncomeReportInput;
     IncomeDatabaseHelper myIncomeDB;
-    Button btnViewIncomeReport, btnIncomeReportDateFrom, btnIncomeReportDateTo, btnIncomeBarchart,btnIncomePiechart,btnIncomebwdate, btnIncomebw;
+    Button btnIncomeReportbwTwoDates, btnIncomeBarchart, btnIncomeReportbwMonthsAndDay, btnViewIncomeReportbwMonths, btnIncomeReportCategorywise;
+    EditText etFromMonth, etToMonth, etToDay, etFromDay,etIncomeReportFromMonth,etIncomeReportToMonth;
     private String id;
     public static final String TAG = "res";
     private int years, yearf, months, monthf, days,dayf;
+    private CharSequence income[] = {"Regular Salary", "Buissness Profits","Rental Income","Savings", "Gifts","Pocket Money"," Investments ","Governmental grants","Retirement Income",
+            "Bonus","Other"};
 
     @Nullable
     @Override
@@ -49,24 +46,47 @@ public class IncomeReportFragment extends Fragment {
 
         tvIncomeReportDateFrom = (TextView) view.findViewById( R.id.tvIncomeReportDateFrom);
         tvIncomeReportDateTo = (TextView) view.findViewById( R.id.tvIncomeReportDateTo);
-        btnViewIncomeReport = (Button)view.findViewById( R.id.btnViewIncomeReport );
-        btnIncomeReportDateFrom = (Button)view.findViewById( R.id.btnIncomeReportDateFrom );
-        btnIncomeReportDateTo  = (Button) view.findViewById( R.id.btnIncomeReportDateTo );
+        btnIncomeReportbwTwoDates = (Button)view.findViewById( R.id.btnIncomeReportbwTwoDates );
+        tvHintIncomeReportDateFrom = (TextView) view.findViewById( R.id.tvHintIncomeReportDateFrom );
+        tvHintIncomeReportDateTo  = (TextView) view.findViewById( R.id.tvHintIncomeReportDateTo );
         btnIncomeBarchart = (Button) view.findViewById( R.id.btnIncomeBarchart );
-        btnIncomePiechart = (Button) view.findViewById( R.id.btnIncomePiechart );
-        btnIncomebwdate = (Button) view.findViewById( R.id.btnIncomebwdate );
-        btnIncomebw = (Button) view.findViewById( R.id.btnIncomebw );
+        btnIncomeReportbwMonthsAndDay = (Button) view.findViewById( R.id.btnIncomeReportbwMonthsAndDay);
+        btnViewIncomeReportbwMonths = (Button) view.findViewById( R.id.btnViewIncomeReportbwMonths );
+        etFromMonth = (EditText) view.findViewById( R.id.etFromMonth );
+        etToMonth = (EditText)view.findViewById( R.id.etToMonth );
+        etIncomeReportToMonth = (EditText)view.findViewById( R.id.etIncomeReportToMonth );
+        etToDay = (EditText)view.findViewById( R.id.etToDay );
+        etFromDay = (EditText)view.findViewById( R.id.etFromDay );
+        etIncomeReportFromMonth = (EditText)view.findViewById( R.id.etIncomeReportFromMonth );
+        tvIncomeReportInput = (TextView)view.findViewById( R.id.tvIncomeReportInput );
+        btnIncomeReportCategorywise = (Button)view.findViewById( R.id. btnIncomeReportCategorywise );
+        tvIncomeReportType = (TextView) view.findViewById( R.id.tvIncomeReportType );
+
         myIncomeDB = new IncomeDatabaseHelper( getContext());
 
         tvIncomeReportDateFrom.setHintTextColor(getResources().getColor(R.color.colorTexts));
         tvIncomeReportDateTo.setHintTextColor(getResources().getColor(R.color.colorTexts));
         tvIncomeReportDateFrom.setTextColor( Color.parseColor("#00ff00"));
         tvIncomeReportDateTo.setTextColor( Color.parseColor("#00ff00"));
+        etFromMonth.setTextColor( Color.parseColor("#00ff00"));
+        etToMonth.setTextColor( Color.parseColor("#00ff00"));
+        etFromDay.setTextColor( Color.parseColor("#00ff00"));
+        etToDay.setTextColor( Color.parseColor("#00ff00"));
+        etIncomeReportFromMonth.setTextColor( Color.parseColor("#00ff00"));
+        etIncomeReportToMonth.setTextColor( Color.parseColor("#00ff00"));
 
-        showAllIncomeData();
-        showRecordbwDays();
-        showRecords();
-        btnIncomeReportDateFrom.setOnClickListener( new View.OnClickListener() {
+        showAllIncomeDatabwDates();
+        showRecordbwMonthsandDays();
+        showRecordsbwMonths();
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get( Calendar.YEAR );
+        int month = cal.get( Calendar.MONTH);
+        int day = cal.get( Calendar.DAY_OF_MONTH );
+
+        tvIncomeReportDateTo.setText( day+"/"+(month+1)+"/"+year );
+        tvIncomeReportDateFrom.setText( day+"/"+(month+1)+"/"+year );
+
+        tvHintIncomeReportDateFrom.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DialogFragment newFragment = new DatePickerFragment( tvIncomeReportDateFrom );
@@ -74,7 +94,7 @@ public class IncomeReportFragment extends Fragment {
             }
         } );
 
-        btnIncomeReportDateTo.setOnClickListener( new View.OnClickListener() {
+        tvHintIncomeReportDateTo.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DialogFragment newFragment = new DatePickerFragment( tvIncomeReportDateTo );
@@ -90,29 +110,95 @@ public class IncomeReportFragment extends Fragment {
             }
         } );
 
-        btnIncomePiechart.setOnClickListener( new View.OnClickListener() {
+        tvIncomeReportType.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent( getActivity(), IncomePiechartActivity.class );
-                startActivity( i );
-            }
-        } );
-      /*
-        btnGet.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-             Cursor res   myIncomeDB.getRecordCategorywise( "Regular Salary" );
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle( "Select Expense Category" );
+                builder.setItems( income, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        tvIncomeReportInput.setText( income[which].toString());
+                    }
+                } );
+
+                builder.setNegativeButton( "CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        builder.setCancelable( true );
+                    }
+                } );
+
+                builder.setPositiveButton( "OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(which==-1)
+                        {
+
+                        }else {
+                            tvIncomeReportInput.setText( income[which].toString());
+
+                        }
+
+
+                    }
+                } );
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
             }
         } );
 
+        btnIncomeReportCategorywise.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String category = tvIncomeReportInput.getText().toString();
+                try{
+                    Cursor r = myIncomeDB.getRecordsCategorywise( category );
+                    if(r.getCount() == 0)
+                    {
+                        // Show message
+                        showMessage( "Error", "Nothing Found" );
 
-*/
+                        return;
+                    }
+                    else
+                    {
+                        StringBuffer buffer = new StringBuffer(  );
+                        while (r.moveToNext()){
+                            buffer.append( "Income Id : "+ r.getInt( 0 )+"\n" );
+                            buffer.append( "Income Type : "+ r.getString( 1 )+"\n" );
+                            buffer.append( "Income Amount : "+ r.getFloat( 2 )+"\n" );
+                            String date = r.getInt( 5 )+"/"+r.getInt( 4 )+"/"+r.getInt( 3 );
+                            String time = r.getInt( 6 )+":"+r.getInt( 7 );
+                            buffer.append( "Date : "+date+"\n" );
+                            buffer.append( "Time : "+ time+"\n\n" );
+
+                        }
+                        // Show all data
+                        showMessage( "Data", buffer.toString() );
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        } );
+
 
         return view;
     }
 
-    public void showAllIncomeData(){
-        btnViewIncomeReport.setOnClickListener( new View.OnClickListener() {
+
+    public void showMessage(String title, String Message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setCancelable( true );
+        builder.setTitle( title );
+        builder.setMessage( Message );
+        builder.show();
+    }
+
+    public void showAllIncomeDatabwDates(){
+        btnIncomeReportbwTwoDates.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -154,7 +240,7 @@ public class IncomeReportFragment extends Fragment {
                             buffer.append( "Income Id : "+ res.getInt( 0 )+"\n" );
                             buffer.append( "Income Type : "+ res.getString( 1 )+"\n" );
                             buffer.append( "Income Amount : "+ res.getFloat( 2 )+"\n" );
-                            String date = res.getInt( 4 )+"/"+res.getInt( 5 )+"/"+res.getInt( 3 );
+                            String date = res.getInt( 5 )+"/"+res.getInt( 4 )+"/"+res.getInt( 3 );
                             String time = res.getInt( 6 )+":"+res.getInt( 7 );
                             buffer.append( "Date : "+date+"\n" );
                             buffer.append( "Time : "+ time+"\n\n" );
@@ -167,21 +253,26 @@ public class IncomeReportFragment extends Fragment {
                     e.printStackTrace();
                 }
 
-
             }
+
 
         } );
     }
 
-    public void showRecordbwDays(){
 
-        btnIncomebwdate.setOnClickListener( new View.OnClickListener() {
+    public void showRecordbwMonthsandDays(){
+
+        btnIncomeReportbwMonthsAndDay.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 try {
-                    Log.d( TAG, "onClick: Clicked ");
-                    Cursor r = myIncomeDB.getRecordbwDays( 6, 12, 1, 17 );
+                    int y1 = Integer.parseInt( etFromMonth.getText().toString());
+                    int y2 = Integer.parseInt( etToMonth.getText().toString());
+                    int m1 = Integer.parseInt( etFromDay.getText().toString());
+                    int m2 = Integer.parseInt( etToDay.getText().toString());
+
+                    Cursor r = myIncomeDB.getRecordbwDays( y1, y2, m1, m2 );
                     Log.d( TAG, "onClick: result"+r.getCount() );
                     if(r.getCount() == 0)
                     {
@@ -197,7 +288,7 @@ public class IncomeReportFragment extends Fragment {
                             buffer.append( "Income Id : "+ r.getInt( 0 )+"\n" );
                             buffer.append( "Income Type : "+ r.getString( 1 )+"\n" );
                             buffer.append( "Income Amount : "+ r.getFloat( 2 )+"\n" );
-                            String date = r.getInt( 4 )+"/"+r.getInt( 5 )+"/"+r.getInt( 3 );
+                            String date = r.getInt( 5 )+"/"+r.getInt( 4 )+"/"+r.getInt( 3 );
                             String time = r.getInt( 6 )+":"+r.getInt( 7 );
                             buffer.append( "Date : "+date+"\n" );
                             buffer.append( "Time : "+ time+"\n\n" );
@@ -217,15 +308,16 @@ public class IncomeReportFragment extends Fragment {
 
     }
 
-    public void showRecords(){
+    public void showRecordsbwMonths(){
 
-        btnIncomebw.setOnClickListener( new View.OnClickListener() {
+        btnViewIncomeReportbwMonths.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Log.d( TAG, "onClick: bwMonths" );
                 try {
-                    Log.d( TAG, "onClick: Clicked ");
-                    Cursor r = myIncomeDB.getRecordbwMonths( 8,11 );
+                    int month1 = Integer.parseInt( etIncomeReportFromMonth.getText().toString());
+                    int month2 = Integer.parseInt( etIncomeReportToMonth.getText().toString() );
+                    Cursor r = myIncomeDB.getRecordbwMonths( month1,month2 );
                     Log.d( TAG, "onClick: result"+r.getCount() );
                     if(r.getCount() == 0)
                     {
@@ -241,7 +333,7 @@ public class IncomeReportFragment extends Fragment {
                             buffer.append( "Income Id : "+ r.getInt( 0 )+"\n" );
                             buffer.append( "Income Type : "+ r.getString( 1 )+"\n" );
                             buffer.append( "Income Amount : "+ r.getFloat( 2 )+"\n" );
-                            String date = r.getInt( 4 )+"/"+r.getInt( 5 )+"/"+r.getInt( 3 );
+                            String date = r.getInt( 5 )+"/"+r.getInt( 4 )+"/"+r.getInt( 3 );
                             String time = r.getInt( 6 )+":"+r.getInt( 7 );
                             buffer.append( "Date : "+date+"\n" );
                             buffer.append( "Time : "+ time+"\n\n" );
@@ -261,14 +353,6 @@ public class IncomeReportFragment extends Fragment {
 
     }
 
-
-    public void showMessage(String title, String Message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setCancelable( true );
-        builder.setTitle( title );
-        builder.setMessage( Message );
-        builder.show();
-    }
 
     public int safeParseInt(String number) throws Exception {
         if(number != null) {
