@@ -27,19 +27,31 @@
         android:textStyle="bold"
         android:textColor="@color/colorTexts"/>
 
-        <EditText
-            android:id="@+id/etExpenseAmount"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_amount"
             android:layout_width="270dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
+            android:layout_height="55dp"
             android:layout_margin="20dp"
-            android:ems="10"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:hint="Amount(Rs) "
-            android:inputType="numberDecimal"
-            android:padding="5dp"
-            android:background="@drawable/border"/>
-     <LinearLayout
+            android:textColorHint="@color/colorTexts">
+
+            <EditText
+                android:id="@+id/etExpenseAmount"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Amount(Rs) "
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:textColor="#00ff00"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
          android:layout_width="270dp"
          android:layout_height="wrap_content"
          android:orientation="horizontal"
@@ -140,6 +152,30 @@
                 android:id="@+id/tvExpenseHintTime"/>
 
         </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_value"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColorHint="@color/colorTexts">
+
+            <EditText
+                android:id="@+id/etExpenseDescription"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Description "
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:inputType="text"
+                android:textColor="#00ff00"/>
+
+        </android.support.design.widget.TextInputLayout>
+
     <Button
         android:id="@+id/btnExpenseSubmit"
         android:layout_width="120dp"
@@ -147,34 +183,10 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:padding="5dp"
-        android:text="Submit"
+        android:text="Save"
         android:background="@drawable/button_background"
         android:textColor="@color/colorTexts"
        />
-
-        <Button
-            android:id="@+id/btnExpnenseViewAll"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:padding="5dp"
-            android:text="View all expenses"
-            android:background="@drawable/button_background"
-            android:textColor="@color/colorTexts"
-            />
-
-        <Button
-            android:id="@+id/btnExpnenseBarchart"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:padding="5dp"
-            android:text="expense bar"
-            android:background="@drawable/button_background"
-            android:textColor="@color/colorTexts"
-            />
 
     </LinearLayout>
 </ScrollView>

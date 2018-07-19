@@ -42,7 +42,6 @@
             android:background="@drawable/border"
             android:layout_gravity="center"
             android:gravity="center"
-
             android:padding="3dp"
             android:layout_margin="20dp" />
 

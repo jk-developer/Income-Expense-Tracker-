@@ -76,24 +76,12 @@ public class IncomeReportActivity extends AppCompatActivity {
             //The key argument here must match that used in the other activity
             AddIncome = extras.getInt( "fromAdd" );
             HomeIncome = extras.getInt( "fromHomeIncome");
-        /*   DatewiseIncomeReport = extras.getInt( "fromDate" );
-
-            yrs = extras.getInt( "ys");
-            yrf = extras.getInt( "yf" );
-            mths = extras.getInt( "ms" );
-            mthf = extras.getInt( "mf");
-            dys = extras.getInt( "ds" );
-            dyf = extras.getInt( "df" );
-            */
 
         }
         if(HomeIncome == 2 || AddIncome ==2){
              res = MyincomeDB.getAllIncomeData();
         }
-       /* if(DatewiseIncomeReport == 1){
-             res = MyincomeDB.getRecordbwyears( yrs,yrf,mths, mthf, dys, dyf );
-        }
-       */
+
         if(res.getCount() == 0)
         {
             Toast.makeText( IncomeReportActivity.this, "Nothing Found in Databse!!!", Toast.LENGTH_SHORT ).show();
@@ -110,6 +98,7 @@ public class IncomeReportActivity extends AppCompatActivity {
                 int incDay = res.getInt( 5 );
                 int incHour = res.getInt( 6 );
                 int incMinute = res.getInt( 7 );
+                String incDesc = res.getString( 8 );
 
                 String Date = "";
                 if(incMonth<=9 && incDay<=9)
@@ -128,7 +117,7 @@ public class IncomeReportActivity extends AppCompatActivity {
 
                 String Time = Integer.toString( incHour )+":"+Integer.toString( incMinute );
                 Log.d( TAG, "getArrayList: time"+Time );
-                incomeData = new IncomeData(incId, incType, incAmount, Date, Time);
+                incomeData = new IncomeData(incId, incType, incAmount, Date, Time, incDesc);
                 arrayList.add( incomeData);
                 totalIncome = totalIncome +incAmount;
             }
@@ -136,16 +125,7 @@ public class IncomeReportActivity extends AppCompatActivity {
         }
         return arrayList;
     }
-/*
-    public void updateList(IncomeData incData) {
-                 MyincomeDB.updateIncomeData(String.valueOf( incData.getIncomeId() ), incData.getInputType(), incData.getInputAmount(),
-                         incData.getIncomeYear(), incData.getIncomeMonth(), incData.getIncomeDay(), incData.getIncomeHour(), incData.getIncomeMinute());
-    }
 
-    public void deleteList(IncomeData incomeData){
-        MyincomeDB.deleteIncomeData(String.valueOf( incomeData.getIncomeId() ) );
-    }
-*/
 
 
 }

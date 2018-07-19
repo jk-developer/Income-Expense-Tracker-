@@ -19,28 +19,38 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:padding="5dp"
-            android:text="Add Your Income here"
-            android:textSize="25sp"
+            android:text="Add all your Incomes here"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/colorTexts"/>
 
-
-        <EditText
-            android:id="@+id/etIncomeAmount"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_amount"
             android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
+            android:layout_height="55dp"
             android:layout_margin="20dp"
-            android:ems="10"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:hint="Amount(Rs) "
-            android:inputType="numberDecimal"
-            android:padding="5dp"
-            android:background="@drawable/border"/>
+            android:textColorHint="@color/colorTexts">
+
+            <EditText
+                android:id="@+id/etIncomeAmount"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Amount(Rs) "
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:textColor="#00ff00"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:inputType="numberDecimal" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
         <LinearLayout
             android:layout_width="300dp"
             android:layout_height="wrap_content"
@@ -59,20 +69,18 @@
                 android:text="Regular Salary"
                 android:inputType="textPersonName"
                 android:padding="3dp"
-                android:textSize="18sp"
-                android:textColor="@color/colorTexts"
-
-                />
+                android:textSize="17sp"
+                android:textColor="@color/colorTexts" />
 
             <TextView
                 android:id="@+id/tvIncomeType"
-                android:layout_width="120dp"
+                android:layout_width="130dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:ems="10"
                 android:gravity="center"
-                android:text="Category"
+                android:hint="Category"
                 android:inputType="textPersonName"
                 android:padding="5dp"
                 android:textSize="18sp"
@@ -102,7 +110,7 @@
                 android:textSize="18sp"
                 android:textColor="@color/colorTexts"/>
             <TextView
-                android:layout_width="100dp"
+                android:layout_width="95dp"
                 android:layout_height="45dp"
                 android:text="Date"
                 android:layout_gravity="center"
@@ -132,7 +140,7 @@
                 android:layout_marginRight="5dp"
                 android:textColor="@color/colorTexts"/>
             <TextView
-                android:layout_width="100dp"
+                android:layout_width="95dp"
                 android:layout_height="45dp"
                 android:text="Time"
                 android:layout_gravity="center"
@@ -141,11 +149,34 @@
                 android:textColor="@color/colorTexts"
                 android:id="@+id/tvIncomeHintTime"/>
 
-
         </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_value"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColorHint="@color/colorTexts">
+
+            <EditText
+                android:id="@+id/etIncomeDescription"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Description "
+                android:textSize="18sp"
+                android:textColor="#00ff00"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:inputType="text"/>
+
+        </android.support.design.widget.TextInputLayout>
+
         <Button
             android:id="@+id/btnIncomeSubmit"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="5dp"
@@ -154,7 +185,6 @@
             android:background="@drawable/button_background"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="20dp"/>
-
 
     </LinearLayout>
 </ScrollView>

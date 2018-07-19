@@ -12,7 +12,7 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Income.db";
     public static final String TABLE_NAME3 = "income_table";
-    private static final Integer VERSION = 3;
+    private static final Integer VERSION = 4;
     public static final String COL_1 = "INCOME_ID";
     public static final String COL_2 = "INCOME_TYPE";
     public static final String COL_3 = "AMOUNT";
@@ -21,6 +21,7 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_6 = "DATE_DAY";
     public static final String COL_7 = "TIME_HOUR";
     public static final String COL_8 = "TIME_MINUTE";
+    public static final String COL_9 = "INCOME_DESC";
 
 
     public IncomeDatabaseHelper(Context context) {
@@ -31,7 +32,7 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME3 + " (INCOME_ID INTEGER PRIMARY KEY AUTOINCREMENT, INCOME_TYPE TEXT NOT NULL, AMOUNT FLOAT NOT NULL, DATE_YEAR INTEGER NOT NULL, DATE_MONTH INTEGER NOT NULL, DATE_DAY INTEGER NOT NULL, TIME_HOUR INTEGER NOT NULL, TIME_MINUTE INTEGER NOT NULL) ");
+        db.execSQL("create table " + TABLE_NAME3 + " (INCOME_ID INTEGER PRIMARY KEY AUTOINCREMENT, INCOME_TYPE TEXT NOT NULL, AMOUNT FLOAT NOT NULL, DATE_YEAR INTEGER NOT NULL, DATE_MONTH INTEGER NOT NULL, DATE_DAY INTEGER NOT NULL, TIME_HOUR INTEGER NOT NULL, TIME_MINUTE INTEGER NOT NULL, INCOME_DESC TEXT) ");
     }
 
     @Override
@@ -42,7 +43,7 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
     }
     // Function insertData() to insert the data in the table/Database
 
-    public boolean insertIncomeData(String income_type, float amount, int year, int month, int day, int hour, int minute){
+    public boolean insertIncomeData(String income_type, float amount, int year, int month, int day, int hour, int minute, String descrip){
         SQLiteDatabase db  = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put( COL_2, income_type );
@@ -52,6 +53,7 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put( COL_6, day );
         contentValues.put( COL_7 , hour);
         contentValues.put( COL_8, minute );
+        contentValues.put( COL_9, descrip );
 
         long res =  db.insert( TABLE_NAME3, null, contentValues );
         if(res==-1)
@@ -80,7 +82,7 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
 
     // Function updateData() to update/change the existing data in database
 
-    public boolean updateIncomeData(String income_id, String income_type, float amount, int year, int month, int day, int hour, int minute){
+    public boolean updateIncomeData(String income_id, String income_type, float amount, int year, int month, int day, int hour, int minute, String descrip){
         SQLiteDatabase db  = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put( COL_1, income_id );
@@ -92,6 +94,8 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put( COL_6, day );
         contentValues.put( COL_7, hour );
         contentValues.put( COL_8, minute );
+        contentValues.put( COL_9, descrip );
+
         db.update( TABLE_NAME3, contentValues, "INCOME_ID = ?", new String[] {income_id});
         return true;
     }

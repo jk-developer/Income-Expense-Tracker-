@@ -30,10 +30,10 @@ import com.example.jitendrakumar.incometracker.helper.SessionManagement;
 import java.util.Calendar;
 
 public class AddExpenseFragment extends Fragment {
-    EditText  etExpenseAmount;
-    TextView tvExpenseDate, tvExpenseTime, tvHintExpenseDate,tvExpenseType, tvExpenseHintType, tvExpenseHintTime;
+    EditText  etExpenseAmount, etExpenseDescription;
+    TextView tvExpenseDate, tvExpenseTime, tvHintExpenseDate, tvExpenseType, tvExpenseHintType, tvExpenseHintTime;
     ExpenseDatabaseHelper MyexpenseDB;
-    Button btnExpenseSubmit, btnExpnenseViewAll, btnExpnenseBarchart;
+    Button btnExpenseSubmit;
     private int eyear, emonth, eday, ehour, eminute;
     SessionManagement s;
     private CharSequence expense[] = {"Food", "Leisure","Transport","Clothes", "Travel","Health","Hobbies","Gifts","Household",
@@ -42,15 +42,13 @@ public class AddExpenseFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate( R.layout.fragment_add_expense, container, false );
         MyexpenseDB = new ExpenseDatabaseHelper( getContext() );
-       // tvExpenseType = (TextView) view.findViewById( R.id.tvExpenseType );
         tvExpenseType = (TextView) view.findViewById( R.id.tvExpenseType );
         tvExpenseHintType  = (TextView) view.findViewById( R.id.tvExpenseHintType );
         etExpenseAmount = (EditText) view.findViewById( R.id.etExpenseAmount );
+        etExpenseDescription = (EditText)view.findViewById( R.id.etExpenseDescription );
         tvExpenseDate = (TextView) view.findViewById( R.id.tvExpenseDate );
         tvExpenseTime = (TextView) view.findViewById( R.id.tvExpenseTime );
         btnExpenseSubmit = (Button) view.findViewById( R.id.btnExpenseSubmit );
-        btnExpnenseViewAll = (Button) view.findViewById( R.id.btnExpnenseViewAll );
-        btnExpnenseBarchart = (Button)view.findViewById( R.id.btnExpnenseBarchart );
         tvHintExpenseDate = (TextView) view.findViewById( R.id.tvHintExpenseDate );
         tvExpenseHintTime = (TextView) view.findViewById( R.id.tvExpenseHintTime );
         s = new SessionManagement( getContext() );
@@ -76,18 +74,7 @@ public class AddExpenseFragment extends Fragment {
         tvExpenseHintType.setTextColor( Color.parseColor( "#00ff00" ) );
         tvExpenseTime.setTextColor( Color.parseColor( "#00ff00" ) );
 
-
-
         addDataInExpenseDB();
-        viewAllExpenseData();
-
-        btnExpnenseBarchart.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent( getActivity(), ExpenseBarchartActivity.class );
-                startActivity( i );
-            }
-        } );
 
         tvExpenseHintType.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -161,6 +148,7 @@ public class AddExpenseFragment extends Fragment {
                     String expenseAmount = etExpenseAmount.getText().toString();
                     String expenseDate = tvExpenseDate.getText().toString();
                     String expenseTime = tvExpenseTime.getText().toString();
+                    String expenseDesc = etExpenseDescription.getText().toString();
 
                     // Extracting year month and day integer value from the Date String DD/MM/YYYY
                     String[]dateParts = expenseDate.toString().split("/");
@@ -195,7 +183,7 @@ public class AddExpenseFragment extends Fragment {
                         Toast.makeText( getActivity(),"Time field is required!!! ", Toast.LENGTH_SHORT ).show();
                     }
                     else {
-                        boolean isInserted = MyexpenseDB.insertExpenseData( expenseType, Float.parseFloat( expenseAmount ),eyear, emonth, eday, ehour,eminute );
+                        boolean isInserted = MyexpenseDB.insertExpenseData( expenseType, Float.parseFloat( expenseAmount ),eyear, emonth, eday, ehour,eminute, expenseDesc );
                         if (isInserted == true) {
                             Toast.makeText( getActivity(), "Data Saved to Expense DataBase.", Toast.LENGTH_SHORT ).show();
                             Intent i = new Intent( getActivity(), ExpenseReportActivity.class );
@@ -213,17 +201,6 @@ public class AddExpenseFragment extends Fragment {
         } );
 
 
-    }
-
-    public void viewAllExpenseData() {
-        btnExpnenseViewAll.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent( getActivity(), ExpenseReportActivity.class );
-                startActivity( i );
-
-            }
-        } );
     }
 
     private int safeParseInt(String number) throws Exception {

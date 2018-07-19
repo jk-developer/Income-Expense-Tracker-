@@ -31,9 +31,9 @@ import java.util.Calendar;
 public class IncomeItemsActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     TextInputLayout input_layout_value;
-    EditText etValue;
+    EditText etValue, etIncomeDesc;
     TextView tvDate, tvHintDate, tvCategory, tvHintCategory, tvDelete, tvSave, tvTime, tvHintTime, tvIncomePay;
-    private  String date, time, type;
+    private  String date, time, type, desc;
     private  int id, year, month, day, hour, minute;
     private float amt;
     IncomeDatabaseHelper incomeDb;
@@ -58,6 +58,7 @@ public class IncomeItemsActivity extends AppCompatActivity implements DatePicker
         tvTime = (TextView) findViewById( R.id.tvTime );
         tvHintTime = (TextView) findViewById( R.id.tvHintTime );
         etValue = (EditText) findViewById( R.id.etValue );
+        etIncomeDesc = (EditText)findViewById( R.id.etIncomeDesc );
         tvIncomePay = (TextView)findViewById( R.id.tvIncomePay );
 
         Calendar c = Calendar.getInstance();
@@ -84,12 +85,14 @@ public class IncomeItemsActivity extends AppCompatActivity implements DatePicker
               type = extras.getString( "Type" );
               time = extras.getString( "Time" );
               id = extras.getInt( "incomeId" );
+              desc = extras.getString( "incomeDesc" );
         }
 
         tvDate.setText(date.toString());
         etValue.setText(String.valueOf(amt));
         tvTime.setText( time );
         tvCategory.setText( type );
+        etIncomeDesc.setText( desc );
        // etValue.setSelection(String.valueOf( amt ).toString().length());
 
         tvDate.setHintTextColor( getResources().getColor(R.color.colorPrimaryDark) );
@@ -162,7 +165,7 @@ public class IncomeItemsActivity extends AppCompatActivity implements DatePicker
                         }
 
 
-                        if(incomeDb.updateIncomeData( String.valueOf( id ), tvCategory.getText().toString() , Float.parseFloat(etValue.getText().toString()  ) ,year, month, day,hour, minute)) {
+                        if(incomeDb.updateIncomeData( String.valueOf( id ), tvCategory.getText().toString() , Float.parseFloat(etValue.getText().toString()  ) ,year, month, day,hour, minute, etIncomeDesc.getText().toString())) {
                             Intent i = new Intent( IncomeItemsActivity.this, IncomeReportActivity.class );
                             startActivity( i );
                             Toast.makeText( IncomeItemsActivity.this, "this income is updated" + id, Toast.LENGTH_SHORT ).show();

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ public class MyLendAdapter extends RecyclerView.Adapter<MyLendAdapter.LendViewHo
     private ArrayList<LendData> mFilteredList;
     public static final String TAG = "res";
     LendData lendData;
+    private int y,m,d;
+
 
 
     public MyLendAdapter(ArrayList<LendData> listBeneficiary, Context mContext) {
@@ -78,13 +81,48 @@ public class MyLendAdapter extends RecyclerView.Adapter<MyLendAdapter.LendViewHo
         holder.tvLendDataAmount.setText(String.valueOf(listBeneficiary.get(position).getLamount()));
         holder.tvLendDataPersonName.setText(listBeneficiary.get(position).getLperson());
         holder.tvLendDataDescription.setText( listBeneficiary.get( position ).getLdesc() );
-        holder.tvLendDataDate.setText( listBeneficiary.get( position ).getLdate() );
+
+        String dateStr = listBeneficiary.get( position ).getLdate().toString();
+
+        String[]dateParts = dateStr.split("/");
+        try {
+            y = safeParseInt(dateParts[2]);
+            m = safeParseInt(dateParts[1]);
+            d = safeParseInt(dateParts[0]);
+        } catch (Exception e) {
+            Log.d( TAG, "onBindViewHolder: Error in Date Parsing  " );
+        }
+
+        String Date = "";
+        if(m<=9 && d<=9)
+        {
+            Date = "0"+d +"/0"+m +"/"+y ;
+        }
+        if(m<=9 && d>9){
+            Date = d +"/0"+m +"/"+y ;
+        }
+        if(m>9 && d<=9){
+            Date = "0"+d +"/"+m +"/"+y ;
+        }
+        else {
+            Date = d +"/"+m +"/"+y ;
+        }
+
+        holder.tvLendDataDate.setText( Date);
     }
 
 
     @Override
     public int getItemCount() {
         return mFilteredList.size();
+    }
+
+    public int safeParseInt(String number) throws Exception {
+        if(number != null) {
+            return Integer.parseInt(number.trim());
+        } else {
+            throw new NullPointerException("Date string is invalid");
+        }
     }
 
 

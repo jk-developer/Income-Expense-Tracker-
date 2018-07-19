@@ -23,9 +23,9 @@ import java.util.Calendar;
 public class ExpenseItemsActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     TextInputLayout input_layout_value;
-    EditText etValue;
+    EditText etValue, etExpenseDesc;
     TextView tvDate, tvHintDate, tvCategory, tvHintCategory, tvDelete, tvSave, tvTime, tvHintTime;
-    private  String date, time, type;
+    private  String date, time, type, expenseDesc;
     private  int id, year, month, day, hour, minute;
     private float amt;
     ExpenseDatabaseHelper expenseDb;
@@ -42,6 +42,7 @@ public class ExpenseItemsActivity extends AppCompatActivity implements DatePicke
 
         input_layout_value = (TextInputLayout) findViewById( R.id.input_layout_value );
         tvDate = (TextView) findViewById( R.id.tvDate );
+        etExpenseDesc = (EditText)findViewById( R.id.etExpenseDesc );
         tvCategory= (TextView) findViewById( R.id.tvCategory );
         tvHintDate = (TextView) findViewById( R.id.tvHintDate );
         tvHintCategory = (TextView) findViewById( R.id.tvHintCategory );
@@ -74,15 +75,18 @@ public class ExpenseItemsActivity extends AppCompatActivity implements DatePicke
             type = extras.getString( "Type" );
             time = extras.getString( "Time" );
             id = extras.getInt( "incomeId" );
+            expenseDesc = extras.getString( "expenseDesc" );
         }
 
         tvDate.setText(date.toString());
         etValue.setText(String.valueOf(amt));
         tvTime.setText( time );
         tvCategory.setText( type );
+        etExpenseDesc.setText( expenseDesc );
 
         tvDate.setHintTextColor( getResources().getColor(R.color.colorPrimaryDark) );
         tvCategory.setHintTextColor( getResources().getColor(R.color.colorPrimaryDark) );
+        etExpenseDesc.setHintTextColor( getResources().getColor( R.color.colorPrimaryDark ) );
 
         tvDelete.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -146,7 +150,7 @@ public class ExpenseItemsActivity extends AppCompatActivity implements DatePicke
                         }
 
 
-                        if(expenseDb.updateExpenseData( String.valueOf( id ), tvCategory.getText().toString() ,Float.parseFloat(etValue.getText().toString()) ,year, month, day, hour, minute)) {
+                        if(expenseDb.updateExpenseData( String.valueOf( id ), tvCategory.getText().toString() ,Float.parseFloat(etValue.getText().toString()) ,year, month, day, hour, minute, etExpenseDesc.getText().toString())) {
                             Intent i = new Intent( ExpenseItemsActivity.this, ExpenseReportActivity.class );
                             startActivity( i );
                             Toast.makeText( ExpenseItemsActivity.this, "this expense is updated" + id, Toast.LENGTH_SHORT ).show();

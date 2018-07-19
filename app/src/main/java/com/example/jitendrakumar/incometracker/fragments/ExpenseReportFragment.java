@@ -157,13 +157,14 @@ public class ExpenseReportFragment extends Fragment {
                     {
                         StringBuffer buffer = new StringBuffer(  );
                         while (res.moveToNext()){
-                            buffer.append( "Income Id : "+ res.getInt( 0 )+"\n" );
-                            buffer.append( "Income Type : "+ res.getString( 1 )+"\n" );
-                            buffer.append( "Income Amount : "+ res.getFloat( 2 )+"\n" );
+                            buffer.append( "Id : "+ res.getInt( 0 )+"\n" );
+                            buffer.append( "Category : "+ res.getString( 1 )+"\n" );
+                            buffer.append( "Amount : "+ res.getFloat( 2 )+"\n" );
                             String date = res.getInt( 5 )+"/"+res.getInt( 4 )+"/"+res.getInt( 3 );
                             String time = res.getInt( 6 )+":"+res.getInt( 7 );
                             buffer.append( "Date : "+date+"\n" );
-                            buffer.append( "Time : "+ time+"\n\n" );
+                            buffer.append( "Time : "+ time+"\n" );
+                            buffer.append( "Description :"+ res.getString( 8 )+"\n\n");
 
                         }
                         // Show all data
@@ -212,7 +213,8 @@ public class ExpenseReportFragment extends Fragment {
                             String date = r.getInt( 5 )+"/"+r.getInt( 4 )+"/"+r.getInt( 3 );
                             String time = r.getInt( 6 )+":"+r.getInt( 7 );
                             buffer.append( "Date : "+date+"\n" );
-                            buffer.append( "Time : "+ time+"\n\n" );
+                            buffer.append( "Time : "+ time+"\n" );
+                            buffer.append( "Description :"+ r.getString( 8 )+"\n\n");
 
                         }
                         // Show all data
@@ -257,7 +259,8 @@ public class ExpenseReportFragment extends Fragment {
                             String date = r.getInt( 5 )+"/"+r.getInt( 4 )+"/"+r.getInt( 3 );
                             String time = r.getInt( 6 )+":"+r.getInt( 7 );
                             buffer.append( "Date : "+date+"\n" );
-                            buffer.append( "Time : "+ time+"\n\n" );
+                            buffer.append( "Time : "+ time+"\n" );
+                            buffer.append( "Description :"+ r.getString( 8 )+"\n\n");
 
                         }
                         // Show all data

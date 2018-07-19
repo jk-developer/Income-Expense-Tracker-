@@ -140,6 +140,28 @@
 
         </LinearLayout>
 
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_desc"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="25dp">
+
+            <EditText
+                android:id="@+id/etExpenseDesc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:singleLine="true"
+                android:hint="Description "
+                android:textSize="18sp"
+                android:textColor="#00ff00"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:inputType="text"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

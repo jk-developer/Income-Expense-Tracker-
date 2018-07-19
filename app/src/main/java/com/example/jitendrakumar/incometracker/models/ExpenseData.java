@@ -5,12 +5,23 @@ public class ExpenseData {
     String expenseType;
     float expenseAmount;
 
-    public ExpenseData(int expensId, String expenseType, float expenseAmount, String expenseDate, String expenseTime) {
+    public String getExpenseDesc() {
+        return expenseDesc;
+    }
+
+    public void setExpenseDesc(String expenseDesc) {
+        this.expenseDesc = expenseDesc;
+    }
+
+    String expenseDesc;
+
+    public ExpenseData(int expensId, String expenseType, float expenseAmount, String expenseDate, String expenseTime,String expenseDesc) {
         this.expenseId = expensId;
         this.expenseType = expenseType;
         this.expenseAmount = expenseAmount;
         this.expenseDate = expenseDate;
         this.expenseTime = expenseTime;
+        this.expenseDesc = expenseDesc;
     }
 
     public int getExpenseId() {

@@ -14,7 +14,7 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "Expense.db";
     public static final String TABLE_NAME2 = "expense_table";
 
-    private static final Integer VERSION = 4;
+    private static final Integer VERSION = 5;
     public static final String COL_1 = "ID";
     public static final String COL_2 = "EXPENSE_TYPE";
     public static final String COL_3 = "AMOUNT";
@@ -23,7 +23,7 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_6 = "EXPENSE_DAY";
     public static final String COL_7 = "EXPENSE_HOUR";
     public static final String COL_8 = "EXPENSE_MINUTE";
-
+    public static final String COL_9 = "EXPENSE_DESC";
 
     public ExpenseDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
@@ -33,7 +33,7 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME2 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, EXPENSE_TYPE TEXT NOT NULL, AMOUNT FLOAT NOT NULL, EXPENSE_YEAR INTEGER NOT NULL, EXPENSE_MONTH INTEGER NOT NULL, EXPENSE_DAY INTEGER NOT NULL, EXPENSE_HOUR INTEGER NOT NULL, EXPENSE_MINUTE INTEGER NOT NULL) ");
+        db.execSQL("create table " + TABLE_NAME2 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, EXPENSE_TYPE TEXT NOT NULL, AMOUNT FLOAT NOT NULL, EXPENSE_YEAR INTEGER NOT NULL, EXPENSE_MONTH INTEGER NOT NULL, EXPENSE_DAY INTEGER NOT NULL, EXPENSE_HOUR INTEGER NOT NULL, EXPENSE_MINUTE INTEGER NOT NULL, EXPENSE_DESC TEXT ) ");
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
     }
     // Function insertData() to insert the data in the table/Database
 
-    public boolean insertExpenseData(String expense_type, float amount, int year, int month, int day, int hour, int minute){
+    public boolean insertExpenseData(String expense_type, float amount, int year, int month, int day, int hour, int minute, String expense_desc){
         SQLiteDatabase db  = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put( COL_2, expense_type );
@@ -54,6 +54,7 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put( COL_6, day );
         contentValues.put( COL_7 , hour);
         contentValues.put( COL_8, minute );
+        contentValues.put( COL_9, expense_desc );
 
         long res =  db.insert( TABLE_NAME2, null, contentValues );
         if(res==-1)
@@ -87,7 +88,7 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
 
     // Function updateData() to update/change the existing data in database
 
-    public boolean updateExpenseData(String expense_id, String expense_type, float amount, int year , int month , int day , int hour, int minute){
+    public boolean updateExpenseData(String expense_id, String expense_type, float amount, int year , int month , int day , int hour, int minute, String desc){
         SQLiteDatabase db  = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put( COL_1, expense_id );
@@ -98,6 +99,7 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put( COL_6, day );
         contentValues.put( COL_7, hour );
         contentValues.put( COL_8, minute );
+        contentValues.put( COL_9, desc );
 
         db.update( TABLE_NAME2, contentValues, "ID = ?", new String[] {expense_id});
         return true;

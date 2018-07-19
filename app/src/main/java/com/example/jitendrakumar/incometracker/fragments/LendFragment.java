@@ -1,6 +1,7 @@
 package com.example.jitendrakumar.incometracker.fragments;
 
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
+import com.example.jitendrakumar.incometracker.activities.LendActivity;
 import com.example.jitendrakumar.incometracker.database.LendDatabaseHelper;
 import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.DatePickerFragment;
 
@@ -30,6 +32,7 @@ public class LendFragment extends Fragment {
     TextView tvLendDate, tvHintLendDate;
     LendDatabaseHelper lendDatabaseHelper;
     public static final String TAG = "name";
+    private   int  lendyr, lendmth , lenddy;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,7 +45,6 @@ public class LendFragment extends Fragment {
         tvLendDate = (TextView) view.findViewById( R.id.tvLendDate );
         tvHintLendDate = (TextView)view.findViewById( R.id.tvHintLendDate );
         btnTakenSubmit = (Button) view.findViewById( R.id.btnTakenSubmit );
-        btnViewAllTakenData = (Button) view.findViewById( R.id.btnViewAllTakenData );
 
         etPersonName.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etTakenReason.setHintTextColor(getResources().getColor(R.color.colorTexts));
@@ -81,6 +83,16 @@ public class LendFragment extends Fragment {
                     String takenAmount = etTakenAmount.getText().toString();
                     String takenDate =  tvLendDate.getText().toString();
                     String takenReason = etTakenReason.getText().toString();
+
+                    String[]dateParts = takenDate.toString().split("/");
+                    try {
+                        lendyr = safeParseInt(dateParts[2]);
+                        lendmth = safeParseInt(dateParts[1]);
+                        lenddy = safeParseInt(dateParts[0]);
+                    } catch (Exception e) {
+                        Toast.makeText( getActivity(), "Error in parsing Date", Toast.LENGTH_SHORT ).show();
+                    }
+
                     if (personName.length()==0){
                         etPersonName.setError( "Person Name field is required!!!" );
                     }
@@ -95,9 +107,11 @@ public class LendFragment extends Fragment {
                         etTakenReason.setError( "Reason field is required!!!" );
                     }
                     else if(personName.length()!=0 && takenAmount.length()!=0 && takenReason.length()!=0 && takenAmount.length()!=0 && takenDate.length()!=0){
-                        boolean isInserted = lendDatabaseHelper.insertTakenData( personName, takenAmount ,takenReason,takenDate);
+                        boolean isInserted = lendDatabaseHelper.insertTakenData( personName, Float.parseFloat( takenAmount ) ,takenReason, lendyr, lendmth, lenddy);
                         if (isInserted == true) {
                             Toast.makeText( getActivity(), "Data Saved to Taken DataBase.", Toast.LENGTH_SHORT ).show();
+                            Intent i = new Intent( getActivity(), LendActivity.class);
+                            startActivity( i );
 
                         } else {
                             Toast.makeText( getActivity(), "Data is not Saved to Taken DataBase.", Toast.LENGTH_SHORT ).show();
@@ -112,48 +126,17 @@ public class LendFragment extends Fragment {
             }
         } );
 
-        showAllTakenData();
         return  view;
     }
 
-    public void showAllTakenData(){
-        btnViewAllTakenData.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Cursor res = lendDatabaseHelper.getAllTakenData();
-                if(res.getCount() == 0)
-                {
-                    // Show message
-                    showMessage( "Error", "Nothing Found" );
-
-                    return;
-                }
-                else
-                {
-                    StringBuffer buffer = new StringBuffer(  );
-                    while (res.moveToNext()){
-                        buffer.append( "Taken Id : "+ res.getString( 0 )+"\n" );
-                        buffer.append( "Person Name : "+ res.getString( 1 )+"\n" );
-                        buffer.append( "Taken Amount : "+ res.getString( 2 )+"\n" );
-                        buffer.append( "Taken Reason : "+ res.getString( 3 )+"\n" );
-                        buffer.append( "Taken Date : "+ res.getString( 4 )+"\n\n" );
-
-                    }
-                    // Show all data
-                    showMessage( "Data", buffer.toString() );
-                }
-            }
-
-        } );
+    public int safeParseInt(String number) throws Exception {
+        if(number != null) {
+            return Integer.parseInt(number.trim());
+        } else {
+            throw new NullPointerException("Date string is invalid");
+        }
     }
 
-    public void showMessage(String title, String Message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setCancelable( true );
-        builder.setTitle( title );
-        builder.setMessage( Message );
-        builder.show();
-    }
 
 
 }

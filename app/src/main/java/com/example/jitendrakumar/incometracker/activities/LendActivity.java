@@ -62,9 +62,27 @@ public class LendActivity extends AppCompatActivity {
                     String lPerson =  res.getString( 1 );
                     float lAmount =  res.getFloat( 2 );
                     String lDesc = res.getString( 3 );
-                    String lDate = res.getString( 4 );
+                    int byear = res.getInt( 4 );
+                    int bmonth = res.getInt( 5 );
+                    int bday = res.getInt( 6 );
+
+                    String Date = "";
+                    if(bmonth<=9 && bday<=9)
+                    {
+                        Date = "0"+bday +"/0"+bmonth +"/"+byear ;
+                    }
+                    if(bmonth<=9 && bday>9){
+                        Date = bday +"/0"+bmonth +"/"+byear ;
+                    }
+                    if(bmonth>9 && bday<=9){
+                        Date = "0"+bday +"/"+bmonth +"/"+byear ;
+                    }
+                    else {
+                        Date = bday +"/"+bmonth +"/"+byear ;
+                    }
+
                     //
-                    lData = new LendData(lId, lAmount, lDesc, lPerson, lDate);
+                    lData = new LendData(lId, lAmount, lDesc, lPerson, Date);
                     arrayList.add( lData);
                     totalLend = totalLend +lAmount;
                 }

@@ -1,6 +1,7 @@
 package com.example.jitendrakumar.incometracker.fragments;
 
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
+import com.example.jitendrakumar.incometracker.activities.BorrowActivity;
 import com.example.jitendrakumar.incometracker.database.BorrowDatabaseHelper;
 import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.DatePickerFragment;
 
@@ -29,6 +31,7 @@ public class BorrowFragment extends Fragment {
     TextView tvBorrowDate, tvHintBorrowDate;
     BorrowDatabaseHelper borrowDatabaseHelper;
     public static final String TAG = "name";
+    private   int  yr, mth , dy;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,7 +44,6 @@ public class BorrowFragment extends Fragment {
         tvBorrowDate = (TextView) view.findViewById( R.id.tvBorrowDate );
         btnPayingSubmit = (Button) view.findViewById( R.id.btnPayingSubmit );
         tvHintBorrowDate = (TextView) view.findViewById( R.id.tvHintBorrowDate );
-        btnViewAllPayingData = (Button) view.findViewById( R.id.btnViewAllPayingData );
 
         etPersonName.setHintTextColor(getResources().getColor(R.color.colorTexts));
         etPayingReason.setHintTextColor(getResources().getColor(R.color.colorTexts));
@@ -57,8 +59,7 @@ public class BorrowFragment extends Fragment {
         int year = cal.get( Calendar.YEAR );
         int month = cal.get( Calendar.MONTH);
         int day = cal.get( Calendar.DAY_OF_MONTH );
-        int hour = cal.get( Calendar.HOUR_OF_DAY );
-        int minute = cal.get( Calendar.MINUTE );
+
         tvBorrowDate.setText( day+"/"+month+"/"+year );
 
         tvHintBorrowDate.setOnClickListener( new View.OnClickListener() {
@@ -81,6 +82,15 @@ public class BorrowFragment extends Fragment {
                     String payingDate =  tvBorrowDate.getText().toString();
                     String payingReason = etPayingReason.getText().toString();
 
+                    String[]dateParts = payingDate.toString().split("/");
+                    try {
+                        yr = safeParseInt(dateParts[2]);
+                        mth = safeParseInt(dateParts[1]);
+                        dy = safeParseInt(dateParts[0]);
+                    } catch (Exception e) {
+                        Toast.makeText( getActivity(), "Error in parsing Date", Toast.LENGTH_SHORT ).show();
+                    }
+
                     if (personName.length()==0){
                         etPersonName.setError( "Person Name field is required!!!" );
                     }
@@ -96,9 +106,11 @@ public class BorrowFragment extends Fragment {
                     }
                     else{
 
-                        boolean isInserted = borrowDatabaseHelper.insertPayingData( personName, payingAmount ,payingReason,payingDate);
+                        boolean isInserted = borrowDatabaseHelper.insertPayingData( personName, Float.parseFloat(payingAmount  ) ,payingReason,yr, mth,dy);
                         if (isInserted == true) {
                             Toast.makeText( getActivity(), "Data Saved to Paying DataBase.", Toast.LENGTH_SHORT ).show();
+                            Intent i = new Intent( getActivity(), BorrowActivity.class );
+                            startActivity( i );
 
                         } else {
                             Toast.makeText( getActivity(), "Data is not Saved to Paying DataBase.", Toast.LENGTH_SHORT ).show();
@@ -113,47 +125,15 @@ public class BorrowFragment extends Fragment {
             }
         } );
 
-        showAllPayingData();
         return  view;
     }
 
-    public void showAllPayingData(){
-        btnViewAllPayingData.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Cursor res = borrowDatabaseHelper.getAllPayingData();
-                if(res.getCount() == 0)
-                {
-                    // Show message
-                    showMessage( "Error", "Nothing Found" );
-
-                    return;
-                }
-                else
-                {
-                    StringBuffer buffer = new StringBuffer(  );
-                    while (res.moveToNext()){
-                        buffer.append( "Paying Id : "+ res.getString( 0 )+"\n" );
-                        buffer.append( "Person Name : "+ res.getString( 1 )+"\n" );
-                        buffer.append( "Paying Amount : "+ res.getString( 2 )+"\n" );
-                        buffer.append( "Paying Reason : "+ res.getString( 3 )+"\n" );
-                        buffer.append( "Paying Date : "+ res.getString( 4 )+"\n\n" );
-
-                    }
-                    // Show all data
-                    showMessage( "Data", buffer.toString() );
-                }
-            }
-
-        } );
-    }
-
-    public void showMessage(String title, String Message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setCancelable( true );
-        builder.setTitle( title );
-        builder.setMessage( Message );
-        builder.show();
+    public int safeParseInt(String number) throws Exception {
+        if(number != null) {
+            return Integer.parseInt(number.trim());
+        } else {
+            throw new NullPointerException("Date string is invalid");
+        }
     }
 
 

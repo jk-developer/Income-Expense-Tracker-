@@ -23,7 +23,7 @@
             android:layout_marginBottom="25dp"
             android:gravity="center"
             android:padding="5dp"
-            android:text="Money To be Paid To"
+            android:text="Add Borrowed money here "
             android:textSize="25sp"
             android:textStyle="bold"
             android:textColor="@color/colorTexts"/>
@@ -38,7 +38,7 @@
             android:layout_marginStart="56dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Person Name"
+            android:hint="Lender Name"
             android:inputType="text"
             android:padding="5dp"
             android:background="@drawable/border"
@@ -51,7 +51,7 @@
             android:layout_gravity="center"
             android:ems="10"
             android:gravity="center"
-            android:hint="Borrowed Amount(Rs)"
+            android:hint="Amount(Rs) "
             android:inputType="number"
             android:padding="5dp"
             android:background="@drawable/border"
@@ -110,19 +110,6 @@
             android:textColor="@color/colorTexts"
             android:background="@drawable/button_background"
             android:layout_marginTop="25dp"/>
-
-        <Button
-            android:id="@+id/btnViewAllPayingData"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="5dp"
-            android:text="View All Paying DATA"
-            android:textColor="@color/colorTexts"
-            android:background="@drawable/button_background"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="20dp"/>
-
 
     </LinearLayout>
 </ScrollView>

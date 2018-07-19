@@ -97,7 +97,7 @@ public class MyExpenseAdapter extends RecyclerView.Adapter<MyExpenseAdapter.MyVi
 */       String Time = exphour+":"+expminute;
          holder.tvExpenseReportDate.setText(Date);
          holder.tvExpenseReportTime.setText(Time);
-
+         holder.tvExpenseReportDesc.setText( listBeneficiary.get( position ).getExpenseDesc());
 
     }
 
@@ -113,6 +113,7 @@ public class MyExpenseAdapter extends RecyclerView.Adapter<MyExpenseAdapter.MyVi
         public AppCompatTextView tvExpenseReportAmount;
         public AppCompatTextView tvExpenseReportDate;
         public AppCompatTextView tvExpenseReportTime;
+        public AppCompatTextView tvExpenseReportDesc;
 
         public MyViewHolder(View view) {
             super(view);
@@ -122,12 +123,13 @@ public class MyExpenseAdapter extends RecyclerView.Adapter<MyExpenseAdapter.MyVi
             tvExpenseReportAmount = (AppCompatTextView)view.findViewById( R.id.tvExpenseReportAmount );
             tvExpenseReportDate = (AppCompatTextView)view.findViewById( R.id.tvExpenseReportDate );
             tvExpenseReportTime = (AppCompatTextView)view.findViewById( R.id.tvExpenseReportTime );
+            tvExpenseReportDesc = (AppCompatTextView)view.findViewById( R.id.tvExpenseReportDesc);
 
         }
 
         @Override
         public void onClick(View v) {
-            expenseData= new ExpenseData( listBeneficiary.get( getPosition()).getExpenseId(), listBeneficiary.get( getPosition()).getExpenseType(), listBeneficiary.get( getPosition()).getExpenseAmount(), listBeneficiary.get( getPosition() ).getExpenseDate(), listBeneficiary.get(getPosition()).getExpenseTime());
+            expenseData= new ExpenseData( listBeneficiary.get( getPosition()).getExpenseId(), listBeneficiary.get( getPosition()).getExpenseType(), listBeneficiary.get( getPosition()).getExpenseAmount(), listBeneficiary.get( getPosition() ).getExpenseDate(), listBeneficiary.get(getPosition()).getExpenseTime(), listBeneficiary.get( getPosition()).getExpenseDesc());
             Intent i = new Intent( mContext, ExpenseItemsActivity.class );
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -136,6 +138,7 @@ public class MyExpenseAdapter extends RecyclerView.Adapter<MyExpenseAdapter.MyVi
             i.putExtra( "Time", expenseData.getExpenseTime());
             i.putExtra( "Type", expenseData.getExpenseType());
             i.putExtra( "incomeId", expenseData.getExpenseId() );
+            i.putExtra( "expenseDesc", expenseData.getExpenseDesc() );
       //      Log.d( TAG, "onClick: "+ expenseData.getInputAmount()+incomeData.getIncomeTime()+incomeData.getIncomeId() );
             mContext.startActivity( i );
         }

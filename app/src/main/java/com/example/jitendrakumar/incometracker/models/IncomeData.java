@@ -5,12 +5,23 @@ public class IncomeData {
     String inputType;
     float inputAmount;
 
-    public IncomeData(int incomeId, String inputType, float inputAmount, String incomeDate, String incomeTime) {
+    public String getIncomeDesc() {
+        return incomeDesc;
+    }
+
+    public void setIncomeDesc(String incomeDesc) {
+        this.incomeDesc = incomeDesc;
+    }
+
+    String incomeDesc;
+
+    public IncomeData(int incomeId, String inputType, float inputAmount, String incomeDate, String incomeTime,String incomeDesc) {
         this.incomeId = incomeId;
         this.inputType = inputType;
         this.inputAmount = inputAmount;
         this.incomeDate = incomeDate;
         this.incomeTime = incomeTime;
+        this.incomeDesc  = incomeDesc;
     }
 
     public int getIncomeId() {

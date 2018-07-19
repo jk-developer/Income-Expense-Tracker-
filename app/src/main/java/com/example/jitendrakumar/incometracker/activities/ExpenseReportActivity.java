@@ -67,11 +67,26 @@ public class ExpenseReportActivity extends AppCompatActivity {
                 int incDay = res.getInt( 5 );
                 int incHour = res.getInt( 6 );
                 int incMinute = res.getInt( 7 );
-                String Date = Integer.toString( incDay )+"/"+Integer.toString( incMonth )+"/"+Integer.toString( incYear );
-                Log.d( "date", "getArrayList: "+incMonth+ incDay+Date );
+                String expDesc = res.getString( 8 );
+
+                String Date = "";
+                if(incMonth<=9 && incDay<=9)
+                {
+                    Date = "0"+incDay +"/0"+incMonth +"/"+incYear ;
+                }
+                if(incMonth<=9 && incDay>9){
+                    Date = incDay +"/0"+incMonth +"/"+incYear ;
+                }
+                if(incMonth>9 && incDay<=9){
+                    Date = "0"+incDay +"/"+incMonth +"/"+incYear ;
+                }
+                else {
+                    Date = incDay +"/"+incMonth +"/"+incYear ;
+                }
+
                 String Time = Integer.toString( incHour )+":"+Integer.toString( incMinute );
 
-                expenseData = new ExpenseData(expId, expType, incAmount, Date, Time);
+                expenseData = new ExpenseData(expId, expType, incAmount, Date, Time, expDesc);
                 arrayList.add( expenseData);
                 totalExpense = totalExpense +incAmount;
             }

@@ -17,7 +17,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
+import com.example.jitendrakumar.incometracker.database.BorrowDatabaseHelper;
 import com.example.jitendrakumar.incometracker.database.ExpenseDatabaseHelper;
+import com.example.jitendrakumar.incometracker.database.IncomeDatabaseHelper;
+import com.example.jitendrakumar.incometracker.database.LendDatabaseHelper;
 import com.example.jitendrakumar.incometracker.fragments.AddExpenseFragment;
 import com.example.jitendrakumar.incometracker.fragments.BorrowReportFragment;
 import com.example.jitendrakumar.incometracker.fragments.ExpenseReportFragment;
@@ -38,6 +41,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     HomeFragment homeFragment;
     SessionManagement session;
     ExpenseDatabaseHelper expenseDatabaseHelper;
+    IncomeDatabaseHelper incomeDatabaseHelper;
+    BorrowDatabaseHelper borrowDatabaseHelper;
+    LendDatabaseHelper lendDatabaseHelper;
 
     private CharSequence charSequence[] = {"Income", "Expense", "Borrow", "Lend"};
     private  CharSequence report[] = {"Between two months, Barchart, Piechart"};
@@ -48,7 +54,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main );
+
         expenseDatabaseHelper = new ExpenseDatabaseHelper( this );
+        incomeDatabaseHelper = new IncomeDatabaseHelper( this );
+        borrowDatabaseHelper = new BorrowDatabaseHelper( this );
+        lendDatabaseHelper = new LendDatabaseHelper( this );
+
         for(int i=0;i<charSequence.length;i++)
             Checked[i] = false;
 
@@ -170,7 +181,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             }
                         } );
 
-
                         builderReset.setPositiveButton( "Reset", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -178,15 +188,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                     Toast.makeText( MainActivity.this, "First Choose some items ", Toast.LENGTH_SHORT ).show();
                                     builderReset.setCancelable( false );
                                 } else {
-                                    for (int i = 0; i < charSequence.length; i++) {
-                                        Toast.makeText( MainActivity.this, Checked[i] + " ", Toast.LENGTH_SHORT ).show();
-
-
+                                    if (Checked[0] == true) {
+                                        incomeDatabaseHelper.deleteAllRecords();
                                     }
-
-                                    //    expenseDatabaseHelper.deleteAllData();
+                                    if (Checked[1] == true) {
+                                        expenseDatabaseHelper.deleteAllData();
+                                    }
+                                    if (Checked[2] == true) {
+                                        borrowDatabaseHelper.deleteAllBorrowData();
+                                    }
+                                    if(Checked[3]==true){
+                                        lendDatabaseHelper.deleteAllLendData();
                                 }
+                                    getSupportFragmentManager().beginTransaction()
+                                            .replace( R.id.fragment_container, new HomeFragment())
+                                            .addToBackStack( null )
+                                            .commit();
+                                    toolbar.setTitle( "Income Expense Tracker" );
 
+                                    Toast.makeText( MainActivity.this, "Selected Items records are deleted!!!", Toast.LENGTH_SHORT ).show();
+                            }
                             }
                         } );
 

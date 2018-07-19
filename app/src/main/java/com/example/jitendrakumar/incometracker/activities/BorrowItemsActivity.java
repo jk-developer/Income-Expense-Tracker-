@@ -28,7 +28,7 @@ public class BorrowItemsActivity extends AppCompatActivity implements DatePicker
     EditText etValue;
     TextView tvDate, tvHintDate, tvDesc, tvHintDesc, tvDelete, tvSave, tvPerson, tvHintPerson ;
     private  String Date, Desc, Person;
-    private  int Id, year, month, day, hour, minute;
+    private  int Id, byear, bmonth, bday;
     private float amt;
     BorrowDatabaseHelper bHelper;
 
@@ -119,7 +119,16 @@ public class BorrowItemsActivity extends AppCompatActivity implements DatePicker
                         public void onClick(DialogInterface dialog, int which) {
                             final String newDate = tvDate.getText().toString();
 
-                            if(bHelper.updateBorrowData( String.valueOf( Id ),tvPerson.getText().toString(), Float.parseFloat(etValue.getText().toString()) , tvDesc.getText().toString(), tvDate.getText().toString())) {
+                            String[]dateParts = newDate.toString().split("/");
+                            try {
+                                byear = safeParseInt(dateParts[2]);
+                                bmonth = safeParseInt(dateParts[1]);
+                                bday = safeParseInt(dateParts[0]);
+                            } catch (Exception e) {
+                                Toast.makeText( BorrowItemsActivity.this, "Error in parsing Date", Toast.LENGTH_SHORT ).show();
+                            }
+
+                            if(bHelper.updateBorrowData( String.valueOf( Id ),tvPerson.getText().toString(), Float.parseFloat(etValue.getText().toString()) , tvDesc.getText().toString(),byear, bmonth, bday)) {
                                 Intent i = new Intent( BorrowItemsActivity.this, BorrowActivity.class );
                                 startActivity( i );
                                 Toast.makeText( BorrowItemsActivity.this, "this income is updated" + Id, Toast.LENGTH_SHORT ).show();
@@ -171,6 +180,14 @@ public class BorrowItemsActivity extends AppCompatActivity implements DatePicker
                 tvDate.setText(day+"/"+month+"/"+year);
             }
         }
+
+    public int safeParseInt(String number) throws Exception {
+        if(number != null) {
+            return Integer.parseInt(number.trim());
+        } else {
+            throw new NullPointerException("Date string is invalid");
+        }
+    }
 
     }
 

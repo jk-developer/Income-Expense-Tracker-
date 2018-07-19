@@ -25,6 +25,7 @@ public class MyBorrowAdapter extends RecyclerView.Adapter<MyBorrowAdapter.Borrow
     private ArrayList<BorrowData> mFilteredList;
     public static final String TAG = "res";
     BorrowData borrowData;
+    private int y,m,d;
 
 
     public MyBorrowAdapter(ArrayList<BorrowData> listBeneficiary, Context mContext) {
@@ -81,13 +82,48 @@ public class MyBorrowAdapter extends RecyclerView.Adapter<MyBorrowAdapter.Borrow
         holder.tvBorrowDataAmount.setText(String.valueOf(listBeneficiary.get(position).getbAmount()));
         holder.tvBorrowDataPersonName.setText(listBeneficiary.get(position).getbPerson());
         holder.tvBorrowDataDescription.setText( listBeneficiary.get( position ).getbDesc() );
-        holder.tvBorrowDataDate.setText( listBeneficiary.get( position ).getbDate() );
+
+        String dateStr = listBeneficiary.get( position ).getbDate().toString();
+
+        String[]dateParts = dateStr.split("/");
+        try {
+            y = safeParseInt(dateParts[2]);
+            m = safeParseInt(dateParts[1]);
+            d = safeParseInt(dateParts[0]);
+        } catch (Exception e) {
+            Log.d( TAG, "onBindViewHolder: Error in Date Parsing  " );
+        }
+
+        String Date = "";
+        if(m<=9 && d<=9)
+        {
+            Date = "0"+d +"/0"+m +"/"+y ;
+        }
+        if(m<=9 && d>9){
+            Date = d +"/0"+m +"/"+y ;
+        }
+        if(m>9 && d<=9){
+            Date = "0"+d +"/"+m +"/"+y ;
+        }
+        else {
+            Date = d +"/"+m +"/"+y ;
+        }
+
+        holder.tvBorrowDataDate.setText( Date);
     }
 
 
     @Override
     public int getItemCount() {
         return mFilteredList.size();
+    }
+
+    public int safeParseInt(String number) throws Exception {
+        if(number != null) {
+            return Integer.parseInt(number.trim());
+        } else {
+            throw new NullPointerException("Date string is invalid");
+        }
     }
 
 

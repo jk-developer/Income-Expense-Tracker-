@@ -42,7 +42,7 @@ public class AddIncomeFragment extends Fragment{
     public static final String TAG = "res";
 
     // TextView tvIncomeDate;
-     EditText  etIncomeAmount;
+     EditText  etIncomeAmount, etIncomeDescription;
      TextView tvIncomeDate, tvIncomeTime, tvIncomeHintDate, tvIncomeHintTime, tvIncomeType, tvIncomeInput;
      Button btnIncomeSubmit;
      IncomeDatabaseHelper MyincomeDB;
@@ -60,6 +60,7 @@ public class AddIncomeFragment extends Fragment{
         tvIncomeType = (TextView) view.findViewById( R.id.tvIncomeType );
         tvIncomeInput = (TextView) view.findViewById( R.id.tvIncomeInput );
         etIncomeAmount = (EditText) view.findViewById( R.id.etIncomeAmount );
+        etIncomeDescription = (EditText)view.findViewById( R.id.etIncomeDescription );
         tvIncomeDate = (TextView) view.findViewById( R.id.tvIncomeDate );
         tvIncomeTime = (TextView) view.findViewById( R.id.tvIncomeTime );
         btnIncomeSubmit = (Button) view.findViewById( R.id.btnIncomeSubmit );
@@ -119,8 +120,10 @@ public class AddIncomeFragment extends Fragment{
         tvIncomeType.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
         tvIncomeInput.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
         etIncomeAmount.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
+        etIncomeDescription.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
         tvIncomeDate.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
         tvIncomeTime.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
+
         tvIncomeDate.setTextColor( Color.parseColor( "#00ff00" ) );
         etIncomeAmount.setTextColor( Color.parseColor( "#00ff00" ) );
         tvIncomeType.setTextColor( Color.parseColor( "#00ff00" ) );
@@ -159,6 +162,7 @@ public class AddIncomeFragment extends Fragment{
                         String incomeAmount = etIncomeAmount.getText().toString();
                         String incomeDate =  tvIncomeDate.getText().toString();
                         String incomeTime = tvIncomeTime.getText().toString();
+                        String incomeDesc = etIncomeDescription.getText().toString();
                         // Extracting year month and day integer value from the Date String DD/MM/YYYY
                         String[]dateParts = incomeDate.toString().split("/");
                         try {
@@ -190,7 +194,7 @@ public class AddIncomeFragment extends Fragment{
                             tvIncomeTime.setError( "Time field is required!!!" );
                         }
                         else {
-                            boolean isInserted = MyincomeDB.insertIncomeData( incomeType, Float.parseFloat( incomeAmount ) , year, month, day, hour, minute);
+                            boolean isInserted = MyincomeDB.insertIncomeData( incomeType, Float.parseFloat( incomeAmount ) , year, month, day, hour, minute, incomeDesc);
                             if(isInserted == true) {
                                 Toast.makeText( getActivity(), "Data Saved to Income DataBase.", Toast.LENGTH_SHORT ).show();
                                 Intent in = new Intent( getContext(), IncomeReportActivity.class );

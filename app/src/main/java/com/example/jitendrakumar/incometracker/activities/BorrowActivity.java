@@ -63,9 +63,26 @@ public class BorrowActivity extends AppCompatActivity {
                 String bPerson =  res.getString( 1 );
                 float bAmount =  res.getFloat( 2 );
                 String bDesc = res.getString( 3 );
-                String bDate = res.getString( 4 );
-            //
-                bData = new BorrowData(bId, bAmount, bDesc, bPerson, bDate);
+                int byear = res.getInt( 4 );
+                int bmonth = res.getInt( 5 );
+                int bday = res.getInt( 6 );
+
+                String Date = "";
+                if(bmonth<=9 && bday<=9)
+                {
+                    Date = "0"+bday +"/0"+bmonth +"/"+byear ;
+                }
+                if(bmonth<=9 && bday>9){
+                    Date = bday +"/0"+bmonth +"/"+byear ;
+                }
+                if(bmonth>9 && bday<=9){
+                    Date = "0"+bday +"/"+bmonth +"/"+byear ;
+                }
+                else {
+                    Date = bday +"/"+bmonth +"/"+byear ;
+                }
+
+                bData = new BorrowData(bId, bAmount, bDesc, bPerson, Date);
                 arrayList.add( bData);
                 totalBorrow = totalBorrow +bAmount;
             }

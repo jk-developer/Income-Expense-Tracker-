@@ -39,7 +39,7 @@
             android:layout_marginStart="56dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Person Name"
+            android:hint="Borrower Name"
             android:inputType="textPersonName"
             android:padding="5dp"
             android:background="@drawable/border"/>
@@ -52,7 +52,7 @@
             android:layout_margin="10dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Lent Amount(Rs)"
+            android:hint="Amount(Rs)"
             android:inputType="numberDecimal"
             android:padding="5dp"
             android:background="@drawable/border"/>
@@ -111,17 +111,6 @@
             android:background="@drawable/button_background"
             android:layout_marginTop="25dp"/>
 
-        <Button
-            android:id="@+id/btnViewAllTakenData"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="5dp"
-            android:text="View All TAken DATA"
-            android:textColor="@color/colorTexts"
-            android:background="@drawable/button_background"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="20dp"/>
 
 
     </LinearLayout>
