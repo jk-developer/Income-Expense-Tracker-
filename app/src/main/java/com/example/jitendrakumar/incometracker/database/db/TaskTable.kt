@@ -14,6 +14,7 @@ class TaskTable {
                 ${Columns.ID} INTEGER PRIMARY KEY AUTOINCREMENT,
                 ${Columns.TASK} TEXT,
                 ${Columns.TASK_DATE} TEXT,
+                ${Columns.TASK_TIME} TEXT,
                 ${Columns.DONE} BOOLEAN
             );
         """.trimIndent()
@@ -22,6 +23,7 @@ class TaskTable {
             val row = ContentValues()
             row.put(Columns.TASK, task.taskName)
             row.put(Columns.TASK_DATE, task.taskDate)
+            row.put(Columns.TASK_TIME, task.taskTime)
             row.put(Columns.DONE, task.done)
             return db.insert(TABLE_NAME, null, row)
         }
@@ -50,6 +52,7 @@ class TaskTable {
             val updatedTask = ContentValues()
             updatedTask.put(Columns.TASK, task.taskName)
             updatedTask.put(Columns.TASK_DATE, task.taskDate)
+            updatedTask.put(Columns.TASK_TIME, task.taskTime)
             updatedTask.put(Columns.DONE, task.done)
             val updatedRows = db.update(
                     TABLE_NAME,
@@ -63,14 +66,15 @@ class TaskTable {
             val tasks = ArrayList<Todo>()
             val cursor = db.query(
                     TABLE_NAME,
-                    arrayOf(Columns.ID, Columns.TASK, Columns.TASK_DATE, Columns.DONE),
+                    arrayOf(Columns.ID, Columns.TASK, Columns.TASK_DATE, Columns.TASK_TIME, Columns.DONE),
                     null, null,
                     null, null,
-                    null
+                    Columns.TASK_DATE, Columns.TASK_TIME
             )
             val idCol = cursor.getColumnIndex(Columns.ID)
             val taskCol = cursor.getColumnIndex(Columns.TASK)
             val dateCol = cursor.getColumnIndex(Columns.TASK_DATE)
+            val timeCol = cursor.getColumnIndex(Columns.TASK_TIME)
             val donCol = cursor.getColumnIndex(Columns.DONE)
 
             while (cursor.moveToNext()) {
@@ -78,7 +82,9 @@ class TaskTable {
                         cursor.getInt(idCol),
                         cursor.getString(taskCol),
                         cursor.getString(dateCol),
+                        cursor.getString(timeCol),
                         cursor.getInt(donCol) == 1
+
                 )
                 tasks.add(rowTask)
             }
@@ -91,6 +97,7 @@ class TaskTable {
         val ID = "id"
         val TASK = "task"
         val TASK_DATE = "todo_date"
+        val TASK_TIME = "todo_time"
         val DONE = "done"
     }
 }

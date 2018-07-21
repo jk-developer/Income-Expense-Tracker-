@@ -54,6 +54,7 @@ class TodoActivity : AppCompatActivity() {
                     null,
                     etTaskName.text.toString(),
                     etTaskDate.text.toString(),
+                    etTaskTime.text.toString(),
                     false
             )
             if(etTaskName.text.toString().length==0)
@@ -63,6 +64,10 @@ class TodoActivity : AppCompatActivity() {
             if(etTaskDate.text.toString().length==0)
             {
                 Toast.makeText(this, "Task Date field is required!!!", Toast.LENGTH_SHORT).show()
+            }
+            if(etTaskTime.text.toString().length==0)
+            {
+                Toast.makeText(this, "Task Time field is required!!!", Toast.LENGTH_SHORT).show()
             }
             else{
                 val id = TaskTable.addTask(db, newTask)

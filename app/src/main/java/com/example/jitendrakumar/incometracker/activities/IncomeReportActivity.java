@@ -63,6 +63,11 @@ public class IncomeReportActivity extends AppCompatActivity {
         ivAddMore.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace( R.id.fragment_container, new AddIncomeFragment())
+                        .addToBackStack( null )
+                        .commit();
+
                   Toast.makeText( IncomeReportActivity.this, "ADD More is clicked ", Toast.LENGTH_SHORT ).show();
                 }
         } );

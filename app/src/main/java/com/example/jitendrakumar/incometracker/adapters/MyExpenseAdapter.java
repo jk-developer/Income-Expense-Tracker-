@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
 import com.example.jitendrakumar.incometracker.activities.ExpenseItemsActivity;
@@ -103,7 +104,11 @@ public class MyExpenseAdapter extends RecyclerView.Adapter<MyExpenseAdapter.MyVi
 
         @Override
         public int getItemCount() {
-            return mFilteredList.size();
+            if(mFilteredList==null)
+                return 0;
+            else
+               return mFilteredList.size();
+
         }
 
 

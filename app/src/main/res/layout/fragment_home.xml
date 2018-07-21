@@ -220,73 +220,7 @@
 
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="1"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="5dp"
-            android:background="@drawable/layout_corner"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:id="@+id/todoLayout">
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/task"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"/>
-
-            <TextView
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:text="Todo Task"
-                android:textSize="18sp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:layout_marginBottom="18dp"
-                android:textColor="#000000"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="5dp"
-            android:background="@drawable/layout_corner"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:id="@+id/loginLayout">
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/login_user"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                />
-
-            <TextView
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:text="Login"
-                android:textSize="18sp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:layout_marginBottom="18dp"
-                android:textColor="#000000"
-                />
-        </LinearLayout>
-
-    </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -329,18 +263,18 @@
                 android:background="@drawable/layout_corner"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:id="@+id/expenseLayout">
+                android:id="@+id/incomeReportLayout">
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/home_income"
+                    android:src="@drawable/my_report"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"/>
 
                 <TextView
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
-                    android:text="Add Expense"
+                    android:text="Income Report"
                     android:textSize="18sp"
                     android:gravity="center"
                     android:padding="2dp"
@@ -357,63 +291,62 @@
                 android:orientation="horizontal"
                 android:layout_margin="2dp">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/layout_corner"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:id="@+id/incomeReportLayout">
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/my_report"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="20dp"/>
+           <LinearLayout
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:layout_margin="5dp"
+               android:background="@drawable/layout_corner"
+               android:layout_weight="1"
+               android:clickable="true"
+               android:id="@+id/expenseLayout">
+               <ImageView
+                   android:layout_width="60dp"
+                   android:layout_height="60dp"
+                   android:src="@drawable/home_income"
+                   android:layout_gravity="center"
+                   android:layout_marginTop="20dp"/>
 
-                    <TextView
-                        android:layout_width="170dp"
-                        android:layout_height="wrap_content"
-                        android:text="Income Report"
-                        android:textSize="18sp"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:layout_marginBottom="18dp"
-                        android:textColor="#000000"/>
-                </LinearLayout>
+               <TextView
+                   android:layout_width="170dp"
+                   android:layout_height="wrap_content"
+                   android:text="Add Expense"
+                   android:textSize="18sp"
+                   android:gravity="center"
+                   android:padding="2dp"
+                   android:layout_marginBottom="18dp"
+                   android:textColor="#000000"/>
+           </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/layout_corner"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:id="@+id/expenseReportLayout">
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/my_report"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="20dp"
-                        />
+           <LinearLayout
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:layout_margin="5dp"
+               android:background="@drawable/layout_corner"
+               android:layout_weight="1"
+               android:clickable="true"
+               android:id="@+id/expenseReportLayout">
+               <ImageView
+                   android:layout_width="60dp"
+                   android:layout_height="60dp"
+                   android:src="@drawable/my_report"
+                   android:layout_gravity="center"
+                   android:layout_marginTop="20dp"
+                   />
 
-                    <TextView
-                        android:layout_width="170dp"
-                        android:layout_height="wrap_content"
-                        android:text="Expense Report"
-                        android:textSize="18sp"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:layout_marginBottom="18dp"
-                        android:textColor="#000000"/>
-                </LinearLayout>
+               <TextView
+                   android:layout_width="170dp"
+                   android:layout_height="wrap_content"
+                   android:text="Expense Report"
+                   android:textSize="18sp"
+                   android:gravity="center"
+                   android:padding="2dp"
+                   android:layout_marginBottom="18dp"
+                   android:textColor="#000000"/>
+           </LinearLayout>
 
-
-            </LinearLayout>
+       </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -456,24 +389,27 @@
                 android:background="@drawable/layout_corner"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:id="@+id/lendLayout">
+                android:id="@+id/borrowReportLayout">
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/borrow_lend"
+                    android:src="@drawable/my_report"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"/>
 
                 <TextView
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
-                    android:text="Add Lend"
+                    android:text="Borrow Report"
                     android:textSize="18sp"
                     android:gravity="center"
                     android:padding="2dp"
                     android:layout_marginBottom="18dp"
                     android:textColor="#000000"/>
             </LinearLayout>
+
+
+
 
         </LinearLayout>
 
@@ -491,24 +427,25 @@
             android:background="@drawable/layout_corner"
             android:layout_weight="1"
             android:clickable="true"
-            android:id="@+id/borrowReportLayout">
+            android:id="@+id/lendLayout">
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/my_report"
+                android:src="@drawable/borrow_lend"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"/>
 
             <TextView
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:text="Borrow Report"
+                android:text="Add Lend"
                 android:textSize="18sp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:layout_marginBottom="18dp"
                 android:textColor="#000000"/>
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="0dp"
@@ -538,6 +475,74 @@
                 android:textColor="#000000"/>
         </LinearLayout>
     </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@drawable/layout_corner"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/todoLayout">
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/task"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"/>
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Todo Task"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:layout_marginBottom="18dp"
+                    android:textColor="#000000"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@drawable/layout_corner"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/loginLayout">
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/login_user"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Login"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:layout_marginBottom="18dp"
+                    android:textColor="#000000"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
 
 
 

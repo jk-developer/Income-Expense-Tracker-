@@ -24,14 +24,19 @@ class MyTodoAdapter (
         return TodoViewHolder(itemView)
     }
 
-    override fun getItemCount(): Int = tasks.size
+    override fun getItemCount(): Int{
+        if(tasks==null)
+            return 0
+        else
+            return tasks.size
+    }
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         holder.itemView.todocheckBox.setOnCheckedChangeListener(null)
-
         holder.itemView.todocheckBox.isChecked = tasks[position].done
         holder.itemView.tvTaskName.text = tasks[position].taskName
         holder.itemView.tvTaskDate.text = tasks[position].taskDate
+        holder.itemView.tvTaskTime.text = tasks[position].taskTime
 
         holder.itemView.todocheckBox.setOnCheckedChangeListener {
             _, isChecked ->

@@ -9,7 +9,7 @@
     android:background="@drawable/adaptergradient">
     <CheckBox
         android:id="@+id/todocheckBox"
-        android:layout_weight=".8"
+        android:layout_weight=".9"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -18,7 +18,7 @@
         android:id="@+id/tvTaskName"
         android:textSize="17sp"
         tools:text="Some task"
-        android:layout_weight="7"
+        android:layout_weight="6.5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="start"
@@ -30,11 +30,22 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="3.1"
+        android:layout_weight="3"
         android:textSize="16sp"
         tools:text="2017-12-26"
         android:gravity="center"
         android:id="@+id/tvTaskDate"
+        android:layout_gravity="center"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2.5"
+        android:textSize="16sp"
+        tools:text="HH:MM"
+        android:gravity="center"
+        android:id="@+id/tvTaskTime"
         android:layout_gravity="center"
         android:textColor="#000000"/>
 </LinearLayout>

@@ -29,7 +29,7 @@ public class ExpenseItemsActivity extends AppCompatActivity implements DatePicke
     private  int id, year, month, day, hour, minute;
     private float amt;
     ExpenseDatabaseHelper expenseDb;
-    private CharSequence expense[] = {"Food", "Leisure","Transport","Clothes", "Travel","Health","Hobbies","Gifts","Household",
+    private CharSequence expense[] = {"Food", "Leisure","Transport", "Medicines", "House Rent", "Maintenace","Clothes", "Travel","Health","Hobbies","Gifts","Household",
             "Groceries","Gadgets","Kids", "Loans", "Education","Holidays","Savings","Beauty","Sports","Mobile","Other"};
 
 

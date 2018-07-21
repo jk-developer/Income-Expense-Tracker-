@@ -36,7 +36,7 @@ public class AddExpenseFragment extends Fragment {
     Button btnExpenseSubmit;
     private int eyear, emonth, eday, ehour, eminute;
     SessionManagement s;
-    private CharSequence expense[] = {"Food", "Leisure","Transport","Clothes", "Travel","Health","Hobbies","Gifts","Household",
+    private CharSequence expense[] = {"Food", "Leisure","Transport", "Medicines", "House Rent", "Maintenace", "Clothes", "Travel","Health","Hobbies","Gifts","Household",
     "Groceries","Gadgets","Kids", "Loans", "Education","Holidays","Savings","Beauty","Sports","Mobile","Other"};
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -59,7 +59,22 @@ public class AddExpenseFragment extends Fragment {
         int day = c.get( Calendar.DAY_OF_MONTH );
         int hour = c.get( Calendar.HOUR_OF_DAY );
         int minute = c.get( Calendar.MINUTE );
-        tvExpenseDate.setText( day+"/"+month+"/"+year );
+        String Date = "";
+        if((month+1)<=9 && day<=9)
+        {
+            Date = "0"+day +"/0"+(month+1) +"/"+year ;
+        }
+        if((month+1)<=9 && day>9){
+            Date = day +"/0"+(month+1)+"/"+year ;
+        }
+        if((month+1)>9 && day<=9){
+            Date = "0"+day +"/"+(month+1) +"/"+year ;
+        }
+        else {
+            Date = day +"/"+(month+1) +"/"+year ;
+        }
+
+        tvExpenseDate.setText(Date);
         tvExpenseTime.setText( hour+":"+minute );
 
         tvExpenseType.setHintTextColor( getResources().getColor( R.color.colorTexts ) );

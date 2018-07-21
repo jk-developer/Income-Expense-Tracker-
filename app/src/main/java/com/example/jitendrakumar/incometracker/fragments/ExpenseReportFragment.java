@@ -1,5 +1,6 @@
 package com.example.jitendrakumar.incometracker.fragments;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -28,13 +29,16 @@ import com.example.jitendrakumar.incometracker.fragments.date_time_fragment.Date
 import java.util.Calendar;
 
 public class ExpenseReportFragment extends Fragment {
-    TextView tvExpenseReportDateFrom, tvExpenseReportDateTo, tvHintExpenseReportDateFrom, tvHintExpenseReportDateTo;
+    TextView tvExpenseReportDateFrom,tvExpenseReportType, tvExpenseReportInput, tvExpenseReportDateTo, tvHintExpenseReportDateFrom, tvHintExpenseReportDateTo;
     ExpenseDatabaseHelper expenseDatabaseHelper;
-    Button btnExpenseReportbwTwoDates, btnExpenseBarchart, btnExpenseReportbwMonthsAndDay, btnViewExpenseReportbwMonths;
+    Button btnExpenseReportbwTwoDates, btnExpenseBarchart, btnExpenseReportCategorywise, btnExpenseReportbwMonthsAndDay, btnViewExpenseReportbwMonths;
     EditText etFromMonth, etToMonth, etToDay, etFromDay,etExpenseReportFromMonth,etExpenseReportToMonth;
     private String id;
     public static final String TAG = "res";
     private int years, yearf, months, monthf, days,dayf;
+    private CharSequence expense[] = {"Food", "Leisure","Transport", "Medicines", "House Rent", "Maintenace", "Clothes", "Travel","Health","Hobbies","Gifts","Household",
+            "Groceries","Gadgets","Kids", "Loans", "Education","Holidays","Savings","Beauty","Sports","Mobile","Other"};
+
 
     @Nullable
     @Override
@@ -42,6 +46,8 @@ public class ExpenseReportFragment extends Fragment {
         View view =  inflater.inflate( R.layout.fragment_expense_report, container, false );
 
         tvExpenseReportDateFrom = (TextView) view.findViewById( R.id.tvExpenseReportDateFrom);
+        tvExpenseReportType = (TextView) view.findViewById( R.id.tvExpenseReportType );
+        tvExpenseReportInput = (TextView) view.findViewById( R.id.tvExpenseReportInput );
         tvExpenseReportDateTo = (TextView) view.findViewById( R.id.tvExpenseReportDateTo);
         btnExpenseReportbwTwoDates = (Button)view.findViewById( R.id.btnExpenseReportbwTwoDates );
         tvHintExpenseReportDateFrom = (TextView) view.findViewById( R.id.tvHintExpenseReportDateFrom );
@@ -49,6 +55,7 @@ public class ExpenseReportFragment extends Fragment {
         btnExpenseBarchart = (Button) view.findViewById( R.id.btnExpenseBarchart );
         btnExpenseReportbwMonthsAndDay = (Button) view.findViewById( R.id.btnExpenseReportbwMonthsAndDay);
         btnViewExpenseReportbwMonths = (Button) view.findViewById( R.id.btnViewExpenseReportbwMonths );
+        btnExpenseReportCategorywise  = (Button) view.findViewById( R.id.btnExpenseReportCategorywise );
         etFromMonth = (EditText) view.findViewById( R.id.etFromMonth );
         etToMonth = (EditText)view.findViewById( R.id.etToMonth );
         etExpenseReportToMonth = (EditText)view.findViewById( R.id.etExpenseReportToMonth );
@@ -62,12 +69,14 @@ public class ExpenseReportFragment extends Fragment {
         tvExpenseReportDateTo.setHintTextColor(getResources().getColor(R.color.colorTexts));
         tvExpenseReportDateFrom.setTextColor( Color.parseColor("#00ff00"));
         tvExpenseReportDateTo.setTextColor( Color.parseColor("#00ff00"));
+        tvExpenseReportType.setHintTextColor(getResources().getColor( R.color.colorTexts ));
         etFromMonth.setTextColor( Color.parseColor("#00ff00"));
         etToMonth.setTextColor( Color.parseColor("#00ff00"));
         etFromDay.setTextColor( Color.parseColor("#00ff00"));
         etToDay.setTextColor( Color.parseColor("#00ff00"));
         etExpenseReportFromMonth.setTextColor( Color.parseColor("#00ff00"));
         etExpenseReportToMonth.setTextColor( Color.parseColor("#00ff00"));
+        tvExpenseReportInput.setTextColor( Color.parseColor( "#00ff00" ) );
 
         showAllExpenseDatabwDates();
         showRecordbwMonthsandDays();
@@ -103,6 +112,83 @@ public class ExpenseReportFragment extends Fragment {
                 startActivity( i );
             }
         } );
+
+        tvExpenseReportType.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle( "Select Expense Category" );
+                builder.setItems( expense, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        tvExpenseReportInput.setText( expense[which].toString());
+                    }
+                } );
+
+                builder.setNegativeButton( "CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        builder.setCancelable( true );
+                    }
+                } );
+
+                builder.setPositiveButton( "OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(which==-1)
+                        {
+
+                        }else {
+                            tvExpenseReportInput.setText( expense[which].toString());
+
+                        }
+
+
+                    }
+                } );
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+            }
+        } );
+
+
+        btnExpenseReportCategorywise.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String category = tvExpenseReportInput.getText().toString();
+                try{
+                    Cursor r = expenseDatabaseHelper.getRecordsCategorywise( category );
+                    if(r.getCount() == 0)
+                    {
+                        // Show message
+                        showMessage( "Error", "Nothing Found" );
+
+                        return;
+                    }
+                    else
+                    {
+                        StringBuffer buffer = new StringBuffer(  );
+                        while (r.moveToNext()){
+                            buffer.append( "Income Id : "+ r.getInt( 0 )+"\n" );
+                            buffer.append( "Income Type : "+ r.getString( 1 )+"\n" );
+                            buffer.append( "Income Amount : "+ r.getFloat( 2 )+"\n" );
+                            String date = r.getInt( 5 )+"/"+r.getInt( 4 )+"/"+r.getInt( 3 );
+                            String time = r.getInt( 6 )+":"+r.getInt( 7 );
+                            buffer.append( "Date : "+date+"\n" );
+                            buffer.append( "Time : "+ time+"\n" );
+                            buffer.append( "Description :"+ r.getString( 8 )+"\n\n");
+
+                        }
+                        // Show all data
+                        showMessage( "Data", buffer.toString() );
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        } );
+
 
 
         return view;

@@ -75,7 +75,22 @@ public class AddIncomeFragment extends Fragment{
         int day = cal.get( Calendar.DAY_OF_MONTH );
         int hour = cal.get( Calendar.HOUR_OF_DAY );
         int minute = cal.get( Calendar.MINUTE );
-        tvIncomeDate.setText( day+"/"+month+"/"+year );
+        String Date = "";
+        if((month+1)<=9 && day<=9)
+        {
+            Date = "0"+day +"/0"+(month+1) +"/"+year ;
+        }
+        if((month+1)<=9 && day>9){
+            Date = day +"/0"+(month+1) +"/"+year ;
+        }
+        if((month+1)>9 && day<=9){
+            Date = "0"+day +"/"+(month+1) +"/"+year ;
+        }
+        else {
+            Date = day +"/"+(month+1) +"/"+year ;
+        }
+
+        tvIncomeDate.setText(Date);
         tvIncomeTime.setText( hour+":"+minute );
 
         tvIncomeType.setOnClickListener( new View.OnClickListener() {

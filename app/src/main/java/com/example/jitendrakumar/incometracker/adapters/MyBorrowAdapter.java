@@ -114,8 +114,11 @@ public class MyBorrowAdapter extends RecyclerView.Adapter<MyBorrowAdapter.Borrow
 
 
     @Override
-    public int getItemCount() {
-        return mFilteredList.size();
+    public int getItemCount()
+    {   if(mFilteredList==null)
+          return 0;
+        else
+          return mFilteredList.size();
     }
 
     public int safeParseInt(String number) throws Exception {

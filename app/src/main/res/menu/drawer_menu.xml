@@ -24,18 +24,6 @@
             android:icon="@drawable/expense"
             android:title="Add Expense" />
 
-        <item android:id="@+id/nav_income_report"
-                  android:icon="@drawable/my_report"
-                  android:title="Income Report"/>
-
-        <item android:id="@+id/nav_expense_report"
-                    android:icon="@drawable/my_report"
-                    android:title="Expense Report"/>
-
-        <item
-            android:id="@+id/nav_todo_list"
-            android:icon="@drawable/task"
-            android:title="Todo Task" />
         <item
             android:id="@+id/nav_tobe_paid"
             android:icon="@drawable/borrow_lend"
@@ -46,6 +34,14 @@
             android:icon="@drawable/borrow_lend"
             android:title="Add Lend " />
 
+        <item android:id="@+id/nav_income_report"
+                  android:icon="@drawable/my_report"
+                  android:title="Income Report"/>
+
+        <item android:id="@+id/nav_expense_report"
+                    android:icon="@drawable/my_report"
+                    android:title="Expense Report"/>
+
         <item
             android:id="@+id/nav_borrow_report"
             android:icon="@drawable/my_report"
@@ -55,6 +51,13 @@
             android:id="@+id/nav_lend_report"
             android:icon="@drawable/my_report"
             android:title="Lend Report " />
+
+
+        <item
+            android:id="@+id/nav_todo_list"
+            android:icon="@drawable/task"
+            android:title="Todo Task" />
+
 
         <item
             android:id="@+id/nav_about"

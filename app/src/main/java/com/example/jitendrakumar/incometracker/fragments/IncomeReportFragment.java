@@ -66,6 +66,7 @@ public class IncomeReportFragment extends Fragment {
 
         tvIncomeReportDateFrom.setHintTextColor(getResources().getColor(R.color.colorTexts));
         tvIncomeReportDateTo.setHintTextColor(getResources().getColor(R.color.colorTexts));
+        tvIncomeReportType.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
         tvIncomeReportDateFrom.setTextColor( Color.parseColor("#00ff00"));
         tvIncomeReportDateTo.setTextColor( Color.parseColor("#00ff00"));
         etFromMonth.setTextColor( Color.parseColor("#00ff00"));
@@ -74,6 +75,7 @@ public class IncomeReportFragment extends Fragment {
         etToDay.setTextColor( Color.parseColor("#00ff00"));
         etIncomeReportFromMonth.setTextColor( Color.parseColor("#00ff00"));
         etIncomeReportToMonth.setTextColor( Color.parseColor("#00ff00"));
+        tvIncomeReportInput.setTextColor( Color.parseColor( "#00ff00" ) );
 
         showAllIncomeDatabwDates();
         showRecordbwMonthsandDays();

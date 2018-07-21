@@ -114,7 +114,10 @@ public class MyLendAdapter extends RecyclerView.Adapter<MyLendAdapter.LendViewHo
 
     @Override
     public int getItemCount() {
-        return mFilteredList.size();
+        if(mFilteredList==null)
+            return 0;
+        else
+            return mFilteredList.size();
     }
 
     public int safeParseInt(String number) throws Exception {
