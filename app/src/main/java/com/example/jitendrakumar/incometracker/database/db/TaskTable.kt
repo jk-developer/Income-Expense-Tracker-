@@ -69,7 +69,7 @@ class TaskTable {
                     arrayOf(Columns.ID, Columns.TASK, Columns.TASK_DATE, Columns.TASK_TIME, Columns.DONE),
                     null, null,
                     null, null,
-                    Columns.TASK_DATE, Columns.TASK_TIME
+                    Columns.TASK_DATE+", "+Columns.TASK_TIME
             )
             val idCol = cursor.getColumnIndex(Columns.ID)
             val taskCol = cursor.getColumnIndex(Columns.TASK)

@@ -53,7 +53,7 @@ public class ExpenseReportActivity extends AppCompatActivity {
         Cursor res = MyexpenseDB.getAllExpenseData();
         if(res.getCount() == 0)
         {
-            Toast.makeText( ExpenseReportActivity.this, "Nothing Found in Databse!!!", Toast.LENGTH_SHORT ).show();
+            Toast.makeText( ExpenseReportActivity.this, "No Expense record is found!!!", Toast.LENGTH_SHORT ).show();
             return null;
         }
         else

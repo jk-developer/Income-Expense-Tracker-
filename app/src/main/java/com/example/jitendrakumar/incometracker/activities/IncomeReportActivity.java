@@ -32,7 +32,6 @@ public class IncomeReportActivity extends AppCompatActivity {
     MyIncomeAdapter myIncomeAdapter;
     public static final String TAG = "date";
     private float totalIncome = (float) 0.00;
-    ImageView ivAddMore;
    private int HomeIncome, DatewiseIncomeReport, AddIncome;
    private int yrs, yrf, mths,mthf, dys, dyf;
   private Cursor res;
@@ -47,7 +46,6 @@ public class IncomeReportActivity extends AppCompatActivity {
 
         MyincomeDB = new IncomeDatabaseHelper( IncomeReportActivity.this );
         rvIncomeReport = (RecyclerView) findViewById( R.id.rvIncomeReport );
-        ivAddMore = (ImageView) findViewById( R.id.ivAddMore );
 
         ArrayList<IncomeData> myincomelist = new ArrayList<>();
         myincomelist = getArrayList();
@@ -60,74 +58,58 @@ public class IncomeReportActivity extends AppCompatActivity {
         rvIncomeReport.setHasFixedSize( true );
         rvIncomeReport.setAdapter( myIncomeAdapter );
 
-        ivAddMore.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction()
-                        .replace( R.id.fragment_container, new AddIncomeFragment())
-                        .addToBackStack( null )
-                        .commit();
-
-                  Toast.makeText( IncomeReportActivity.this, "ADD More is clicked ", Toast.LENGTH_SHORT ).show();
-                }
-        } );
-
     }
 
     public ArrayList<IncomeData> getArrayList(){
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            //The key argument here must match that used in the other activity
-            AddIncome = extras.getInt( "fromAdd" );
-            HomeIncome = extras.getInt( "fromHomeIncome");
+        try{
+            res = MyincomeDB.getAllIncomeData();
 
-        }
-        if(HomeIncome == 2 || AddIncome ==2){
-             res = MyincomeDB.getAllIncomeData();
-        }
-
-        if(res.getCount() == 0)
-        {
-            Toast.makeText( IncomeReportActivity.this, "Nothing Found in Databse!!!", Toast.LENGTH_SHORT ).show();
-            return null;
-        }
-        else
-        {
-            while (res.moveToNext()){
-                int incId = res.getInt( 0 );
-                String incType =  res.getString( 1 );
-                float incAmount =  res.getFloat( 2 );
-                int incYear = res.getInt( 3 );
-                int incMonth = res.getInt( 4 );
-                int incDay = res.getInt( 5 );
-                int incHour = res.getInt( 6 );
-                int incMinute = res.getInt( 7 );
-                String incDesc = res.getString( 8 );
-
-                String Date = "";
-                if(incMonth<=9 && incDay<=9)
-                {
-                    Date = "0"+incDay +"/0"+incMonth +"/"+incYear ;
-                }
-                if(incMonth<=9 && incDay>9){
-                    Date = incDay +"/0"+incMonth +"/"+incYear ;
-                }
-                if(incMonth>9 && incDay<=9){
-                    Date = "0"+incDay +"/"+incMonth +"/"+incYear ;
-                }
-                else {
-                    Date = incDay +"/"+incMonth +"/"+incYear ;
-                }
-
-                String Time = Integer.toString( incHour )+":"+Integer.toString( incMinute );
-                Log.d( TAG, "getArrayList: time"+Time );
-                incomeData = new IncomeData(incId, incType, incAmount, Date, Time, incDesc);
-                arrayList.add( incomeData);
-                totalIncome = totalIncome +incAmount;
+            if(res.getCount() == 0)
+            {
+                Toast.makeText( IncomeReportActivity.this, "No Income record is found!!!", Toast.LENGTH_SHORT ).show();
+                return null;
             }
+            else
+            {
+                while (res.moveToNext()){
+                    int incId = res.getInt( 0 );
+                    String incType =  res.getString( 1 );
+                    float incAmount =  res.getFloat( 2 );
+                    int incYear = res.getInt( 3 );
+                    int incMonth = res.getInt( 4 );
+                    int incDay = res.getInt( 5 );
+                    int incHour = res.getInt( 6 );
+                    int incMinute = res.getInt( 7 );
+                    String incDesc = res.getString( 8 );
 
+                    String Date = "";
+                    if(incMonth<=9 && incDay<=9)
+                    {
+                        Date = "0"+incDay +"/0"+incMonth +"/"+incYear ;
+                    }
+                    if(incMonth<=9 && incDay>9){
+                        Date = incDay +"/0"+incMonth +"/"+incYear ;
+                    }
+                    if(incMonth>9 && incDay<=9){
+                        Date = "0"+incDay +"/"+incMonth +"/"+incYear ;
+                    }
+                    else {
+                        Date = incDay +"/"+incMonth +"/"+incYear ;
+                    }
+
+                    String Time = Integer.toString( incHour )+":"+Integer.toString( incMinute );
+                    Log.d( TAG, "getArrayList: time"+Time );
+                    incomeData = new IncomeData(incId, incType, incAmount, Date, Time, incDesc);
+                    arrayList.add( incomeData);
+                    totalIncome = totalIncome +incAmount;
+                }
+
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
         return arrayList;
     }
 

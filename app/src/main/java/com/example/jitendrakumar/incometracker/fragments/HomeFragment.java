@@ -73,7 +73,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent( getActivity(), IncomeReportActivity.class );
-                i.putExtra( "fromHomeIncome", 2 );
                 startActivity( i );
             }
         } );

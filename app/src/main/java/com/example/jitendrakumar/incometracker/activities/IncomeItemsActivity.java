@@ -32,7 +32,7 @@ public class IncomeItemsActivity extends AppCompatActivity implements DatePicker
 
     TextInputLayout input_layout_value;
     EditText etValue, etIncomeDesc;
-    TextView tvDate, tvHintDate, tvCategory, tvHintCategory, tvDelete, tvSave, tvTime, tvHintTime, tvIncomePay;
+    TextView tvDate, tvHintDate, tvCategory, tvHintCategory, tvDelete, tvSave, tvTime, tvHintTime;
     private  String date, time, type, desc;
     private  int id, year, month, day, hour, minute;
     private float amt;
@@ -59,7 +59,6 @@ public class IncomeItemsActivity extends AppCompatActivity implements DatePicker
         tvHintTime = (TextView) findViewById( R.id.tvHintTime );
         etValue = (EditText) findViewById( R.id.etValue );
         etIncomeDesc = (EditText)findViewById( R.id.etIncomeDesc );
-        tvIncomePay = (TextView)findViewById( R.id.tvIncomePay );
 
         Calendar c = Calendar.getInstance();
         int incyear = c.get( Calendar.YEAR );
@@ -97,13 +96,6 @@ public class IncomeItemsActivity extends AppCompatActivity implements DatePicker
 
         tvDate.setHintTextColor( getResources().getColor(R.color.colorPrimaryDark) );
         tvCategory.setHintTextColor( getResources().getColor(R.color.colorPrimaryDark) );
-
-        tvIncomePay.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText( IncomeItemsActivity.this, " Pay is Clicked", Toast.LENGTH_SHORT ).show();
-            }
-        } );
 
         tvDelete.setOnClickListener( new View.OnClickListener() {
             @Override

@@ -53,7 +53,7 @@ public class BorrowActivity extends AppCompatActivity {
         Cursor res = borrowDatabaseHelper.getAllPayingData();
         if(res.getCount() == 0)
         {
-            Toast.makeText( BorrowActivity.this, "Nothing Found in Databse!!!", Toast.LENGTH_SHORT ).show();
+            Toast.makeText( BorrowActivity.this, "No Borrow record is found!!!", Toast.LENGTH_SHORT ).show();
             return null;
         }
         else

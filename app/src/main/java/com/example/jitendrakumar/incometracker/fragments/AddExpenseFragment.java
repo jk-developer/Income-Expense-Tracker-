@@ -99,7 +99,7 @@ public class AddExpenseFragment extends Fragment {
                 builder.setItems( expense, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        tvExpenseType.setText( expense[which].toString());
+                        tvExpenseType.setText( expense[which].toString().trim());
                        Toast.makeText( getContext(), ""+expense[which],Toast.LENGTH_SHORT ).show();
                     }
                 } );

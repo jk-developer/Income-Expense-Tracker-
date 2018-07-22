@@ -159,6 +159,7 @@ public class ExpenseReportFragment extends Fragment {
                 String category = tvExpenseReportInput.getText().toString();
                 try{
                     Cursor r = expenseDatabaseHelper.getRecordsCategorywise( category );
+                    Log.d( TAG, "onClick: count"+r.getCount() );
                     if(r.getCount() == 0)
                     {
                         // Show message
@@ -181,7 +182,7 @@ public class ExpenseReportFragment extends Fragment {
 
                         }
                         // Show all data
-                        showMessage( "Data", buffer.toString() );
+                        showMessage( "Expense Record", buffer.toString() );
                     }
                 }catch (Exception e){
                     e.printStackTrace();

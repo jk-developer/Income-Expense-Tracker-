@@ -156,7 +156,7 @@ public class ExpenseDatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getRecordsCategorywise(String cat){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery( "SELECT * FROM "+ TABLE_NAME2+ " WHERE EXPENSE_TYPE ="+cat, null );
+        Cursor res = db.rawQuery( "SELECT * FROM "+ TABLE_NAME2+ " WHERE EXPENSE_TYPE = ?", new String[]{cat} );
         return res;
     }
 }

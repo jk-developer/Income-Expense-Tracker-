@@ -4,9 +4,10 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.content.Context
 import android.util.Log
+import com.example.jitendrakumar.incometracker.database.db.TaskTable.Companion.TABLE_NAME
 
 val DB_NAME = "todo.db"
-val DB_VER = 7
+val DB_VER = 8
 
 class TodoDbHelper(context: Context?) : SQLiteOpenHelper(context, DB_NAME, null, DB_VER) {
 
@@ -18,7 +19,8 @@ class TodoDbHelper(context: Context?) : SQLiteOpenHelper(context, DB_NAME, null,
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-
+        db?.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
+        onCreate(db)
     }
 
 }

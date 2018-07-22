@@ -31,24 +31,24 @@ import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AddIncomeFragment extends Fragment{
+public class AddIncomeFragment extends Fragment {
 
     Pattern pattern;
     Matcher matcher;
     final String DATE_PATTERN = "(0?[1-9]|1[012]) [/.-] (0?[1-9]|[12][0-9]|3[01]) [/.-] ((19|20)\\d\\d)";
     SessionManagement sessonid;
-    ArrayList<IncomeData> arrayList = new ArrayList<>( );
+    ArrayList<IncomeData> arrayList = new ArrayList<>();
     IncomeData incomeData;
     public static final String TAG = "res";
 
     // TextView tvIncomeDate;
-     EditText  etIncomeAmount, etIncomeDescription;
-     TextView tvIncomeDate, tvIncomeTime, tvIncomeHintDate, tvIncomeHintTime, tvIncomeType, tvIncomeInput;
-     Button btnIncomeSubmit;
-     IncomeDatabaseHelper MyincomeDB;
-     private  int year, month , day, hour, minute;
-     private CharSequence income[] = {"Regular Salary", "Buissness Profits","Rental Income","Savings", "Gifts","Pocket Money"," Investments ","Governmental grants","Retirement Income",
-            "Bonus","Other"};
+    EditText etIncomeAmount, etIncomeDescription;
+    TextView tvIncomeDate, tvIncomeTime, tvIncomeHintDate, tvIncomeHintTime, tvIncomeType, tvIncomeInput;
+    Button btnIncomeSubmit;
+    IncomeDatabaseHelper MyincomeDB;
+    private int year, month, day, hour, minute;
+    private CharSequence income[] = {"Regular Salary", "Buissness Profits", "Rental Income", "Savings", "Gifts", "Pocket Money", " Investments ", "Governmental grants", "Retirement Income",
+            "Bonus", "Other"};
 
 
     @Nullable
@@ -60,48 +60,46 @@ public class AddIncomeFragment extends Fragment{
         tvIncomeType = (TextView) view.findViewById( R.id.tvIncomeType );
         tvIncomeInput = (TextView) view.findViewById( R.id.tvIncomeInput );
         etIncomeAmount = (EditText) view.findViewById( R.id.etIncomeAmount );
-        etIncomeDescription = (EditText)view.findViewById( R.id.etIncomeDescription );
+        etIncomeDescription = (EditText) view.findViewById( R.id.etIncomeDescription );
         tvIncomeDate = (TextView) view.findViewById( R.id.tvIncomeDate );
         tvIncomeTime = (TextView) view.findViewById( R.id.tvIncomeTime );
         btnIncomeSubmit = (Button) view.findViewById( R.id.btnIncomeSubmit );
-        tvIncomeHintDate= (TextView) view.findViewById( R.id.tvHintIncomeDate);
+        tvIncomeHintDate = (TextView) view.findViewById( R.id.tvHintIncomeDate );
         tvIncomeHintTime = (TextView) view.findViewById( R.id.tvExpenseHintTime );
         tvIncomeHintDate = (TextView) view.findViewById( R.id.tvHintIncomeDate );
         tvIncomeHintTime = (TextView) view.findViewById( R.id.tvIncomeHintTime );
 
         Calendar cal = Calendar.getInstance();
         int year = cal.get( Calendar.YEAR );
-        int month = cal.get( Calendar.MONTH);
+        int month = cal.get( Calendar.MONTH );
         int day = cal.get( Calendar.DAY_OF_MONTH );
         int hour = cal.get( Calendar.HOUR_OF_DAY );
         int minute = cal.get( Calendar.MINUTE );
         String Date = "";
-        if((month+1)<=9 && day<=9)
-        {
-            Date = "0"+day +"/0"+(month+1) +"/"+year ;
+        if ((month + 1) <= 9 && day <= 9) {
+            Date = "0" + day + "/0" + (month + 1) + "/" + year;
         }
-        if((month+1)<=9 && day>9){
-            Date = day +"/0"+(month+1) +"/"+year ;
+        if ((month + 1) <= 9 && day > 9) {
+            Date = day + "/0" + (month + 1) + "/" + year;
         }
-        if((month+1)>9 && day<=9){
-            Date = "0"+day +"/"+(month+1) +"/"+year ;
-        }
-        else {
-            Date = day +"/"+(month+1) +"/"+year ;
+        if ((month + 1) > 9 && day <= 9) {
+            Date = "0" + day + "/" + (month + 1) + "/" + year;
+        } else {
+            Date = day + "/" + (month + 1) + "/" + year;
         }
 
-        tvIncomeDate.setText(Date);
-        tvIncomeTime.setText( hour+":"+minute );
+        tvIncomeDate.setText( Date );
+        tvIncomeTime.setText( hour + ":" + minute );
 
         tvIncomeType.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                final AlertDialog.Builder builder = new AlertDialog.Builder( getActivity() );
                 builder.setTitle( "Select Expense Category" );
                 builder.setItems( income, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        tvIncomeInput.setText( income[which].toString());
+                        tvIncomeInput.setText( income[which].toString() );
                     }
                 } );
 
@@ -115,11 +113,10 @@ public class AddIncomeFragment extends Fragment{
                 builder.setPositiveButton( "OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if(which==-1)
-                        {
+                        if (which == -1) {
 
-                        }else {
-                            tvIncomeInput.setText( income[which].toString());
+                        } else {
+                            tvIncomeInput.setText( income[which].toString() );
 
                         }
 
@@ -148,84 +145,78 @@ public class AddIncomeFragment extends Fragment{
         addDataInIncomeDB();
 
         tvIncomeHintTime.setOnClickListener( new View.OnClickListener() {
-         @Override
-         public void onClick(View v) {
-             DialogFragment newFragment = new TimePickerFragment(tvIncomeTime);
-             newFragment.show(getFragmentManager(), "TimePicker");
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = new TimePickerFragment( tvIncomeTime );
+                newFragment.show( getFragmentManager(), "TimePicker" );
 
 
-         }
-     } );
+            }
+        } );
 
-     tvIncomeHintDate.setOnClickListener( new View.OnClickListener() {
-         @Override
-         public void onClick(View v) {
-             DialogFragment newFragment = new DatePickerFragment(tvIncomeDate);
-             newFragment.show(getFragmentManager(), "DatePicker");
+        tvIncomeHintDate.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = new DatePickerFragment( tvIncomeDate );
+                newFragment.show( getFragmentManager(), "DatePicker" );
 
-         }
-     } );
+            }
+        } );
 
         return view;
     }
+
     public void addDataInIncomeDB() {
         btnIncomeSubmit.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                   try {
-                        String incomeType = tvIncomeInput.getText().toString();
-                        String incomeAmount = etIncomeAmount.getText().toString();
-                        String incomeDate =  tvIncomeDate.getText().toString();
-                        String incomeTime = tvIncomeTime.getText().toString();
-                        String incomeDesc = etIncomeDescription.getText().toString();
-                        // Extracting year month and day integer value from the Date String DD/MM/YYYY
-                        String[]dateParts = incomeDate.toString().split("/");
-                        try {
-                            year = safeParseInt(dateParts[2]);
-                            month = safeParseInt(dateParts[1]);
-                            day = safeParseInt(dateParts[0]);
-                        } catch (Exception e) {
-                            Toast.makeText( getActivity(), "Error in parsing Date", Toast.LENGTH_SHORT ).show();
-                        }
-                        String timeStr = incomeTime.toString();
-                        String[] timeParts = timeStr.split( ":" );
-                        try {
-                            hour = safeParseInt( timeParts[0] );
-                            minute = safeParseInt( timeParts[1] );
-                        }catch (Exception e)
-                        {
-                            Toast.makeText( getActivity(), "Error in parsing Time", Toast.LENGTH_SHORT ).show();
-                        }
-
-                        if(incomeAmount.length() == 0)
-                        {
-                            etIncomeAmount.setError( "Income Amount is required!!!" );
-                        }
-                        if(incomeDate.length() == 0){
-                            tvIncomeDate.setError( "Date field is required!!! " );
-                        }
-                        if(incomeTime.length()==0)
-                        {
-                            tvIncomeTime.setError( "Time field is required!!!" );
-                        }
-                        else {
-                            boolean isInserted = MyincomeDB.insertIncomeData( incomeType, Float.parseFloat( incomeAmount ) , year, month, day, hour, minute, incomeDesc);
-                            if(isInserted == true) {
-                                Toast.makeText( getActivity(), "Data Saved to Income DataBase.", Toast.LENGTH_SHORT ).show();
-                                Intent in = new Intent( getContext(), IncomeReportActivity.class );
-                                in.putExtra( "fromAdd", 2 );
-                                startActivity( in );
-
-                            } else {
-                                Toast.makeText( getActivity(), "Data is not Saved to Income DataBase.", Toast.LENGTH_SHORT ).show();
-                            }
-                        }
-
+                try {
+                    String incomeType = tvIncomeInput.getText().toString();
+                    String incomeAmount = etIncomeAmount.getText().toString();
+                    String incomeDate = tvIncomeDate.getText().toString();
+                    String incomeTime = tvIncomeTime.getText().toString();
+                    String incomeDesc = etIncomeDescription.getText().toString();
+                    // Extracting year month and day integer value from the Date String DD/MM/YYYY
+                    String[] dateParts = incomeDate.toString().split( "/" );
+                    try {
+                        year = safeParseInt( dateParts[2] );
+                        month = safeParseInt( dateParts[1] );
+                        day = safeParseInt( dateParts[0] );
+                    } catch (Exception e) {
+                        Toast.makeText( getActivity(), "Error in parsing Date", Toast.LENGTH_SHORT ).show();
                     }
-                    catch (NullPointerException e)
-                    {
-                        e.printStackTrace();
+                    String timeStr = incomeTime.toString();
+                    String[] timeParts = timeStr.split( ":" );
+                    try {
+                        hour = safeParseInt( timeParts[0] );
+                        minute = safeParseInt( timeParts[1] );
+                    } catch (Exception e) {
+                        Toast.makeText( getActivity(), "Error in parsing Time", Toast.LENGTH_SHORT ).show();
                     }
+
+                    if (incomeAmount.length() == 0) {
+                        etIncomeAmount.setError( "Income Amount is required!!!" );
+                    }
+                    if (incomeDate.length() == 0) {
+                        tvIncomeDate.setError( "Date field is required!!! " );
+                    }
+                    if (incomeTime.length() == 0) {
+                        tvIncomeTime.setError( "Time field is required!!!" );
+                    } else {
+                        boolean isInserted = MyincomeDB.insertIncomeData( incomeType, Float.parseFloat( incomeAmount ), year, month, day, hour, minute, incomeDesc );
+                        if (isInserted == true) {
+                            Toast.makeText( getActivity(), "Data Saved to Income DataBase.", Toast.LENGTH_SHORT ).show();
+                            Intent in = new Intent( getContext(), IncomeReportActivity.class );
+                            startActivity( in );
+
+                        } else {
+                            Toast.makeText( getActivity(), "Data is not Saved to Income DataBase.", Toast.LENGTH_SHORT ).show();
+                        }
+                    }
+
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
 
             }
         } );
@@ -233,10 +224,10 @@ public class AddIncomeFragment extends Fragment{
     }
 
     public int safeParseInt(String number) throws Exception {
-        if(number != null) {
-            return Integer.parseInt(number.trim());
+        if (number != null) {
+            return Integer.parseInt( number.trim() );
         } else {
-            throw new NullPointerException("Date string is invalid");
+            throw new NullPointerException( "Date string is invalid" );
         }
     }
 }

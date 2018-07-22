@@ -52,7 +52,7 @@ public class LendActivity extends AppCompatActivity {
             Cursor res = lendDatabaseHelper.getAllTakenData();
             if(res.getCount() == 0)
             {
-                Toast.makeText( LendActivity.this, "Nothing Found in Databse!!!", Toast.LENGTH_SHORT ).show();
+                Toast.makeText( LendActivity.this, "No Lend record is found!!!", Toast.LENGTH_SHORT ).show();
                 return null;
             }
             else

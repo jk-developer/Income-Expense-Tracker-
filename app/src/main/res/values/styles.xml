@@ -22,5 +22,9 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="SplashActivityTheme" parent="@android:style/Theme.NoTitleBar.Fullscreen">
+
+    </style>
+
 
 </resources>

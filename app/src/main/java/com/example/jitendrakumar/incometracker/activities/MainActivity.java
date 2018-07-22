@@ -8,8 +8,10 @@ import android.app.TaskStackBuilder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.GravityCompat;
@@ -64,11 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_main );
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService( ALARM_SERVICE );
-        Calendar calendar = Calendar.getInstance();
-        calendar.add( Calendar.SECOND, 5 );
+        setContentView( R.layout.activity_main);
 
         expenseDatabaseHelper = new ExpenseDatabaseHelper( this );
         incomeDatabaseHelper = new IncomeDatabaseHelper( this );
@@ -148,84 +146,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                   Intent about_app = new Intent( MainActivity.this, AboutAppActivity.class );
                   startActivity( about_app );
                   return true;
-
-            case  R.id.action_about_notifications:
-                for (int i = 0; i < charSequence.length; i++) {
-                    Checked[i] = false;
-                }
-                final AlertDialog.Builder builderNotify = new AlertDialog.Builder( MainActivity.this );
-                builderNotify.setIcon( R.drawable.notification );
-                builderNotify.setTitle( "Set Notifications ON/OFF " );
-                builderNotify.setMultiChoiceItems( notifications, new boolean[notifications.length], new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                        checkNotif[which] = isChecked;
-
-                    }
-                } );
-
-                builderNotify.setPositiveButton( "Save", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (checkNotif[0] == false && checkNotif[1] == false && checkNotif[2] == false) {
-                            Toast.makeText( MainActivity.this, "All Notifications are OFF!!!", Toast.LENGTH_SHORT ).show();
-                            builderNotify.setCancelable( false );
-                        } else {
-                            if (checkNotif[0] == true) {
-                                NotificationCompat.Builder builderNotific = new NotificationCompat.Builder( MainActivity.this );
-                                builderNotific.setContentTitle( "Income Expense Tracker Notification" );
-                                builderNotific.setContentText( "Income notifications " );
-                                builderNotific.setSmallIcon( R.drawable.home_income );
-                                builderNotific.setTicker( "hey This is Ticker..." );
-                                builderNotific.setAutoCancel( true );
-
-                                Intent i = new Intent( MainActivity.this, IncomeNotificationActivity.class );
-
-                                TaskStackBuilder stackBuilder = TaskStackBuilder.create( MainActivity.this );
-                                stackBuilder.addParentStack( MainActivity.class );
-                                stackBuilder.addNextIntent( i );
-
-                                PendingIntent pi = stackBuilder.getPendingIntent( 0, PendingIntent.FLAG_UPDATE_CURRENT );
-                                builderNotific.setContentIntent( pi );
-
-                                Notification notifcation = builderNotific.build();
-                                NotificationManager manager = (NotificationManager) MainActivity.this.getSystemService( NOTIFICATION_SERVICE );
-
-                                manager.notify( 12345, notifcation );
-
-
-                            }
-                            if (checkNotif[1] == true) {
-
-                            }
-                            if (checkNotif[2] == true) {
-
-                            }
-
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace( R.id.fragment_container, new HomeFragment())
-                                    .addToBackStack( null )
-                                    .commit();
-                            toolbar.setTitle( "Income Expense Tracker" );
-
-                            Toast.makeText( MainActivity.this, "Selected Items Notifications are on now!!!", Toast.LENGTH_SHORT ).show();
-                        }
-                    }
-                } );
-
-                builderNotify.setNegativeButton( "Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        for (int j = 0; j < notifications.length; j++)
-                            checkNotif[j] = false;
-                        builderNotify.setCancelable( true );
-                    }
-                } );
-
-                AlertDialog alertDialogNotification = builderNotify.create();
-                alertDialogNotification.show();
-
-                return true;
 
                     case R.id.action_rate_us:
                         Toast.makeText( MainActivity.this, "Rate us action clicked", Toast.LENGTH_SHORT ).show();

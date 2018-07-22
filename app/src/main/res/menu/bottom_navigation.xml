@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:id="@+id/bottomnav_date"
+        android:icon="@drawable/home_income"
+        android:title="Date/Monthwise"/>
+
+
+    <item android:id="@+id/bottomnav_category"
+        android:icon="@drawable/home_income"
+        android:title="Categorywise"/>
+
+    <item android:id="@+id/bottomnav_graph"
+        android:icon="@drawable/home_income"
+        android:title="Graph"/>
+
+</menu>

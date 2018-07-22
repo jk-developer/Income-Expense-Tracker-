@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.jitendrakumar.incometracker">
 
+    package="com.example.jitendrakumar.incometracker">
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
@@ -13,26 +13,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".activities.SplashActivity"
+            android:label="@string/about_app"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activities.IncomeReportActivity"
             android:parentActivityName=".activities.MainActivity" />
+
         <activity
             android:name=".activities.ExpenseReportActivity"
             android:parentActivityName=".activities.MainActivity" />
+
         <activity
             android:name=".activities.TodoActivity"
             android:parentActivityName=".activities.MainActivity" />
+
         <activity android:name=".activities.BarChartActivity" />
+
         <activity android:name=".activities.ExpenseBarchartActivity" />
+
         <activity
             android:name=".activities.IncomeItemsActivity"
             android:parentActivityName=".activities.IncomeReportActivity"
@@ -41,23 +49,29 @@
             android:name=".activities.ExpenseItemsActivity"
             android:parentActivityName=".activities.ExpenseReportActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".activities.BorrowActivity"
             android:parentActivityName=".activities.MainActivity" />
+
         <activity
             android:name=".activities.BorrowItemsActivity"
             android:parentActivityName=".activities.BorrowActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".activities.LendActivity"
             android:parentActivityName=".activities.MainActivity" />
+
         <activity
             android:name=".activities.LendItemsActivity"
             android:parentActivityName=".activities.LendActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".activities.AboutActivity"
             android:parentActivityName=".activities.MainActivity" />
+
         <activity
             android:name=".activities.AboutAppActivity"
             android:parentActivityName=".activities.MainActivity"
@@ -66,13 +80,18 @@
             android:name=".activities.UpdatePasswordActivity"
             android:parentActivityName=".activities.MainActivity"
             android:screenOrientation="portrait" />
+
         <activity android:name=".activities.BorrowBarchartActivity" />
+
         <activity android:name=".activities.LendBarchartActivity" />
 
-        <activity android:name=".activities.IncomeNotificationActivity"
-            android:parentActivityName=".activities.MainActivity">
+        <activity
+            android:name=".activities.IncomeNotificationActivity"
+            android:parentActivityName=".activities.MainActivity" />
 
-        </activity>
+        <activity android:name=".activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>

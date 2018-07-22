@@ -109,7 +109,7 @@ public class LendDatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getDataNamewise(String pName){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor name = db.rawQuery( "SELECT * FROM "+ TABLE_NAME5+ " WHERE PERSON_NAME = "+ pName, null );
+        Cursor name = db.rawQuery( "SELECT * FROM "+ TABLE_NAME5+ " WHERE PERSON_NAME = ?", new String[]{pName} );
         return name;
     }
 
