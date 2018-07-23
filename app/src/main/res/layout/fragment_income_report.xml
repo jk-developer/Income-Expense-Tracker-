@@ -438,17 +438,5 @@
     </LinearLayout>
 
     </ScrollView>
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottomNav_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
-        app:itemBackground="@color/colorText"
-        app:itemIconTint="@color/colorTexts"
-        app:itemTextColor="@color/colorTexts"
-        android:layout_gravity="bottom"
-        app:menu="@menu/bottom_navigation">
-
-    </android.support.design.widget.BottomNavigationView>
 
 </FrameLayout>

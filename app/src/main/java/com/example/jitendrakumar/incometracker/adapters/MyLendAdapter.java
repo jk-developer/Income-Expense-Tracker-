@@ -1,5 +1,7 @@
 package com.example.jitendrakumar.incometracker.adapters;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -55,6 +57,7 @@ public class MyLendAdapter extends RecyclerView.Adapter<MyLendAdapter.LendViewHo
         public void onClick(View v) {
             lendData = new LendData( listBeneficiary.get( getPosition() ).getLid(), listBeneficiary.get( getPosition() ).getLamount(), listBeneficiary.get( getPosition() ).getLperson(), listBeneficiary.get( getPosition() ).getLdesc(), listBeneficiary.get( getPosition() ).getLdate() );
             // Toast.makeText( mContext, getPosition()+ borrowData.getInputType()+ incomeData.getInputAmount()+"is clicked", Toast.LENGTH_SHORT).show();
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation( (Activity) mContext );
             Intent i = new Intent( mContext, LendItemsActivity.class );
             i.putExtra( "amount", lendData.getLamount() );
             i.putExtra( "date", lendData.getLdate() );
@@ -62,7 +65,7 @@ public class MyLendAdapter extends RecyclerView.Adapter<MyLendAdapter.LendViewHo
             i.putExtra( "person", lendData.getLperson() );
             i.putExtra( "id", lendData.getLid() );
             //    Log.d( TAG, "onClick: "+ incomeData.getInputAmount()+incomeData.getIncomeTime()+incomeData.getIncomeId() );
-            mContext.startActivity( i );
+            mContext.startActivity( i, options.toBundle() );
         }
     }
 

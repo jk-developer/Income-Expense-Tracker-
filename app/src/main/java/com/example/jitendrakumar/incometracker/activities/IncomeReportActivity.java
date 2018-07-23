@@ -4,13 +4,19 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.database.Cursor;
+import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Explode;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -32,17 +38,18 @@ public class IncomeReportActivity extends AppCompatActivity {
     MyIncomeAdapter myIncomeAdapter;
     public static final String TAG = "date";
     private float totalIncome = (float) 0.00;
-   private int HomeIncome, DatewiseIncomeReport, AddIncome;
-   private int yrs, yrf, mths,mthf, dys, dyf;
-  private Cursor res;
+    private int HomeIncome, DatewiseIncomeReport, AddIncome;
+    private int yrs, yrf, mths,mthf, dys, dyf;
+    private Cursor res;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().requestFeature( Window.FEATURE_CONTENT_TRANSITIONS );
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_income_report );
 
-        getSupportActionBar().setTitle( "Income List" );
-        getSupportActionBar().setDisplayHomeAsUpEnabled( true );
+        initPage();
+        initAnimation();
 
         MyincomeDB = new IncomeDatabaseHelper( IncomeReportActivity.this );
         rvIncomeReport = (RecyclerView) findViewById( R.id.rvIncomeReport );
@@ -111,6 +118,25 @@ public class IncomeReportActivity extends AppCompatActivity {
         }
 
         return arrayList;
+    }
+
+    public void initPage(){
+        getSupportActionBar().setTitle( "Income List" );
+        getSupportActionBar().setDisplayHomeAsUpEnabled( true );
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finishAfterTransition();
+        return true;    }
+
+    public void initAnimation(){
+        Slide enterTransition = new Slide( );
+        enterTransition.setSlideEdge( Gravity.BOTTOM);
+        enterTransition.setInterpolator( new AnticipateOvershootInterpolator(  ));
+        enterTransition.setDuration( 1000 );
+        getWindow().setEnterTransition( enterTransition );
+
     }
 
 

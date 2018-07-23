@@ -35,7 +35,6 @@ public class IncomeReportFragment extends Fragment {
     IncomeDatabaseHelper myIncomeDB;
     Button btnIncomeReportbwTwoDates, btnIncomeBarchart, btnIncomeReportbwMonthsAndDay, btnViewIncomeReportbwMonths, btnIncomeReportCategorywise;
     EditText etFromMonth, etToMonth, etToDay, etFromDay, etIncomeReportFromMonth, etIncomeReportToMonth;
-    BottomNavigationView bottomNavigationView;
     private String id;
     public static final String TAG = "res";
     private int years, yearf, months, monthf, days, dayf;
@@ -53,8 +52,6 @@ public class IncomeReportFragment extends Fragment {
             btnIncomeReportbwTwoDates = (Button) view.findViewById( R.id.btnIncomeReportbwTwoDates );
             tvHintIncomeReportDateFrom = (TextView) view.findViewById( R.id.tvHintIncomeReportDateFrom );
             tvHintIncomeReportDateTo = (TextView) view.findViewById( R.id.tvHintIncomeReportDateTo );
-
-            bottomNavigationView = (BottomNavigationView) view.findViewById( R.id.bottomNav_view );
 
             btnIncomeBarchart = (Button) view.findViewById( R.id.btnIncomeBarchart );
             btnIncomeReportbwMonthsAndDay = (Button) view.findViewById( R.id.btnIncomeReportbwMonthsAndDay );

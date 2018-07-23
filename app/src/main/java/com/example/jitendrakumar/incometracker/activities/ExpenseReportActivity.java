@@ -6,7 +6,11 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.Window;
+import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
@@ -27,12 +31,15 @@ public class ExpenseReportActivity extends AppCompatActivity {
     private float totalExpense = (float) 0.00;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().requestFeature( Window.FEATURE_CONTENT_TRANSITIONS );
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_expense_report );
 
 
         getSupportActionBar().setTitle( "Expense List" );
         getSupportActionBar().setDisplayHomeAsUpEnabled( true );
+
+        initAnimation();
 
         MyexpenseDB  = new ExpenseDatabaseHelper( ExpenseReportActivity.this );
         rvExpenseReport = (RecyclerView) findViewById( R.id.rvExpenseReport );
@@ -94,5 +101,19 @@ public class ExpenseReportActivity extends AppCompatActivity {
         }
         return arrayList;
             }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finishAfterTransition();
+        return true;    }
+
+    public void initAnimation(){
+        Slide enterTransition = new Slide( );
+        enterTransition.setSlideEdge( Gravity.BOTTOM);
+        enterTransition.setInterpolator( new AnticipateOvershootInterpolator(  ));
+        enterTransition.setDuration( 1000 );
+        getWindow().setEnterTransition( enterTransition );
+
+    }
 
 }

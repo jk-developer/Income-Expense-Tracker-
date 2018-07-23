@@ -8,17 +8,28 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/login_user"
-        android:layout_marginTop="200dp"/>
+        android:src="@drawable/jitendra3"
+        android:layout_marginTop="200dp"
+        android:layout_gravity="center"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello Jitendra"
-        android:textSize="40sp"
+        android:text="INCOME EXPENSE"
+        android:textSize="30sp"
         android:textColor="@color/colorTexts"
         android:layout_gravity="center"
-
-        android:gravity="center"/>
+        android:gravity="center"
+        android:padding="2dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TRACKER"
+        android:textSize="30sp"
+        android:textColor="@color/colorTexts"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="2dp"
+        />
 
 </LinearLayout>

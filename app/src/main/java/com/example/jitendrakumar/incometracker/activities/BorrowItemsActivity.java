@@ -11,7 +11,11 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -34,6 +38,7 @@ public class BorrowItemsActivity extends AppCompatActivity implements DatePicker
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().requestFeature( Window.FEATURE_CONTENT_TRANSITIONS );
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_borrow_items );
 
@@ -59,6 +64,8 @@ public class BorrowItemsActivity extends AppCompatActivity implements DatePicker
 
             getSupportActionBar().setTitle( "Edit Borrow" );
             getSupportActionBar().setDisplayHomeAsUpEnabled( true );
+
+            initAnimation();
 
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
@@ -189,5 +196,19 @@ public class BorrowItemsActivity extends AppCompatActivity implements DatePicker
         }
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        finishAfterTransition();
+        return true;    }
+
+    public void initAnimation(){
+        Slide enterTransition = new Slide( );
+        enterTransition.setSlideEdge( Gravity.RIGHT);
+        enterTransition.setInterpolator( new AnticipateOvershootInterpolator(  ));
+        enterTransition.setDuration( 1000 );
+        getWindow().setEnterTransition( enterTransition );
+
+
     }
+}
 

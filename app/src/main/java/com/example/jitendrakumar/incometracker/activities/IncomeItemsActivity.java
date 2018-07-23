@@ -13,8 +13,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.Explode;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -44,9 +49,12 @@ public class IncomeItemsActivity extends AppCompatActivity implements DatePicker
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().requestFeature( Window.FEATURE_CONTENT_TRANSITIONS );
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_income_items );
         incomeDb = new IncomeDatabaseHelper( this );
+
+        initAnimation();
 
         input_layout_value = (TextInputLayout) findViewById( R.id.input_layout_value );
         tvDate = (TextView) findViewById( R.id.tvDate );
@@ -275,6 +283,21 @@ public class IncomeItemsActivity extends AppCompatActivity implements DatePicker
             tvTime.setText(hour+":0"+minute);
         else
             tvTime.setText( hour+":"+minute );
+
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finishAfterTransition();
+        return true;    }
+
+    public void initAnimation(){
+        Slide enterTransition = new Slide( );
+        enterTransition.setSlideEdge( Gravity.RIGHT);
+        enterTransition.setInterpolator( new AnticipateOvershootInterpolator(  ));
+        enterTransition.setDuration( 1000 );
+        getWindow().setEnterTransition( enterTransition );
+
 
     }
 }

@@ -19,8 +19,10 @@
         android:paddingTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp">
-
+        android:layout_marginTop="15dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+        <requestFocus />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_value"

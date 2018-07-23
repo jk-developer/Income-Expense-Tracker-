@@ -6,7 +6,11 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.Window;
+import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.incometracker.R;
@@ -28,11 +32,14 @@ public class BorrowActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().requestFeature( Window.FEATURE_CONTENT_TRANSITIONS );
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_borrow );
 
         getSupportActionBar().setTitle( "Borrow List" );
         getSupportActionBar().setDisplayHomeAsUpEnabled( true );
+
+        initAnimation();
 
         borrowDatabaseHelper = new BorrowDatabaseHelper( BorrowActivity.this );
         rvBorrowData= (RecyclerView) findViewById( R.id.rvBorrowData );
@@ -90,4 +97,19 @@ public class BorrowActivity extends AppCompatActivity {
         }
         return arrayList;
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finishAfterTransition();
+        return true;    }
+
+    public void initAnimation(){
+        Slide enterTransition = new Slide( );
+        enterTransition.setSlideEdge( Gravity.BOTTOM);
+        enterTransition.setInterpolator( new AnticipateOvershootInterpolator(  ));
+        enterTransition.setDuration( 1000 );
+        getWindow().setEnterTransition( enterTransition );
+
+    }
+
 }

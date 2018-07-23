@@ -1,5 +1,7 @@
 package com.example.jitendrakumar.incometracker.adapters;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -62,6 +64,7 @@ public class MyIncomeAdapter extends RecyclerView.Adapter<MyIncomeAdapter.Benefi
         public void onClick(View v) {
             incomeData = new IncomeData( listBeneficiary.get( getPosition()).getIncomeId(), listBeneficiary.get( getPosition()).getInputType(), listBeneficiary.get( getPosition()).getInputAmount(), listBeneficiary.get( getPosition() ).getIncomeDate(), listBeneficiary.get(getPosition()).getIncomeTime(), listBeneficiary.get( getPosition()).getIncomeDesc());
             Toast.makeText( mContext, getPosition()+ incomeData.getInputType()+ incomeData.getInputAmount()+"is clicked", Toast.LENGTH_SHORT).show();
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation( (Activity) mContext );
             Intent i = new Intent( mContext, IncomeItemsActivity.class );
             i.putExtra( "amount",incomeData.getInputAmount());
             i.putExtra( "Date", incomeData.getIncomeDate() );
@@ -70,7 +73,7 @@ public class MyIncomeAdapter extends RecyclerView.Adapter<MyIncomeAdapter.Benefi
             i.putExtra( "incomeId", incomeData.getIncomeId() );
             i.putExtra( "incomeDesc", incomeData.getIncomeDesc() );
             Log.d( TAG, "onClick: "+ incomeData.getInputAmount()+incomeData.getIncomeTime()+incomeData.getIncomeId() );
-            mContext.startActivity( i );
+            mContext.startActivity( i, options.toBundle() );
         }
     }
 

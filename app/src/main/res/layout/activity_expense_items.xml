@@ -19,7 +19,11 @@
         android:paddingTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="35dp">
+        android:layout_marginTop="35dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+        <requestFocus />
+
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_value"
@@ -191,10 +195,6 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:id="@+id/tvSave"/>
-
-
-
-
 
 
         </LinearLayout>

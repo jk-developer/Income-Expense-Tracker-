@@ -1,5 +1,6 @@
 package com.example.jitendrakumar.incometracker.fragments;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -72,32 +73,36 @@ public class HomeFragment extends Fragment {
         incomeTotal.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation( getActivity() );
                 Intent i = new Intent( getActivity(), IncomeReportActivity.class );
-                startActivity( i );
+               startActivity( i, options.toBundle() );
             }
         } );
 
         expenseTotal.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation( getActivity() );
                 Intent intent = new Intent( getActivity(), ExpenseReportActivity.class );
-                startActivity( intent );
+                startActivity( intent, options.toBundle() );
             }
         } );
 
         paidtoTotal.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation( getActivity() );
                 Intent in = new Intent( getActivity(), BorrowActivity.class );
-                startActivity( in );
+                startActivity( in, options.toBundle() );
             }
         } );
 
         takenTotal.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation( getActivity() );
                 Intent lend = new Intent( getActivity(), LendActivity.class );
-                startActivity( lend );
+                startActivity( lend, options.toBundle() );
             }
         } );
 
@@ -273,8 +278,9 @@ public class HomeFragment extends Fragment {
         aboutLayout.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation( getActivity() );
                    Intent aboutActivity = new Intent( getActivity(), AboutActivity.class );
-                   startActivity( aboutActivity );
+                   startActivity(aboutActivity, options.toBundle()  );
 
             }
         } );

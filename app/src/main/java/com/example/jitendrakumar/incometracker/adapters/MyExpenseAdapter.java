@@ -1,5 +1,7 @@
 package com.example.jitendrakumar.incometracker.adapters;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -135,6 +137,7 @@ public class MyExpenseAdapter extends RecyclerView.Adapter<MyExpenseAdapter.MyVi
         @Override
         public void onClick(View v) {
             expenseData= new ExpenseData( listBeneficiary.get( getPosition()).getExpenseId(), listBeneficiary.get( getPosition()).getExpenseType(), listBeneficiary.get( getPosition()).getExpenseAmount(), listBeneficiary.get( getPosition() ).getExpenseDate(), listBeneficiary.get(getPosition()).getExpenseTime(), listBeneficiary.get( getPosition()).getExpenseDesc());
+            ActivityOptions optionsExpense = ActivityOptions.makeSceneTransitionAnimation( (Activity) mContext);
             Intent i = new Intent( mContext, ExpenseItemsActivity.class );
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -145,7 +148,7 @@ public class MyExpenseAdapter extends RecyclerView.Adapter<MyExpenseAdapter.MyVi
             i.putExtra( "incomeId", expenseData.getExpenseId() );
             i.putExtra( "expenseDesc", expenseData.getExpenseDesc() );
       //      Log.d( TAG, "onClick: "+ expenseData.getInputAmount()+incomeData.getIncomeTime()+incomeData.getIncomeId() );
-            mContext.startActivity( i );
+            mContext.startActivity( i, optionsExpense.toBundle() );
         }
     }
 

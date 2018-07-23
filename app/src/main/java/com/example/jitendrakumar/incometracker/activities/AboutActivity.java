@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.Explode;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 
 import com.example.jitendrakumar.incometracker.R;
@@ -15,11 +17,13 @@ public class AboutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        getWindow().requestFeature( Window.FEATURE_CONTENT_TRANSITIONS );
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_about );
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled( true );
-        getSupportActionBar().setTitle( "About Developer" );
+        initPage();
+        initAnimation();
 
         ivFacebook = (ImageView)findViewById( R.id.ivFacebook );
         ivMail = (ImageView)findViewById( R.id.ivMail );
@@ -54,4 +58,22 @@ public class AboutActivity extends AppCompatActivity {
 
 
     }
+   public void initPage(){
+
+       getSupportActionBar().setDisplayHomeAsUpEnabled( true );
+       getSupportActionBar().setTitle( "About Developer" );
+
+   }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finishAfterTransition();
+        return true;    }
+
+        public void initAnimation(){
+            Explode explode = new Explode( );
+            explode.setDuration( 800 );
+            getWindow().setEnterTransition( explode );
+
+        }
 }
