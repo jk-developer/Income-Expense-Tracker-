@@ -107,7 +107,7 @@ public class IncomeReportActivity extends AppCompatActivity {
 
                     String Time = Integer.toString( incHour )+":"+Integer.toString( incMinute );
                     Log.d( TAG, "getArrayList: time"+Time );
-                    incomeData = new IncomeData(incId, incType, incAmount, Date, Time, incDesc);
+                    incomeData = new IncomeData(incId,incType, incAmount, Date, Time, incDesc);
                     arrayList.add( incomeData);
                     totalIncome = totalIncome +incAmount;
                 }

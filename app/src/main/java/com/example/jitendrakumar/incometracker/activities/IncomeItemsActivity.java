@@ -73,7 +73,6 @@ public class IncomeItemsActivity extends AppCompatActivity implements DatePicker
         int incmonth = c.get( Calendar.MONTH);
         int incday = c.get( Calendar.DAY_OF_MONTH );
 
-
         final DatePickerDialog datePickerDialog = new DatePickerDialog(this, IncomeItemsActivity.this, incyear, incmonth, incday);
 
         Calendar cTime = Calendar.getInstance();

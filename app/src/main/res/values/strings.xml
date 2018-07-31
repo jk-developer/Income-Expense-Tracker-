@@ -16,6 +16,10 @@
     <string name="register_benef">Register Beneficiary</string>
     <string name="show_list_benef">List of Registered Beneficiary</string>
 
+    <string name="homeTitleToday">Today (Click here to change)</string>
+    <string name="homeTitleLastMonth">Last Month</string>
+    <string name="homeTitleThisMonth">This Month</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

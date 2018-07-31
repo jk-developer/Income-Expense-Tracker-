@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 public class IncomeDatabaseHelper extends SQLiteOpenHelper {
     public final static String TAG = "db";
@@ -127,6 +128,41 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public float getTodaysIncome(String year, String month, String  day)
+    {   float income;
+      SQLiteDatabase DB = this.getWritableDatabase();
+            Cursor curs = DB.rawQuery( "SELECT SUM(AMOUNT) FROM "+TABLE_NAME3+" WHERE DATE_YEAR = ? AND DATE_MONTH = ? AND DATE_DAY = ?" ,new String[] {year, month, day});
+            Log.d( TAG, "getTodaysIncome: "+curs.getCount() );
+            if(curs.getCount()==0){
+                return (float) 0.0;
+
+            }
+            else{
+                curs.moveToNext();
+                income = curs.getFloat( 0 );
+                Log.d( TAG, "getTodaysIncome: amount"+income );
+            }
+         return income;
+    }
+
+    public float getThisMonthData(String m){
+        float thisMonthAmount;
+        Log.d( TAG, "getThisMonthData: month"+ m );
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor curs = db.rawQuery( "SELECT SUM(AMOUNT) FROM "+TABLE_NAME3+" WHERE DATE_MONTH = ?", new String[] {m} );
+        if (curs.getCount() == 0) {
+          //  Toast.makeText(, "No Income  is added This Month !!!", Toast.LENGTH_SHORT ).show();
+            return (float)0.0;
+
+        } else {
+            curs.moveToNext();
+            thisMonthAmount = curs.getFloat( 0 );
+            Log.d( "hel", "onClick: income"+ thisMonthAmount );
+
+        }
+        return thisMonthAmount;
+    }
+
     public void deleteAllRecords(){
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL( "DELETE FROM "+TABLE_NAME3 );
@@ -157,6 +193,7 @@ public class IncomeDatabaseHelper extends SQLiteOpenHelper {
         Cursor res = db.rawQuery( "SELECT * FROM "+ TABLE_NAME3+ " WHERE INCOME_TYPE = ?", new String[] {cat} );
         return res;
     }
+
 
 }
 

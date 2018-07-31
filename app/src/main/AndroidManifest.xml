@@ -75,8 +75,20 @@
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activities.AddIncomeActivity"
+            android:parentActivityName=".activities.MainActivity" />
+
+        <activity android:name=".activities.AddExpenseActivity"
+            android:parentActivityName=".activities.MainActivity"/>
+
+        <activity android:name=".activities.AddBorrowActivity"
+            android:parentActivityName=".activities.MainActivity"/>
+
+        <activity android:name=".activities.AddLendActivity"
+            android:parentActivityName=".activities.MainActivity"></activity>
     </application>
 
 </manifest>

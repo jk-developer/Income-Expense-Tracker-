@@ -9,6 +9,7 @@ import android.transition.Explode;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import com.example.jitendrakumar.incometracker.*;
 
 import com.example.jitendrakumar.incometracker.R;
 
@@ -45,14 +46,12 @@ public class AboutActivity extends AppCompatActivity {
         ivMail.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mailurl = "mailto:";
-                Uri uri = Uri.parse( mailurl );
-                Intent intent = new Intent( Intent.ACTION_SEND );
+                Uri uri = Uri.parse("mailto:" );
+                Intent intent = new Intent( Intent.ACTION_SENDTO);
                 intent.setData(uri);
-                String[] to = {"jkgupta15798@gmail.com"};
+                String[] to = {"jkgupta4398@gmail.com"};
                 intent.putExtra( Intent.EXTRA_EMAIL, to );
-                intent.setType( "message/rfc822" );
-                startActivity(Intent.createChooser(intent, "Send email using ..."));
+                startActivity(intent);
             }
         } );
 

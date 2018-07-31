@@ -2,17 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/action_signup"
-        android:orderInCategory="100"
-        android:title="Sign up"
-        app:showAsAction="never"/>
-
-    <item
-        android:id="@+id/action_about_app"
-        android:orderInCategory="100"
-        android:title="About App"
-        app:showAsAction="never"/>
-
 
     <item
         android:id="@+id/action_sendfeedback"
@@ -26,9 +15,16 @@
         android:title="Rate app"
         app:showAsAction="never" />
     <item
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/logout"
+        android:title="Log out" />
+
+    <item
         android:id="@+id/action_reset"
         android:orderInCategory="100"
         android:title="Reset"
         app:showAsAction="never" />
+
+
 
 </menu>

@@ -126,38 +126,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String user = session.getUserName();
         switch (item.getItemId()) {
 
-            case R.id.action_signup:
-                if (user != null) {
-                    final AlertDialog.Builder signup_builder = new AlertDialog.Builder( MainActivity.this );
-                    signup_builder.setMessage( "Sorry, You are already registered and logged in." );
-                    signup_builder.setTitle( "Alert!" );
-                    signup_builder.setIcon( R.drawable.signup_alert );
-                    signup_builder.setNegativeButton( "Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            signup_builder.setCancelable( true );
-                        }
-                    } );
-
-                    AlertDialog alertDialog = signup_builder.create();
-                    alertDialog.show();
-                    return true;
-                } else {
-                             getSupportFragmentManager().beginTransaction()
-                                    .replace( R.id.fragment_container, new SignupFragment() )
-                                    .addToBackStack( null )
-                                    .commit();
-                            toolbar.setTitle( "Signup" );
-
-                    return true;
-                }
-
-            case  R.id.action_about_app:
-                  Intent about_app = new Intent( MainActivity.this, AboutAppActivity.class );
-                  startActivity( about_app );
-                  return true;
-
-                    case R.id.action_rate_us:
+                 case R.id.action_rate_us:
                         Toast.makeText( MainActivity.this, "Rate us action clicked", Toast.LENGTH_SHORT ).show();
                         return true;
 
@@ -169,15 +138,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         builder.setPositiveButton( "Send", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                String mailurl = "mailto:";
-                                Uri uri = Uri.parse( mailurl );
-                                Intent intent = new Intent( Intent.ACTION_SEND );
-                                intent.setData( uri );
-                                String[] to = {"jkgupta15798@gmail.com"};
+                                Uri uri = Uri.parse("mailto:" );
+                                Intent intent = new Intent( Intent.ACTION_SENDTO);
+                                intent.setData(uri);
+                                String[] to = {"jkgupta4398@gmail.com"};
                                 intent.putExtra( Intent.EXTRA_EMAIL, to );
-                                intent.putExtra( Intent.EXTRA_SUBJECT, "Income Expense Tracker Feedback" );
-                                intent.setType( "message/rfc822" );
-                                startActivity( Intent.createChooser( intent, "Send email using ..." ) );
+                                intent.putExtra( Intent.EXTRA_SUBJECT,"Income Expense Tracker Feedback " );
+                                startActivity(intent);
                             }
                         } );
 
@@ -192,7 +159,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         alertDialog.show();
                         return true;
 
-                    case R.id.action_reset:
+            case R.id.nav_logout:
+                String isUserValid = session.getUserName();
+                if(isUserValid!=null){
+                    session.removeUser();
+                    getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
+                            new HomeFragment())
+                            .addToBackStack( null )
+                            .commit();
+                    toolbar.setTitle( "Income Expense Tracker" );
+                    Toast.makeText( MainActivity.this, "Logged out successfully!!!" , Toast.LENGTH_SHORT).show();
+                    return true;
+                }else
+                {
+                    Toast.makeText( MainActivity.this, "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
+                   return true;
+                }
+
+                case R.id.action_reset:
                         for (int i = 0; i < charSequence.length; i++) {
                             Checked[i] = false;
                         }
@@ -309,36 +293,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     break;
                 }
 
+            case R.id.nav_signup:
+                if (username != null) {
+                    final AlertDialog.Builder signup_builder = new AlertDialog.Builder( MainActivity.this );
+                    signup_builder.setMessage( "Sorry, You are already registered and logged in." );
+                    signup_builder.setTitle( "Alert!" );
+                    signup_builder.setIcon( R.drawable.signup_alert );
+                    signup_builder.setNegativeButton( "Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            signup_builder.setCancelable( true );
+                        }
+                    } );
 
-            case R.id.nav_income:
-                if(username!=null){
-                    getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
-                            new AddIncomeFragment())
+                    AlertDialog alertDialog = signup_builder.create();
+                    alertDialog.show();
+                    break;
+                } else {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace( R.id.fragment_container, new SignupFragment() )
                             .addToBackStack( null )
                             .commit();
-                    toolbar.setTitle( "Income" );
-                    break;
+                    toolbar.setTitle( "Signup" );
 
-                }else
-                {
-                    Toast.makeText( MainActivity.this, "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
-                    break;
+                   break;
                 }
-
-            case R.id.nav_expense:
-                if(username!=null){
-                    getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
-                            new AddExpenseFragment())
-                            .addToBackStack( null )
-                            .commit();
-                    toolbar.setTitle( "Expense" );
-                    break;
-                }else
-                {
-                    Toast.makeText( MainActivity.this, "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
-                    break;
-                }
-
 
             case R.id.nav_income_report:
 
@@ -388,11 +367,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_tobe_paid:
                 if(username!=null)
                 {
-                    getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
-                            new BorrowFragment())
-                            .addToBackStack( null )
-                            .commit();
-                    toolbar.setTitle( "To be Paid To" );
+                    Intent addBorrow = new Intent( MainActivity.this, AddBorrowActivity.class );
+                    startActivity( addBorrow );
                     break;
                 }else
                 {
@@ -403,11 +379,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.nav_tobe_taken:
                 if(username!=null){
-                    getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
-                            new LendFragment())
-                            .addToBackStack( null )
-                            .commit();
-                    toolbar.setTitle( "To be Taken From" );
+                   Intent addLend = new Intent( MainActivity.this, AddLendActivity.class );
+                   startActivity( addLend );
                     break;
                 }else
                 {
@@ -449,28 +422,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity( about, options.toBundle() );
                 break;
 
-            case R.id.nav_logout:
-                if(username!=null){
-                    session.removeUser();
-                    getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
-                            new HomeFragment())
-                            .addToBackStack( null )
-                            .commit();
-                    toolbar.setTitle( "Income Expense Tracker" );
-                    Toast.makeText( MainActivity.this, "Logged out successfully!!!" , Toast.LENGTH_SHORT).show();
-                    break;
-                }else
-                {
-                    Toast.makeText( MainActivity.this, "Please First login into your account!!!",Toast.LENGTH_SHORT ).show();
-                    break;
-                }
+            case  R.id.nav_about_app:
+                Intent about_app = new Intent( MainActivity.this, AboutAppActivity.class );
+                startActivity( about_app );
+                break;
 
 
         }
         drawerLayout.closeDrawer( GravityCompat.START );
         return true;
     }
-
-
-
 }

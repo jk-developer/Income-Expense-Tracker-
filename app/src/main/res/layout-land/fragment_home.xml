@@ -19,11 +19,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="hello"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:layout_centerInParent="true"
             android:id="@+id/tvHello"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
             android:background="@drawable/hellogradient"
             android:textColor="@color/colorTexts"/>
@@ -32,34 +32,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="3dp"
-            android:layout_margin="10dp"
+            android:padding="2dp"
+            android:layout_margin="5dp"
             android:layout_gravity="center"
             android:background="@drawable/hometotal">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Current Report"
+                android:text="Today(Click here to change)"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textSize="25sp"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:padding="3dp"
-                android:layout_margin="10dp"/>
+                android:layout_margin="5dp"
+                android:id="@+id/tvHomeTitle"
+                android:textColor="#000000"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
-                android:background="@drawable/incometotal"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"
-                android:padding="3dp">
+                android:background="@drawable/savingtotal"
+                android:layout_margin="3dp"
+                android:padding="2dp">
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Total Income "
+                    android:text="Income "
                     android:textSize="18sp"
                     android:padding="3dp"
                     android:layout_gravity="center"
@@ -71,6 +72,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:text=""
                     android:textSize="18sp"
                     android:padding="3dp"
                     android:layout_gravity="center"
@@ -84,17 +86,15 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
                 android:background="@drawable/expensetotal"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"
-                android:padding="3dp">
+                android:layout_margin="3dp"
+                android:padding="2dp">
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Total Expense "
+                    android:text="Expense "
                     android:textSize="18sp"
                     android:padding="3dp"
                     android:layout_gravity="center"
@@ -106,33 +106,28 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Your expense "
+                    android:text=""
                     android:textSize="18sp"
                     android:padding="3dp"
                     android:layout_gravity="center"
                     android:layout_weight="2.5"
                     android:gravity="start"
                     android:textColor="@color/colorTexts"
-                    android:id="@+id/expenseTotal"
-                    />
+                    android:id="@+id/expenseTotal" />
 
             </LinearLayout>
 
-
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
-                android:background="@drawable/payingtotal"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="10dp"
-                android:padding="3dp">
+                android:background="@drawable/incometotal"
+                android:layout_margin="3dp"
+                android:padding="2dp">
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Total Borrowed money "
+                    android:text="Balance "
                     android:textSize="18sp"
                     android:padding="3dp"
                     android:layout_gravity="center"
@@ -144,76 +139,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:padding="3dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="2.5"
-                    android:gravity="start"
-                    android:textColor="@color/colorTexts"
-                    android:id="@+id/paidtoTotal"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal"
-                android:background="@drawable/takentotal"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
-                android:padding="3dp">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Total Lent money "
-                    android:textSize="18sp"
-                    android:padding="3dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="4"
-                    android:gravity="start"
-                    android:textColor="@color/colorTexts"
-                    />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:padding="3dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="2.5"
-                    android:gravity="start"
-                    android:textColor="@color/colorTexts"
-                    android:id="@+id/takenTotal"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal"
-                android:background="@drawable/savingtotal"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"
-                android:padding="3dp">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Total Savings"
-                    android:textSize="18sp"
-                    android:padding="3dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="4"
-                    android:gravity="start"
-                    android:textColor="@color/colorTexts"
-                    />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:text=""
                     android:textSize="18sp"
                     android:padding="3dp"
                     android:layout_gravity="center"
@@ -225,17 +151,17 @@
 
             </LinearLayout>
 
-        </LinearLayout>
 
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="1"
-            android:layout_margin="15dp">
-
-
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -247,21 +173,21 @@
                 android:clickable="true"
                 android:id="@+id/incomeLayout">
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
                     android:src="@drawable/home_income"
                     android:layout_gravity="center"
-                    android:layout_marginTop="18dp"/>
+                    android:layout_marginTop="20dp"/>
 
                 <TextView
-                    android:layout_width="130dp"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:text="Add Income"
                     android:textSize="18sp"
                     android:gravity="center"
                     android:padding="2dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="18dp"/>
+                    android:layout_marginBottom="18dp"
+                    android:textColor="#000000"/>
             </LinearLayout>
 
             <LinearLayout
@@ -274,309 +200,28 @@
                 android:clickable="true"
                 android:id="@+id/expenseLayout">
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
                     android:src="@drawable/home_income"
                     android:layout_gravity="center"
-                    android:layout_marginTop="18dp"/>
+                    android:layout_marginTop="20dp"/>
 
                 <TextView
-                    android:layout_width="130dp"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:text="Add Expense"
                     android:textSize="18sp"
                     android:gravity="center"
                     android:padding="2dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="18dp"/>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="5dp"
-                android:background="@drawable/layout_corner"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:id="@+id/borrowLayout">
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/home_income"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="18dp"/>
-
-                <TextView
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:text="Add Borrow"
-                    android:textSize="18sp"
-                    android:gravity="center"
-                    android:padding="2dp"
-                    android:layout_marginBottom="18dp"
-                    android:layout_gravity="center"
-                    android:textColor="#000000"/>
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="5dp">
-
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="5dp"
-                android:background="@drawable/layout_corner"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:id="@+id/lendLayout">
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/home_income"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="18dp"
-                    />
-
-                <TextView
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:text="Add Lend"
-                    android:textSize="18sp"
-                    android:gravity="center"
-                    android:padding="2dp"
-                    android:layout_gravity="center"
                     android:layout_marginBottom="18dp"
                     android:textColor="#000000"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="5dp"
-                android:background="@drawable/layout_corner"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:id="@+id/incomeReportLayout">
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/my_report"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="18dp" />
-
-                <TextView
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:text="Income Report"
-                    android:textSize="18sp"
-                    android:gravity="center"
-                    android:padding="2dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="18dp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="5dp"
-                android:background="@drawable/layout_corner"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:id="@+id/expenseReportLayout">
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/my_report"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="18dp"/>
-
-                <TextView
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:text="Expense Report"
-                    android:textSize="18sp"
-                    android:gravity="center"
-                    android:padding="2dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="18dp"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="5dp">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="5dp"
-                android:background="@drawable/layout_corner"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:id="@+id/borrowReportLayout">
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/my_report"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="18dp" />
-
-                <TextView
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:text="Borrow Report "
-                    android:textSize="18sp"
-                    android:gravity="center"
-                    android:padding="2dp"
-                    android:layout_marginBottom="18dp"
-                    android:layout_gravity="center"
-                    android:textColor="#000000" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="5dp"
-                android:background="@drawable/layout_corner"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:id="@+id/lendReportLayout">
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/home_income"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="18dp" />
-
-                <TextView
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:text="Lend Report "
-                    android:textSize="18sp"
-                    android:gravity="center"
-                    android:padding="2dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="18dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="5dp"
-                android:background="@drawable/layout_corner"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:id="@+id/todoLayout">
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/task"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="18dp"/>
-
-                <TextView
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:text="Todo Task"
-                    android:textSize="18sp"
-                    android:gravity="center"
-                    android:padding="2dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="18dp"/>
-            </LinearLayout>
 
         </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="5dp">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="5dp"
-                android:background="@drawable/layout_corner"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:id="@+id/loginLayout">
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/login_user"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="18dp"/>
-
-                <TextView
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:text="Login"
-                    android:textSize="18sp"
-                    android:gravity="center"
-                    android:padding="2dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="18dp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="5dp"
-                android:background="@drawable/layout_corner"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:id="@+id/aboutLayout">
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/developer"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="18dp"/>
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="About Developer "
-                    android:textSize="18sp"
-                    android:gravity="center"
-                    android:padding="2dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="18dp"/>
-            </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1"/>
-               </LinearLayout>
-
-        </LinearLayout>
-
+    </LinearLayout>
 
 </ScrollView>
-
 

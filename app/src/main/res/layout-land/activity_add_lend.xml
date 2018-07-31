@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteY="81dp"
+    android:background="@drawable/gradient_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTobeTakenFrom"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="25dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Add Lent Money here"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorTexts"/>
+
+        <EditText
+            android:id="@+id/etPersonName"
+            android:layout_width="350dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_marginBottom="19dp"
+            android:layout_marginEnd="56dp"
+            android:layout_marginStart="56dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Borrower Name"
+            android:inputType="textPersonName"
+            android:padding="5dp"
+            android:background="@drawable/border"/>
+
+        <EditText
+            android:id="@+id/etTakenAmount"
+            android:layout_width="350dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Amount(Rs)"
+            android:inputType="numberDecimal"
+            android:padding="5dp"
+            android:background="@drawable/border"/>
+
+        <EditText
+            android:id="@+id/etTakenReason"
+            android:layout_width="350dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Description"
+            android:inputType="text"
+            android:padding="5dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/border"/>
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border">
+            <TextView
+                android:id="@+id/tvLendDate"
+                android:layout_width="270dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="DD/MM/YYYY"
+                android:inputType="date"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:textColor="@color/colorTexts"/>
+            <TextView
+                android:layout_width="75dp"
+                android:layout_height="45dp"
+                android:text="Date"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textColor="@color/colorTexts"
+                android:id="@+id/tvHintLendDate"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnTakenSubmit"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:text="Save"
+            android:textColor="@color/colorTexts"
+            android:background="@drawable/button_background"
+            android:layout_marginTop="25dp"/>
+
+
+
+    </LinearLayout>
+</ScrollView>

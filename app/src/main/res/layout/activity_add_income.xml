@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteY="81dp"
+    android:background="@drawable/gradient_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvIncomeTitle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Add all your Incomes here"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorTexts"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_amount"
+            android:layout_width="270dp"
+            android:layout_height="55dp"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColorHint="@color/colorTexts">
+
+            <EditText
+                android:id="@+id/etIncomeAmount"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Amount(Rs) "
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:textColor="#00ff00"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:inputType="numberDecimal" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <LinearLayout
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border">
+
+            <TextView
+                android:id="@+id/tvIncomeInput"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:gravity="center"
+                android:text="Regular Salary"
+                android:inputType="textPersonName"
+                android:padding="3dp"
+                android:textSize="17sp"
+                android:textColor="@color/colorTexts" />
+
+            <TextView
+                android:id="@+id/tvIncomeType"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="Category"
+                android:inputType="textPersonName"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:textColor="@color/colorTexts"
+                />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border">
+            <TextView
+                android:id="@+id/tvIncomeDate"
+                android:layout_width="180dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="DD/MM/YYYY"
+                android:inputType="date"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:textColor="@color/colorTexts"/>
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="45dp"
+                android:text="Date"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textColor="@color/colorTexts"
+                android:id="@+id/tvHintIncomeDate"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/border">
+            <TextView
+                android:id="@+id/tvIncomeTime"
+                android:layout_width="180dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:hint="HH:MM"
+                android:gravity="center"
+                android:inputType="date"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/colorTexts"/>
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="45dp"
+                android:text="Time"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textColor="@color/colorTexts"
+                android:id="@+id/tvIncomeHintTime"/>
+
+        </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_value"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColorHint="@color/colorTexts">
+
+            <EditText
+                android:id="@+id/etIncomeDescription"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Description "
+                android:textSize="18sp"
+                android:textColor="#00ff00"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:inputType="text"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnIncomeSubmit"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:text="Save"
+            android:textColor="@color/colorTexts"
+            android:background="@drawable/button_background"
+            android:layout_marginTop="15dp" />
+
+
+
+    </LinearLayout>
+</ScrollView>

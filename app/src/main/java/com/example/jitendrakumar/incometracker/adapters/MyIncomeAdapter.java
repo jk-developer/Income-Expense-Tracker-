@@ -41,7 +41,6 @@ public class MyIncomeAdapter extends RecyclerView.Adapter<MyIncomeAdapter.Benefi
         }
 
     public class BeneficiaryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public AppCompatTextView tvIncomeReportId;
         public AppCompatTextView tvIncomeReportType;
         public AppCompatTextView tvIncomeReportAmount;
         public AppCompatTextView tvIncomeReportDate;
@@ -51,7 +50,6 @@ public class MyIncomeAdapter extends RecyclerView.Adapter<MyIncomeAdapter.Benefi
         public BeneficiaryViewHolder(View view) {
             super(view);
             view.setOnClickListener(this);
-            tvIncomeReportId = (AppCompatTextView)view.findViewById( R.id.tvIncomeReportId );
             tvIncomeReportType = (AppCompatTextView)view.findViewById( R.id.tvIncomeReportType );
             tvIncomeReportAmount = (AppCompatTextView)view.findViewById( R.id.tvIncomeReportAmount );
             tvIncomeReportDate = (AppCompatTextView)view.findViewById( R.id.tvIncomeReportDate );
@@ -63,7 +61,7 @@ public class MyIncomeAdapter extends RecyclerView.Adapter<MyIncomeAdapter.Benefi
         @Override
         public void onClick(View v) {
             incomeData = new IncomeData( listBeneficiary.get( getPosition()).getIncomeId(), listBeneficiary.get( getPosition()).getInputType(), listBeneficiary.get( getPosition()).getInputAmount(), listBeneficiary.get( getPosition() ).getIncomeDate(), listBeneficiary.get(getPosition()).getIncomeTime(), listBeneficiary.get( getPosition()).getIncomeDesc());
-            Toast.makeText( mContext, getPosition()+ incomeData.getInputType()+ incomeData.getInputAmount()+"is clicked", Toast.LENGTH_SHORT).show();
+           // Toast.makeText( mContext, getPosition()+ incomeData.getInputType()+ incomeData.getInputAmount()+"is clicked", Toast.LENGTH_SHORT).show();
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation( (Activity) mContext );
             Intent i = new Intent( mContext, IncomeItemsActivity.class );
             i.putExtra( "amount",incomeData.getInputAmount());
@@ -72,7 +70,6 @@ public class MyIncomeAdapter extends RecyclerView.Adapter<MyIncomeAdapter.Benefi
             i.putExtra( "Type", incomeData.getInputType());
             i.putExtra( "incomeId", incomeData.getIncomeId() );
             i.putExtra( "incomeDesc", incomeData.getIncomeDesc() );
-            Log.d( TAG, "onClick: "+ incomeData.getInputAmount()+incomeData.getIncomeTime()+incomeData.getIncomeId() );
             mContext.startActivity( i, options.toBundle() );
         }
     }
@@ -88,7 +85,7 @@ public class MyIncomeAdapter extends RecyclerView.Adapter<MyIncomeAdapter.Benefi
 
     @Override
     public void onBindViewHolder(final BeneficiaryViewHolder holder, int position) {
-        holder.tvIncomeReportId.setText(String.valueOf( listBeneficiary.get(position).getIncomeId() ));
+      //  holder.tvIncomeReportId.setText(String.valueOf( listBeneficiary.get(position).getIncomeId() ));
         holder.tvIncomeReportType.setText(listBeneficiary.get(position).getInputType());
         holder.tvIncomeReportAmount.setText(String.valueOf( listBeneficiary.get(position).getInputAmount() ));
 
